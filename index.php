@@ -52,9 +52,6 @@
         				<div class="hp-slide-title" data-id="4">
         					Totale bijdrage Nederland 2004-2014 programmering Drinkwater
         				</div>
-        				<div class="hp-slide-title" data-id="5">
-        					Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-        				</div>
         			</div>
         		</div>
         	</div>
@@ -83,11 +80,6 @@
         				<div class="hp-slide-content" data-id="4">
         					<canvas id="slide-4-canvas" width="1000" height="440" style="margin-top: 40px"></canvas>
         				</div>
-
-        				<div class="hp-slide-content" data-id="5">
-        					
-        				</div>
-
         				
         			</div>
 
@@ -95,32 +87,7 @@
         	</div>
 
 
-			<div class="row hp-buttons">
-				<div class="col-md-2">
-					<a class="hp-button hp-button-0" data-id="0" href="#">Home</a>
-					<div class="hp-button hp-button-clone hp-button-0-clone"></div>
-				</div>
-				<div class="col-md-2">
-					<a class="hp-button hp-button-1" data-id="1" href="#">Bereik sanitatie</a>
-					<div class="hp-button hp-button-clone hp-button-1-clone"></div>
-				</div>
-				<div class="col-md-2">
-					<a class="hp-button hp-button-2" data-id="2" href="#">Bereik drinkwater</a>
-					<div class="hp-button hp-button-clone hp-button-2-clone"></div>
-				</div>
-				<div class="col-md-2">
-					<a class="hp-button hp-button-3" data-id="3" href="#">Bijdrage sanitatie</a>
-					<div class="hp-button hp-button-clone hp-button-3-clone"></div>
-				</div>
-				<div class="col-md-2">
-					<a class="hp-button hp-button-4" data-id="4" href="#">Bijdrage drinkwater</a>
-					<div class="hp-button hp-button-clone hp-button-4-clone"></div>
-				</div>
-				<div class="col-md-2">
-					<a class="hp-button hp-button-5" data-id="5" href="#">Euismod Sit</a>
-					<div class="hp-button hp-button-clone hp-button-5-clone"></div>
-				</div>
-			</div>
+
 		</div>
 
 

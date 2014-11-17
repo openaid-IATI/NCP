@@ -385,7 +385,8 @@ Project.prototype.set_slider = function(){
 	} 
 
 	this.slider.bxslider.goToSlide(this.id);
-	
+	$(".menu-item").removeClass("active");
+ 	$(".slide-" + this.id + " .menu-item").addClass("active");
 }
 
 
@@ -411,7 +412,7 @@ Project.prototype.set_slider = function(){
 function HomepageSlider(){
 	this.slides = [];
 	this.current_slide = 0;
-	this.slide_amount = 5;
+	this.slide_amount = 4;
 }
 
 

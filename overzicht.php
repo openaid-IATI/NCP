@@ -275,7 +275,7 @@
 })(jQuery);
 
 	//enter the count down date using seconds
-	$(".ccounter").ccountdown(4);
+	$(".ccounter").ccountdown(10);
 
 </script>
 

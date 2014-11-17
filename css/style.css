@@ -294,13 +294,7 @@ footer{
 	z-index: 100;
 }
 
-.hp-button{
-	background-color: #fff;
-	padding: 20px 0px;
-	width: 100%;
-	display: block;
-	margin-top: 30px;
-}
+
 
 .hp-main-title{
 	width: 100%;
@@ -320,9 +314,6 @@ footer{
 	height: 500px;
 }
 
-.hp-button-clone{
-	display: none;
-}
 
 #canvas{
 	width: 1140px;
