@@ -10,7 +10,7 @@
     <link href="bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom css -->
     <link href="css/style.css" rel="stylesheet">
-
+    <link href="css/flippant.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,180 +26,162 @@
       <img src="img/logo-buza.png" alt="Buitenlandse Zaken"/>
     </div>
 
-
-    <div class="row" style="position: relative;">
-
-    	<?php for ($i = 0;$i < 3;$i++){ ?>
-      <div class="col-md-33 overview-small" data-id="<?php echo $i; ?>">
-        <div class="row">
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div><div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Scaling up Trans Border Food Warning Systems</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Scaling up Trans Border Food Warning Systems</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-        </div>
-        <div style="height:10px;"></div>
-        <div class="row">
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <?php } ?>
-    </div>
-
-
-
-
-
-
-
     <div class="row">
+	    <div class="col-md-60">
+	    	<div class="row">
 
-    	<?php for ($i = 3;$i < 6;$i++){ ?>
-      <div class="col-md-33 overview-small"  data-id="<?php echo $i; ?>">
-        <div class="row">
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div><div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Scaling up Trans Border Food Warning Systems</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Scaling up Trans Border Food Warning Systems</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-        </div>
-        <div style="height:10px;"></div>
-        <div class="row">
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-          <div class="col-md-15">
-            <div class="buza-top-border tile">
-              <h3>Nakura County Sanitation Program</h3>
-              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+	    		<div class="col-md-6 flip-right" id="project-left-block">
+			        <div class="row" style="position: relative;">
+			          
+			        	<div class="col-md-6 project-left-block">
+				            <div class="buza-top-border tile overview-project" data-id="1">
+				              <h3>Nakura County Sanitation Program</h3>
+				              <img src="img/project_data/vb.png" alt="NCP image"/>
+				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
+				            </div>
+				        </div>
 
-      <?php } ?>
+
+
+			          <div class="col-md-6 project-left-block">
+			            <div class="buza-top-border tile overview-project" data-id="1">
+			              <h3>Nakura County Sanitation Program</h3>
+			              <img src="img/project_data/vb.png" alt="NCP image"/>
+			              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
+			            </div>
+			          </div>
+
+			        </div>
+
+
+			        <div class="row" style="height: 10px"></div>
+
+
+			        <div class="row" style="position: relative;">
+			          
+			        	<div class="col-md-6 project-left-block">
+				            <div class="buza-top-border tile overview-project" data-id="1">
+				              <h3>Nakura County Sanitation Program</h3>
+				              <img src="img/project_data/vb.png" alt="NCP image"/>
+				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
+				            </div>
+				        </div>
+
+
+
+			          <div class="col-md-6 project-left-block">
+			            <div class="buza-top-border tile overview-project" data-id="1">
+			              <h3>Nakura County Sanitation Program</h3>
+			              <img src="img/project_data/vb.png" alt="NCP image"/>
+			              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
+			            </div>
+			          </div>
+
+			        </div>
+
+
+			    </div>
+
+			    <div id="project-middle-block" class="col-md-3 flip-right">
+			    	<div class="row">
+
+			    		<div class="col-md-12">
+				            <div class="buza-top-border tile overview-project" data-id="2">
+				              <h3>Nakura County Sanitation Program</h3>
+				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
+				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
+				            </div>
+				          </div>
+
+				    </div>
+				    <div class="row" style="height: 10px"></div>
+				    <div class="row">
+
+			    		<div class="col-md-12">
+				            <div class="buza-top-border tile overview-project" data-id="2">
+				              <h3>Nakura County Sanitation Program</h3>
+				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
+				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
+				            </div>
+				          </div>
+
+				    </div>
+				</div>
+
+				<div id="project-right-block" class="col-md-3 flip-right">
+			    	<div class="row">
+
+
+			    		<div class="col-md-12">
+				            <div class="buza-top-border tile overview-project" data-id="2">
+				              <h3>Nakura County Sanitation Program</h3>
+				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
+				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
+				            </div>
+				          </div>
+
+				    </div>
+					<div class="row" style="height: 10px"></div>
+				    <div class="row">
+
+
+			    		<div class="col-md-12">
+				            <div class="buza-top-border tile overview-project" data-id="2">
+				              <h3>Nakura County Sanitation Program</h3>
+				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
+				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
+				            </div>
+				          </div>
+
+				    </div>
+				</div>
+
+
+
+			</div>
+	    </div>
+	    <div id="project-right-slider-block" class="col-md-15 flip-left">
+	    	<div class="row">
+
+	    		<div class="col-md-12">
+			    	<div class="row">
+
+
+			    		<div class="col-md-12">
+				            <div class="buza-top-border tile overview-project" data-id="2">
+				              <h3>Nakura County Sanitation Program</h3>
+				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
+				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
+				            </div>
+				          </div>
+
+				    </div>
+				    <div class="row" style="height: 10px"></div>
+				    <div class="row">
+
+
+			    		<div class="col-md-12">
+				            <div class="buza-top-border tile overview-project" data-id="2">
+				              <h3>Nakura County Sanitation Program</h3>
+				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
+				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
+				            </div>
+				          </div>
+
+				    </div>
+				</div>
+
+
+	    	</div>
+	    </div>
     </div>
 
 
+
+
+
+
+  
 
 
 
@@ -247,6 +229,10 @@
 	<script src="js/jquery.ccountdown.js"></script>
 	<script src="js/init.js"></script>
 	
+
+	<!-- flip effect -->
+	<script src="js/flippant.min.js"></script>
+
 	<!-- main ncp js -->
 	<script src="js/narrowcasting.js"></script>
 
@@ -255,8 +241,7 @@
 
 	var ncp = new NarrowCasting();
 	ncp.page = "overview";
-	var ovs = new OverviewSlider();
-
+  
 	(function($) {
 	$.fn.ccountdown = function(_s) {
 		var $this = this;
@@ -290,51 +275,9 @@
 })(jQuery);
 
 	//enter the count down date using seconds
-	$(".ccounter").ccountdown(5);
+	$(".ccounter").ccountdown(4);
 
 </script>
-
-
-<script>
-
-var slider = $('.bxslider').bxSlider({
-  mode: 'vertical',
-  slideMargin: 5,
-  maxSlides: 6,
-  minSlides: 6,
-  infiniteLoop: true,
-  hideControlOnEnd: true,
-  moveSlides: 1,  
-  pager: false,
-  controls: false,
-  auto: false,
-  responsive: false,
-  adaptiveHeight: false
-});
-
-$(".next-slide").click(function(e){
-  e.preventDefault();
-
-  slider.goToNextSlide();
-
-  var current = slider.getCurrentSlide();
-  $(".menu-item").removeClass("active");
-  $(".slide-"+current + " .menu-item").addClass("active");
-});
-
-$(".previous-slide").click(function(e){
-  e.preventDefault();
-
-  slider.goToPrevSlide();
-
-  var current = slider.getCurrentSlide();
-  $(".menu-item").removeClass("active");
-  $(".slide-"+current + " .menu-item").addClass("active");
-});
-
-</script>
-
-
 
 
   </body>

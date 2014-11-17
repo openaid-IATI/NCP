@@ -25,34 +25,8 @@
       <!-- <p>Logo BuZa</p> -->
       <img src="img/logo-buza.png" alt="Buitenlandse Zaken"/>
     </div>
-<!--     <div class="row">
-      <div class="col-md-60">
-        <p class="lead">Foo</p>
-        <div class="row">
-          <div class="col-md-3">
-            <p class="lead">Foo</p>
-          </div>
-          <div class="col-md-3">
-            <p class="lead">Foo</p>
-          </div>
-          <div class="col-md-3">
-            <p class="lead">Foo</p>
-          </div>
-          <div class="col-md-3">
-            <p class="lead">Foo</p>
-          </div>
-        </div>
 
-      </div>
-      <div class="col-md-15">
-        <p class="lead">Foo</p>
-        <p class="lead">Foo</p>
-        <p class="lead">Foo</p>
-        <p class="lead">Foo</p>
-        <p class="lead">Foo</p>
-        <p class="lead">Foo</p>
-      </div>
-    </div> -->
+    
 
     <div class="row">
         <div class="col-md-60">
@@ -89,20 +63,6 @@
             <div class="col-md-3">
               <div class="white-tile bottom-shadow buza-top-border">
                 <h3>Who will benefit?</h3>
-                <div class="row">
-                  <div class="col-md-4">
-                    <h4>Hygene</h4>
-                    <img src="img/ncp_icons/icon-01.png" />
-                  </div>
-                  <div class="col-md-8">
-                    <h5>Persons who receive training/capacity building</h5>
-                    <p class="number">6100</p>
-                    <h5>People reached with hygeme related communication</h5>
-                    <p class="number">29310</p>
-                  </div>
-                </div>
-              </div>
-              <div class="white-tile bottom-shadow buza-top-border">
                 <div class="row">
                   <div class="col-md-4">
                     <h4>Sanitation</h4>
@@ -211,6 +171,8 @@
       </div>
       <div class="col-md-15">
 
+       
+
         <div id="menu" class="buza-top-border">
           <div class="triangle">
             <a href="#" class="previous-slide"><img src="img/pointers/pointer_up.png" /></a>
@@ -218,12 +180,12 @@
 
 
           <ul class="bxslider">
-          <a class="slider-button slide-0" data-slide="0" href="#"><div class="menu-item bottom-shadow active">H20 Health Plus (H20+)</div></a>
-          <a class="slider-button slide-1" data-slide="1" href="#"><div class="menu-item bottom-shadow">One hundred wetlands in Northern Uganda</div></a>
-          <a class="slider-button slide-2" data-slide="2" href="#"><div class="menu-item bottom-shadow">Toilets and Improved Cooking Stoves</div></a>
-          <a class="slider-button slide-3" data-slide="3" href="#"><div class="menu-item bottom-shadow">Wash Project in Southern Ethiopia</div></a>
-          <a class="slider-button slide-4" data-slide="4" href="#"><div class="menu-item bottom-shadow">Clean Water, Conserve Water in Moradabad</div></a>
+
+          
+
           </ul>
+
+          
 
           <div class="triangle">
             <a href="#" class="next-slide"><img src="img/pointers/pointer_down.png" /></a>
@@ -240,6 +202,7 @@
       </div>
     </footer>
 
+     <script src="js/projects_data.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -252,14 +215,28 @@
   <script src="js/init.js"></script>
 
 
+    <script>
+    var active_class = "";
+    for(var i =0; i < projects_data.projects.length;i++){
+      if (i == 0){
+        active_class = " active";
+      } else {
+        active_class = "";
+      }
+
+      $(".bxslider").append('<a class="slider-button slide-'+i+'" data-slide="'+i+'" href="#"><div class="menu-item bottom-shadow'+active_class+'">'+projects_data.projects[i].title+'</div></a>');
+
+    }
+
+    </script>
 
     <script>
 
     var slider = $('.bxslider').bxSlider({
       mode: 'vertical',
       slideMargin: 5,
-      maxSlides: 6,
-      minSlides: 6,
+      maxSlides: 5,
+      minSlides: 5,
       infiniteLoop: true,
       hideControlOnEnd: true,
       moveSlides: 1,  
@@ -272,7 +249,6 @@
 
     $(".next-slide").click(function(e){
       e.preventDefault();
-
       slider.goToNextSlide();
 
       var current = slider.getCurrentSlide();
@@ -282,7 +258,6 @@
 
     $(".previous-slide").click(function(e){
       e.preventDefault();
-
       slider.goToPrevSlide();
 
       var current = slider.getCurrentSlide();
@@ -290,9 +265,6 @@
       $(".slide-"+current + " .menu-item").addClass("active");
     });
 
-    $(".slider-button").click(function(e){
-      var wd = null;
-    });
 
 
   </script>
@@ -335,28 +307,10 @@
   })(jQuery);
 
 
-  //enter the count down date using the format year, month, day, time:time
+  //enter seconds
   $(".ccounter").ccountdown(20);
 
-  var primary_font_code = 'Sintony:400,700:latin,latin-ext';
-      var secondary_font_code = 'Bree+Serif::latin,latin-ext';
-      var web_fonts = [primary_font_code];
-      if(secondary_font_code != ''){
-          web_fonts.push(secondary_font_code);
-      }
-      
-      WebFontConfig = {
-          google: { families: web_fonts }
-      };
-      (function() {
-          var wf = document.createElement('script');
-          wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-          wf.type = 'text/javascript';
-          wf.async = 'true';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(wf, s);
-      })();
+
 
 </script>
 

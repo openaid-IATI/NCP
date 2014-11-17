@@ -66,9 +66,14 @@ body {
 	/*margin-top: 10px;*/
 	top:50%;
 }
+.slider-button{
+	display: block;
+	height: 100px;
+}
 #menu .menu-item {
 	/*background: #FFF;*/
 	background: #FFF;
+	height: 100%;
 	color: #bbbbbb;
 	font-size: 21px;
 	padding: 20px 20px;
@@ -273,9 +278,6 @@ content: '\e013';
 }
 
 
-.slider-button{
-	display: block;
-}
 
 ul.bxslider{
 	padding-left: 0;
@@ -364,4 +366,17 @@ footer{
 
 }
 
+.projects .tile:hover, .projects .tile:focus{
+	transform: translateY(-5px);
 
+	background: #FFF;
+	background: linear-gradient(to bottom, #FFF 0%,#FFF 45%,#019b75 45%,#019b75 95%, #157346 95%, #157346 100%);
+	background: -moz-linear-gradient(bottom, #FFF 0%,#FFF 45%,#019b75 45%,#019b75 95%, #157346 95%, #157346 100%);
+	background: -ms-linear-gradient(bottom, #FFF 0%,#FFF 45%,#019b75 45%,#019b75 95%, #157346 95%, #157346 100%);
+	background: -o-linear-gradient(bottom, #FFF 0%,#FFF 45%,#019b75 45%,#019b75 95%, #157346 95%, #157346 100%);
+
+}
+/*
+.bx-viewport{
+	min-height: 490px;
+}*/
