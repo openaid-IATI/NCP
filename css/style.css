@@ -30,11 +30,21 @@
       src:url("../Fonts/7693a3a3-3d1b-4028-9946-bc17a93fcb38.eot?#iefix") format("eot"),url("../Fonts/03325a81-f248-4374-9e27-230fbb0125a1.woff") format("woff"),url("../Fonts/825c3c1c-ef51-4369-a032-84888a13b71d.ttf") format("truetype"),url("../Fonts/e5edc60f-e95c-4e00-8b51-329bf695dc3f.svg#e5edc60f-e95c-4e00-8b51-329bf695dc3f") format("svg");
       }
 
+      @font-face{
+      font-family:"KimberleyGesweinSketch";
+      src:url("../Fonts/KGBlankSpaceSketch.eot?#iefix");
+      src:url("../Fonts/KGBlankSpaceSketch.eot?#iefix") format("eot"),url("../Fonts/KGBlankSpaceSketch.woff") format("woff"),url("../Fonts/KGBlankSpaceSketch.ttf") format("truetype"),url("../Fonts/KGBlankSpaceSketch.svg#KGBlankSpaceSketch") format("svg");
+      }
+
 body {
 	background: #f3f5f6;
 	min-width: 960px;
 	margin: 0;
-	font-family: 'MuseoSansW01-Rounded700';
+	/*font-family: 'MuseoSansW01-Rounded700';*/
+	font-family: 'KimberleyGesweinSketch';
+	height: 1080px;
+	width: 1920px;
+	position: relative;
 }
 .centered {
 	text-align: center;
@@ -42,16 +52,24 @@ body {
 #logo-container-bottom {
 	background: #FFF;
 	height: 97px;
-	border-bottom: solid #006699 3px;
+	position: relative;
 }
 #logo-container {
 	background: #FFF;
 	height: 97px;
-	/*border-bottom: solid #006699 3px;*/
 }
 #headline {
-	margin: 50px 0;
+	margin: 0;
+	background-image: url("../img/bg-grey.png");
+	background-repeat: repeat;
+	display: block;
 }
+#overview-main-wrapper{
+	background-image: url("../img/bg-grey.png");
+	padding: 26px 20px;
+}
+
+
 #headline h1 {
 	color: #01689b;
 	font-size: 120px;
@@ -62,30 +80,21 @@ body {
 	font-size: 120px;
 	font-family:'MuseoSansW01-Rounded300';
 }
-#menu {
-	/*margin-top: 10px;*/
-	top:50%;
-}
+
 .slider-button{
 	display: block;
-	height: 100px;
+	height: 80px;
 }
 #menu .menu-item {
-	/*background: #FFF;*/
-	background: #FFF;
-	height: 100%;
+	background-image: url("../img/bg-button-grey.png");
+	height: 70px;
 	color: #bbbbbb;
-	font-size: 21px;
-	padding: 20px 20px;
-	margin-bottom: 10px;
-	font-family:'MuseoSansW01-Rounded300';
+	font-size: 16px;
+	padding: 10px 20px;
+	font-family:'KimberleyGesweinSketch';
 }
 #menu .active {
-	background: #85b200;
-	color: #FFF;
-}
-.buza-top-border {
-	border-top: solid #006699 3px;	
+	color: #FF7F00;
 }
 .next-project-focus {
 	margin: 20px 0;
@@ -95,9 +104,15 @@ body {
 }
 
 .bottom-shadow {
-	-webkit-box-shadow: 0 3px 3px -2px gray;
-    -moz-box-shadow: 0 3px 3px -2px gray;
-    box-shadow: 0 3px 3px -2px gray;
+	-webkit-box-shadow: 0 1px 3px -2px gray;
+    -moz-box-shadow: 0 1px 3px -2px gray;
+    box-shadow: 0 1px 3px -2px gray;
+}
+
+.active.bottom-shadow{
+	-webkit-box-shadow: 0 2px 3px -2px gray;
+    -moz-box-shadow: 0 2px 3px -2px gray;
+    box-shadow: 0 2px 3px -2px gray;
 }
 .triangle-top {
 	width: 0;
@@ -131,30 +146,64 @@ body {
 /*0 3px 3px -2px gray*/
 
 .tile {
-	min-height: 464px;
+	min-height: 400px;
 	background: #FFF;
-	background: linear-gradient(to bottom, #FFF 0%,#FFF 45%,#01689b 45%,#01689b 95%, #154273 95%, #154273 100%);
-	background: -moz-linear-gradient(bottom, #FFF 0%,#FFF 45%,#01689b 45%,#01689b 95%, #154273 95%, #154273 100%);
-	background: -ms-linear-gradient(bottom, #FFF 0%,#FFF 45%,#01689b 45%,#01689b 95%, #154273 95%, #154273 100%);
-	background: -o-linear-gradient(bottom, #FFF 0%,#FFF 45%,#01689b 45%,#01689b 95%, #154273 95%, #154273 100%);
-	padding: 10px;
+	padding: 0;
+	margin-top: 0px;
+	position: relative;
 }
-.tile p {
-	margin-top: 20px;
-	color: #FFF;
-	font-size: 16px;
-	font-family:'MuseoSansW01-Rounded300';
 
+.tile .pin-left, .tile .pin-right{
+	position: absolute;
+	top: 10px;
+	width: 12px;
+	height: 12px;
+	display: block;
+	background-image: url("../img/pin.png");
 }
+
+.tile .pin-left{
+	left: 10px;
+}
+
+.tile .pin-right{
+	right: 10px;
+}
+
 .tile h3 {
+	text-align: center;
 	color: #00679a;
 	font-size: 21px;
-	padding-bottom: 20px;
+	padding: 20px 20px;
+
+	height: 84px;
+	font-family: "KimberleyGesweinSketch";
+	margin-top: 0;
+	margin-bottom: 0;
 }
 .tile img, .white-tile img {
-	max-width:100%; 
-	max-height:100%;
+	width:100%; 
+	max-height:auto;
 }
+
+.tile img{
+	min-height: 316px;
+}
+.overview-project-image-wrapper{
+	display: block;
+	width: 100%;
+	height: 316px;
+	overflow: hidden;
+}
+
+.project-image-wrapper{
+	display: block;
+	width: 100%;
+	height: 300px;
+	overflow: hidden;
+}
+
+
 .map-tile {
 	min-height: 464px;
 	background: url(../img/ncp_images/NCP_image_02.png) no-repeat;
@@ -181,19 +230,23 @@ body {
 	padding: 10px;
 	margin-bottom: 20px;
 	color: #8f9398;
-	font-size: 16px;
+	font-size: 14px;
 }
 .white-tile .thin {
 	font-family:'MuseoSansW01-Rounded300';
 }
 .feature-image img {
-	max-width: 100%;
+	width: 100%;
 }
-.white-tile h1, .white-tile h2, .white-tile h4, .white-tile h5 {
+.white-tile h1, .white-tile h2, .white-tile h4 {
 	color: #01689b;
 } 
+.white-tile h5 {
+	color: #FF7F00;
+}
+
 .white-tile h1 {
-	font-size: 36px;
+	font-size: 30px;
 }
 .white-tile h2 {
 	font-size: 24px;
@@ -206,11 +259,11 @@ body {
 	color: #FFF;
 }
 .white-tile h4 {
-	font-size: 18px;
+	font-size: 14px;
 	text-transform: uppercase;
 }
 .white-tile h5 {
-	font-size: 16px;
+	font-size: 14px;
 }
 .white-tile .bullet {
 	padding-right: 15px;
@@ -219,7 +272,7 @@ body {
 .white-tile p.number {
 	font-size: 36px;
 	color: #8f9398;
-	font-family:'MuseoSansW01-Rounded300';
+	/*font-family:'MuseoSansW01-Rounded300';*/
 	padding-bottom: 10px;
 }
 .white-tile .progress-bar-success {
@@ -284,21 +337,34 @@ ul.bxslider{
 }
 
 footer{
-	border-top: solid #006699 3px;
 	display: block;
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 130px;
+	height: 110px;
 	background: #fff;
 	z-index: 100;
 }
 
+.footer-text{
+	padding-top: 36px;
+	text-align: center;
+	font-family: "KimberleyGesweinSketch";
+	font-size: 25px;
+	color: #006699;
+}
+
+.ccounter{
+	position: absolute;
+	top: 18px;
+	right: 30px;
+}
 
 
 .hp-main-title{
+	text-align: center;
 	width: 100%;
-	background: #01689b;
+	color: #00679A;
 	height: 70px;
 	margin-bottom: 30px;
 	color: #fff;
@@ -308,10 +374,15 @@ footer{
 	padding-top: 20px;
 }
 
+.hp-main-title-highlight{
+	color: #FF7F00;
+}
+
 .hp-main-area{
 	width: 100%;
+	min-height: 868px;
+	height: 868px;
 	background: #fff;
-	height: 500px;
 }
 
 
@@ -322,6 +393,10 @@ footer{
 
 .hp-slide-title, .hp-slide-content{
 	display: none;
+}
+
+.hp-slide-title{
+	font-family: 'KimberleyGesweinSketch';
 }
 
 .overview-small{
@@ -367,6 +442,28 @@ footer{
 	background: -o-linear-gradient(bottom, #FFF 0%,#FFF 45%,#019b75 45%,#019b75 95%, #157346 95%, #157346 100%);
 
 }
+
+
+.header-blue-line{
+	position: absolute;
+	bottom: -3px;
+	background-image: url('../img/blue-line.png');
+	background-repeat: repeat;
+	width: 100%;
+	height: 9px;
+}
+
+
+.footer-blue-line{
+	position: absolute;
+	top: -3px;
+	background-image: url('../img/blue-line.png');
+	background-repeat: repeat;
+	width: 100%;
+	height: 9px;
+}
+
+
 /*
 .bx-viewport{
 	min-height: 490px;

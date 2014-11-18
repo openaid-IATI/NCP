@@ -12,42 +12,51 @@ NarrowCasting.prototype.load_next = function() {
 
 	if(this.page == "overview"){
 		
+		// if (this.count == 0){
+			this.count++;
 
-		this.count++;
+			if (this.current_project.id == null){
+				this.current_project.id = 0;
+			} else if(this.current_project.id <= projects_data.projects.length) {
+				this.current_project.id = this.current_project.id + 1;
+			} else {
+				this.current_project.id = 0;
+			}
 
-		if (this.current_project.id == null){
-			this.current_project.id = 0;
-		} else if(this.current_project.id < projects_data.projects.length) {
-			this.current_project.id = this.current_project.id + 1;
-		}
+			this.current_project.set_data();
+			this.current_project.set_left_bar_html();
 
-		this.current_project.set_data();
-		this.current_project.set_left_bar_html();
+			// if(this.left.back == null){
+			// 	$(".overview-project[data-id='0'] h3").css("color", "#FF7F00");
+			// }
+			
 
-		setTimeout(
-		  function(){
-		    ncp.current_project.set_middle_bar_html();
 
-		    setTimeout(
+			setTimeout(
 			  function(){
-			    ncp.current_project.set_right_bar_html();
-
+			    ncp.current_project.set_middle_bar_html();
 
 			    setTimeout(
 				  function(){
-				    ncp.current_project.set_slider_html();
+				    ncp.current_project.set_right_bar_html();
+
 
 				    setTimeout(
 					  function(){
-					    ncp.current_project.set_slider();
-					  }, 800);
+					    ncp.current_project.set_slider_html();
+
+					    setTimeout(
+						  function(){
+						    ncp.current_project.set_slider();
+						  }, 800);
+
+					  }, 600);
 
 				  }, 600);
 
 			  }, 600);
 
-		  }, 600);
-
+		// }
 			
 
 	}
@@ -88,54 +97,80 @@ Project.prototype.set_data = function() {
 
 Project.prototype.set_left_bar_html = function() {
 
-	var html = '<div class="buza-top-border feature-image">'
-           +'<img src="img/ncp_images/NCP_image_03.png"/>'
+	var count_ups = [];
+
+	var html = '<div class="feature-image">'
+           +'<div class="project-image-wrapper">'
+           +'<img src="'+this.data.image.url+'"/>'
+           +'</div>'
            +'</div>'
            +'<div class="white-tile bottom-shadow">'
            +'<div class="row">'
            +'<div class="col-md-6">'
            +'<h1>'+this.data.title+'</h1>'
-           +'<h2>Water, sanitation, and fuel-efficient stoves for cost of water alone</h2>'
-           +'<p>'+this.data.content+'</p>'
+           +'<p>'+this.data.summary+'</p>'
            +'</div>'
            +'<div class="col-md-6">'
            +'<br/>'
            +'<div class="progress">'
-           +'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">'
+           +'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'+this.data.funded+'" aria-valuemin="0" aria-valuemax="100" style="width: 100%">'
            +'</div>'
            +'</div>'
-           +'<h4>Funded</h4>'
-           +'<p class="number">100%</p>'
+           +'<h5>FUNDED</h5>'
+           +'<p class="number"><span id="left-count-up-0"></span>%</p>'
            +'<br/>'
-           +'<h4>Raised</h4>'
-           +'<p class="number">'+this.data.raised+'</p>'
+           +'<h5>RAISED</h5>'
+           +'<p class="number">&euro; <span id="left-count-up-1"></span></p>'
            +'<br/>'
-           +'<h4>Focus area</h4>'
+           +'<h5>FOCUS AREA</h5>'
            +'<p class="number">Water and sanitation</p>'
            +'</div>'
            +'</div>'
+           +'</div>'
            +'</div>';
+
+    count_ups.push(this.data.funded);
+    count_ups.push(this.data.raised);
+
+
     if (this.left.back == null){
     	// we are on the overview page, load first project
     	this.left.back = flippant.flip(this.left.front, html, 'card', 'flip-right');
     	this.left.is_first_back = true;
     } else if(this.left.is_first_back){
-    	// go to second back
-    	this.left.second_back = flippant.flip(this.left.back, html, 'card', 'flip-right');
+
+    	// change data on front
+    	this.left.front.innerHTML = html;
+    	this.left.back.close();
     	this.left.is_first_back = false;
     } else {
-    	// go to first back
-    	// load data into first back
-    	// close second back
-    	this.left.second_back.close();
+    	this.left.is_first_back = true;
+    	this.left.back = flippant.flip(this.left.front, html, 'card', 'flip-right');
     }
+
+
+    var options = {
+	  useEasing : true, 
+	  useGrouping : true, 
+	  separator : ',', 
+	  decimal : '.', 
+	  prefix : '' ,
+	  suffix : '' 
+	}
+
+	for (var i = 0;i < count_ups.length;i++){
+		var demo = new countUp("left-count-up-" + i, 0, count_ups[i], 0, 2.5, options);
+		demo.start();
+	}
 }
 
 
 Project.prototype.set_middle_bar_html = function() {
 
-    var html = '<div class="col-md-3 project-middle-block">'
-              	+'<div class="white-tile bottom-shadow buza-top-border">'
+	var count_ups = [];
+
+    var html = '<div class="col-md-12 project-middle-block">'
+              	+'<div class="white-tile bottom-shadow">'
                 +'<h3>Who will benefit?</h3>'
                 +'<div class="row">'
                 +'<div class="col-md-4">'
@@ -146,27 +181,38 @@ Project.prototype.set_middle_bar_html = function() {
 
 
     for(var i = 0;i < this.data.who_will_benefit.length;i++){
-    	html += '<h5>'+this.data.who_will_benefit[i]+'</h5>';
+    	if (this.data.who_will_benefit[i].category == "sanitation"){
+    		html += '<h5>'+this.data.who_will_benefit[i].name+'</h5>';
+    		html += '<p class="number" id="middle-count-up-'+count_ups.length+'"></p>';
+    		count_ups.push(this.data.who_will_benefit[i].amount);
+    	}
     }
 
-    html += '<p class="number">31360</p>'
-                +'</div>'
+    
+        html +='</div>'
                 +'</div>'
               	+'</div>'
-              	+'<div class="white-tile bottom-shadow buza-top-border">'
+              	+'<div class="white-tile bottom-shadow">'
                 +'<div class="row">'
                 +'<div class="col-md-4">'
 				+'<h4>Water</h4>'
                 +'<img src="img/ncp_icons/icon-03.png" />'
                 +'</div>'
-                +'<div class="col-md-8">'
-                +'<h5>People reached</h5>'
-                +'<p class="number">53750</p>'
-                +'</div>'
+                +'<div class="col-md-8">';
+
+    for(var i = 0;i < this.data.who_will_benefit.length;i++){
+    	if (this.data.who_will_benefit[i].category == "water"){
+    		html += '<h5>'+this.data.who_will_benefit[i].name+'</h5>';
+    		html += '<p class="number" id="middle-count-up-'+count_ups.length+'"></p>';
+    		count_ups.push(this.data.who_will_benefit[i].amount);
+    	}
+    }
+
+    html        +='</div>'
                 +'</div>'
               +'</div>';
 
-	html += '<div class="white-tile bottom-shadow buza-top-border">'
+	html += '<div class="white-tile bottom-shadow">'
                 +'<h3>Goals</h3>'
                 +'<ul class="list-unstyled icon-list checkmark">';
 
@@ -176,45 +222,12 @@ Project.prototype.set_middle_bar_html = function() {
     }
     
     html += '</ul>'
-              +'</div>'
-            +'</div>';
+      +'</div>'
+    +'</div>';
 
 
 
 
-    html = '<div class="white-tile bottom-shadow buza-top-border">'
-           +'<h3>Who will benefit?</h3>'
-           +'<div class="row">'
-           +'<div class="col-md-4">'
-           +'<h4>Sanitation</h4>'
-           +'<img src="img/ncp_icons/icon-02.png" />'
-           +'</div>'
-           +'<div class="col-md-8">'
-           +'<h5>People use improved sanitation facilities</h5>'
-           +'<p class="number">31360</p>'
-           +'</div>'
-           +'</div>'
-           +'</div>'
-           +'<div class="white-tile bottom-shadow buza-top-border">'
-           +'<div class="row">'
-           +'<div class="col-md-4">'
-           +'<h4>Water</h4>'
-           +'<img src="img/ncp_icons/icon-03.png" />'
-           +'</div>'
-           +'<div class="col-md-8">'
-           +'<h5>People reached</h5>'
-           +'<p class="number">53750</p>'
-           +'</div>'
-           +'</div>'
-           +'</div>'
-           +'<div class="white-tile bottom-shadow buza-top-border">'
-           +'<h3>Goals</h3>'
-           +'<ul class="list-unstyled icon-list checkmark">'
-           +'<li>Complete 75 comprehensive base-line surveys</li>'
-           +'<li>Complete 75 deep bore-holes (obtain carbon credits)</li>'
-           +'<li>Create 75 CHCs & train 30 Community Health Workers ("CHWs") to train local CHCs</li>'
-           +'</ul>'
-           +'</div>'
     
 
     if (this.middle.back == null){
@@ -222,16 +235,29 @@ Project.prototype.set_middle_bar_html = function() {
     	this.middle.back = flippant.flip(this.middle.front, html, 'card', 'flip-right');
     	this.middle.is_first_back = true;
     } else if(this.middle.is_first_back){
-    	// go to second back
-    	this.middle.second_back = flippant.flip(this.middle.back, html, 'card', 'flip-right');
+    	this.middle.front.innerHTML = html;
+    	this.middle.back.close();
     	this.middle.is_first_back = false;
     } else {
-    	// go to first back
-    	// load data into first back
-    	// close second back
-    	this.middle.second_back.close();
+    	this.middle.is_first_back = true;
+    	this.middle.back = flippant.flip(this.middle.front, html, 'card', 'flip-right');
     }
 
+
+    var options = {
+	  useEasing : true, 
+	  useGrouping : true, 
+	  separator : ',', 
+	  decimal : '.', 
+	  prefix : '' ,
+	  suffix : '' 
+	}
+
+	for (var i = 0;i < count_ups.length;i++){
+		var demo = new countUp("middle-count-up-" + i, 0, count_ups[i], 0, 2.5, options);
+		demo.start();
+	}
+	
 
 }
 
@@ -239,73 +265,39 @@ Project.prototype.set_middle_bar_html = function() {
 
 Project.prototype.set_right_bar_html = function() {
 
-    var html =  '<div class="white-tile bottom-shadow buza-top-border">'
+    var html =  '<div class="white-tile bottom-shadow">'
                 +'<h3>Project partners</h3>'
                 +'<div class="row">'
                   +'<div class="col-md-12">'
                     +'<h4>Field partners</h4>'
                   +'</div>'
-                +'</div>'
-                +'<div class="row">'
-                  +'<div class="col-md-4">'
-                    +'<img src="img/ncp_icons/icon-04.png" />'
-                  +'</div>'
-                  +'<div class="col-md-8">'
-                    +'<p>Blue Planet Network<br/><span class="thin">Oakland, United States</span></p>'
-                  +'</div>'
-                +'</div>'
-                +'<div class="row">'
-                  +'<div class="col-md-4">'
-                    +'<img src="img/ncp_icons/icon-05.png" />'
-                  +'</div>'
-                  +'<div class="col-md-8">'
-                    +'<p>Lifeline<br/><span class="thin">Washington D.C., United States</span></p>'
-                  +'</div>'
-                +'</div>'
-                +'<div class="row">'
-                  +'<div class="col-md-4">'
-                    +'<img src="img/ncp_icons/icon-06.png" />'
-                  +'</div>'
-                  +'<div class="col-md-8">'
-                    +'<p>Africa AHEAD<br/><span class="thin">Cape Town, Western Cape, South Africa</span></p>'
-                  +'</div>'
-                +'</div>'
-              +'</div>'
-              
-              +'<div class="white-tile bottom-shadow buza-top-border">'
-                +'<div class="row">'
-                  +'<div class="col-md-12">'
-                    +'<h4>Support partners</h4>'
-                  +'</div>'
-                +'</div>'
-                +'<div class="row">'
-                  +'<div class="col-md-4">'
-                    +'<img src="img/ncp_icons/icon-07.png" />'
-                  +'</div>'
-                  +'<div class="col-md-8">'
-                    +'<p>Aqua for all<br/><span class="thin">Den Haag, Zuid-Holland, Netherlands</span></p>'
-                  +'</div>'
-                +'</div>'
-            +'</div>'
-               +'<div class="white-tile bottom-shadow buza-top-border">'
-                +'<h3>Location</h3>'
-                +'<p>Africa, Uganda</p>'
-                +'<img src="img/ncp_images/NCP_image_04.png" />'
-              +'</div>';
+                +'</div>';
+
+    for(var i = 0;i < this.data.field_partners.length;i++){
+
+		html +='<div class="row"><div class="col-md-12"><p>'+this.data.field_partners[i].name+'<br/><span class="thin">'+this.data.field_partners[i].location+'</span></p></div></div>';
+	}
+    
+	html +='</div>';
+
+               
+    html +='<div class="white-tile bottom-shadow">'
+        +'<h3>Location</h3>'
+        +'<h4>'+this.data.location+'</h4>'
+        +'<img src="img/ncp_images/NCP_image_04.png" />'
+      +'</div>';
 
     if (this.right.back == null){
     	// we are on the overview page, load first project
     	this.right.back = flippant.flip(this.right.front, html, 'card', 'flip-right');
     	this.right.is_first_back = true;
     } else if(this.right.is_first_back){
-    	// go to second back
-    	this.right.second_back = flippant.flip(this.right.back, html, 'card', 'flip-right');
+    	this.right.back.close();
+    	this.right.front.innerHTML = html;
     	this.right.is_first_back = false;
     } else {
-    	// go to first back
-    	// load data into first back
-    	// close second back
-    	this.right.second_back.close();
+    	this.right.is_first_back = true;
+    	this.right.back = flippant.flip(this.right.front, html, 'card', 'flip-right');
     }
 
 }
@@ -313,10 +305,7 @@ Project.prototype.set_right_bar_html = function() {
 
 Project.prototype.set_slider_html = function() {
 
-	var html = '<div id="menu" class="buza-top-border">'
-        +'<div class="triangle">'
-        +'<a href="#" class="previous-slide"><img src="img/pointers/pointer_up.png" /></a>'
-        +'</div>'
+	var html = '<div id="menu">'
         +'<ul class="bxslider">';
 
     var active_class = "";
@@ -331,11 +320,7 @@ Project.prototype.set_slider_html = function() {
 
     }
 
-
     html +='</ul>'
-        +'<div class="triangle">'
-        +'<a href="#" class="next-slide"><img src="img/pointers/pointer_down.png" /></a>'
-        +'</div>'
       	+'</div>';
 
     if (this.slider.back == null){
@@ -349,9 +334,9 @@ Project.prototype.set_slider = function(){
 	if (this.slider.bxslider == null){
 		this.slider.bxslider = $('.bxslider').bxSlider({
 		  mode: 'vertical',
-		  slideMargin: 5,
-		  maxSlides: 6,
-		  minSlides: 6,
+		  slideMargin: 0,
+		  maxSlides: 7,
+		  minSlides: 7,
 		  infiniteLoop: true,
 		  hideControlOnEnd: true,
 		  moveSlides: 1,  
@@ -384,7 +369,7 @@ Project.prototype.set_slider = function(){
 
 	} 
 
-	this.slider.bxslider.goToSlide(this.id);
+	this.slider.bxslider.goToSlide(this.id - 1);
 	$(".menu-item").removeClass("active");
  	$(".slide-" + this.id + " .menu-item").addClass("active");
 }
@@ -413,29 +398,32 @@ function HomepageSlider(){
 	this.slides = [];
 	this.current_slide = 0;
 	this.slide_amount = 4;
+	this.bxslider = null;
 }
 
 
 HomepageSlider.prototype.init = function(){
 
-	this.create_listeners();
+	// this.create_listeners();
+
+
+	// if (this.bxslider == null){
+	// 	this.bxslider = $('.hp-main-area').bxSlider({
+	// 	  slideMargin: 0,
+	// 	  maxSlides: 1,
+	// 	  minSlides: 1,
+	// 	  infiniteLoop: true,
+	// 	  moveSlides: 1,  
+	// 	  pager: false,
+	// 	  controls: false,
+	// 	  auto: true,
+	// 	  responsive: false,
+	// 	  adaptiveHeight: false
+	// 	});
+
+	// }
 }
 
-HomepageSlider.prototype.create_listeners = function(){
-
-	$(".hp-button").click(function(e){
-		e.preventDefault();
-		var id = $(this).data("id");
-		$(".hp-slide-title").hide();
-		$(".hp-slide-content").hide();
-
-		$(".hp-slide-title[data-id='"+id+"']").show();
-		$(".hp-slide-content[data-id='"+id+"']").show();
-
-		// window["hp_slide_"+id+"_click"]();
-	});
-
-}
 
 HomepageSlider.prototype.next = function(){
 

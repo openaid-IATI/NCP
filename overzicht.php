@@ -18,160 +18,69 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- loads project data -->
+	<script src="js/projects_data.js"></script>
   </head>
   <body>
     <!-- <h1>Hello, world!</h1> -->
-    <div id="logo-container" class="centered">
+    <div id="logo-container-bottom" class="centered">
       <!-- <p>Logo BuZa</p> -->
       <img src="img/logo-buza.png" alt="Buitenlandse Zaken"/>
+
+      <div class="header-blue-line"></div>
     </div>
 
-    <div class="row">
+    <div class="row" id="overview-main-wrapper">
 	    <div class="col-md-60">
 	    	<div class="row">
-
 	    		<div class="col-md-6 flip-right" id="project-left-block">
+			        
 			        <div class="row" style="position: relative;">
-			          
-			        	<div class="col-md-6 project-left-block">
-				            <div class="buza-top-border tile overview-project" data-id="1">
-				              <h3>Nakura County Sanitation Program</h3>
-				              <img src="img/project_data/vb.png" alt="NCP image"/>
-				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-				            </div>
-				        </div>
-
-
-
-			          <div class="col-md-6 project-left-block">
-			            <div class="buza-top-border tile overview-project" data-id="1">
-			              <h3>Nakura County Sanitation Program</h3>
-			              <img src="img/project_data/vb.png" alt="NCP image"/>
-			              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-			            </div>
-			          </div>
-
+			        	<div class="col-md-6" id="project-0-wrapper"></div>
+			        	<div class="col-md-6" id="project-1-wrapper"></div>
 			        </div>
-
-
-			        <div class="row" style="height: 10px"></div>
-
-
+			        <div class="row" style="height: 15px"></div>
 			        <div class="row" style="position: relative;">
-			          
-			        	<div class="col-md-6 project-left-block">
-				            <div class="buza-top-border tile overview-project" data-id="1">
-				              <h3>Nakura County Sanitation Program</h3>
-				              <img src="img/project_data/vb.png" alt="NCP image"/>
-				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-				            </div>
-				        </div>
-
-
-
-			          <div class="col-md-6 project-left-block">
-			            <div class="buza-top-border tile overview-project" data-id="1">
-			              <h3>Nakura County Sanitation Program</h3>
-			              <img src="img/project_data/vb.png" alt="NCP image"/>
-			              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-			            </div>
-			          </div>
-
+			        	<div class="col-md-6" id="project-5-wrapper"></div>
+			        	<div class="col-md-6" id="project-6-wrapper"></div>
 			        </div>
-
 
 			    </div>
 
 			    <div id="project-middle-block" class="col-md-3 flip-right">
 			    	<div class="row">
-
-			    		<div class="col-md-12">
-				            <div class="buza-top-border tile overview-project" data-id="2">
-				              <h3>Nakura County Sanitation Program</h3>
-				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-				            </div>
-				          </div>
-
+			    		<div class="col-md-12" id="project-2-wrapper"></div>
 				    </div>
-				    <div class="row" style="height: 10px"></div>
+				    <div class="row" style="height: 15px"></div>
 				    <div class="row">
-
-			    		<div class="col-md-12">
-				            <div class="buza-top-border tile overview-project" data-id="2">
-				              <h3>Nakura County Sanitation Program</h3>
-				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-				            </div>
-				          </div>
-
+			    		<div class="col-md-12" id="project-7-wrapper"></div>
 				    </div>
 				</div>
 
 				<div id="project-right-block" class="col-md-3 flip-right">
 			    	<div class="row">
-
-
-			    		<div class="col-md-12">
-				            <div class="buza-top-border tile overview-project" data-id="2">
-				              <h3>Nakura County Sanitation Program</h3>
-				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-				            </div>
-				          </div>
-
+			    		<div class="col-md-12" id="project-3-wrapper"></div>
 				    </div>
-					<div class="row" style="height: 10px"></div>
+					<div class="row" style="height: 15px"></div>
 				    <div class="row">
-
-
-			    		<div class="col-md-12">
-				            <div class="buza-top-border tile overview-project" data-id="2">
-				              <h3>Nakura County Sanitation Program</h3>
-				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-				            </div>
-				          </div>
-
+			    		<div class="col-md-12" id="project-8-wrapper"></div>
 				    </div>
 				</div>
-
-
 
 			</div>
 	    </div>
 	    <div id="project-right-slider-block" class="col-md-15 flip-left">
 	    	<div class="row">
-
 	    		<div class="col-md-12">
 			    	<div class="row">
-
-
-			    		<div class="col-md-12">
-				            <div class="buza-top-border tile overview-project" data-id="2">
-				              <h3>Nakura County Sanitation Program</h3>
-				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-				            </div>
-				          </div>
-
+			    		<div class="col-md-12" id="project-4-wrapper"></div>
 				    </div>
-				    <div class="row" style="height: 10px"></div>
+				    <div class="row" style="height: 15px"></div>
 				    <div class="row">
-
-
-			    		<div class="col-md-12">
-				            <div class="buza-top-border tile overview-project" data-id="2">
-				              <h3>Nakura County Sanitation Program</h3>
-				              <img src="img/ncp_images/NCP_image_01.png" alt="NCP image"/>
-				              <p>The plan aims to demonstrate and implement a commercially viable sanitation value chain, benefiting residents of unsewered (peri-) urban low income areas in Nakuru County.</p>
-				            </div>
-				          </div>
-
+			    		<div class="col-md-12" id="project-9-wrapper"></div>
 				    </div>
 				</div>
-
-
 	    	</div>
 	    </div>
     </div>
@@ -179,37 +88,20 @@
 
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <footer>
+    	<div class="footer-blue-line"></div>
     	<div class="container">
-			<div style="float: right; margin-top: 20px;" class="ccounter">
-				<input class="knob second" data-width="100" data-min="0" data-max="20" data-displayPrevious=true data-fgColor="#01689b" data-readOnly="true" value="20" data-bgcolor="#eee">
-			</div>
+    		
+    		<div class="footer-text">
+    			<img src="img/rfid.png" width="43" height="43" />
+    			Meer informatie over deze projecten? www.webadres.nl
+    		</div>
+
+			<!-- <div class="ccounter">
+				<input class="knob second" data-width="80" data-min="0" data-max="20" data-displayPrevious=true data-fgColor="#01689b" data-readOnly="true" value="20" data-bgcolor="#eee">
+			</div> -->
 		</div>
     </footer>
-
-
-
-
-
-
 
 
 
@@ -221,21 +113,39 @@
     <!-- bxSlider Javascript file -->
 	<script src="js/jquery.bxslider.min.js"></script>
 
-	<!-- loads project data -->
-	<script src="js/projects_data.js"></script>
 
 	<!-- countdown clock -->
 	<script src="js/jquery.knob.js"></script>
 	<script src="js/jquery.ccountdown.js"></script>
 	<script src="js/init.js"></script>
 	
+	<!-- counter for detail pages -->
+	<script src="js/countUp.min.js"></script>
 
 	<!-- flip effect -->
 	<script src="js/flippant.min.js"></script>
 
+
+	<script>
+	// fill static data
+
+	for (var i =0;i < 10;i++){
+
+		var html = '';
+		html += '<div class="tile overview-project" data-id="'+i+'">';
+		html += '<div class="pin-left"></div><div class="pin-right"></div>';
+		html += '<h3>'+projects_data.projects[i].title+'</h3>';
+		html += '<div class="overview-project-image-wrapper">';
+		html += '<img src="'+projects_data.projects[i].image.url+'" alt="NCP image"/>';
+		html += '</div>';
+		html += '</div>';
+		$("#project-"+i+"-wrapper").html(html);
+	}
+
+	</script>
+
 	<!-- main ncp js -->
 	<script src="js/narrowcasting.js"></script>
-
 
 <script>
 
@@ -275,7 +185,7 @@
 })(jQuery);
 
 	//enter the count down date using seconds
-	$(".ccounter").ccountdown(10);
+	$(".ccounter").ccountdown(5);
 
 </script>
 

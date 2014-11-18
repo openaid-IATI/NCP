@@ -28,31 +28,18 @@
     <div id="logo-container-bottom" class="centered">
       <!-- <p>Logo BuZa</p> -->
       <img src="img/logo-buza.png" alt="Buitenlandse Zaken"/>
+
+      <div class="header-blue-line"></div>
     </div>
     <div class="row">
       <div class="centered" id="headline">
 
 
-        <div class="container">
         	<div class="row">
         		<div class="col-md-12">
-        			<div class="hp-main-title">
-        				<div class="hp-slide-title" data-id="0">
-        					The narrowcasting project
-        				</div>
-        				<div class="hp-slide-title" data-id="1">
-        					Aantal mensen bereikt in Sanitatie door Nederlandse bijdrage aan projecten
-        				</div>
-        				<div class="hp-slide-title" data-id="2">
-        					Aantal mensen bereikt in Drinkwater door Nederlandse bijdrage aan projecten
-        				</div>
-        				<div class="hp-slide-title" data-id="3">
-        					Totale bijdrage Nederland 2004-2014 programmering Sanitatie
-        				</div>
-        				<div class="hp-slide-title" data-id="4">
-        					Totale bijdrage Nederland 2004-2014 programmering Drinkwater
-        				</div>
-        			</div>
+    				<div class="hp-slide-title">
+    					
+    				</div>
         		</div>
         	</div>
         	<div class="row">
@@ -61,8 +48,7 @@
         			<div class="hp-main-area">
 
         				<div class="hp-slide-content" data-id="0">
-        					<h1>Dutch <br/>Aid Development</h1>
-        					<h2>projects</h2>
+        					<img src="img/ncp_intro.jpg" width="1920" height="868" />
         				</div>
 
         				<div class="hp-slide-content" data-id="1">
@@ -73,7 +59,7 @@
         					<canvas id="slide-2-canvas" width="1000" height="440" style="margin-top: 40px"></canvas>
         				</div>
 
-        				<div class="hp-slide-content" data-id="3">
+        				<v class="hp-slide-content" data-id="3">
         					<canvas id="slide-3-canvas" width="1000" height="440" style="margin-top: 40px"></canvas>
         				</div>
 
@@ -87,20 +73,22 @@
         	</div>
 
 
-
-		</div>
-
-
-
       </div>
     </div>
 
 
     <footer>
+    	<div class="footer-blue-line"></div>
     	<div class="container">
-			<div style="float: right; margin-top: 20px;" class="ccounter">
-				<input class="knob second" data-width="100" data-min="0" data-max="20" data-displayPrevious=true data-fgColor="#01689b" data-readOnly="true" value="20" data-bgcolor="#eee">
-			</div>
+    		
+    		<div class="footer-text">
+    			<img src="img/rfid.png" width="43" height="43" />
+    			Meer informatie over deze projecten? www.webadres.nl
+    		</div>
+
+			<!-- <div class="ccounter">
+				<input class="knob second" data-width="80" data-min="0" data-max="20" data-displayPrevious=true data-fgColor="#01689b" data-readOnly="true" value="20" data-bgcolor="#eee">
+			</div> -->
 		</div>
     </footer>
 
@@ -159,123 +147,54 @@
 	//enter the count down date using the format year, month, day, time:time
 	$(".ccounter").ccountdown(5);
 
-	var primary_font_code = 'Sintony:400,700:latin,latin-ext';
-			var secondary_font_code = 'Bree+Serif::latin,latin-ext';
-			var web_fonts = [primary_font_code];
-			if(secondary_font_code != ''){
-			    web_fonts.push(secondary_font_code);
-			}
-			
-			WebFontConfig = {
-			    google: { families: web_fonts }
-			};
-			(function() {
-			    var wf = document.createElement('script');
-			    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-			    '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-			    wf.type = 'text/javascript';
-			    wf.async = 'true';
-			    var s = document.getElementsByTagName('script')[0];
-			    s.parentNode.insertBefore(wf, s);
-			})();
-
 </script>
-
-
-
 
 <script>
 
-
-
 var ncp = new NarrowCasting();
 var hps = new HomepageSlider();
+hps.init();
 
 for (var i = 0;i < 6;i++){
 	hps.slides.push(new Slide());	
 }
 
 
-hps.slides[1].chart_data = {
-	labels : ["2004 ","2005","2006","2007","2008","2009","2010","2011","2012","2013"],
-	datasets : [
-		{
-			fillColor : "rgba(1,86,129,0.75)",
-			strokeColor : "rgba(220,220,220,0.8)",
-			highlightFill: "rgba(1,104,155,0.5)",
-			highlightStroke: "rgba(220,220,220,1)",
-			data: [996135, 1052247, 1052247, 5138451, 6013343, 5884215, 5055593, 5642100, 2011723, 2193495]
-		}
-	]
-}
+// hps.slides[1].chart_data = {
+// 	labels : ["2004 ","2005","2006","2007","2008","2009","2010","2011","2012","2013"],
+// 	datasets : [
+// 		{
+// 			fillColor : "rgba(1,86,129,0.75)",
+// 			strokeColor : "rgba(220,220,220,0.8)",
+// 			highlightFill: "rgba(1,104,155,0.5)",
+// 			highlightStroke: "rgba(220,220,220,1)",
+// 			data: [996135, 1052247, 1052247, 5138451, 6013343, 5884215, 5055593, 5642100, 2011723, 2193495]
+// 		}
+// 	]
+// }
 
-hps.slides[1].callback = function(){
-	var ctx = document.getElementById("slide-1-canvas").getContext("2d");
-	this.chart = new Chart(ctx).Bar(this.chart_data, {
-		// responsive : true,
-		invertXY: false
-	});
-}
-hps.slides[1].redraw = function(){
-	var data = this.chart_data.datasets[0].data;
-	for (var i = 0;i < data.length;i++){
-		this.chart.datasets[0].bars[i].value = data[i];
-	}
-	this.chart.update();
-}
+// hps.slides[1].callback = function(){
+// 	var ctx = document.getElementById("slide-1-canvas").getContext("2d");
+// 	this.chart = new Chart(ctx).Bar(this.chart_data, {
+// 		// responsive : true,
+// 		invertXY: false
+// 	});
+// }
+// hps.slides[1].redraw = function(){
+// 	var data = this.chart_data.datasets[0].data;
+// 	for (var i = 0;i < data.length;i++){
+// 		this.chart.datasets[0].bars[i].value = data[i];
+// 	}
+// 	this.chart.update();
+// }
 
-hps.slides[1].out = function(){
-	var data = this.chart_data.datasets[0].data;
-	for (var i = 0;i < data.length;i++){
-		this.chart.datasets[0].bars[i].value = 0;
-	}
-	this.chart.update();
-}
-
-
-
-
-
-
-
-
-
-
-hps.slides[2].chart_data = {
-	labels : ["2004","2005","2006","2007","2008","2009","2010","2011","2012","2013"],
-	datasets : [
-		{
-			fillColor : "rgba(1,86,129,0.75)",
-			strokeColor : "rgba(220,220,220,0.8)",
-			highlightFill: "rgba(1,104,155,0.5)",
-			highlightStroke: "rgba(220,220,220,1)",
-			data: [62425, 655758, 1183946, 2951376, 3270528, 4267340, 3290312, 2301784, 2296961, 4020185]
-		}
-	]
-}
-
-hps.slides[2].callback = function(){
-	var ctx = document.getElementById("slide-2-canvas").getContext("2d");
-	this.chart = new Chart(ctx).Bar(this.chart_data, {
-		// responsive : true,
-		invertXY: false
-	});
-}
-hps.slides[2].redraw = function(){
-	var data = this.chart_data.datasets[0].data;
-	for (var i = 0;i < data.length;i++){
-		this.chart.datasets[0].bars[i].value = data[i];
-	}
-	this.chart.update();
-}
-
-hps.slides[2].out = function(){
-	var data = this.chart_data.datasets[0].data;
-	for (var i = 0;i < data.length;i++){
-		this.chart.datasets[0].bars[i].value = 0;
-	}
-	this.chart.update();
-}
+// hps.slides[1].out = function(){
+// 	var data = this.chart_data.datasets[0].data;
+// 	for (var i = 0;i < data.length;i++){
+// 		this.chart.datasets[0].bars[i].value = 0;
+// 	}
+// 	this.chart.update();
+// }
 
 
 
@@ -285,83 +204,128 @@ hps.slides[2].out = function(){
 
 
 
-hps.slides[3].chart_data = {
-	labels : ["Programma’s ","Multilateraal generieke bijdragen","Multilateraal programma’s","ORET/ORIO/FMO","PPP","NGO’s", "Structurele Macrosteun Sanitair"],
-	datasets : [
-		{
-			fillColor : "rgba(1,86,129,0.75)",
-			strokeColor : "rgba(220,220,220,0.8)",
-			highlightFill: "rgba(1,104,155,0.5)",
-			highlightStroke: "rgba(220,220,220,1)",
-			data: [415211095, 162029000, 190064456, 73336594, 168500000, 110943023, 16526700]
-		}
-	]
-}
 
-hps.slides[3].callback = function(){
-	var ctx = document.getElementById("slide-3-canvas").getContext("2d");
-	this.chart = new Chart(ctx).Bar(this.chart_data, {
-		// responsive : true,
-		invertXY: false
-	});
-}
-hps.slides[3].redraw = function(){
-	var data = this.chart_data.datasets[0].data;
-	for (var i = 0;i < data.length;i++){
-		this.chart.datasets[0].bars[i].value = data[i];
-	}
-	this.chart.update();
-}
+// hps.slides[2].chart_data = {
+// 	labels : ["2004","2005","2006","2007","2008","2009","2010","2011","2012","2013"],
+// 	datasets : [
+// 		{
+// 			fillColor : "rgba(1,86,129,0.75)",
+// 			strokeColor : "rgba(220,220,220,0.8)",
+// 			highlightFill: "rgba(1,104,155,0.5)",
+// 			highlightStroke: "rgba(220,220,220,1)",
+// 			data: [62425, 655758, 1183946, 2951376, 3270528, 4267340, 3290312, 2301784, 2296961, 4020185]
+// 		}
+// 	]
+// }
 
-hps.slides[3].out = function(){
-	var data = this.chart_data.datasets[0].data;
-	for (var i = 0;i < data.length;i++){
-		this.chart.datasets[0].bars[i].value = 0;
-	}
-	this.chart.update();
-}
+// hps.slides[2].callback = function(){
+// 	var ctx = document.getElementById("slide-2-canvas").getContext("2d");
+// 	this.chart = new Chart(ctx).Bar(this.chart_data, {
+// 		// responsive : true,
+// 		invertXY: false
+// 	});
+// }
+// hps.slides[2].redraw = function(){
+// 	var data = this.chart_data.datasets[0].data;
+// 	for (var i = 0;i < data.length;i++){
+// 		this.chart.datasets[0].bars[i].value = data[i];
+// 	}
+// 	this.chart.update();
+// }
 
-
-
+// hps.slides[2].out = function(){
+// 	var data = this.chart_data.datasets[0].data;
+// 	for (var i = 0;i < data.length;i++){
+// 		this.chart.datasets[0].bars[i].value = 0;
+// 	}
+// 	this.chart.update();
+// }
 
 
 
 
-hps.slides[4].chart_data = {
-	labels : ["Bilaterale programma’s ","Multilateraal generieke bijdragen","Multilateraal programma’s","ORET/ORIO/FMO","PPP","NGO’s", "Structurele Macrosteun Sanitair"],
-	datasets : [
-		{
-			fillColor : "rgba(1,86,129,0.75)",
-			strokeColor : "rgba(220,220,220,0.8)",
-			highlightFill: "rgba(1,104,155,0.5)",
-			highlightStroke: "rgba(220,220,220,1)",
-			data: [593110543, 162029000, 114205656, 554433715, 185862346, 102489411, 24790050]
-		}
-	]
-}
 
-hps.slides[4].callback = function(){
-	var ctx = document.getElementById("slide-4-canvas").getContext("2d");
-	this.chart = new Chart(ctx).Bar(this.chart_data, {
-		// responsive : true,
-		invertXY: false
-	});
-}
-hps.slides[4].redraw = function(){
-	var data = this.chart_data.datasets[0].data;
-	for (var i = 0;i < data.length;i++){
-		this.chart.datasets[0].bars[i].value = data[i];
-	}
-	this.chart.update();
-}
 
-hps.slides[4].out = function(){
-	var data = this.chart_data.datasets[0].data;
-	for (var i = 0;i < data.length;i++){
-		this.chart.datasets[0].bars[i].value = 0;
-	}
-	this.chart.update();
-}
+
+
+
+// hps.slides[3].chart_data = {
+// 	labels : ["Programma’s ","Multilateraal generieke bijdragen","Multilateraal programma’s","ORET/ORIO/FMO","PPP","NGO’s", "Structurele Macrosteun Sanitair"],
+// 	datasets : [
+// 		{
+// 			fillColor : "rgba(1,86,129,0.75)",
+// 			strokeColor : "rgba(220,220,220,0.8)",
+// 			highlightFill: "rgba(1,104,155,0.5)",
+// 			highlightStroke: "rgba(220,220,220,1)",
+// 			data: [415211095, 162029000, 190064456, 73336594, 168500000, 110943023, 16526700]
+// 		}
+// 	]
+// }
+
+// hps.slides[3].callback = function(){
+// 	var ctx = document.getElementById("slide-3-canvas").getContext("2d");
+// 	this.chart = new Chart(ctx).Bar(this.chart_data, {
+// 		// responsive : true,
+// 		invertXY: false
+// 	});
+// }
+// hps.slides[3].redraw = function(){
+// 	var data = this.chart_data.datasets[0].data;
+// 	for (var i = 0;i < data.length;i++){
+// 		this.chart.datasets[0].bars[i].value = data[i];
+// 	}
+// 	this.chart.update();
+// }
+
+// hps.slides[3].out = function(){
+// 	var data = this.chart_data.datasets[0].data;
+// 	for (var i = 0;i < data.length;i++){
+// 		this.chart.datasets[0].bars[i].value = 0;
+// 	}
+// 	this.chart.update();
+// }
+
+
+
+
+
+
+
+// hps.slides[4].chart_data = {
+// 	labels : ["Bilaterale programma’s ","Multilateraal generieke bijdragen","Multilateraal programma’s","ORET/ORIO/FMO","PPP","NGO’s", "Structurele Macrosteun Sanitair"],
+// 	datasets : [
+// 		{
+// 			fillColor : "rgba(1,86,129,0.75)",
+// 			strokeColor : "rgba(220,220,220,0.8)",
+// 			highlightFill: "rgba(1,104,155,0.5)",
+// 			highlightStroke: "rgba(220,220,220,1)",
+// 			data: [593110543, 162029000, 114205656, 554433715, 185862346, 102489411, 24790050]
+// 		}
+// 	]
+// }
+
+// hps.slides[4].callback = function(){
+// 	var ctx = document.getElementById("slide-4-canvas").getContext("2d");
+// 	this.chart = new Chart(ctx).Bar(this.chart_data, {
+// 		// responsive : true,
+// 		invertXY: false
+// 	});
+// }
+// hps.slides[4].redraw = function(){
+// 	var data = this.chart_data.datasets[0].data;
+// 	for (var i = 0;i < data.length;i++){
+// 		this.chart.datasets[0].bars[i].value = data[i];
+// 	}
+// 	this.chart.update();
+// }
+
+// hps.slides[4].out = function(){
+// 	var data = this.chart_data.datasets[0].data;
+// 	for (var i = 0;i < data.length;i++){
+// 		this.chart.datasets[0].bars[i].value = 0;
+// 	}
+// 	this.chart.update();
+// }
 
 
 
