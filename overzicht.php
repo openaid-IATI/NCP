@@ -31,59 +31,59 @@
       <div class="header-blue-line"></div>
     </div>
 
-    <div class="row" id="overview-main-wrapper">
-	    <div class="col-md-60">
-	    	<div class="row">
-	    		<div class="col-md-6 flip-right" id="project-left-block">
-			        
-			        <div class="row" style="position: relative;">
-			        	<div class="col-md-6" id="project-0-wrapper"></div>
-			        	<div class="col-md-6" id="project-1-wrapper"></div>
-			        </div>
-			        <div class="row" style="height: 15px"></div>
-			        <div class="row" style="position: relative;">
-			        	<div class="col-md-6" id="project-5-wrapper"></div>
-			        	<div class="col-md-6" id="project-6-wrapper"></div>
-			        </div>
+    	<div  id="overview-main-wrapper">
+		    <div class="col-md-60" style="margin-top: 30px;">
+		    	<div class="row">
+		    		<div class="col-md-6 flip-right" id="project-left-block">
+				        
+				        <div class="row" style="position: relative;">
+				        	<div class="col-md-6" id="project-0-wrapper"></div>
+				        	<div class="col-md-6" id="project-1-wrapper"></div>
+				        </div>
+				        <div class="row" style="height: 15px"></div>
+				        <div class="row" style="position: relative;">
+				        	<div class="col-md-6" id="project-5-wrapper"></div>
+				        	<div class="col-md-6" id="project-6-wrapper"></div>
+				        </div>
 
-			    </div>
+				    </div>
 
-			    <div id="project-middle-block" class="col-md-3 flip-right">
-			    	<div class="row">
-			    		<div class="col-md-12" id="project-2-wrapper"></div>
-				    </div>
-				    <div class="row" style="height: 15px"></div>
-				    <div class="row">
-			    		<div class="col-md-12" id="project-7-wrapper"></div>
-				    </div>
+				    <div id="project-middle-block" class="col-md-3 flip-right">
+				    	<div class="row">
+				    		<div class="col-md-12" id="project-2-wrapper"></div>
+					    </div>
+					    <div class="row" style="height: 15px"></div>
+					    <div class="row">
+				    		<div class="col-md-12" id="project-7-wrapper"></div>
+					    </div>
+					</div>
+
+					<div id="project-right-block" class="col-md-3 flip-right">
+				    	<div class="row">
+				    		<div class="col-md-12" id="project-3-wrapper"></div>
+					    </div>
+						<div class="row" style="height: 15px"></div>
+					    <div class="row">
+				    		<div class="col-md-12" id="project-8-wrapper"></div>
+					    </div>
+					</div>
+
 				</div>
-
-				<div id="project-right-block" class="col-md-3 flip-right">
-			    	<div class="row">
-			    		<div class="col-md-12" id="project-3-wrapper"></div>
-				    </div>
-					<div class="row" style="height: 15px"></div>
-				    <div class="row">
-			    		<div class="col-md-12" id="project-8-wrapper"></div>
-				    </div>
-				</div>
-
-			</div>
-	    </div>
-	    <div id="project-right-slider-block" class="col-md-15 flip-left">
-	    	<div class="row">
-	    		<div class="col-md-12">
-			    	<div class="row">
-			    		<div class="col-md-12" id="project-4-wrapper"></div>
-				    </div>
-				    <div class="row" style="height: 15px"></div>
-				    <div class="row">
-			    		<div class="col-md-12" id="project-9-wrapper"></div>
-				    </div>
-				</div>
-	    	</div>
-	    </div>
-    </div>
+		    </div>
+		    <div id="project-right-slider-block" class="col-md-15 flip-left" style="margin-top: 30px;">
+		    	<div class="row">
+		    		<div class="col-md-12">
+				    	<div class="row">
+				    		<div class="col-md-12" id="project-4-wrapper"></div>
+					    </div>
+					    <div class="row" style="height: 15px"></div>
+					    <div class="row">
+				    		<div class="col-md-12" id="project-9-wrapper"></div>
+					    </div>
+					</div>
+		    	</div>
+		    </div>
+		</div>
 
 
 
@@ -94,7 +94,7 @@
     		
     		<div class="footer-text">
     			<img src="img/rfid.png" width="43" height="43" />
-    			Meer informatie over deze projecten? www.webadres.nl
+    			Meer informatie over deze projecten? <span>www.webadres.nl</span>
     		</div>
 
 			<!-- <div class="ccounter">
@@ -106,8 +106,11 @@
 
 
 
+
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
+
+    <script src="js/jquery-ui/jquery-ui.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <!-- bxSlider Javascript file -->
@@ -185,8 +188,29 @@
 })(jQuery);
 
 	//enter the count down date using seconds
-	$(".ccounter").ccountdown(5);
+	$(".ccounter").ccountdown(10);
 
+(function($) {
+
+	setTimeout(
+	  function(){
+	    $("#overview-main-wrapper .col-md-60, #project-right-slider-block").animate({ 
+			left: "0" 
+		}, { 
+			duration: 1800, 
+			easing: "easeOutQuart"
+		});
+	  }, 2000);
+
+
+	
+
+
+
+
+
+	
+})(jQuery);
 </script>
 
 

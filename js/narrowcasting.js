@@ -12,25 +12,35 @@ NarrowCasting.prototype.load_next = function() {
 
 	if(this.page == "overview"){
 		
-		// if (this.count == 0){
+		
 			this.count++;
 
 			if (this.current_project.id == null){
 				this.current_project.id = 0;
-			} else if(this.current_project.id <= projects_data.projects.length) {
+			} else if(this.current_project.id < (projects_data.projects.length -1)) {
 				this.current_project.id = this.current_project.id + 1;
 			} else {
-				this.current_project.id = 0;
+
+				// animate everything away and start over
+				$(".col-md-60, #project-slider-block, .flippant-back").animate({ 
+					top: "-2000px" 
+				}, { 
+					duration: 2300, 
+					easing: "easeOutQuart", 
+					complete: function(){
+						
+						setTimeout( function(){
+							window.location = "index.php";	
+						}, 3000);
+					}
+				});
+
+				return false;
+					
 			}
 
 			this.current_project.set_data();
 			this.current_project.set_left_bar_html();
-
-			// if(this.left.back == null){
-			// 	$(".overview-project[data-id='0'] h3").css("color", "#FF7F00");
-			// }
-			
-
 
 			setTimeout(
 			  function(){
@@ -74,15 +84,15 @@ function Project(){
 	this.left = {};
 	this.left.front = document.getElementById('project-left-block');
 	this.left.back = null;
-	this.left.is_first_back = false;
+	this.left.is_back = false;
 	this.middle = {};
 	this.middle.front = document.getElementById('project-middle-block');
 	this.middle.back = null;
-	this.middle.is_first_back = false;
+	this.middle.is_back = false;
 	this.right = {};
 	this.right.front = document.getElementById('project-right-block');
 	this.right.back = null;
-	this.right.is_first_back = false;
+	this.right.is_back = false;
 	this.slider = {};
 	this.slider.front = document.getElementById('project-right-slider-block');
 	this.slider.back = null;
@@ -98,6 +108,9 @@ Project.prototype.set_data = function() {
 Project.prototype.set_left_bar_html = function() {
 
 	var count_ups = [];
+	var front_back = "back";
+	// reversed, slide still has to change
+	if (this.left.is_back == true){ front_back = "front"; }
 
 	var html = '<div class="feature-image">'
            +'<div class="project-image-wrapper">'
@@ -117,10 +130,10 @@ Project.prototype.set_left_bar_html = function() {
            +'</div>'
            +'</div>'
            +'<h5>FUNDED</h5>'
-           +'<p class="number"><span id="left-count-up-0"></span>%</p>'
+           +'<p class="number"><span id="'+front_back+'-left-count-up-0"></span>%</p>'
            +'<br/>'
            +'<h5>RAISED</h5>'
-           +'<p class="number">&euro; <span id="left-count-up-1"></span></p>'
+           +'<p class="number">&euro; <span id="'+front_back+'-left-count-up-1"></span></p>'
            +'<br/>'
            +'<h5>FOCUS AREA</h5>'
            +'<p class="number">Water and sanitation</p>'
@@ -136,15 +149,15 @@ Project.prototype.set_left_bar_html = function() {
     if (this.left.back == null){
     	// we are on the overview page, load first project
     	this.left.back = flippant.flip(this.left.front, html, 'card', 'flip-right');
-    	this.left.is_first_back = true;
-    } else if(this.left.is_first_back){
+    	this.left.is_back = true;
+    } else if(this.left.is_back){
 
     	// change data on front
     	this.left.front.innerHTML = html;
     	this.left.back.close();
-    	this.left.is_first_back = false;
+    	this.left.is_back = false;
     } else {
-    	this.left.is_first_back = true;
+    	this.left.is_back = true;
     	this.left.back = flippant.flip(this.left.front, html, 'card', 'flip-right');
     }
 
@@ -158,8 +171,10 @@ Project.prototype.set_left_bar_html = function() {
 	  suffix : '' 
 	}
 
+
+
 	for (var i = 0;i < count_ups.length;i++){
-		var demo = new countUp("left-count-up-" + i, 0, count_ups[i], 0, 2.5, options);
+		var demo = new countUp(front_back + "-left-count-up-" + i, 0, count_ups[i], 0, 2.5, options);
 		demo.start();
 	}
 }
@@ -169,8 +184,11 @@ Project.prototype.set_middle_bar_html = function() {
 
 	var count_ups = [];
 
-    var html = '<div class="col-md-12 project-middle-block">'
-              	+'<div class="white-tile bottom-shadow">'
+	var front_back = "back";
+	// reversed, slide still has to change
+	if (this.left.is_back == true){ front_back = "front"; }
+
+    var html = '<div class="white-tile bottom-shadow">'
                 +'<h3>Who will benefit?</h3>'
                 +'<div class="row">'
                 +'<div class="col-md-4">'
@@ -183,7 +201,7 @@ Project.prototype.set_middle_bar_html = function() {
     for(var i = 0;i < this.data.who_will_benefit.length;i++){
     	if (this.data.who_will_benefit[i].category == "sanitation"){
     		html += '<h5>'+this.data.who_will_benefit[i].name+'</h5>';
-    		html += '<p class="number" id="middle-count-up-'+count_ups.length+'"></p>';
+    		html += '<p class="number" id="'+front_back+'-middle-count-up-'+count_ups.length+'"></p>';
     		count_ups.push(this.data.who_will_benefit[i].amount);
     	}
     }
@@ -203,7 +221,7 @@ Project.prototype.set_middle_bar_html = function() {
     for(var i = 0;i < this.data.who_will_benefit.length;i++){
     	if (this.data.who_will_benefit[i].category == "water"){
     		html += '<h5>'+this.data.who_will_benefit[i].name+'</h5>';
-    		html += '<p class="number" id="middle-count-up-'+count_ups.length+'"></p>';
+    		html += '<p class="number" id="'+front_back+'-middle-count-up-'+count_ups.length+'"></p>';
     		count_ups.push(this.data.who_will_benefit[i].amount);
     	}
     }
@@ -222,7 +240,6 @@ Project.prototype.set_middle_bar_html = function() {
     }
     
     html += '</ul>'
-      +'</div>'
     +'</div>';
 
 
@@ -233,13 +250,13 @@ Project.prototype.set_middle_bar_html = function() {
     if (this.middle.back == null){
     	// we are on the overview page, load first project
     	this.middle.back = flippant.flip(this.middle.front, html, 'card', 'flip-right');
-    	this.middle.is_first_back = true;
-    } else if(this.middle.is_first_back){
+    	this.middle.is_back = true;
+    } else if(this.middle.is_back){
     	this.middle.front.innerHTML = html;
     	this.middle.back.close();
-    	this.middle.is_first_back = false;
+    	this.middle.is_back = false;
     } else {
-    	this.middle.is_first_back = true;
+    	this.middle.is_back = true;
     	this.middle.back = flippant.flip(this.middle.front, html, 'card', 'flip-right');
     }
 
@@ -253,8 +270,9 @@ Project.prototype.set_middle_bar_html = function() {
 	  suffix : '' 
 	}
 
+	var demo = null;
 	for (var i = 0;i < count_ups.length;i++){
-		var demo = new countUp("middle-count-up-" + i, 0, count_ups[i], 0, 2.5, options);
+		demo = new countUp(front_back + "-middle-count-up-" + i, 0, count_ups[i], 0, 2.5, options);
 		demo.start();
 	}
 	
@@ -290,13 +308,13 @@ Project.prototype.set_right_bar_html = function() {
     if (this.right.back == null){
     	// we are on the overview page, load first project
     	this.right.back = flippant.flip(this.right.front, html, 'card', 'flip-right');
-    	this.right.is_first_back = true;
-    } else if(this.right.is_first_back){
+    	this.right.is_back = true;
+    } else if(this.right.is_back){
     	this.right.back.close();
     	this.right.front.innerHTML = html;
-    	this.right.is_first_back = false;
+    	this.right.is_back = false;
     } else {
-    	this.right.is_first_back = true;
+    	this.right.is_back = true;
     	this.right.back = flippant.flip(this.right.front, html, 'card', 'flip-right');
     }
 
@@ -334,6 +352,7 @@ Project.prototype.set_slider = function(){
 	if (this.slider.bxslider == null){
 		this.slider.bxslider = $('.bxslider').bxSlider({
 		  mode: 'vertical',
+		  startSlide: 0,
 		  slideMargin: 0,
 		  maxSlides: 7,
 		  minSlides: 7,
@@ -427,36 +446,33 @@ HomepageSlider.prototype.init = function(){
 
 HomepageSlider.prototype.next = function(){
 
-	// reset current slide
-	if (this.slides[this.current_slide].out){
-		this.slides[this.current_slide].out();
-	}
-	
+	var previous_slide = this.current_slide;
+
 	// set next slide as current slide
 	if ((this.current_slide + 1) > this.slide_amount){
 		// this.current_slide = 0;
-		window.location = "overzicht.php";
+		
 	} else {
 		this.current_slide = this.current_slide + 1;
 	}
 
-	// show new slide
-	$(".hp-slide-title").hide();
-	$(".hp-slide-content").hide();
-	$(".hp-slide-title[data-id='"+this.current_slide+"']").show();
-	$(".hp-slide-content[data-id='"+this.current_slide+"']").show();
-
-	// load visuals (if necessary)
-	this.slides[this.current_slide].refresh();
+	// reset current slide
+	if (this.slides[previous_slide].out){
+		// will also trigger going to the next slide
+		this.slides[previous_slide].out();
+	}
 
 }
 
 HomepageSlider.prototype.go_to = function(slide_number){
-	$(".hp-slide-title").hide();
-	$(".hp-slide-content").hide();
 
-	$(".hp-slide-title[data-id='"+slide_number+"']").show();
-	$(".hp-slide-content[data-id='"+slide_number+"']").show();
+	// To do: make animation
+	$(".hp-slide-content").show();
+
+
+	// $(".hp-slide-content[data-id='0']").show();
+
+	this.slides[this.current_slide].refresh();
 }
 
 
