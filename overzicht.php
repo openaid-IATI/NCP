@@ -97,9 +97,9 @@
     			Meer informatie over deze projecten? <span>www.webadres.nl</span>
     		</div>
 
-			<!-- <div class="ccounter">
+			<div class="ccounter">
 				<input class="knob second" data-width="80" data-min="0" data-max="20" data-displayPrevious=true data-fgColor="#01689b" data-readOnly="true" value="20" data-bgcolor="#eee">
-			</div> -->
+			</div>
 		</div>
     </footer>
 

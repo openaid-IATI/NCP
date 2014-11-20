@@ -102,9 +102,9 @@
     			Meer informatie over deze projecten? <span>www.webadres.nl</span>
     		</div>
 
-			<!-- <div class="ccounter">
+			<div class="ccounter">
 				<input class="knob second" data-width="80" data-min="0" data-max="20" data-displayPrevious=true data-fgColor="#01689b" data-readOnly="true" value="20" data-bgcolor="#eee">
-			</div> -->
+			</div>
 		</div>
     </footer>
 
@@ -255,7 +255,7 @@ var homepage = $(function() {
 			$( "#hp-slide-0 .slide-goal-box" ).animate({
 				top: "330px",
 			}, {
-				duration: 2500,
+				duration: 1900,
 				easing: "easeOutBounce",
 				complete: function(){
 					next_year("2004");
@@ -386,7 +386,7 @@ var homepage = $(function() {
 			$( ".slide-year-box" ).animate({
 				top: "320px",
 			}, {
-				duration: 2000,
+				duration: 1900,
 				easing: "easeOutBounce"
 			});
 
@@ -400,7 +400,7 @@ var homepage = $(function() {
 			$( ".slide-goal-box" ).animate({
 				top: "330px",
 			}, {
-				duration: 2500,
+				duration: 1800,
 				easing: "easeOutBounce",
 				complete: function(){
 					next_year("2004");
