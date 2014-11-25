@@ -189,7 +189,7 @@
 })(jQuery);
 
 	//enter the count down date using seconds
-	$(".ccounter").ccountdown(30);
+	$(".ccounter").ccountdown(10);
 
 (function($) {
 
