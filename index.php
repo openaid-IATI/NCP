@@ -14,6 +14,10 @@
 
 	<!-- bxSlider CSS file -->
 	<link href="lib/jquery.bxslider.css" rel="stylesheet" />
+
+
+	<link href="css/animate.css" rel="stylesheet">
+
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -37,11 +41,11 @@
     			<div class="hp-main-area">
     				<div id="hp-slide-0" class="hp-slide-content" data-id="0">
     					
-    					<div class="slide-title">
+    					<div class="slide-title start-out-of-screen">
 	    					Aantal mensen bereikt in <span>Sanitatie</span> door <br>Nederlandse bijdrage aan projecten
 	    				</div>
 
-    					<div class="slide-year-box">
+    					<div class="slide-year-box start-out-of-screen">
     						<div class="slide-year-text">
     							Jaar
     						</div>
@@ -49,7 +53,7 @@
     							2004
     						</div>
     					</div>
-    					<div class="slide-reached-box">
+    					<div class="slide-reached-box start-out-of-screen">
 							<div class="slide-reached-text">
     							Behaald
     						</div>
@@ -57,7 +61,7 @@
     							996,135
     						</div>
     					</div>
-    					<div class="slide-goal-box">
+    					<div class="slide-goal-box start-out-of-screen">
 							<div class="slide-year-text">
     							Milleniumdoel NL 2015
     						</div>
@@ -71,7 +75,7 @@
     					<?php 
     					for ($i = 0;$i < 8;$i++){
     					?>
-    					<div class="bijdrage-<?php echo $i; ?>-box">
+    					<div class="bijdrage-<?php echo $i; ?>-box start-out-of-screen">
 							<div class="bijdrage-<?php echo $i; ?>-text">
     							
     						</div>
@@ -111,7 +115,7 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-ui/jquery-ui.min.js"></script>
+    <!-- <script src="js/jquery-ui/jquery-ui.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <!-- bxSlider Javascript file -->
@@ -229,61 +233,21 @@ var homepage = $(function() {
 
 
 		setTimeout(
-		  function(){		  	
-		    
-		  	$( "#hp-slide-0 .slide-title" ).animate({
-				left: "0",
-			}, {
-				duration: 1300,
-				easing: "easeOutBounce"
-			});
+		  function(){	
 
-			$( "#hp-slide-0 .slide-year-box" ).animate({
-				top: "320px",
-			}, {
-				duration: 2000,
-				easing: "easeOutBounce"
-			});
+		  	$("#hp-slide-0 .slide-title").addClass("one-and-half-seconds animated bounceInLeft");
+		    $("#hp-slide-0 .slide-year-box").addClass("two-seconds animated bounceInDown");
+		    $("#hp-slide-0 .slide-reached-box").addClass("two-seconds animated bounceInDown");
+		    $("#hp-slide-0 .slide-goal-box").addClass("two-seconds animated bounceInDown");
+		    $("#hp-slide-0 .slide-title").removeClass("start-out-of-screen");
+		    $("#hp-slide-0 .slide-year-box").removeClass("start-out-of-screen");
+		    $("#hp-slide-0 .slide-reached-box").removeClass("start-out-of-screen");
+		    $("#hp-slide-0 .slide-goal-box").removeClass("start-out-of-screen");
 
-			$( "#hp-slide-0 .slide-reached-box" ).animate({
-				top: "370px",
-			}, {
-				duration: 2200,
-				easing: "easeOutBounce"
-			});
-
-			$( "#hp-slide-0 .slide-goal-box" ).animate({
-				top: "330px",
-			}, {
-				duration: 1900,
-				easing: "easeOutBounce",
-				complete: function(){
-					next_year("2004");
-
-					$( "#hp-slide-0 .slide-year-box" ).animate({
-						top: "360px",
-					}, {
-						duration: 1000,
-						easing: "easeOutBounce"
-					});
-
-					$( "#hp-slide-0 .slide-reached-box" ).animate({
-						top: "360px",
-					}, {
-						duration: 1000,
-						easing: "easeOutBounce"
-					});
-
-					$( "#hp-slide-0 .slide-goal-box" ).animate({
-						top: "360px",
-					}, {
-						duration: 1000,
-						easing: "easeOutBounce"
-					});
-
-				}
-			});
-
+		    setTimeout(
+		  		function(){	
+		  			next_year(2004);
+		  	}, 1000);
 		  }, 500);
 
 	}
@@ -294,40 +258,15 @@ var homepage = $(function() {
 	}
 
 	hps.slides[0].out = function(){
-		// move counters to 0
-		$( "#hp-slide-0 .slide-title" ).animate({
-				left: "-2000px",
-		}, {
-			duration: 1300,
-			easing: "easeInOutCubic"
-		});
-
-		$( ".slide-year-box" ).animate({
-			top: "1300px",
-		}, {
-			duration: 1300,
-			easing: "easeInOutCubic"
-		});
-
-		$( ".slide-reached-box" ).animate({
-			top: "1300px",
-		}, {
-			duration: 1300,
-			easing: "easeInOutCubic"
-		});
-
-		$( ".slide-goal-box" ).animate({
-			top: "1300px",
-		}, {
-			duration: 1300,
-			easing: "easeInOutCubic",
-			complete: function(){
-				hps.go_to(1);
-			}
-		});
 
 		
+	  	delAnimClass("#hp-slide-0 .slide-title, #hp-slide-0 .slide-year-box, #hp-slide-0 .slide-reached-box, #hp-slide-0 .slide-goal-box");
+	  	$("#hp-slide-0 .slide-title, #hp-slide-0 .slide-year-box, #hp-slide-0 .slide-reached-box, #hp-slide-0 .slide-goal-box").addClass("bounceOutLeft");
 
+	    setTimeout(
+	  		function(){
+	  			hps.go_to(1);
+	  	}, 3000);
 	}
 
 	hps.slides[1].chart_data = {
@@ -347,13 +286,12 @@ var homepage = $(function() {
 
 		$(".slide-title").html("Aantal mensen bereikt in <span>Drinkwater</span> door <br>Nederlandse bijdrage aan projecten");
 		$(".slide-title").css("color", "#638D02");
-		$(".slide-year-box").css("", "url('img/slide-1-year-box.png')");
-		$(".slide-reached-box").css("", "url('img/slide-1-reached-box.png')");
-		$(".slide-goal-box").css("", "url('img/slide-1-goal-box.png')");
+		$(".slide-year-box").css("background-image", "url('img/slide-1-year-box.png')");
+		$(".slide-reached-box").css("background-image", "url('img/slide-1-reached-box.png')");
+		$(".slide-goal-box").css("background-image", "url('img/slide-1-goal-box.png')");
 		$("#slide-0-goal-counter").html("50,000,000");
 		$("#slide-0-reached-counter").html("62,425");
 		$("#slide-0-year-counter").html("2004");
-
 
 		function next_year(year){
 
@@ -374,115 +312,31 @@ var homepage = $(function() {
 		
 
 		setTimeout(
-		  function(){		  	
-		    
-		  	$( ".slide-title" ).animate({
-				left: "0",
-			}, {
-				duration: 1300,
-				easing: "easeOutBounce"
-			});
-
-			$( ".slide-year-box" ).animate({
-				top: "320px",
-			}, {
-				duration: 1900,
-				easing: "easeOutBounce"
-			});
-
-			$( ".slide-reached-box" ).animate({
-				top: "370px",
-			}, {
-				duration: 2200,
-				easing: "easeOutBounce"
-			});
-
-			$( ".slide-goal-box" ).animate({
-				top: "330px",
-			}, {
-				duration: 1800,
-				easing: "easeOutBounce",
-				complete: function(){
-					next_year("2004");
-
-					$( ".slide-year-box" ).animate({
-						top: "360px",
-					}, {
-						duration: 1000,
-						easing: "easeOutBounce"
-					});
-
-					$( ".slide-reached-box" ).animate({
-						top: "360px",
-					}, {
-						duration: 1000,
-						easing: "easeOutBounce"
-					});
-
-					$( ".slide-goal-box" ).animate({
-						top: "360px",
-					}, {
-						duration: 1000,
-						easing: "easeOutBounce"
-					});
-
-				}
-			});
-
+		  function(){
+		  	delAnimDurationClass("#hp-slide-0 .slide-title, #hp-slide-0 .slide-year-box, #hp-slide-0 .slide-reached-box, #hp-slide-0 .slide-goal-box");
+		  	delAnimClass("#hp-slide-0 .slide-title, #hp-slide-0 .slide-year-box, #hp-slide-0 .slide-reached-box, #hp-slide-0 .slide-goal-box");		  	
+		    $("#hp-slide-0 .slide-title").addClass("one-and-half-seconds bounceInLeft");
+		    $("#hp-slide-0 .slide-year-box").addClass("two-seconds bounceInUp");
+		    $("#hp-slide-0 .slide-reached-box").addClass("one-and-half-seconds bounceInUp");
+		    $("#hp-slide-0 .slide-goal-box").addClass("two-seconds bounceInUp");
+		    setTimeout(
+		  		function(){	
+		  			next_year(2004);
+		  	}, 1000);
 		  }, 500);
 
 	}
 
 	hps.slides[1].out = function(){
 		// move counters to 0
-		$( ".slide-title" ).animate({
-				left: "-2000px",
-		}, {
-			duration: 1300,
-			easing: "easeInOutCubic"
-		});
+		delAnimClass("#hp-slide-0 .slide-title, #hp-slide-0 .slide-year-box, #hp-slide-0 .slide-reached-box, #hp-slide-0 .slide-goal-box");
+	  	$("#hp-slide-0 .slide-title, #hp-slide-0 .slide-year-box, #hp-slide-0 .slide-reached-box, #hp-slide-0 .slide-goal-box").addClass("bounceOutLeft");
 
-		$( ".slide-year-box" ).animate({
-			top: "1300px",
-		}, {
-			duration: 1300,
-			easing: "easeInOutCubic"
-		});
-
-		$( ".slide-reached-box" ).animate({
-			top: "1300px",
-		}, {
-			duration: 1300,
-			easing: "easeInOutCubic"
-		});
-
-		$( ".slide-goal-box" ).animate({
-			top: "1300px",
-		}, {
-			duration: 1300,
-			easing: "easeInOutCubic",
-			complete: function(){
-				hps.go_to(2);
-			}
-		});
+	    setTimeout(
+	  		function(){
+	  			hps.go_to(1);
+	  	}, 3000);
 	};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -515,24 +369,19 @@ var homepage = $(function() {
 
 		setTimeout(
 		  function(){		  	
-		    
-		  	$( ".slide-title" ).animate({
-				left: "0",
-			}, {
-				duration: 1300,
-				easing: "easeOutBounce"
-			});
+		    delAnimDurationClass(".slide-title");
+			delAnimClass(".slide-title");
+		  	$("#hp-slide-0 .slide-title").addClass("one-and-half-seconds bounceInLeft");
 
-			$( ".bijdrage-0-box" ).animate({ left: "350", top: "300" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-1-box" ).animate({ left: "1280", top: "376" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-2-box" ).animate({ left: "1360", top: "526" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-3-box" ).animate({ left: "424", top: "606" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-4-box" ).animate({ left: "910", top: "670" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-5-box" ).animate({ left: "820", top: "294" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-6-box" ).animate({ left: "330", top: "440" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-7-box" ).animate({ left: "850", top: "470" }, { duration: 2300, easing: "easeOutQuart"});
-
-
+		  	$(".bijdrage-0-box").addClass("animated two-seconds zoomInUp");
+		  	$(".bijdrage-1-box").addClass("animated two-seconds zoomInUp");
+		  	$(".bijdrage-2-box").addClass("animated two-seconds zoomInUp");
+		  	$(".bijdrage-3-box").addClass("animated two-seconds zoomInUp");
+		  	$(".bijdrage-4-box").addClass("animated two-seconds zoomInUp");
+		  	$(".bijdrage-5-box").addClass("animated two-seconds zoomInUp");
+		  	$(".bijdrage-6-box").addClass("animated two-seconds zoomInUp");
+		  	$(".bijdrage-7-box").addClass("animated one-and-half-seconds zoomIn");
+		  	$(".bijdrage-0-box, .bijdrage-1-box, .bijdrage-2-box, .bijdrage-3-box, .bijdrage-4-box, .bijdrage-5-box, .bijdrage-6-box, .bijdrage-7-box").removeClass("start-out-of-screen");
 
 		  }, 500);
 
@@ -540,29 +389,12 @@ var homepage = $(function() {
 
 	hps.slides[2].out = function(){
 		// move counters to 0
-		$( ".slide-title" ).animate({
-				left: "-2000px",
-		}, {
-			duration: 1300,
-			easing: "easeInOutCubic"
-		});
-
-		$( ".bijdrage-0-box" ).animate({ left: "-1000", top: "300" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-1-box" ).animate({ left: "-1000", top: "376" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-2-box" ).animate({ left: "-1000", top: "526" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-3-box" ).animate({ left: "-1000", top: "606" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-4-box" ).animate({ left: "-1000", top: "670" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-5-box" ).animate({ left: "-1000", top: "294" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-6-box" ).animate({ left: "-1000", top: "440" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-7-box" ).animate({ left: "-1000", top: "470" }, { duration: 2300, easing: "easeOutQuart", complete: function(){hps.go_to(3);}});
-
-
-
+		delAnimDurationClass(".slide-title, .bijdrage-0-box, .bijdrage-1-box, .bijdrage-2-box, .bijdrage-3-box, .bijdrage-4-box, .bijdrage-5-box, .bijdrage-6-box, .bijdrage-7-box");
+		delAnimClass(".slide-title, .bijdrage-0-box, .bijdrage-1-box, .bijdrage-2-box, .bijdrage-3-box, .bijdrage-4-box, .bijdrage-5-box, .bijdrage-6-box, .bijdrage-7-box");
+	  	$(".bijdrage-0-box, .bijdrage-1-box, .bijdrage-2-box, .bijdrage-3-box, .bijdrage-4-box, .bijdrage-5-box, .bijdrage-6-box, .bijdrage-7-box").addClass("zoomOutDown");
+		$(".slide-title").addClass("bounceOutLeft");
+	  	setTimeout( function(){ hps.go_to(2); }, 1500);
 	};
-
-
-
-
 
 
 
@@ -580,25 +412,6 @@ var homepage = $(function() {
 
 	hps.slides[3].callback = function(){
 
- 		$( ".bijdrage-0-box" ).css("left", "-300px");
- 		$( ".bijdrage-0-box" ).css("top", "-300px");
- 		$( ".bijdrage-1-box" ).css("left", "-350px");
- 		$( ".bijdrage-1-box" ).css("top", "2000px");
- 		$( ".bijdrage-2-box" ).css("left", "-1350px");
- 		$( ".bijdrage-2-box" ).css("top", "2300px");
- 		$( ".bijdrage-3-box" ).css("left", "2350px");
- 		$( ".bijdrage-3-box" ).css("top", "-500px");
- 		$( ".bijdrage-4-box" ).css("left", "3350px");
- 		$( ".bijdrage-4-box" ).css("top", "-300px");
- 		$( ".bijdrage-5-box" ).css("left", "2850px");
- 		$( ".bijdrage-5-box" ).css("top", "300px");
- 		$( ".bijdrage-6-box" ).css("left", "350px");
- 		$( ".bijdrage-6-box" ).css("top", "2600px");
- 		$( ".bijdrage-7-box" ).css("left", "350px");
- 		$( ".bijdrage-7-box" ).css("top", "-600px");
-
-	
-
 		$(".slide-title").html("Totale bijdrage Nederland 2004-2014<br><span>programmering Drinkwater</span>");
 		$(".slide-title").css("color", "#405E64");
 		$( ".bg-homepage-line" ).animate({ opacity: 0 }, { duration: 2300});
@@ -611,52 +424,36 @@ var homepage = $(function() {
 			$(".bijdrage-"+i+"-bedrag").html(hps.slides[3].chart_data[i].value);
 		}
 
-
 		setTimeout(
 		  function(){		  	
-		    
-		  	$( ".slide-title" ).animate({
-				left: "0",
-			}, {
-				duration: 1300,
-				easing: "easeOutBounce"
-			});
+		    delAnimDurationClass(".slide-title, .bijdrage-0-box, .bijdrage-1-box, .bijdrage-2-box, .bijdrage-3-box, .bijdrage-4-box, .bijdrage-5-box, .bijdrage-6-box, .bijdrage-7-box");
+			delAnimClass(".slide-title, .bijdrage-0-box, .bijdrage-1-box, .bijdrage-2-box, .bijdrage-3-box, .bijdrage-4-box, .bijdrage-5-box, .bijdrage-6-box, .bijdrage-7-box");
+	  	
+		  	$("#hp-slide-0 .slide-title").addClass("one-and-half-seconds bounceInLeft");
 
-			$( ".bijdrage-0-box" ).animate({ left: "350", top: "300" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-1-box" ).animate({ left: "1280", top: "376" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-2-box" ).animate({ left: "1360", top: "526" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-3-box" ).animate({ left: "424", top: "606" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-4-box" ).animate({ left: "910", top: "670" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-5-box" ).animate({ left: "820", top: "294" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-6-box" ).animate({ left: "330", top: "440" }, { duration: 2300, easing: "easeOutQuart"});
-			$( ".bijdrage-7-box" ).animate({ left: "850", top: "470" }, { duration: 2300, easing: "easeOutQuart"});
-
-
+		  	$(".bijdrage-0-box").addClass("two-seconds zoomInUp");
+		  	$(".bijdrage-1-box").addClass("two-seconds zoomInUp");
+		  	$(".bijdrage-2-box").addClass("two-seconds zoomInUp");
+		  	$(".bijdrage-3-box").addClass("two-seconds zoomInUp");
+		  	$(".bijdrage-4-box").addClass("two-seconds zoomInUp");
+		  	$(".bijdrage-5-box").addClass("two-seconds zoomInUp");
+		  	$(".bijdrage-6-box").addClass("two-seconds zoomInUp");
+		  	$(".bijdrage-7-box").addClass("one-and-half-seconds zoomIn");
 
 		  }, 500);
 
 	}
 
 	hps.slides[3].out = function(){
-		// move counters to 0
-		$( ".slide-title" ).animate({
-				left: "-2000px",
-		}, {
-			duration: 1300,
-			easing: "easeInOutCubic"
-		});
-		$( ".slide-3-line" ).animate({ opacity: 0 }, { duration: 2300});
-		$( ".bijdrage-0-box" ).animate({ left: "-1000", top: "300" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-1-box" ).animate({ left: "-1000", top: "376" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-2-box" ).animate({ left: "-1000", top: "526" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-3-box" ).animate({ left: "-1000", top: "606" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-4-box" ).animate({ left: "-1000", top: "670" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-5-box" ).animate({ left: "-1000", top: "294" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-6-box" ).animate({ left: "-1000", top: "440" }, { duration: 2300, easing: "easeOutQuart"});
-		$( ".bijdrage-7-box" ).animate({ left: "-1000", top: "470" }, { duration: 2300, easing: "easeOutQuart", complete: function(){window.location = "overzicht.php";}});
 
-
-
+		delAnimDurationClass(".slide-title, .bijdrage-0-box, .bijdrage-1-box, .bijdrage-2-box, .bijdrage-3-box, .bijdrage-4-box, .bijdrage-5-box, .bijdrage-6-box, .bijdrage-7-box");
+		delAnimClass(".slide-title, .bijdrage-0-box, .bijdrage-1-box, .bijdrage-2-box, .bijdrage-3-box, .bijdrage-4-box, .bijdrage-5-box, .bijdrage-6-box, .bijdrage-7-box");
+	  	$(".bijdrage-0-box, .bijdrage-1-box, .bijdrage-2-box, .bijdrage-3-box, .bijdrage-4-box, .bijdrage-5-box, .bijdrage-6-box, .bijdrage-7-box").addClass("zoomOutDown");
+	  	$(".slide-title").addClass("bounceOutLeft");
+	  	$( ".slide-3-line" ).animate({ opacity: 0 }, { duration: 2300, complete: function(){
+	  		setTimeout( function(){ window.location = "overzicht.php"; }, 200);
+	  	}});
+	  	
 	};
 
 

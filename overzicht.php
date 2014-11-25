@@ -11,6 +11,7 @@
     <!-- Custom css -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/flippant.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +33,7 @@
     </div>
 
     	<div  id="overview-main-wrapper">
-		    <div class="col-md-60" style="margin-top: 30px;">
+		    <div class="col-md-60 start-out-of-screen" style="margin-top: 30px;">
 		    	<div class="row">
 		    		<div class="col-md-6 flip-right" id="project-left-block">
 				        
@@ -70,9 +71,9 @@
 
 				</div>
 		    </div>
-		    <div id="project-right-slider-block" class="col-md-15 flip-left" style="margin-top: 30px;">
+		    <div id="project-right-slider-block" class="col-md-15 start-out-of-screen" style="margin-top: 30px;">
 		    	<div class="row">
-		    		<div class="col-md-12">
+		    		<div id="project-right-slider-inner-block" class="col-md-12 flip-left">
 				    	<div class="row">
 				    		<div class="col-md-12" id="project-4-wrapper"></div>
 					    </div>
@@ -188,22 +189,25 @@
 })(jQuery);
 
 	//enter the count down date using seconds
-	$(".ccounter").ccountdown(10);
+	$(".ccounter").ccountdown(30);
 
 (function($) {
 
-	setTimeout(
-	  function(){
-	    $("#overview-main-wrapper .col-md-60, #project-right-slider-block").animate({ 
-			left: "0" 
-		}, { 
-			duration: 1800, 
-			easing: "easeOutQuart"
-		});
-	  }, 2000);
+	// setTimeout(
+	//   function(){
+	//     $("#overview-main-wrapper .col-md-60, #project-right-slider-block").animate({ 
+	// 		left: "0" 
+	// 	}, { 
+	// 		duration: 1800, 
+	// 		easing: "easeOutQuart"
+	// 	});
+	//   }, 2000);
 
+	$( ".ccounter" ).animate({ opacity: 1 }, { duration: 1000 });
 
-	
+	setInterval(function(){ 
+		$("#overview-main-wrapper .col-md-60, #project-right-slider-block").addClass("animated bounceInRight");
+	}, 1000);
 
 
 

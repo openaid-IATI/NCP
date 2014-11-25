@@ -94,7 +94,7 @@ function Project(){
 	this.right.back = null;
 	this.right.is_back = false;
 	this.slider = {};
-	this.slider.front = document.getElementById('project-right-slider-block');
+	this.slider.front = document.getElementById('project-right-slider-inner-block');
 	this.slider.back = null;
 	this.slider.bxslider = null;
 
@@ -498,4 +498,14 @@ Slide.prototype.refresh = function(){
 			this.redraw();
 		}
 	}
+}
+
+
+
+function delAnimDurationClass(id){
+	$(id).removeClass("three-seconds two-and-half-seconds two-seconds one-and-half-seconds");
+}
+
+function delAnimClass(id){
+	$(id).removeClass("bounceOutLeft bounceInDown bounceInLeft bounceInUp zoomIn zoomInLeft zoomInUp zoomInUpDown zoomInRight zoomOut zoomOutLeft zoomOutUp zoomOutDown zoomOutRight");
 }
