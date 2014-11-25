@@ -51,7 +51,7 @@ var projects_data = {"projects":[
             {"category": "water", "name": "People use improved drinking water", "amount":"14860"},
             {"category": "water", "name": "Water systems", "amount":"70"}
         ], 
-    	"goals": ["3,600 of School Students get safe water access and ensured their rights", "14,860 of low income community people get safe water access with their ownership", "10 public toilets will be constructed in community", "8 public toilets will be constructed in school", "12 school based rainwater harvesting system will be developed", "Capacity of CBO will be developed on participatory monitoring system on hygiene", "User friendly BCC materials will be developed", "Adolescent girls of the selected school practice menstrual hygiene management"],
+    	"goals": ["3,600 of School Students get safe water access and ensured their rights", "14,860 of low income community people get safe water access with their ownership", "10 public toilets will be constructed in community"],
         "field_partners": [{"name": "Aqua for all", "location": "Den Haag, Netherlands"}, {"name": "PSTC", "location": "Dhaha, Bangladesh"}, {"name": "Simavi", "location": "Netherlands"}, {"name": "Walking for Water 2014", "location": "Amsterdam, Netherlands"}, {"name": "Wandelen voor Water", "location": "Den Haag, Netherlands"}, {"name": "WvW 2013", "location": "Den Haag, Netherlands"}, {"name": "WvW 2014", "location": "Netherlands"}], 
     	"funding_partners": "", 
     	"support_partners": "", 
@@ -147,7 +147,7 @@ var projects_data = {"projects":[
             {"category": "water", "name": "People use improved drinking water", "amount":"40000"}, 
             {"category": "water", "name": "People in communities reached", "amount":"49033"}
         ],
-    	"goals": ["Safe drinking water facilities for 2600 households", "266 women and men are active to raise their voice on WASH", "BDT 200 Million budget is available LGD", "20 local NGOs network members capacited on budget monitoring", "2 out of 3 ministries are well informed on Budget Tracking"], 
+    	"goals": ["Safe drinking water facilities for 2600 households", "266 women and men are active to raise their voice on WASH", "BDT 200 Million budget is available LGD"], 
     	"field_partners": [
             {"name": "DORP", "location": "Mirpur, Bangladesh"},
             {"name": "Dutch WASH Alliance", "location": "Haarlem, Netherlands"},
@@ -222,7 +222,7 @@ var projects_data = {"projects":[
             {"category": "water", "name": "People use improved drinking water", "amount":"5000"}, 
             {"category": "water", "name": "Water systems", "amount":"20"}
         ], 
-    	"goals": ["Foster empowered and assertive communities", "Increase access to improved sustainable WASH services", "Reduce WASH-related diseases in project area", "Train comm'ty structures to sustainably O&M WASH facilities", "Improve health and welbeing of community members"], 
+    	"goals": ["Foster empowered and assertive communities", "Increase access to improved sustainable WASH services", "Reduce WASH-related diseases in project area"], 
     	"field_partners": [
             {"name": "AFORD Foundation", "location": "Tamale, Ghana"},
             {"name": "Dutch WASH Alliance", "location": "Haarlem, Netherlands"},
