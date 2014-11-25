@@ -222,7 +222,7 @@ var projects_data = {"projects":[
             {"category": "water", "name": "People use improved drinking water", "amount":"5000"}, 
             {"category": "water", "name": "Water systems", "amount":"20"}
         ], 
-    	"goals": ["Foster empowered and assertive communities", "Increase access to improved sustainable WASH services", "Reduce WASH-related diseases in project area"], 
+    	"goals": ["Foster empowered and assertive communities", "Increase access to improved sustainable WASH services"], 
     	"field_partners": [
             {"name": "AFORD Foundation", "location": "Tamale, Ghana"},
             {"name": "Dutch WASH Alliance", "location": "Haarlem, Netherlands"},
