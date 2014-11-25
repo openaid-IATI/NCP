@@ -30,7 +30,7 @@ NarrowCasting.prototype.load_next = function() {
 					complete: function(){
 						
 						setTimeout( function(){
-							window.location = "index.php";	
+							window.location = "index.html";	
 						}, 3000);
 					}
 				});
@@ -293,7 +293,7 @@ Project.prototype.set_right_bar_html = function() {
 
     for(var i = 0;i < this.data.field_partners.length;i++){
 
-		html +='<div class="row"><div class="col-md-12"><p>'+this.data.field_partners[i].name+'<br/><span class="thin">'+this.data.field_partners[i].location+'</span></p></div></div>';
+		html +='<div class="row"><div class="col-md-12"><p>'+this.data.field_partners[i].name+'<br/><span style="" class="thin">'+this.data.field_partners[i].location+'</span></p></div></div>';
 	}
     
 	html +='</div>';

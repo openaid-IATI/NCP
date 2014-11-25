@@ -514,7 +514,7 @@ footer{
 	position: absolute;
 	z-index:2;
 	top: 360px;
-	left: 606px;
+	left: 616px;
 	
 }
 
@@ -560,6 +560,12 @@ footer{
 	z-index: 2;
 }
 
+.bijdrage-7-box{
+	width: 425px;
+	height: 141px;
+	background-image: url('../img/slide-bijdrage-box-groot.png');
+}
+
 .bijdrage-0-box{ left: 350px; top: 300px; }
 .bijdrage-1-box{ left: 1280px; top: 376px; }
 .bijdrage-2-box{ left: 1360px; top: 526px; }
@@ -567,8 +573,15 @@ footer{
 .bijdrage-4-box{ left: 910px; top: 670px; }
 .bijdrage-5-box{ left: 820px; top: 294px; }
 .bijdrage-6-box{ left: 330px; top: 440px; }
-.bijdrage-7-box{ left: 850px; top: 470px; }
+.bijdrage-7-box{ left: 744px; top: 458px; }
 
+.bijdrage-7-text{
+	font-size: 18px;
+	margin-top: 30px;
+}
+.bijdrage-7-bedrag{
+	font-size: 36px;
+}
 
 .bg-homepage-line{
 	position: absolute;

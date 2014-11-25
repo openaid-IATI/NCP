@@ -71,21 +71,41 @@
     					</div>
 
 
-
-    					<?php 
-    					for ($i = 0;$i < 8;$i++){
-    					?>
-    					<div class="bijdrage-<?php echo $i; ?>-box start-out-of-screen">
-							<div class="bijdrage-<?php echo $i; ?>-text">
-    							
-    						</div>
-    						<div class="bijdrage-<?php echo $i; ?>-bedrag">
-    							
-    						</div>
+    					<div class="bijdrage-0-box start-out-of-screen">
+							<div class="bijdrage-0-text"></div>
+    						<div class="bijdrage-0-bedrag"></div>
     					</div>
-    					<?php
-    					}
-    					?>
+    					<div class="bijdrage-1-box start-out-of-screen">
+							<div class="bijdrage-1-text"></div>
+    						<div class="bijdrage-1-bedrag"></div>
+    					</div>
+    					<div class="bijdrage-2-box start-out-of-screen">
+							<div class="bijdrage-2-text"></div>
+    						<div class="bijdrage-2-bedrag"></div>
+    					</div>
+    					<div class="bijdrage-3-box start-out-of-screen">
+							<div class="bijdrage-3-text"></div>
+    						<div class="bijdrage-3-bedrag"></div>
+    					</div>
+    					<div class="bijdrage-4-box start-out-of-screen">
+							<div class="bijdrage-4-text"></div>
+    						<div class="bijdrage-4-bedrag"></div>
+    					</div>
+    					<div class="bijdrage-5-box start-out-of-screen">
+							<div class="bijdrage-5-text"></div>
+    						<div class="bijdrage-5-bedrag"></div>
+    					</div>
+    					<div class="bijdrage-6-box start-out-of-screen">
+							<div class="bijdrage-6-text"></div>
+    						<div class="bijdrage-6-bedrag"></div>
+    					</div>
+    					<div class="bijdrage-7-box start-out-of-screen">
+							<div class="bijdrage-7-text"></div>
+    						<div class="bijdrage-7-bedrag"></div>
+    					</div>
+
+
+
     					
     					<div class="bg-homepage-line"></div>
     					<div class="slide-3-line"></div>
@@ -167,7 +187,7 @@
 
 
 	//enter the count down date using the format year, month, day, time:time
-	$(".ccounter").ccountdown(11);
+	$(".ccounter").ccountdown(15);
 
 </script>
 
@@ -289,7 +309,7 @@ var homepage = $(function() {
 		$(".slide-year-box").css("background-image", "url('img/slide-1-year-box.png')");
 		$(".slide-reached-box").css("background-image", "url('img/slide-1-reached-box.png')");
 		$(".slide-goal-box").css("background-image", "url('img/slide-1-goal-box.png')");
-		$("#slide-0-goal-counter").html("50,000,000");
+		$("#slide-0-goal-counter").html("50.000.000");
 		$("#slide-0-reached-counter").html("62,425");
 		$("#slide-0-year-counter").html("2004");
 
@@ -451,7 +471,7 @@ var homepage = $(function() {
 	  	$(".bijdrage-0-box, .bijdrage-1-box, .bijdrage-2-box, .bijdrage-3-box, .bijdrage-4-box, .bijdrage-5-box, .bijdrage-6-box, .bijdrage-7-box").addClass("zoomOutDown");
 	  	$(".slide-title").addClass("bounceOutLeft");
 	  	$( ".slide-3-line" ).animate({ opacity: 0 }, { duration: 2300, complete: function(){
-	  		setTimeout( function(){ window.location = "overzicht.php"; }, 200);
+	  		setTimeout( function(){ window.location = "overzicht.html"; }, 200);
 	  	}});
 	  	
 	};
