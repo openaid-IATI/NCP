@@ -24,6 +24,9 @@
 	<script src="js/projects_data.js"></script>
   </head>
   <body>
+      <div class="hand" style="display: none">
+          <img src="img/rh.png" alt="">
+      </div>
     <!-- <h1>Hello, world!</h1> -->
     <div id="logo-container-bottom" class="centered">
       <!-- <p>Logo BuZa</p> -->
@@ -150,46 +153,58 @@
 
 	<!-- main ncp js -->
 	<script src="js/narrowcasting.js"></script>
+    <script src="js/jquery.ccountdown.js"></script>
+    <script src="js/countdown.js"></script>
+
+    <script src="js/leap-0.6.3.min.js"></script>
+    <script src="js/data-bus.js"></script>
+    <script src="js/hand.js"></script>
+    <script src="js/slide.js"></script>
+
+    <script src="js/leap.main.js"></script>
+    
 
 <script>
 
 	var ncp = new NarrowCasting();
 	ncp.page = "overview";
   
-	(function($) {
-	$.fn.ccountdown = function(_s) {
-		var $this = this;
-		var _secondsleft = _s;
-		var _zerocount = 0;
-		// calling function first time so that it wll setup remaining time
-		var _changeTime = function() {
-
-			if (_secondsleft > 0){
-				_secondsleft = _secondsleft - 1;
-			}
-
-			if (_secondsleft == 0){
-
-				_zerocount++; 
-				if(_zerocount == 2){
-					ncp.load_next();
-					_zerocount = 0;
-					_secondsleft = _s - 1;
-				}
-			}
-
-			var el = $($this);
-			var $ss = el.find(".second");
-			$ss.val(_secondsleft).trigger("change");
-		};
-		
-		_changeTime();
-		setInterval(_changeTime, 1000);
-	};
-})(jQuery);
+    var countdown = new Countdown(11);
+  
+	// (function($) {
+//     $.fn.ccountdown = function(_s) {
+//         var $this = this;
+//         var _secondsleft = _s;
+//         var _zerocount = 0;
+//         // calling function first time so that it wll setup remaining time
+//         var _changeTime = function() {
+//
+//             if (_secondsleft > 0){
+//                 _secondsleft = _secondsleft - 1;
+//             }
+//
+//             if (_secondsleft == 0){
+//
+//                 _zerocount++;
+//                 if(_zerocount == 2){
+//                     ncp.load_next();
+//                     _zerocount = 0;
+//                     _secondsleft = _s - 1;
+//                 }
+//             }
+//
+//             var el = $($this);
+//             var $ss = el.find(".second");
+//             $ss.val(_secondsleft).trigger("change");
+//         };
+//
+//         _changeTime();
+//         setInterval(_changeTime, 1000);
+//     };
+// })(jQuery);
 
 	//enter the count down date using seconds
-	$(".ccounter").ccountdown(10);
+	//$(".ccounter").ccountdown(10);
 
 (function($) {
 
@@ -202,6 +217,9 @@
 	// 		easing: "easeOutQuart"
 	// 	});
 	//   }, 2000);
+  
+    //var countdown = new Countdown(11);
+    countdown.loop();
 
 	$( ".ccounter" ).animate({ opacity: 1 }, { duration: 1000 });
 

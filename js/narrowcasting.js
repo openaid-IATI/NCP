@@ -11,8 +11,6 @@ NarrowCasting.prototype.load_next = function() {
 	}
 
 	if(this.page == "overview"){
-		
-		
 			this.count++;
 
 			if (this.current_project.id == null){
@@ -444,31 +442,40 @@ HomepageSlider.prototype.init = function(){
 }
 
 
-HomepageSlider.prototype.next = function(){
+HomepageSlider.prototype.next = function() {
 
 	var previous_slide = this.current_slide;
 
 	// set next slide as current slide
-	if ((this.current_slide + 1) > this.slide_amount){
-		// this.current_slide = 0;
-		
+	if (this.current_slide >= this.slide_amount - 1) {
+		this.current_slide = 0;
 	} else {
 		this.current_slide = this.current_slide + 1;
 	}
 
 	// reset current slide
-	if (this.slides[previous_slide].out){
+	if (this.slides[previous_slide].out) {
 		// will also trigger going to the next slide
-		this.slides[previous_slide].out();
+        var callback = this.go_to.bind(this);
+        if (typeof this.slides[previous_slide].next === 'function') {
+            callback = this.slides[previous_slide].next.bind(this);
+        }
+		this.slides[previous_slide].out(callback);
 	}
-
+}
+HomepageSlider.prototype.prev = function() {
+    if (this.current_slide === 0) {
+        this.current_slide = this.slide_amount - 1;
+    } else {
+        this.currect_slide -= 1;
+    }
+    this.go_to();
 }
 
 HomepageSlider.prototype.go_to = function(slide_number){
 
 	// To do: make animation
 	$(".hp-slide-content").show();
-
 
 	// $(".hp-slide-content[data-id='0']").show();
 
@@ -495,7 +502,8 @@ Slide.prototype.refresh = function(){
 		}
 	} else {
 		if (this.redraw){
-			this.redraw();
+			//this.redraw();
+            this.callback();
 		}
 	}
 }
