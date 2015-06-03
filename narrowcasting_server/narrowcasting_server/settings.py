@@ -66,16 +66,7 @@ WSGI_APPLICATION = 'narrowcasting_server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'narrowcasting',
-        'USER': 'root',
-        'PASSWORD': 'dragstar',
-        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
-        'PORT': '3306',
-    }
-}
+DATABASES = DATABASES
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -123,3 +114,7 @@ ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'authentication.Account'
 
 
+try:
+    from local_settings import *
+except ImportError:
+    pass
