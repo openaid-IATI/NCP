@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn light-grey">Locations</a>
+        <a class="btn light-grey">Status</a>
+        <a class="btn light-grey">Organisation</a>
+        <a class="btn light-grey">Sector</a>
+        <a class="btn light-blue">Sort by</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4" ng-repeat="project in vm.projects">
+        <div class="project project-in-list iati light-blue">
+            
+            <h3>{{project.title}}</h3>
+            <p>
+                <span>COUNTRY:</span> <br>
+                {{project.country}} <br>
+                <span>SECTOR:</span> <br>
+                {{project.sector}} <br>
+                <span>BUDGET:</span> <br>
+                {{project.budget}} <br>
+                <span>START DATE:</span> <br>
+                {{project.start_date}} <br>
+            </p>
+        </div>
+    </div>
+</div>

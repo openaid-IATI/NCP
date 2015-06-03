@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default" role="navigation" ng-controller="NavbarController as vm">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#narrowcasting-nav">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div> <!-- ./navbar-header -->
+
+    <div class="collapse navbar-collapse" id="narrowcasting-nav">
+      <ul class="nav navbar-nav pull-left">
+        {% if user.is_authenticated %}
+          <li><a class="navbar-icon icon-presentations" ui-sref="presentations">Presentations</a></li>
+          <li><a class="navbar-icon icon-displays" ui-sref="displays">Narrowcasting displays</a></li>
+          <li><a class="navbar-icon icon-users" href="/{{ user.username }}/account">Users</a></li>
+          <li><a class="navbar-icon icon-learn" ui-sref="learn">Learn</a></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+          <li><a href="/{{ user.username }}/account">Account</a></li>
+          <li><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>
+        {% else %}
+          <li><a class="navbar-icon icon-narrowcasting" ui-sref="login"><img src="/static/images/icon-displays.png" />Narrowcasting</a></li>
+          <li><a class="navbar-icon icon-about" href="/about">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+          <li><a class="btn btn-green navbar-btn-login" ui-sref="login">Sign-in</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div> 
+</nav>

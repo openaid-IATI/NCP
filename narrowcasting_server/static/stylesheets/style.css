@@ -1,0 +1,1350 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Main Stylesheet
+
+Here's where the magic happens. Here, you'll see we are calling in
+the separate media queries. The base mobile goes outside any query
+and is called at the beginning, after that we call the rest
+of the styles inside media queries.
+
+Helpful articles on Sass file organization:
+http://thesassway.com/advanced/modular-css-naming-conventions
+
+******************************************************************/
+/*********************
+IMPORTING PARTIALS
+These files are needed at the beginning so that we establish all
+our mixins, functions, and variables that we'll be using across
+the whole project.
+*********************/
+/* normalize.css 2012-07-07T09:50 UTC - http://github.com/necolas/normalize.css */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+/* line 23, ../scss/partials/_normalize.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+/* line 33, ../scss/partials/_normalize.scss */
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+/* line 42, ../scss/partials/_normalize.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+/* line 53, ../scss/partials/_normalize.scss */
+[hidden],
+template {
+  display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+/* line 67, ../scss/partials/_normalize.scss */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+/* line 77, ../scss/partials/_normalize.scss */
+body {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+/* line 89, ../scss/partials/_normalize.scss */
+a {
+  background: transparent;
+}
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+/* line 97, ../scss/partials/_normalize.scss */
+a:focus {
+  outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+/* line 106, ../scss/partials/_normalize.scss */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 119, ../scss/partials/_normalize.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+/* line 128, ../scss/partials/_normalize.scss */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 138, ../scss/partials/_normalize.scss */
+b,
+strong,
+.strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+/* line 148, ../scss/partials/_normalize.scss */
+dfn,
+em,
+.em {
+  font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+/* line 156, ../scss/partials/_normalize.scss */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/*
+ * proper formatting (http://blog.fontdeck.com/post/9037028497/hyphens)
+*/
+/* line 166, ../scss/partials/_normalize.scss */
+p {
+  -webkit-hyphens: auto;
+  -epub-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+/*
+ * Addresses margins set differently in IE6/7.
+ */
+/* line 177, ../scss/partials/_normalize.scss */
+pre {
+  margin: 0;
+}
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+/* line 188, ../scss/partials/_normalize.scss */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+/* line 197, ../scss/partials/_normalize.scss */
+pre {
+  white-space: pre-wrap;
+}
+
+/**
+ * Set consistent quote types.
+ */
+/* line 205, ../scss/partials/_normalize.scss */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+/* line 213, ../scss/partials/_normalize.scss */
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+/* line 218, ../scss/partials/_normalize.scss */
+small, .small {
+  font-size: 75%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+/* line 227, ../scss/partials/_normalize.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* line 234, ../scss/partials/_normalize.scss */
+sup {
+  top: -0.5em;
+}
+
+/* line 238, ../scss/partials/_normalize.scss */
+sub {
+  bottom: -0.25em;
+}
+
+/* ==========================================================================
+  Lists
+========================================================================== */
+/*
+ * Addresses margins set differently in IE6/7.
+ */
+/* line 253, ../scss/partials/_normalize.scss */
+dl,
+menu,
+ol,
+ul {
+  margin: 1em 0;
+}
+
+/* line 257, ../scss/partials/_normalize.scss */
+dd {
+  margin: 0;
+}
+
+/*
+ * Addresses paddings set differently in IE6/7.
+ */
+/* line 265, ../scss/partials/_normalize.scss */
+menu {
+  padding: 0 0 0 40px;
+}
+
+/* line 270, ../scss/partials/_normalize.scss */
+ol,
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+/*
+ * Corrects list images handled incorrectly in IE7.
+ */
+/* line 280, ../scss/partials/_normalize.scss */
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+
+/* ==========================================================================
+  Embedded content
+========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+/* line 293, ../scss/partials/_normalize.scss */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+/* line 301, ../scss/partials/_normalize.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+/* line 313, ../scss/partials/_normalize.scss */
+figure {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+/* line 325, ../scss/partials/_normalize.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+/* line 336, ../scss/partials/_normalize.scss */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 350, ../scss/partials/_normalize.scss */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+/* line 362, ../scss/partials/_normalize.scss */
+button,
+input {
+  line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+/* line 374, ../scss/partials/_normalize.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+/* line 389, ../scss/partials/_normalize.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+/* line 399, ../scss/partials/_normalize.scss */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+/* line 409, ../scss/partials/_normalize.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+/* line 420, ../scss/partials/_normalize.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+/* line 433, ../scss/partials/_normalize.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+/* line 442, ../scss/partials/_normalize.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+/* line 452, ../scss/partials/_normalize.scss */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+/* line 465, ../scss/partials/_normalize.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 472, ../scss/partials/_normalize.scss */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 480, ../scss/partials/_normalize.scss */
+.image-replacement,
+.ir {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* line 487, ../scss/partials/_normalize.scss */
+.clearfix, .cf {
+  zoom: 1;
+}
+/* line 489, ../scss/partials/_normalize.scss */
+.clearfix:before, .clearfix:after, .cf:before, .cf:after {
+  content: "";
+  display: table;
+}
+/* line 490, ../scss/partials/_normalize.scss */
+.clearfix:after, .cf:after {
+  clear: both;
+}
+
+/*
+use the best ampersand
+http://simplebits.com/notebook/2008/08/14/ampersands-2/
+*/
+/* line 497, ../scss/partials/_normalize.scss */
+span.amp {
+  font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif !important;
+  font-style: italic;
+}
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Variables
+
+******************************************************************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Typography
+
+Need to import a font or set of icons for your site? Drop them in
+here or just use this to establish your typographical grid. Or not.
+Do whatever you want to...GOSH!
+
+Helpful Articles:
+http://trentwalton.com/2012/06/19/fluid-type/
+http://ia.net/blog/responsive-typography-the-basics/
+http://alistapart.com/column/responsive-typography-is-a-physical-discipline
+
+******************************************************************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Sass Functions
+
+You can do a lot of really cool things in Sass. Functions help you
+make repeated actions a lot easier. They are really similar to mixins,
+but can be used for so much more.
+
+Anyway, keep them all in here so it's easier to find when you're
+looking for one.
+
+For more info on functions, go here:
+http://sass-lang.com/documentation/Sass/Script/Functions.html
+
+******************************************************************/
+/*********************
+COLOR FUNCTIONS
+These are helpful when you're working
+with shadows and such things. It's essentially
+a quicker way to write RGBA.
+
+Example:
+box-shadow: 0 0 4px black(0.3);
+compiles to:
+box-shadow: 0 0 4px rgba(0,0,0,0.3);
+*********************/
+/*********************
+RESPONSIVE HELPER FUNCTION
+If you're creating a responsive site, then
+you've probably already read
+Responsive Web Design: http://www.abookapart.com/products/responsive-web-design
+
+Here's a nice little helper function for calculating
+target / context
+as mentioned in that book.
+
+Example:
+width: cp(650px, 1000px);
+or
+width: calc-percent(650px, 1000px);
+both compile to:
+width: 65%;
+*********************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Mixins Stylesheet
+
+This is where you can take advantage of Sass' great features: Mixins.
+I won't go in-depth on how they work exactly,
+there are a few articles below that will help do that. What I will
+tell you is that this will help speed up simple changes like
+changing a color or adding CSS3 techniques gradients.
+
+A WORD OF WARNING: It's very easy to overdo it here. Be careful and
+remember less is more.
+
+Helpful:
+http://sachagreif.com/useful-sass-mixins/
+http://thesassway.com/intermediate/leveraging-sass-mixins-for-cleaner-code
+http://web-design-weekly.com/blog/2013/05/12/handy-sass-mixins/
+
+******************************************************************/
+/*********************
+TRANSITION
+*********************/
+/*
+I totally rewrote this to be cleaner and easier to use.
+You'll need to be using Sass 3.2+ for these to work.
+Thanks to @anthonyshort for the inspiration on these.
+USAGE: @include transition(all 0.2s ease-in-out);
+*/
+/*********************
+CSS3 GRADIENTS
+Be careful with these since they can
+really slow down your CSS. Don't overdo it.
+*********************/
+/* @include css-gradient(#dfdfdf,#f8f8f8); */
+/*********************
+BOX SIZING
+*********************/
+/* @include box-sizing(border-box); */
+/* NOTE: value of "padding-box" is only supported in Gecko. So
+probably best not to use it. I mean, were you going to anyway? */
+/* line 1, ../scss/partials/_bootstrapextra.scss */
+.text-left-not-xs, .text-left-not-sm, .text-left-not-md, .text-left-not-lg {
+  text-align: left;
+}
+
+/* line 4, ../scss/partials/_bootstrapextra.scss */
+.text-center-not-xs, .text-center-not-sm, .text-center-not-md, .text-center-not-lg {
+  text-align: center;
+}
+
+/* line 7, ../scss/partials/_bootstrapextra.scss */
+.text-right-not-xs, .text-right-not-sm, .text-right-not-md, .text-right-not-lg {
+  text-align: right;
+}
+
+/* line 10, ../scss/partials/_bootstrapextra.scss */
+.text-justify-not-xs, .text-justify-not-sm, .text-justify-not-md, .text-justify-not-lg {
+  text-align: justify;
+}
+
+@media (max-width: 767px) {
+  /* line 15, ../scss/partials/_bootstrapextra.scss */
+  .text-left-not-xs, .text-center-not-xs, .text-right-not-xs, .text-justify-not-xs {
+    text-align: inherit;
+  }
+
+  /* line 18, ../scss/partials/_bootstrapextra.scss */
+  .text-left-xs {
+    text-align: left;
+  }
+
+  /* line 21, ../scss/partials/_bootstrapextra.scss */
+  .text-center-xs {
+    text-align: center;
+  }
+
+  /* line 24, ../scss/partials/_bootstrapextra.scss */
+  .text-right-xs {
+    text-align: right;
+  }
+
+  /* line 27, ../scss/partials/_bootstrapextra.scss */
+  .text-justify-xs {
+    text-align: justify;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  /* line 32, ../scss/partials/_bootstrapextra.scss */
+  .text-left-not-sm, .text-center-not-sm, .text-right-not-sm, .text-justify-not-sm {
+    text-align: inherit;
+  }
+
+  /* line 35, ../scss/partials/_bootstrapextra.scss */
+  .text-left-sm {
+    text-align: left;
+  }
+
+  /* line 38, ../scss/partials/_bootstrapextra.scss */
+  .text-center-sm {
+    text-align: center;
+  }
+
+  /* line 41, ../scss/partials/_bootstrapextra.scss */
+  .text-right-sm {
+    text-align: right;
+  }
+
+  /* line 44, ../scss/partials/_bootstrapextra.scss */
+  .text-justify-sm {
+    text-align: justify;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* line 49, ../scss/partials/_bootstrapextra.scss */
+  .text-left-not-md, .text-center-not-md, .text-right-not-md, .text-justify-not-md {
+    text-align: inherit;
+  }
+
+  /* line 52, ../scss/partials/_bootstrapextra.scss */
+  .text-left-md {
+    text-align: left;
+  }
+
+  /* line 55, ../scss/partials/_bootstrapextra.scss */
+  .text-center-md {
+    text-align: center;
+  }
+
+  /* line 58, ../scss/partials/_bootstrapextra.scss */
+  .text-right-md {
+    text-align: right;
+  }
+
+  /* line 61, ../scss/partials/_bootstrapextra.scss */
+  .text-justify-md {
+    text-align: justify;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 66, ../scss/partials/_bootstrapextra.scss */
+  .text-left-not-lg, .text-center-not-lg, .text-right-not-lg, .text-justify-not-lg {
+    text-align: inherit;
+  }
+
+  /* line 69, ../scss/partials/_bootstrapextra.scss */
+  .text-left-lg {
+    text-align: left;
+  }
+
+  /* line 72, ../scss/partials/_bootstrapextra.scss */
+  .text-center-lg {
+    text-align: center;
+  }
+
+  /* line 75, ../scss/partials/_bootstrapextra.scss */
+  .text-right-lg {
+    text-align: right;
+  }
+
+  /* line 78, ../scss/partials/_bootstrapextra.scss */
+  .text-justify-lg {
+    text-align: justify;
+  }
+}
+/*********************
+BASE (MOBILE) SIZE
+This are the mobile styles. It's what people see on their phones. If
+you set a great foundation, you won't need to add too many styles in
+the other stylesheets. Remember, keep it light: Speed is Important.
+*********************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Base Mobile Stylesheet
+
+Be light and don't over style since everything here will be
+loaded by mobile devices. You want to keep it as minimal as
+possible. This is called at the top of the main stylsheet
+and will be used across all viewports.
+
+******************************************************************/
+/****
+GENERAL
+****/
+/* line 19, ../scss/breakpoints/_base.scss */
+body {
+  font-family: "Chivo", sans-serif;
+  color: #515151;
+  font-size: 15px;
+  background-color: #f3f3f5;
+}
+
+/* line 26, ../scss/breakpoints/_base.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* line 30, ../scss/breakpoints/_base.scss */
+h1 {
+  margin-top: 16px;
+  font-size: 28px;
+  color: #BFBDBD;
+}
+
+/* line 36, ../scss/breakpoints/_base.scss */
+.no-posts-here {
+  text-align: center;
+}
+
+/* line 40, ../scss/breakpoints/_base.scss */
+.btn {
+  background-color: #424141;
+  filter: alpha(opacity=87);
+  border-radius: 6px 14px;
+  padding: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 10px;
+}
+
+/* line 53, ../scss/breakpoints/_base.scss */
+.btn-green {
+  background-color: #22b573;
+  color: white;
+}
+/* line 57, ../scss/breakpoints/_base.scss */
+.btn-green:hover {
+  background-color: #f9af48;
+  color: white;
+}
+
+/* line 63, ../scss/breakpoints/_base.scss */
+.white {
+  background-color: #fff;
+}
+
+/* line 67, ../scss/breakpoints/_base.scss */
+.light-blue {
+  background-color: #29abe2;
+  color: white;
+}
+
+/* line 72, ../scss/breakpoints/_base.scss */
+.red {
+  background-color: #f15a24;
+  color: white;
+}
+
+/* line 77, ../scss/breakpoints/_base.scss */
+.green {
+  background-color: #22b573;
+  color: white;
+}
+
+/* line 82, ../scss/breakpoints/_base.scss */
+.light-grey {
+  background-color: #bfbdbd;
+  color: white;
+}
+
+/* line 87, ../scss/breakpoints/_base.scss */
+.dark-grey {
+  background-color: #6a6969;
+  color: white;
+}
+
+/* line 92, ../scss/breakpoints/_base.scss */
+.dark-green {
+  background-color: #006837;
+  color: white;
+}
+
+/* line 97, ../scss/breakpoints/_base.scss */
+.black {
+  background-color: #424141;
+  color: white;
+}
+
+/* line 102, ../scss/breakpoints/_base.scss */
+.btn-more-padding {
+  padding: 8px 18px;
+}
+
+/* line 106, ../scss/breakpoints/_base.scss */
+.btn-padding-30 {
+  padding: 5px 30px;
+}
+
+/* line 110, ../scss/breakpoints/_base.scss */
+.btn-padding-50 {
+  padding: 5px 50px;
+}
+
+/* line 114, ../scss/breakpoints/_base.scss */
+.btn-drag-drop {
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+/* line 118, ../scss/breakpoints/_base.scss */
+.btn-drag-drop:hover {
+  background-color: #6a6969;
+  color: white;
+  cursor: inherit;
+}
+
+/* line 125, ../scss/breakpoints/_base.scss */
+.hover-orange:hover {
+  background-color: #f9af48;
+  color: white;
+}
+
+/* line 130, ../scss/breakpoints/_base.scss */
+.pt21 {
+  font-size: 21px;
+}
+
+/* line 134, ../scss/breakpoints/_base.scss */
+.pt18 {
+  font-size: 18px;
+}
+
+/* line 138, ../scss/breakpoints/_base.scss */
+.pt16 {
+  font-size: 16px;
+}
+
+/****
+NAVBAR
+****/
+/* line 148, ../scss/breakpoints/_base.scss */
+.navbar {
+  margin-bottom: 0;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 0 !important;
+  border: 0;
+}
+
+/* line 155, ../scss/breakpoints/_base.scss */
+.navbar, .navbar-default {
+  background-color: #424141;
+}
+
+/* line 159, ../scss/breakpoints/_base.scss */
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+/* line 163, ../scss/breakpoints/_base.scss */
+.navbar-default .navbar-nav > li > a:hover {
+  color: #f59231;
+}
+
+/* line 167, ../scss/breakpoints/_base.scss */
+.navbar-default .navbar-nav > li > a.navbar-btn-login {
+  padding: 8px 28px;
+}
+
+/* line 171, ../scss/breakpoints/_base.scss */
+.navbar-icon {
+  /*background-*/
+  font-size: 16px;
+}
+
+/* line 176, ../scss/breakpoints/_base.scss */
+.navbar-btn-login {
+  margin-top: 24px;
+}
+
+/* line 185, ../scss/breakpoints/_base.scss */
+.navbar .navbar-nav > li > a.icon-narrowcasting, .navbar .navbar-nav > li > a.icon-about {
+  padding-top: 32px;
+  padding-bottom: 30px;
+}
+
+/* line 194, ../scss/breakpoints/_base.scss */
+.top-header {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+/* line 197, ../scss/breakpoints/_base.scss */
+.top-header .btn.pull-right {
+  margin-top: 13px;
+  padding: 8px 18px;
+}
+
+/****
+Homepage
+****/
+/* line 211, ../scss/breakpoints/_base.scss */
+#homepage .explanation p {
+  padding: 0 2em;
+  margin-bottom: 7em;
+}
+/* line 216, ../scss/breakpoints/_base.scss */
+#homepage .explanation img {
+  margin-top: 10em;
+  margin-bottom: 2em;
+}
+/* line 222, ../scss/breakpoints/_base.scss */
+#homepage .hp-sub-title {
+  font-size: 22px;
+}
+/* line 226, ../scss/breakpoints/_base.scss */
+#homepage .btn-hp {
+  background-color: transparent;
+  border: 2px solid #fff;
+  margin-bottom: 3em;
+  font-size: 20px;
+  padding: 10px 26px;
+}
+/* line 234, ../scss/breakpoints/_base.scss */
+#homepage hr {
+  border-top: 3px solid #22b573;
+  max-width: 11em;
+  margin-top: 14px;
+  margin-bottom: 26px;
+}
+
+/****
+PRESENTATIONS
+****/
+/* line 254, ../scss/breakpoints/_base.scss */
+.presentation-wrapper {
+  color: white;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  display: block;
+  padding-top: 1.5em;
+  padding-bottom: 1.1em;
+  font-size: 17px;
+  height: 130px;
+}
+/* line 263, ../scss/breakpoints/_base.scss */
+.presentation-wrapper.draft {
+  background-color: #f15a24;
+}
+/* line 267, ../scss/breakpoints/_base.scss */
+.presentation-wrapper.published {
+  background-color: #22b573;
+}
+/* line 271, ../scss/breakpoints/_base.scss */
+.presentation-wrapper:hover {
+  background-color: #f9af48;
+}
+/* line 275, ../scss/breakpoints/_base.scss */
+.presentation-wrapper .presentation {
+  text-align: center;
+}
+/* line 279, ../scss/breakpoints/_base.scss */
+.presentation-wrapper .presentation__meta {
+  opacity: 0.7;
+  font-size: 14px;
+  display: block;
+}
+
+/* line 288, ../scss/breakpoints/_base.scss */
+.presentation-toolbar {
+  margin-bottom: 4em;
+}
+
+/* line 296, ../scss/breakpoints/_base.scss */
+#presentations .project-in-list {
+  height: 300px;
+  overflow: hidden;
+}
+/* line 301, ../scss/breakpoints/_base.scss */
+#presentations .watch-tutorial {
+  width: 100%;
+  padding: 4px 8px;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+/* line 307, ../scss/breakpoints/_base.scss */
+#presentations .watch-tutorial:hover {
+  background-color: #424141;
+  color: white;
+}
+
+/****
+DISPLAYS
+****/
+/* line 321, ../scss/breakpoints/_base.scss */
+#displays .green {
+  text-align: center;
+}
+/* line 325, ../scss/breakpoints/_base.scss */
+#displays .btn-add-display {
+  margin-top: 2em;
+  margin-bottom: 3em;
+}
+/* line 330, ../scss/breakpoints/_base.scss */
+#displays .displays-in-list {
+  margin-left: 16%;
+}
+/* line 334, ../scss/breakpoints/_base.scss */
+#displays .display-in-list {
+  display: inline-block;
+  margin-right: 20em;
+  margin-bottom: 7em;
+}
+/* line 340, ../scss/breakpoints/_base.scss */
+#displays .display-name {
+  margin-top: 1em;
+  font-size: 21px;
+}
+
+/****
+NEW PRESENTATION
+****/
+/* line 351, ../scss/breakpoints/_base.scss */
+#new_presentation .green, #new_presentation .form-control {
+  text-align: center;
+}
+/* line 355, ../scss/breakpoints/_base.scss */
+#new_presentation label {
+  font-size: 28px;
+  font-weight: normal;
+}
+/* line 360, ../scss/breakpoints/_base.scss */
+#new_presentation .form-control {
+  margin: 0 auto;
+  color: #424141;
+  font-size: 21px;
+  border: 0;
+  border-radius: 0;
+  max-width: 36em;
+  padding: 26px 16px;
+}
+/* line 374, ../scss/breakpoints/_base.scss */
+#new_presentation .form-group ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #424141;
+}
+/* line 377, ../scss/breakpoints/_base.scss */
+#new_presentation .form-group :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #424141;
+}
+/* line 380, ../scss/breakpoints/_base.scss */
+#new_presentation .form-group ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #424141;
+}
+/* line 383, ../scss/breakpoints/_base.scss */
+#new_presentation .form-group :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #424141;
+}
+/* line 387, ../scss/breakpoints/_base.scss */
+#new_presentation .form-group label {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+/* line 393, ../scss/breakpoints/_base.scss */
+#new_presentation button {
+  margin-top: 1.5em;
+  margin-bottom: 50em;
+}
+/* line 398, ../scss/breakpoints/_base.scss */
+#new_presentation button:hover {
+  background-color: #f9af48;
+  color: white;
+}
+
+/****
+EDIT PRESENTATION
+****/
+/* line 412, ../scss/breakpoints/_base.scss */
+.edit-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+}
+/* line 420, ../scss/breakpoints/_base.scss */
+.edit-header:hover {
+  cursor: pointer;
+  background-color: #f9af48;
+  color: white;
+}
+
+/****
+LEARN
+****/
+/* line 433, ../scss/breakpoints/_base.scss */
+#learn .learn-main {
+  margin-top: 3.5em;
+  width: 100%;
+  min-height: 50em;
+}
+/* line 438, ../scss/breakpoints/_base.scss */
+#learn .learn-main img {
+  width: 100%;
+  height: auto;
+}
+
+/*********************
+LARGER MOBILE DEVICES
+This is for devices like the Galaxy Note or something that's
+larger than an iPhone but smaller than a tablet. Let's call them
+tweeners.
+*********************/
+@media only screen and (min-width: 481px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: 481px and Up Stylesheet
+  
+  This stylesheet is loaded for larger devices. It's set to
+  481px because at 480px it would load on a landscaped iPhone.
+  This isn't ideal because then you would be loading all those
+  extra styles on that same mobile connection.
+  
+  A word of warning. This size COULD be a larger mobile device,
+  so you still want to keep it pretty light and simply expand
+  upon your base.scss styles.
+  
+  ******************************************************************/
+  /*
+  IMPORTANT NOTE ABOUT SASS 3.3 & UP
+  You can't use @extend within media queries
+  anymore, so just be aware that if you drop
+  them in here, they won't work.
+  */
+}
+/*********************
+TABLET & SMALLER LAPTOPS
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 768px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Tablet & Small Desktop Stylesheet
+  
+  Here's where you can start getting into the good stuff.
+  This size will work on iPads, other tablets, and desktops.
+  So you can start working with more styles, background images,
+  and other resources. You'll also notice the grid starts to
+  come into play. Have fun!
+  
+  ******************************************************************/
+}
+/*********************
+DESKTOP
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 1030px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Desktop Stylsheet
+  
+  This is the desktop size. It's larger than an iPad so it will only
+  be seen on the Desktop.
+  
+  ******************************************************************/
+}
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1240px) {
+  /******************************************************************
+  Site Name: 
+  Author: 
+  
+  Stylesheet: Super Large Monitor Stylesheet
+  
+  You can add some advanced styles here if you like. This kicks in
+  on larger screens.
+  
+  ******************************************************************/
+}
+/*********************
+RETINA (2x RESOLUTION DEVICES)
+This applies to the retina iPhone (4s) and iPad (2,3) along with
+other displays with a 2x resolution. You can also create a media
+query for retina AND a certain size if you want. Go Nuts.
+*********************/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  /******************************************************************
+  Site Name: 
+  Author: 
+  
+  Stylesheet: Retina Screens & Devices Stylesheet
+  
+  When handling retina screens you need to make adjustments, especially
+  if you're not using font icons. Here you can add them in one neat
+  place.
+  
+  ******************************************************************/
+  /* 
+  
+  EXAMPLE 
+  Let's say you have an image and you need to make sure it looks ok
+  on retina screens. Let's say we have an icon which dimension are
+  24px x 24px. In your regular stylesheets, it would look something
+  like this:
+  
+  .icon {
+  	width: 24px;
+  	height: 24px;
+  	background: url(img/test.png) no-repeat;
+  }
+  
+  For retina screens, we have to make some adjustments, so that image
+  doesn't look blurry. So, taking into account the image above and the
+  dimensions, this is what we would put in our retina stylesheet:
+  
+  .icon {
+  	background: url(img/test@2x.png) no-repeat;
+  	background-size: 24px 24px;
+  }
+  
+  So, you would create the same icon, but at double the resolution, meaning 
+  it would be 48px x 48px. You'd name it the same, but with a @2x at the end
+  (this is pretty standard practice). Set the background image so it matches
+  the original dimensions and you are good to go. 
+  
+  */
+}
+/*********************
+PRINT STYLESHEET
+Feel free to customize this. Remember to add things that won't make
+sense to print at the bottom. Things like nav, ads, and forms should
+be set to display none.
+*********************/
+@media print {
+  /*@import "partials/print";*/
+}

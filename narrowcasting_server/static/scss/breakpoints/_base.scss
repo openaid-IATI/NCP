@@ -1,0 +1,443 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Base Mobile Stylesheet
+
+Be light and don't over style since everything here will be
+loaded by mobile devices. You want to keep it as minimal as
+possible. This is called at the top of the main stylsheet
+and will be used across all viewports.
+
+******************************************************************/
+
+/****
+GENERAL
+****/
+
+
+body{
+  font-family: $chivo;
+  color: $font-color;
+  font-size: 15px;
+  background-color: $light-background;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+h1{
+  margin-top: 16px;
+  font-size: 28px;
+  color: #BFBDBD;
+}
+
+.no-posts-here {
+  text-align: center;
+}
+
+.btn{
+  background-color: #424141;
+  filter: alpha(opacity=87);
+  border-radius: 6px 14px;
+  padding: 8px;
+  color: $white;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: $border-radius;
+}
+
+
+
+.btn-green{
+  background-color: $green;
+  color: $white;
+
+  &:hover{
+    background-color: $orange;
+    color: $white;
+  }
+}
+
+.white{
+  background-color: #fff;
+}
+
+.light-blue{
+  background-color: $light-blue;
+  color: $white;
+}
+
+.red{
+  background-color: $red;
+  color: $white;
+}
+
+.green{
+  background-color: $green;
+  color: $white;
+}
+
+.light-grey{
+  background-color: $light-grey;
+  color: $white;
+}
+
+.dark-grey{
+  background-color: $dark-grey;
+  color: $white;
+}
+
+.dark-green{
+  background-color: $dark-green;
+  color: $white;
+}
+
+.black{
+  background-color: $black;
+  color: $white;
+}
+
+.btn-more-padding{
+  padding: 8px 18px;
+}
+
+.btn-padding-30{
+  padding: 5px 30px;
+}
+
+.btn-padding-50{
+  padding: 5px 50px;
+}
+
+.btn-drag-drop{
+  margin-top: 3em;
+  margin-bottom: 2em;
+
+  &:hover{
+    background-color: $dark-grey;
+    color: $white;
+    cursor: inherit;
+  }
+}
+
+.hover-orange:hover{
+  background-color: $orange;
+  color: $white;
+}
+
+.pt21{
+  font-size: 21px;
+}
+
+.pt18{
+  font-size: 18px;
+}
+
+.pt16{
+  font-size: 16px;
+}
+
+
+
+/****
+NAVBAR
+****/
+
+.navbar{
+  margin-bottom: 0;
+  box-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+  border-radius: 0 !important;
+  border: 0;
+}
+
+.navbar, .navbar-default{
+  background-color: $black;
+}
+
+.navbar-default .navbar-nav > li > a{
+  color: $white;
+}
+
+.navbar-default .navbar-nav > li > a:hover{
+  color: $link-orange;
+}
+
+.navbar-default .navbar-nav > li > a.navbar-btn-login{
+  padding: 8px 28px;
+}
+
+.navbar-icon{
+  /*background-*/
+  font-size: 16px;
+}
+
+.navbar-btn-login{
+  margin-top: 24px;
+}
+
+.icon-presentations{
+
+}
+
+
+.navbar .navbar-nav > li > a.icon-narrowcasting, .navbar .navbar-nav > li > a.icon-about{
+  padding-top: 32px;
+  padding-bottom: 30px;
+}
+
+
+
+
+
+.top-header {
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+
+  .btn.pull-right{
+    margin-top: 13px;
+    padding: 8px 18px;
+  }
+}
+
+/****
+Homepage
+****/
+
+
+#homepage{
+
+  .explanation{
+    p{
+      padding: 0 2em;
+      margin-bottom: 7em;
+    }
+
+    img{
+      margin-top: 10em;
+      margin-bottom: 2em;
+    }
+  }
+
+  .hp-sub-title{
+    font-size: 22px;
+  }
+
+  .btn-hp{
+    background-color: transparent;
+    border: 2px solid #fff;
+    margin-bottom: 3em;
+    font-size: 20px;
+    padding: 10px 26px;
+  }
+
+  hr{
+    border-top: 3px solid $green;
+    max-width: 11em;
+    margin-top: 14px;
+    margin-bottom: 26px;
+  }
+
+
+}
+
+
+
+
+
+
+/****
+PRESENTATIONS
+****/
+
+
+.presentation-wrapper{
+  color: $white;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  display: block;
+  padding-top: 1.5em;
+  padding-bottom: 1.1em;
+  font-size: 17px;
+  height: 130px;
+
+  &.draft{
+    background-color: $red;
+  }
+
+  &.published{
+    background-color: $green;
+  }
+
+  &:hover{
+    background-color: $orange;
+  }
+
+  .presentation{
+    text-align: center;
+  }
+
+  .presentation__meta{
+    opacity: 0.7;
+    font-size: 14px;
+    display: block;
+  }
+
+
+}
+
+.presentation-toolbar{
+  margin-bottom: 4em;
+
+
+}
+
+#presentations{
+  
+  .project-in-list{
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .watch-tutorial{
+    width: 100%;
+    padding: 4px 8px;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+
+    &:hover{
+      background-color: $black;
+      color: $white;
+    }
+  }
+
+}
+
+
+/****
+DISPLAYS
+****/
+#displays{
+
+  .green{
+    text-align: center;
+  }
+
+  .btn-add-display{
+    margin-top: 2em;
+    margin-bottom: 3em;
+  }
+
+  .displays-in-list{
+    margin-left: 16%;
+  }
+
+  .display-in-list{
+    display: inline-block;
+    margin-right: 20em;
+    margin-bottom: 7em;
+  }
+
+  .display-name{
+    margin-top: 1em;
+    font-size: 21px;
+  }
+}
+
+/****
+NEW PRESENTATION
+****/
+#new_presentation{
+
+  .green, .form-control{
+    text-align: center;
+  }
+
+  label{
+    font-size: 28px;
+    font-weight: normal;
+  }
+
+  .form-control{
+    margin: 0 auto;
+    color: $black;
+    font-size: 21px;
+    border: 0;
+    border-radius: 0;
+    max-width: 36em;
+    padding: 26px 16px;
+      
+  }
+
+
+
+  .form-group{
+    ::-webkit-input-placeholder { /* WebKit browsers */
+      color: $black;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color: $black;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: $black;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+      color: $black;
+    }
+
+    label{
+      margin-top: 2em;
+      margin-bottom: 1em;
+    }
+  }
+
+  button{
+    margin-top: 1.5em;
+    margin-bottom: 50em;
+  }
+
+  button:hover{
+    background-color: $orange;
+    color: $white;
+  }
+
+
+
+}
+
+
+
+/****
+EDIT PRESENTATION
+****/
+.edit-header{
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+  padding: 8px;
+  color: $white;
+  font-size: 16px;
+  font-weight: 400;
+
+  &:hover{
+    cursor: pointer;
+    background-color: $orange;
+    color: $white;
+
+  }
+}
+
+/****
+LEARN
+****/
+#learn{
+
+  .learn-main{
+    margin-top: 3.5em;
+    width: 100%;
+    min-height: 50em;
+
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+}

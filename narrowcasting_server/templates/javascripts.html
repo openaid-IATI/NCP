@@ -1,0 +1,51 @@
+{% load compress %}
+{% load staticfiles %}
+
+{% compress js %}
+<script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/underscore/underscore.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'bower_components/angular/angular.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/ui-router/release/angular-ui-router.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angular-cookies/angular-cookies.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angular-utils-pagination/dirPagination.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/ngDialog/js/ngDialog.js' %}"></script>
+<script type="text/javascript" src="{% static 'lib/snackbarjs/snackbar.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'javascripts/ncs.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/ncs.config.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/ncs.routes.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/authentication/authentication.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/authentication/services/authentication.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/authentication/controllers/register.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/authentication/controllers/login.controller.js' %}"></script>
+
+
+<script type="text/javascript" src="{% static 'javascripts/utils/utils.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/utils/services/snackbar.service.js' %}"></script>
+
+
+<script type="text/javascript" src="{% static 'javascripts/layout/layout.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/controllers/index.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/controllers/navbar.controller.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'javascripts/presentations/presentations.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/services/presentations.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/controllers/presentations.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/controllers/new-presentation.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/controllers/edit-presentation.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/directives/presentation.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/directives/presentations.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/directives/iati-select.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/directives/rsr-select.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/directives/project-bar.directive.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'javascripts/displays/displays.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/displays/controllers/displays.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/displays/controllers/new-display.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/displays/controllers/edit-display.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/displays/directives/displays.service.js' %}"></script>
+
+
+
+{% endcompress %}

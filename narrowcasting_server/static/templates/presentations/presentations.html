@@ -1,0 +1,49 @@
+<div id="presentations">
+  <div class="top-header white">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <h1>My presentations</h1>
+        </div>
+        <div class="col-sm-4">
+          sort by: 
+        </div>
+        <div class="col-sm-5">
+          <a class="btn pull-right green hover-orange" ui-sref="new-presentation">New presentation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <a class="btn dark-grey pt21 watch-tutorial" ui-sref="learn">
+          First watch the video tutorial how to create a presentation
+        </a>
+      </div>
+    </div>
+
+    <div class="row" ng-cloak>
+      
+      <div class="col-sm-6 col-md-3" dir-paginate="presentation in vm.presentations | itemsPerPage: 8">
+        <presentation presentation="presentation"></presentation>
+      </div>
+
+      <div ng-hide="vm.presentations.length">
+        <div class="col-sm-12 no-presentations-here">
+          <em>The are no presentations here.</em>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 text-center-not-xs">
+          <dir-pagination-controls></dir-pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

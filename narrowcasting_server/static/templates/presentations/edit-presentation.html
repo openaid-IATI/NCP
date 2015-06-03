@@ -1,0 +1,52 @@
+<div id="edit_presentation">
+  <div class="top-header white">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h1>Editor</h1>
+        </div>
+        <div class="col-sm-6 pull-right">
+          <a class="btn red" ng-click="">Save draft</a>
+          <a class="btn light-blue" ng-click="">Preview</a>
+          <a class="btn green" ng-click="">Publish to display</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+
+            <div class="edit-header black">
+                {{vm.presentation.name | limitTo: 30 }}
+            </div>
+            <project-bar></project-bar>
+        </div>
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="edit-header green" ng-click="vm.selectView('iati-select')">
+                        International Aid Transparency Initaitive (IATI) projects
+                    </a>
+                    <a class="edit-header light-blue" ng-click="vm.selectView('rsr-select')">
+                        Akvo Realy Simple Reporting (RSR) projects
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <iati-select ng-show="vm.view == 'iati-select'"></iati-select>
+                    <rsr-select ng-show="vm.view == 'rsr-select'"></rsr-select>
+                    <presentation-wysiwyg ng-show="vm.view == 'presentation-wysiwyg'"></presentation-wysiwyg>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+  </div>
+</div>

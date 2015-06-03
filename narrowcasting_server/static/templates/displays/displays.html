@@ -1,0 +1,73 @@
+<div id="displays">
+  <div class="top-header white">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>My displays</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row green">
+    <div class="col-sm-12">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <a class="btn dark-grey btn-padding-50 pt21 hover-orange btn-add-display" ui-sref="new-display">
+              Add Displays
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="displays-in-list">
+          <div class="display-in-list" ng-repeat="display in [1,2]">
+            <img src="/static/images/display-placeholder.png" />
+            <div class="display-name">Foyer {{display}}</div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <div class="btn dark-grey pt21 btn-padding-30 btn-drag-drop">
+          Drag and drop projects onto displays
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-cloak>
+      <div class="col-sm-6 col-md-3" dir-paginate="presentation in vm.presentations | itemsPerPage: 4">
+        <presentation presentation="presentation"></presentation>
+      </div>
+    
+
+      <div ng-hide="vm.presentations.length">
+        <div class="col-sm-12 no-presentations-here">
+          <em>The are no presentations here.</em>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 text-center-not-xs">
+          <dir-pagination-controls></dir-pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+

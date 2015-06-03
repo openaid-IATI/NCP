@@ -1,4 +1,0 @@
-NCP
-===
-
-Narrowcasting Prototype

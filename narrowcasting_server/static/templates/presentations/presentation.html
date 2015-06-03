@@ -1,0 +1,17 @@
+<a class="presentation-wrapper {{presentation.status}}" ui-sref="edit-presentation({ presentation_id : presentation.id })">
+  <div class="presentation">
+    <div class="presentation__name">
+      {{ presentation.name }}
+    </div>
+    <div class="presentation__meta">
+      Edit presentation <br>
+      Last updated: {{presentation.updated_at | date:"dd/MM/yyyy"}}
+    </div>
+  </div>
+</a>
+
+<div class="presentation-toolbar">
+  <a class="icon-edit">
+
+  </a>
+</div>
