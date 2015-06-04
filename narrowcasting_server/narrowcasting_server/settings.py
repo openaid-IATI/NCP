@@ -63,11 +63,6 @@ ROOT_URLCONF = 'narrowcasting_server.urls'
 WSGI_APPLICATION = 'narrowcasting_server.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-DATABASES = DATABASES
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
