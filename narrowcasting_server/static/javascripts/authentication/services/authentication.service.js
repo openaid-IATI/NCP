@@ -89,7 +89,7 @@
 
                 Authentication.setAuthenticatedAccount(data.data);
 
-                window.location = '/';
+                window.location = '/presentations/';
             }
 
             /**

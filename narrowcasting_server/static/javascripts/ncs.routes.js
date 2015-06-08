@@ -60,7 +60,7 @@
         .state({
             name:         'users',
             url:          '/users/',
-            templateUrl:  '/static/templates/users/users.html'
+            templateUrl:  '/static/templates/authentication/users.html'
         })
         .state({
             name:         'new-display',

@@ -45,6 +45,7 @@ var test = '';
       function createPresentationSuccessFn(data, status, headers, config) {
         // get presentation id, go to presentation edit
         Snackbar.show('Presentation created.');
+        window.location = '/presentations/edit/' + data.data.id + '/';
       }
 
       /**

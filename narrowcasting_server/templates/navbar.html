@@ -12,17 +12,17 @@
     <div class="collapse navbar-collapse" id="narrowcasting-nav">
       <ul class="nav navbar-nav pull-left">
         {% if user.is_authenticated %}
-          <li><a class="navbar-icon icon-presentations" ui-sref="presentations">Presentations</a></li>
-          <li><a class="navbar-icon icon-displays" ui-sref="displays">Narrowcasting displays</a></li>
-          <li><a class="navbar-icon icon-users" href="/{{ user.username }}/account">Users</a></li>
-          <li><a class="navbar-icon icon-learn" ui-sref="learn">Learn</a></li>
+          <li><a class="navbar-icon icon-presentations" ui-sref="presentations"><img src="/static/images/icon-presentations.png" />Presentations</a></li>
+          <li><a class="navbar-icon icon-displays" ui-sref="displays"><img src="/static/images/icon-displays.png" />Narrowcasting displays</a></li>
+          <li><a class="navbar-icon icon-users" ui-sref="users"><img src="/static/images/icon-users.png" />Users</a></li>
+          <li><a class="navbar-icon icon-learn" ui-sref="learn"><img src="/static/images/icon-learn.png" />Learn</a></li>
       </ul>
       <ul class="nav navbar-nav pull-right">
-          <li><a href="/{{ user.username }}/account">Account</a></li>
-          <li><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>
+          <li><a class="navbar-icon" ui-sref="users"><img src="/static/images/icon-account.png" />Account</a></li>
+          <li><a class="navbar-icon" href="javascript:void(0)" ng-click="vm.logout()"><img src="/static/images/icon-signout.png" />Logout</a></li>
         {% else %}
           <li><a class="navbar-icon icon-narrowcasting" ui-sref="login"><img src="/static/images/icon-displays.png" />Narrowcasting</a></li>
-          <li><a class="navbar-icon icon-about" href="/about">About</a></li>
+          <li><a class="navbar-icon icon-about" ui-sref="learn"><img src="/static/images/icon-learn.png" />About</a></li>
       </ul>
       <ul class="nav navbar-nav pull-right">
           <li><a class="btn btn-green navbar-btn-login" ui-sref="login">Sign-in</a></li>

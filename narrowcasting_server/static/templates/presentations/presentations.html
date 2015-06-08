@@ -5,10 +5,13 @@
         <div class="col-sm-3">
           <h1>My presentations</h1>
         </div>
-        <div class="col-sm-4">
-          sort by: 
+        <div class="col-sm-5 order-section">
+          Sort by: 
+          <a class="order-button published" ng-click="vm.orderBy('published')"><span></span>Published</a>
+          <a class="order-button draft" ng-click="vm.orderBy('draft')"><span></span>Draft</a>
+          <a class="order-button most-recent" ng-click="vm.orderBy('most_recent')"><span></span>Most recent</a>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-4">
           <a class="btn pull-right green hover-orange" ui-sref="new-presentation">New presentation</a>
         </div>
       </div>

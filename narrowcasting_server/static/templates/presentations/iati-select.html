@@ -1,16 +1,18 @@
 <div class="row">
-    <div class="col-md-12">
-        <a class="btn light-grey">Regions</a>
-        <a class="btn light-grey">Countries</a>
-        <a class="btn light-grey">Sectors</a>
-        <a class="btn light-grey">Budget</a>
-        <a class="btn green">Sort by</a>
+    <div class="col-md-12  text-right">
+        <div class="iati-select-filters paddingtb1em">
+            <a class="btn hover-orange btn-more-padding light-grey">Regions</a>
+            <a class="btn hover-orange btn-more-padding light-grey">Countries</a>
+            <a class="btn hover-orange btn-more-padding light-grey">Sectors</a>
+            <a class="btn hover-orange btn-more-padding light-grey">Budget</a>
+            <a class="btn hover-orange btn-more-padding btn-sort-by green">Sort by</a>
+        </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-4" dir-paginate="project in vm.projects | filter:q | itemsPerPage: 6"  pagination-id="iati">
-        <div class="project project-in-list iati green">
+        <div class="project project-in-list iati green text-center">
             
             <h3>{{project.title}}</h3>
             <p>

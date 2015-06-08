@@ -39,6 +39,7 @@
 		* @memberOf ncs.authentication.controllers.LoginController
 		*/
 		function login() {
+			console.log('login');
 			Authentication.login(vm.email, vm.password);
 		}
 	}

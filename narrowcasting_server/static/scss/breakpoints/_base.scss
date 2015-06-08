@@ -111,6 +111,10 @@ h1{
   padding: 5px 50px;
 }
 
+.btn-sort-by{
+  margin-left: 20px;
+}
+
 .btn-drag-drop{
   margin-top: 3em;
   margin-bottom: 2em;
@@ -139,6 +143,67 @@ h1{
   font-size: 16px;
 }
 
+.margint1em{
+  margin-top: 1em;
+}
+
+.margint2em{
+  margin-top: 2em;
+}
+
+.paddingtb1em{
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.margintb1em{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus,
+.pagination > li > a, .pagination > li > span,
+.pagination > li:first-child > a, .pagination > li:first-child > span{
+  background-color: inherit;
+  border: 0;
+  color: $dark-grey;
+
+}
+
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+  color: $dark-blue;
+}
+/* previous and next */
+.pagination > li:first-child > a, .pagination > li:first-child > span,
+.pagination > li:last-child > a, .pagination > li:last-child > span{
+  border: 2px solid $light-grey;
+  color: $light-grey;
+  border-radius: 25px;
+  font-size: 36px;
+  line-height: 28px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.pagination > li > a{
+  background-color: transparent;
+}
+
+
+.pagination > li:first-child > a:hover, .pagination > li:first-child > span:hover,
+.pagination > li:last-child > a:hover, .pagination > li:last-child > span:hover{
+  border: 2px solid $dark-grey;
+  color: $dark-grey;
+  background-color: transparent;
+}
+
+
+
+
+
+
 
 
 /****
@@ -160,7 +225,7 @@ NAVBAR
   color: $white;
 }
 
-.navbar-default .navbar-nav > li > a:hover{
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
   color: $link-orange;
 }
 
@@ -171,6 +236,10 @@ NAVBAR
 .navbar-icon{
   /*background-*/
   font-size: 16px;
+}
+
+.navbar-icon img{
+  margin-right: 16px;
 }
 
 .navbar-btn-login{
@@ -207,6 +276,13 @@ Homepage
 
 #homepage{
 
+  h1{
+    margin-top: 5em;
+    color: $white;
+
+  }
+
+
   .explanation{
     p{
       padding: 0 2em;
@@ -223,12 +299,38 @@ Homepage
     font-size: 22px;
   }
 
+  .image-hp-1{
+    padding-bottom: 8em;
+  }
+
+  .image-hp-1 img{
+    margin-top: 8em;
+    margin-bottom: 3em;
+  }
+  
+  .hp-start-learning{
+    padding-top: 1em;
+    padding-bottom: 2em;
+    margin-bottom: 4em;
+
+
+    .btn{
+      margin-top: 0.5em;
+    }
+  }
+
+  .hp-sub-header h2{
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
   .btn-hp{
     background-color: transparent;
     border: 2px solid #fff;
-    margin-bottom: 3em;
+    margin-bottom: 4em;
     font-size: 20px;
-    padding: 10px 26px;
+    padding: 14px 50px;
+    margin-top: 3em;
   }
 
   hr{
@@ -270,6 +372,7 @@ PRESENTATIONS
 
   &:hover{
     background-color: $orange;
+    color: $white;
   }
 
   .presentation{
@@ -282,13 +385,28 @@ PRESENTATIONS
     display: block;
   }
 
-
+  .presentation__name{
+    height: 3em;  
+  }
 }
 
+
 .presentation-toolbar{
-  margin-bottom: 4em;
+  margin-top: 0.8em;
+  margin-bottom: 2.5em;
 
+  img{
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 26px;
+    height: 26px;
+    opacity: 0.4;
 
+    &:hover{
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
 }
 
 #presentations{
@@ -309,6 +427,47 @@ PRESENTATIONS
       color: $white;
     }
   }
+
+  .order-section{
+    margin-top: 1em;
+    color: $light-grey;
+
+    a{
+      color: $light-grey;
+      cursor: pointer;
+    
+      &:hover{
+        color: $dark-grey;
+      }
+
+    }
+
+    .most-recent{
+      margin-left: 30px;
+    }
+
+
+    .order-button{
+
+      &.published span, &.draft span{
+        display: inline-block;
+        border-radius: 30px;
+        background-color: $green;
+        width: 20px;
+        height: 20px;
+        margin-top: 6px;
+        margin-right: 4px;
+        margin-left: 18px;
+      }
+
+      &.draft span{
+        background-color: $red;
+      }
+
+    }
+  }
+
+  
 
 }
 
@@ -409,20 +568,111 @@ NEW PRESENTATION
 /****
 EDIT PRESENTATION
 ****/
-.edit-header{
-  border-top-left-radius: $border-radius;
-  border-top-right-radius: $border-radius;
-  padding: 8px;
-  color: $white;
-  font-size: 16px;
-  font-weight: 400;
 
-  &:hover{
-    cursor: pointer;
-    background-color: $orange;
+#edit_presentation{
+
+  .edit-header{
+    display: inline-block;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    padding: 8px;
     color: $white;
+    font-size: 16px;
+    font-weight: 400;
 
+    &.black{
+      width: 100%;
+    }
+
+
+    &:hover{
+      cursor: pointer;
+      background-color: $orange;
+      color: $white;
+
+    }
   }
+
+  .edit-bar {
+    margin-top: 1em;
+
+    .btn{
+      margin-left: 1em;
+      width: 150px;
+      padding: 5px 5px;
+    }
+  }
+
+  .project-bar{
+    background-color: $white;
+
+    a{
+      display: inline-block;
+      background-color: #F3F3F5;
+      box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+      width: 90%;
+      margin-top: 10px;
+      margin-left: 5%;
+      margin-right: 5%;
+      height: 150px;
+      cursor: pointer;
+      color: $light-grey;
+
+      &:hover{
+        background-color: $orange;
+      }
+
+      h3{
+        color: $dark-grey;
+      }
+    }
+  }
+
+  .project-in-list{
+    height: 340px;
+    padding: 20px 10px 10px 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+
+    h3{
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    span{
+      margin-top: 10px;
+      line-height: 11px;
+      font-weight: 900;
+      display: inline-block;
+    }
+  }
+
+
+  iati-select{
+    background-color: white;
+  }
+
+  .iati-select-filters{ 
+    background-color: $white;
+
+    .btn{
+      margin-right: 14px;
+    }
+  }
+
+}
+
+
+/****
+Users
+****/
+
+#users{
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+
 }
 
 /****
