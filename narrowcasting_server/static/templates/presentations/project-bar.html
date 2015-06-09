@@ -1,15 +1,28 @@
+<div class="white project-bar">
+    <ul dnd-list="vm.selectedProjects">
+        <li
+        class="text-center"
+        ng-repeat="(key, project) in vm.selectedProjects"
+        dnd-draggable="project"
+        dnd-moved="vm.selectedProjects.splice($index, 1)">
+            <div class="project project-in-list iati green text-center">
+                
+                <h3>{{project.title}}</h3>
+                <p>
+                    <span>STATUS:</span> <br>
+                    Loading data&nbsp;<img src="/static/images/puff.svg" width="20" alt=""><br>&nbsp;<br>
+                    <span>Slide {{key+1}}</span>
+                </p>
 
-    <div class="white project-bar">
-        <a class="text-center" ng-repeat="item in [1,2,3,4,5,6]">
-            
-            <h3>Choose project</h3>
-            <span class="drag-drop">Drag & drop</span><br>
-
-            <img src="/static/images/icon-duplicate.png" /><br>
-
-            <span class="slide-nr">Slide {{item}}</span>
-
-
-        </a>
-    </div>
+            </div>
+        </li>
+        <li class="text-center">
+            <a>
+                <h3>Choose project</h3>
+                <span class="drag-drop">Drag & drop</span><br>
+                <img src="/static/images/icon-duplicate.png" /><br>
+                <span class="slide-nr">Slide {{item}}</span>
+            </a>
+        </li>
+    </ul>
 </div>

@@ -164,7 +164,7 @@ h1{
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus,
 .pagination > li > a, .pagination > li > span,
 .pagination > li:first-child > a, .pagination > li:first-child > span{
-  background-color: inherit;
+  background-color: transparent;
   border: 0;
   color: $dark-grey;
 
@@ -176,7 +176,9 @@ h1{
 }
 /* previous and next */
 .pagination > li:first-child > a, .pagination > li:first-child > span,
-.pagination > li:last-child > a, .pagination > li:last-child > span{
+.pagination > li:last-child > a, .pagination > li:last-child > span,
+.pagination > li:first-child > a:focus, .pagination > li:first-child > span:focus,
+.pagination > li:last-child > a:focus, .pagination > li:last-child > span:focus{
   border: 2px solid $light-grey;
   color: $light-grey;
   border-radius: 25px;
@@ -199,9 +201,14 @@ h1{
   background-color: transparent;
 }
 
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus{
+  background-color: transparent;
+}
 
-
-
+.svg-loader{
+  margin: 8em 0 20em;
+  text-align: center;
+}
 
 
 
@@ -232,6 +239,13 @@ NAVBAR
 .navbar-default .navbar-nav > li > a.navbar-btn-login{
   padding: 8px 28px;
 }
+
+.navbar-default .navbar-nav > li > a.navbar-btn-login:hover,
+.navbar-default .navbar-nav > li > a.navbar-btn-login:focus{
+  background-color: $orange;
+  color: $white;
+}
+
 
 .navbar-icon{
   /*background-*/
@@ -606,6 +620,12 @@ EDIT PRESENTATION
   .project-bar{
     background-color: $white;
 
+    ul{
+      margin: 0;
+      padding: 3em 0;
+      background-color: white;
+    }
+
     a{
       display: inline-block;
       background-color: #F3F3F5;
@@ -625,6 +645,10 @@ EDIT PRESENTATION
       h3{
         color: $dark-grey;
       }
+    }
+
+    .project-in-list{
+      height: 220px;
     }
   }
 
@@ -647,7 +671,6 @@ EDIT PRESENTATION
     }
   }
 
-
   iati-select{
     background-color: white;
   }
@@ -658,9 +681,173 @@ EDIT PRESENTATION
     .btn{
       margin-right: 14px;
     }
+
+    .btn-active{
+      background-color: $orange;
+    }
+
+    .go-to-projects{
+      float:left;
+      margin-left: 15px;
+    }
   }
 
+
+
+  /*********************
+  SLIDER TOOLTIP 
+  *********************/
+
+  .slide {
+    padding:50px 14px 34px;
+    background: transparent;
+    margin-bottom: 14px;
+    .slider-selection {
+      background: lighten($dark-grey,40%);
+    }
+    &.active {
+      .slider-selection {
+        background: $orange;
+      }
+      .slider-handle {
+        background: $orange;
+      }
+      .tooltip {
+        .tooltip-inner {
+          background: $orange;
+        }
+        &.top {
+          .tooltip-arrow {
+            border-top-color: $orange;
+          }
+        }
+        &.bottom {
+          .tooltip-arrow {
+            border-bottom-color: $orange;
+          }
+        }
+      }
+      .slider-track {
+        .slider-handle {
+          background: $dark-grey;
+        }
+      }
+    }
+    .slider-track {
+      background: #fff;
+      border:1px solid #ccc;
+      border-radius: 5px;
+      .slider-handle {
+        background: lighten($dark-grey,40%);
+        border:1px solid #fff;
+        width: 35px;
+        height: 35px;
+        margin-left: -17px;
+        margin-top: -12px;
+        outline: none;
+      }
+    }
+    #tooltip {
+      display: none;
+    }
+    .tooltip {
+      font-weight: 700;
+      opacity: 1;
+      font-size: 1.2em;
+      .tooltip-inner {
+        background: lighten($dark-grey,40%);
+      }
+      &.top {
+        top:-14 px !important;
+        .tooltip-arrow {
+          border-top-color: lighten($dark-grey,40%);
+        }
+      }
+      &.bottom {
+        top:26px !important;
+        .tooltip-arrow {
+          border-bottom-color: lighten($dark-grey,40%);
+        }
+      }
+    }
+
+  }
+
+
 }
+
+
+/****
+IATI filters
+****/
+.filter-panel{
+  
+  .table{
+    margin-left: 15px;
+    font-size: 18px;
+
+    .checkbox{
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+
+    thead{
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    thead td{
+      padding: 20px 0 10px;
+    }
+
+    .th-first{
+      padding-left: 35px;
+    }
+
+    .radio label, .checkbox label{
+      margin-left: 10px;
+    }
+
+    .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
+      margin-left: -30px;
+    }
+
+  }
+
+  .table > thead > tr > td{
+    padding: 20px 0 10px;
+    border-top: 0;
+  }
+
+  .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > td{
+    padding: 4px;
+    border-top: 0;
+  }
+
+  &.filter-panel-budget{
+    min-height: 600px;
+
+    h3{
+      font-size: 18px;
+      font-weight: 900;
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .checkbox{
+      padding-top: 30px;
+    }
+
+    .slider.slider-horizontal{
+      width: 100% !important;
+    }
+  }
+
+
+}
+
+
 
 
 /****

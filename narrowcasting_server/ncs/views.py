@@ -4,7 +4,10 @@ from rest_framework import viewsets
 from ncs.models import Presentation
 from ncs.models import Display
 from ncs.permissions import IsCreatorOfPresentation
+from ncs.permissions import IsOwnerOfDisplay
 from ncs.serializers import PresentationSerializer
+from ncs.serializers import DisplaySerializer
+
 
 class PresentationViewSet(viewsets.ModelViewSet):
     queryset = Presentation.objects.order_by('-created_at')
@@ -22,19 +25,18 @@ class PresentationViewSet(viewsets.ModelViewSet):
 
 
 class DisplayViewSet(viewsets.ModelViewSet):
-    queryset = Display.objects.order_by('-created_at')
-    serializer_class = PresentationSerializer
+    queryset = Display.objects.order_by('-added_at')
+    serializer_class = DisplaySerializer
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
             return (permissions.AllowAny(),)
-        return (permissions.IsAuthenticated(), IsCreatorOfPresentation(),)
+        return (permissions.IsAuthenticated(), IsOwnerOfDisplay(),)
 
     def perform_create(self, serializer):
-        instance = serializer.save(creator=self.request.user)
+        instance = serializer.save(owner=self.request.user)
 
-        return super(PresentationViewSet, self).perform_create(serializer)
-
+        return super(DisplayViewSet, self).perform_create(serializer)
 
 
 class AccountPresentationsViewSet(viewsets.ViewSet):

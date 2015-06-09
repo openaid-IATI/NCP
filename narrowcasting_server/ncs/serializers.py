@@ -49,7 +49,8 @@ class DisplaySerializer(serializers.ModelSerializer):
         )
         read_only_fields = (
             'id',
-            'added_at'
+            'added_at',
+            'owner'
         )
 
 

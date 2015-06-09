@@ -1,8 +1,6 @@
 from django.db import models
-
-import datetime
-
 from authentication.models import Account
+
 
 class Presentation(models.Model):
     name = models.CharField(null=False, blank=False, max_length=100)
@@ -22,10 +20,12 @@ class Presentation(models.Model):
 class Display(models.Model):
     owner = models.ForeignKey(Account)
     name = models.CharField(null=False, blank=False, max_length=100)
-    unlock_key = models.CharField(null=False, blank=False, max_length=100)
+    unlock_key = models.CharField(null=True, blank=False, max_length=100)
     unlocked = models.BooleanField(null=False, default=False)
     added_at = models.DateTimeField(auto_now_add=True)
-    presentation = models.ForeignKey(Presentation)
+    presentation = models.ForeignKey(Presentation, null=True)
+
+
 
 
 #

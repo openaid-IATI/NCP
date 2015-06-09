@@ -12,13 +12,14 @@ var test = '';
     .module('ncs.displays.controllers')
     .controller('NewDisplayController', NewDisplayController);
 
-  NewDisplayController.$inject = ['Authentication', 'Snackbar', 'Presentations'];
+  NewDisplayController.$inject = ['Authentication', 'Snackbar', 'Displays'];
 
   /**
   * @namespace NewDisplayController
   */
-  function NewDisplayController(Authentication, Snackbar, Presentations) {
+  function NewDisplayController(Authentication, Snackbar, Displays) {
     var vm = this;
+    vm.displayName = '';
     vm.submit = submit;
 
     /**
@@ -28,23 +29,26 @@ var test = '';
     */
     function submit() {
 
-      Displays.create(vm.projects).then(createPresentationSuccessFn, createPresentationErrorFn);
+      Displays.create(vm.displayName).then(createDisplaySuccessFn, createDisplayErrorFn);
 
       /**
-      * @name createPresentationSuccessFn
+      * @name createDisplaySuccessFn
       * @desc Show snackbar with success message
       */
       function createDisplaySuccessFn(data, status, headers, config) {
         // get display id, go to display edit
-        console.log(data);
         Snackbar.show('Display created.');
+        window.location = '/displays/';
       }
 
       /**
-      * @name createPresentationErrorFn
+      * @name createDisplayErrorFn
       * @desc Propogate error event and show snackbar with error message
       */
       function createDisplayErrorFn(data, status, headers, config) {
+        console.log(data);
+        console.log(data.data);
+        console.log(status);
         Snackbar.error(data.error);
       }
     }

@@ -5,6 +5,7 @@ from django.conf.urls import url
 from narrowcasting_server.views import IndexView
 from ncs.views import AccountPresentationsViewSet
 from ncs.views import PresentationViewSet
+from ncs.views import DisplayViewSet
 
 from rest_framework_nested import routers
 
@@ -15,6 +16,7 @@ from authentication.views import LogoutView
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
 router.register(r'presentations', PresentationViewSet)
+router.register(r'displays', DisplayViewSet)
 
 accounts_router = routers.NestedSimpleRouter(
     router, r'accounts', lookup='account'

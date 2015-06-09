@@ -6,9 +6,12 @@
             'ncs.config',
             'ncs.routes',
             'angularUtils.directives.dirPagination',
+            'ui.bootstrap-slider',
+            'dndLists',
             'ncs.authentication',
             'ncs.layout',
             'ncs.presentations',
+            'ncs.iati',
             'ncs.displays',
             'ncs.utils'
         ]);

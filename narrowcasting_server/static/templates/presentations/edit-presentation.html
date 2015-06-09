@@ -38,7 +38,41 @@
 
             <div class="row">
                 <div class="col-md-12">
+                    <div class="row">
+                        <div ng-show="vm.view.indexOf('iati-select') > -1" class="col-md-12  text-right">
+                            <div class="iati-select-filters paddingtb1em">
+                                <a
+                                ng-class="{ 'btn-active': vm.view == 'iati-select' }" 
+                                ng-click="vm.view = 'iati-select'" 
+                                class="btn hover-orange btn-more-padding light-grey go-to-projects">Projects</a>
+                                <a 
+                                ng-class="{ 'btn-active': vm.view == 'iati-select-regions' }" 
+                                ng-click="vm.view = 'iati-select-regions'" 
+                                class="btn hover-orange btn-more-padding light-grey">Regions</a>
+                                <a 
+                                ng-class="{ 'btn-active': vm.view == 'iati-select-countries' }" 
+                                ng-click="vm.view = 'iati-select-countries'" 
+                                class="btn hover-orange btn-more-padding light-grey">Countries</a>
+                                <a 
+                                ng-class="{ 'btn-active': vm.view == 'iati-select-sectors' }" 
+                                ng-click="vm.view = 'iati-select-sectors'" 
+                                class="btn hover-orange btn-more-padding light-grey">Sectors</a>
+                                <a 
+                                ng-class="{ 'btn-active': vm.view == 'iati-select-budget' }" 
+                                ng-click="vm.view = 'iati-select-budget'" 
+                                class="btn hover-orange btn-more-padding light-grey">Budget</a>
+                                <a  
+                                class="btn hover-orange btn-more-padding btn-sort-by green">Sort by</a>
+                            </div>
+                        </div>
+                    </div>
+
                     <iati-select ng-show="vm.view == 'iati-select'"></iati-select>
+                    <iati-select-regions ng-show="vm.view == 'iati-select-regions'"></iati-select-regions>
+                    <iati-select-countries ng-show="vm.view == 'iati-select-countries'"></iati-select-countries>
+                    <iati-select-sectors ng-show="vm.view == 'iati-select-sectors'"></iati-select-sectors>
+                    <iati-select-budget ng-show="vm.view == 'iati-select-budget'"></iati-select-budget>
+
                     <rsr-select ng-show="vm.view == 'rsr-select'"></rsr-select>
                     <presentation-wysiwyg ng-show="vm.view == 'presentation-wysiwyg'"></presentation-wysiwyg>
                 </div>

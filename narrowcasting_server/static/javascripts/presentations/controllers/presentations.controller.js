@@ -18,8 +18,23 @@
     var vm = this;
     vm.presentations = [];
     vm.isAuthenticated = Authentication.isAuthenticated();
+    vm.presentationsOrderBy = 'updated_at';
+    vm.presentationsOrderByReversed = true;
 
     activate();
+
+    vm.orderBy = function(key){
+      if(key == 'draft'){
+        vm.presentationsOrderBy = 'status';
+        vm.presentationsOrderByReversed = false;
+      } else if(key == 'published'){
+        vm.presentationsOrderBy = 'status';
+        vm.presentationsOrderByReversed = true;
+      } else if(key == 'most_recent'){
+        vm.presentationsOrderBy = 'updated_at';
+        vm.presentationsOrderByReversed = true;
+      }
+    }
 
     /**
     * @name activate

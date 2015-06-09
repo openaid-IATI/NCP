@@ -25,13 +25,32 @@
       </div>
 
       <div class="displays-in-list">
-          <div class="display-in-list" ng-repeat="display in [1,2]">
-            <img src="/static/images/display-placeholder.png" />
-            <div class="display-name">Foyer {{display}}</div>
-          </div>
+        <div ng-repeat="(key, display) in vm.displays">
+
+
+
+
+          <ul class="display-in-list" dnd-list="vm.displays">
+            <li
+            class="text-center"
+            ng-repeat="(key, display) in vm.displays"
+            dnd-draggable="project"
+            dnd-moved="vm.displays[$index] = null">
+              <img src="/static/images/display-placeholder.png" />
+              <div class="display-name">{{display.name}}</div>
+            </li>
+          </ul>
+
+
+
+        </div>
       </div>
     </div>
   </div>
+
+
+
+
 
 
 
@@ -48,25 +67,32 @@
     </div>
 
     <div class="row" ng-cloak>
-      <div class="col-sm-6 col-md-3" dir-paginate="presentation in vm.presentations | itemsPerPage: 4">
-        <presentation presentation="presentation"></presentation>
+      <div class="col-md-12">
+        <ul dnd-list="vm.projects">
+          <li
+            class="col-sm-6 col-md-3" 
+            dir-paginate="presentation in vm.presentations | itemsPerPage: 4" 
+            pagination-id="presentations"
+            dnd-draggable="project"
+            dnd-effect-allowed="copy"
+            dnd-copied="vm.copiedProject($index)" 
+            ng-class="{'selected': models.selected === item}">
+
+
+            <presentation presentation="presentation"></presentation>
+          </li>
+        </ul>
       </div>
     
-
-      <div ng-hide="vm.presentations.length">
-        <div class="col-sm-12 no-presentations-here">
+        <div class="col-sm-12 no-presentations-here" ng-hide="vm.presentations.length">
           <em>The are no presentations here.</em>
         </div>
-      </div>
 
-      <div class="row">
         <div class="col-xs-12 text-center-not-xs">
-          <dir-pagination-controls></dir-pagination-controls>
+          <dir-pagination-controls pagination-id="presentations"></dir-pagination-controls>
         </div>
-      </div>
     </div>
   </div>
-
 </div>
 
 

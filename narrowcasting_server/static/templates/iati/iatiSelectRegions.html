@@ -1,0 +1,39 @@
+<div class="filter-panel green">
+    <div class="row" ng-show="vm.recipientRegions.length == 0">
+        <div class="svg-loader">
+            <img src="/static/images/tail-spin.svg" width="100" alt="">
+        </div>
+    </div>
+    <div class="row" ng-show="vm.recipientRegions.length > 0">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="th-first">Regions</td>
+                        <td>Activities</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr dir-paginate="item in vm.recipientRegions | filter:q | itemsPerPage: 15" pagination-id="recipientRegions">
+                        <td>
+                            <div class="checkbox">
+                                <label class="switch">
+                                    <input type="checkbox" checklist-model="vm.selectedRegions" checklist-value="item"><i></i>
+                                    <span>{{ item.name }}</span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            ({{ item.activity_count }})
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-8">
+            <dir-pagination-controls pagination-id="recipientRegions"></dir-pagination-controls>
+        </div>
+    </div>
+</div>
