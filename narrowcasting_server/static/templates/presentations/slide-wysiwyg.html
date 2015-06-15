@@ -1,0 +1,108 @@
+<div id="slide-wysiwyg" class="row">
+    <div class="col-md-12">
+        <div class="edit-slide">
+            <div class="top-header">
+                <img class="top-header-image" src="/static/images/minbuza.png" width="180px" height="auto" />
+            </div>
+            <img class="background-image" src="{{vm.slide.backgroundImage}}" />
+
+            <input class="header" ng-model="vm.slide.header.text" ng-style="vm.slide.header.style"><input class="hashtag" ng-model="vm.slide.hashtag">
+            <textarea class="subheader" ng-model="vm.slide.subHeader"></textarea>
+            <textarea class="description" ng-model="vm.slide.description"></textarea>
+            
+            <img class="main-image" src="{{vm.slide.mainImage}}">
+
+            <div class="date-block start-date">
+                <div class="block-header">Start date</div>
+                <span>{{vm.slide.startDate}}</span>
+            </div>
+
+            <div class="date-block end-date">
+                <div class="block-header">End date</div>
+                <span>{{vm.slide.endDate}}</span>
+            </div>
+
+            <div class="goal-block">
+                <div class="block-header">GOALS</div>
+                <textarea class="goals" ng-model="vm.slide.goals"></textarea>
+            </div>
+
+            <div class="updates-block">
+                <div class="updates-header">
+                    RECENT PROJECT UPDATES
+                </div>
+                <img class="presentation-arrow" src="/static/images/presentation-arrow-right.png" />
+
+                <div class="single-update" ng-repeat="update in vm.slide.projectUpdates">
+                    <img src="/static/images/update-image-example.png" />
+                    <div class="update-inner">
+                        <div class="update-post-date">{{update.postDate}}</div>
+                        <div class="update-by">by: {{update.by}}</div>
+                        <div class="update-title">{{update.title}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row edit-bars">
+            <div class="col-md-4">
+                <div class="edit-bar white">
+                    <h4>Text options</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="edit-option-header">size</span> 
+                        </div>
+                        <div class="col-md-6 font-size">
+                            <input ng-model="vm.slide.header.style['font-size']" type="text" />
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="edit-option-header">color</span> 
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                            <input 
+                                class="color-picker" 
+                                type="input" 
+                                ng-model="vm.slide.header.style.color" 
+                                style="background-color: {{vm.slide.header.style.color}}; color: {{vm.slide.header.style.color}}" 
+                                minicolors>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                     
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="edit-option-header">weight</span> 
+                        </div>
+                        <div class="col-md-6 weight-block">
+                            <a ng-click="vm.bold()"><b>B</b></a>
+                            <a ng-click="vm.italic()"><i>I</i></a>
+                            <a class="underline" ng-click="vm.underline()"><u>U</u></a>
+                        </div>
+                    </div> 
+                    <hr>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="edit-bar white">
+                    <h4>Background image</h4>
+                    <hr>
+                    <span class="edit-option-header">upload image</span>
+                    <hr>
+                    <span class="edit-option-header">blur image</span>
+                    <hr>
+                    <div class="text-center">
+                        <a class="remove-image">remove background image</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

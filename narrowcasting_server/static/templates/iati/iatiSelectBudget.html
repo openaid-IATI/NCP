@@ -8,8 +8,9 @@
                 </label>
             </div>
             <div class="slide" ng-class="{ 'active' : vm.iatiBudgetOn }"> 
-                <slider slider-id="time-slider"
-                    ng-model="vm.iatiBudgetValue"
+                <slider 
+                    slider-id="time-slider" 
+                    ng-model="vm.iatiBudgetValue" 
                     value="[100000, 300000]"
                     min="0"
                     max="3000000"

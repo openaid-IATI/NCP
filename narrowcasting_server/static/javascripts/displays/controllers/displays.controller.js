@@ -12,12 +12,12 @@ var test = '';
     .module('ncs.displays.controllers')
     .controller('DisplaysController', DisplaysController);
 
-  DisplaysController.$inject = ['Authentication', 'Snackbar', 'Displays', 'Presentations', '$stateParams'];
+  DisplaysController.$inject = ['$scope', 'Authentication', 'Snackbar', 'Displays', 'Presentations', '$stateParams'];
 
   /**
   * @namespace EditPresentationController
   */
-  function DisplaysController(Authentication, Snackbar, Displays, Presentations, $stateParams) {
+  function DisplaysController($scope, Authentication, Snackbar, Displays, Presentations, $stateParams) {
     
     var vm = this;
     vm.displays = [];
@@ -52,7 +52,36 @@ var test = '';
         */
         function presentationsErrorFn(data, status, headers, config) {
             Snackbar.error(data.error);
-        }       
+        }
+
+        $scope.$watch("vm.displays", function (newDisplays, oldDisplays) {
+          if (oldDisplays == null || oldDisplays.length == 0){
+            return false;
+          } else {
+            // check
+            for(var i = 0;i < newDisplays.length;i++){
+
+              if (newDisplays[i]['presentation'] != null){
+                vm.updateDisplay(newDisplays[i]);
+              } else if(oldDisplays[i]['presentation'] != null){
+                vm.updateDisplay(newDisplays[i]);
+              }
+            }
+          }
+        }, true);
+    }
+
+    vm.updateDisplay = function(display){
+      Displays.update(display).then(updateDisplaySuccessFn, updateDisplayErrorFn);
+
+      function updateDisplaySuccessFn(data, status, headers, config){
+        Snackbar.show('Display updated');
+
+      }
+
+      function updateDisplayErrorFn(data, status, headers, config){
+        Snackbar.error(data.error);
+      }
     }
 
     activate();

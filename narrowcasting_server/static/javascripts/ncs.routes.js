@@ -60,6 +60,8 @@
         .state({
             name:         'users',
             url:          '/users/',
+            controller:   'UsersController',
+            controllerAs: 'vm',
             templateUrl:  '/static/templates/authentication/users.html'
         })
         .state({

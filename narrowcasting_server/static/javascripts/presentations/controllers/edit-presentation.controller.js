@@ -12,21 +12,22 @@ var test = '';
     .module('ncs.presentations.controllers')
     .controller('EditPresentationController', EditPresentationController);
 
-  EditPresentationController.$inject = ['$rootScope', '$scope', 'Authentication', 'Snackbar', 'Presentations', '$stateParams', 'Countries', 'Regions', 'Sectors', 'FilterSelection'];
+  EditPresentationController.$inject = ['$rootScope', '$scope', 'Authentication', 'Snackbar', 'Presentations', '$stateParams', 'Activities', 'Countries', 'Regions', 'Sectors', 'FilterSelection'];
 
   /**
   * @namespace EditPresentationController
   */
-  function EditPresentationController($rootScope, $scope, Authentication, Snackbar, Presentations, $stateParams, Countries, Regions, Sectors, FilterSelection) {
+  function EditPresentationController($rootScope, $scope, Authentication, Snackbar, Presentations, $stateParams, Activities, Countries, Regions, Sectors, FilterSelection) {
     
     var vm = this;
-    vm.view = 'iati-select'; // options: iati-select / rsr-select / presentation-wysiwyg
+    vm.view = 'iati-select'; // options: iati-select / rsr-select / presentation-wysiwyg / iati-select-regions / iati-select-countries / iati-select-sectors / iati-select-budget
     vm.presentationId = $stateParams.presentation_id;
     vm.presentation = {};
     vm.iatiRegions = [];
     vm.iatiCountries = [];
     vm.iatiSectors = [];
     vm.iatiBudget = [];
+    vm.iatiProjects = [];
 
     vm.iatiRecipientRegions = [];
     vm.iatiSelectedRegions = Regions.selectedRegions;
@@ -40,24 +41,99 @@ var test = '';
     vm.iatiBudgetOn = false;
     vm.iatiBudgetValue = [];
 
-    vm.selectedProjects = [];
+    vm.selectedProjects = [0,1,2,3,4];
 
-    vm.copiedProject = function(index){
-        var project = vm.projects[index];
-        // find in left list
-        for(var i = 0;i < vm.selectedProjects.length;i++){
-            if(project['id'] == vm.selectedProjects[i]['id']){
-                vm.selectedProjects[i]['status'] = 'loading';
-                vm.loadProjectData(project['id']);
-                break;
+    vm.slideId = 0;
+
+    vm.slide = {
+        header: {
+            text: 'Accountability and transparency in Kenya',
+            style: {
+                'font-size': '27px',
+                'color': '#000',
+                'font-weight': 'bold', // normal, bold
+                'font-style': 'normal', // normal, italic
+                'text-decoration': 'none' // none, underline, uppercase
             }
+        },
+        hashtag: '#AKVO',
+        subHeader: 'For a transparent and corruption free kenya',
+        mainImage: '/static/images/mainimage.png',
+        backgroundImage: '',
+        goals: 'Institutions that are efficient and deliver quality services. A society that upholds and promotes integrity.',
+        description: 'Support to transparency international (TI) as they implement their priorities in six key areas (water, education, humanitarian aid, climate finance governance, police & extractive industries)',
+        startDate: '01 DEC 2012',
+        endDate: '30 NOV 2017',
+        projectUpdates: [
+            {
+                postDate: '11 MAY 2015',
+                by: 'Collins Baswony',
+                title: 'Egislative advocacy in kenya',
+                image: ''
+            },
+            {
+                postDate: '16 JAN 2015',
+                by: 'Collins Baswony',
+                title: 'TI-Kenya, Partners conduct public awareness drive',
+                image: ''
+            },
+        ],
+    };
+
+    vm.bold = function(){
+        vm.slide.header.style['font-weight'] = vm.slide.header.style['font-weight'] == 'normal' ? 'bold' : 'normal'; 
+    }
+
+    vm.italic = function(){
+        vm.slide.header.style['font-style'] = vm.slide.header.style['font-style'] == 'normal' ? 'italic' : 'normal'; 
+    }
+
+    vm.underline = function(){
+        vm.slide.header.style['text-decoration'] = vm.slide.header.style['text-decoration'] == 'none' ? 'underline' : 'none'; 
+    }
+
+    vm.editSlide = function(id){
+        vm.slide.header.text = vm.selectedProjects[id].titles[0].title;
+        vm.view = 'slide-wysiwyg';
+
+    }
+
+
+
+    vm.copiedProject = function(i, project){
+        // check if empty or a real project
+        if(typeof project == 'object'){
+            vm.selectedProjects[i]['status'] = 'loading-data';
+            vm.loadProjectData(i, vm.selectedProjects[i]);
         }
     }
 
-    vm.loadProjectData = function(){
+    vm.loadProjectData = function(i, project){
         // get single project from call (by type)
+        Activities.get(project.id).then(succesFn, errorFn);
 
+        function succesFn(data, status, headers, config){
+            setTimeout(function(){ 
+                $scope.$apply(function () {
+                    vm.selectedProjects[i]['mapping_data'] = data.data;
+                    vm.selectedProjects[i]['status'] = 'mapping-data';
+                    vm.mapProjectData(i);
+                });
+            }, 500);
+        }
+
+        function errorFn(){
+            Snackbar.error("Mapping data failed");
+        }
         // put it in the object, change object status, map to presentation
+    }
+
+    vm.mapProjectData = function(i){
+        setTimeout(function(){ 
+            $scope.$apply(function () {
+                vm.selectedProjects[i]['status'] = 'preview-data';
+            });
+        }, 1000);
     }
 
     function activate(){
@@ -65,11 +141,10 @@ var test = '';
         Regions.all().then(regionsSuccessFn, errorFn);
         Countries.all().then(countriesSuccessFn, errorFn);
         Sectors.all().then(sectorsSuccessFn, errorFn);
+        Activities.list('', '6').then(activitiesSuccessFn, errorFn);
 
         function errorFn(data, status, headers, config) {
-            Snackbar.error("call failed");
-            console.log(status);
-            console.log(data);
+            Snackbar.error(data.error);
         }
 
         function presentationSuccessFn(data, status, headers, config) {
@@ -88,8 +163,9 @@ var test = '';
             vm.recipientSectors = data.data;
         }
 
-
-
+        function activitiesSuccessFn(data, status, headers, config) {
+            vm.iatiProjects = data.data.objects;
+        }
     }
 
     activate();
@@ -105,78 +181,6 @@ var test = '';
     vm.selectView = function(view){
       vm.view = view;
     }
-
-
-
-
-
-    // temp to fill template
-    vm.projects = [
-        {
-            'id': 'abc1',
-            'title': 'DHA STD/leg. empowerment women',
-            'country': 'Bangladesh',
-            'sector': "Women's equality organisations and institutions",
-            'budget': 'EUR 1.842.328',
-            'start_date': '2002-04-30'
-        },
-        {
-            'id': 'abc2',
-            'title': 'DVB SF Afghanistan - ASP',
-            'country': 'Afghanistan',
-            'sector': "Post-conflict peace-building (UN)",
-            'budget': 'EUR 4.000.000',
-            'start_date': '2004-07-01'
-        },
-        {
-            'id': 'abc4',
-            'title': 'DSI Subsidie CNV 2005-2008',
-            'country': '',
-            'sector': "Multisector aid",
-            'budget': 'EUR 21.723.189',
-            'start_date': '2004-09-01'
-        },
-        {
-            'id': 'abc5',
-            'title': 'HAR Block Human Rights',
-            'country': 'Zimbabwe',
-            'sector': "Human rights",
-            'budget': 'EUR 938.000',
-            'start_date': '2004-07-01'
-        },
-        {
-            'id': 'abc1fef',
-            'title': 'MNG broad access fin serv',
-            'country': 'Nicaragua',
-            'sector': "Formal sector financial intermediaries",
-            'budget': 'EUR 749.047',
-            'start_date': '2005-08-01'
-        },
-        {
-            'id': 'aabc1',
-            'title': 'DAR Health sector co-funding',
-            'country': 'Tanzania, united republic of',
-            'sector': "Basic health care",
-            'budget': 'EUR 21.926.263',
-            'start_date': '2004-07-01'
-        },
-        {
-            'id': 'abcaa1',
-            'title': 'MNG broad access fin serv',
-            'country': 'Nicaragua',
-            'sector': "Formal sector financial intermediaries",
-            'budget': 'EUR 749.047',
-            'start_date': '2005-08-01'
-        },
-        {
-            'id': 'abwefc1',
-            'title': 'DAR Health sector co-funding',
-            'country': 'Tanzania, united republic of',
-            'sector': "Basic health care",
-            'budget': 'EUR 21.926.263',
-            'start_date': '2004-07-01'
-        },
-    ];
 
   }
 })();

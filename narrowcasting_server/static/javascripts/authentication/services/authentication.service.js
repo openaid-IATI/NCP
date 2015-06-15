@@ -9,13 +9,13 @@
       .module('ncs.authentication.services')
       .factory('Authentication', Authentication);
 
-    Authentication.$inject = ['$cookies', '$http'];
+    Authentication.$inject = ['$cookies', '$http', 'Snackbar'];
 
     /**
      * @namespace Authentication
      * @returns {Factory}
      */
-    function Authentication($cookies, $http) {
+    function Authentication($cookies, $http, Snackbar) {
         /**
         * @name Authentication
         * @desc The Factory to be returned
@@ -97,7 +97,9 @@
              * @desc Place login error msg in console
              */
             function loginErrorFn(data, status, headers, config){
-                console.error('Failed to log in');
+                console.log(data.data);
+                console.log(data);
+                Snackbar.error('Username or password incorrect');
             }
         }
 

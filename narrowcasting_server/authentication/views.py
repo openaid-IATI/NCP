@@ -36,7 +36,7 @@ class LoginView(views.APIView):
                 return Response({
                     'status': 'Unauthorized',
                     'message': 'This account has been disabled.'
-                    }, status=status.HTTP_401_UNAUTHORIZED)
+                }, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response({
                 'status': 'Unauthorized',

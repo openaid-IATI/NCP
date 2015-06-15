@@ -9,32 +9,67 @@
     </div>
   </div>
 
-
   <div class="container">
     <div class="row margint2em">
       <div class="col-md-3">
-        <img src='/static/images/avatar.jpg' />
+        <div class="profile white">
+          
+          <img src='/static/images/avatar.jpg' />
+
+          <div class="user-meta-item">
+            <input 
+              ng-model="user.name"
+              placeholder="John Fake">
+          </div>
+
+          <div class="user-meta-item">
+            <input 
+              ng-model="user.role"
+              placeholder="Administrator">
+          </div>
+
+
+          <a class="btn green hover-orange">Update</a>
+        </div>
       </div>
       <div class="col-md-9">
+        <div class="my-recent-projects">
+          <div class="row">
+            <div class="col-md-12">
+              <a class="btn btn-padding-50 dark-grey hover-black margintb1em" ui-sref="presentations">My recent projects</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2 col-md-4" dir-paginate="presentation in vm.presentations | itemsPerPage: 3">
+              <presentation presentation="presentation"></presentation>
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-md-12">
-            <a class="btn btn-padding-50" ui-sref="presentations">My recent projects</a>
+            <a class="btn btn-padding-50 dark-grey hover-black marginr1em" ng-click="vm.myTeam()">My team</a>
+            <a class="btn btn-padding-50 dark-grey hover-black" ng-click="vm.addUser()">Add user</a>
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-2 col-md-4" dir-paginate="presentation in vm.presentations | itemsPerPage: 3">
-            <presentation presentation="presentation"></presentation>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <a class="btn btn-padding-50" ng-click="vm.myTeam()">My team</a>
-            <a class="btn btn-padding-50" ng-click="vm.addUser()">Add user</a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12" dir-paginate="presentation in vm.presentations | itemsPerPage: 8">
-            <user user="user"></user>
+          <div class="col-sm-12">
+            <table class="table table-users">
+              <thead>
+                <tr>
+                  <td>Username</td>
+                  <td>Email</td>
+                  <td>Role</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="user in vm.users">
+                  <td><img src="/static/images/avatar.jpg" width="40" />{{user.username}}</td>
+                  <td class="email">{{user.email}}</td>
+                  <td>{{user.role}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

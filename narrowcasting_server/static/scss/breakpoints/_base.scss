@@ -131,6 +131,11 @@ h1{
   color: $white;
 }
 
+.hover-black:hover{
+  background-color: $black;
+  color: $white;
+}
+
 .pt21{
   font-size: 21px;
 }
@@ -141,6 +146,10 @@ h1{
 
 .pt16{
   font-size: 16px;
+}
+
+.marginr1em{
+  margin-right: 1em;
 }
 
 .margint1em{
@@ -404,7 +413,6 @@ PRESENTATIONS
   }
 }
 
-
 .presentation-toolbar{
   margin-top: 0.8em;
   margin-bottom: 2.5em;
@@ -495,19 +503,50 @@ DISPLAYS
     text-align: center;
   }
 
+  .displays-wrapper{
+    width: 100%;
+    overflow: scroll;
+  }
+
   .btn-add-display{
     margin-top: 2em;
     margin-bottom: 3em;
   }
 
   .displays-in-list{
-    margin-left: 16%;
+    margin-left: 0;
+    width: 10000px;
   }
 
   .display-in-list{
     display: inline-block;
-    margin-right: 20em;
+    margin-right: 5em;
+    margin-left: 5em;
     margin-bottom: 7em;
+    float: left;
+    position: relative;
+    
+    .presentation{
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      background-color: $orange;
+      width: 320px;
+      height: 169px;
+      text-align: center;
+      padding-top: 1.5em;
+      font-size: 17px;
+
+      .presentation__meta{
+        opacity: 0.7;
+        font-size: 14px;
+        display: block;
+      }
+
+      .presentation__name{
+        height: 4em;  
+      }
+    }
   }
 
   .display-name{
@@ -598,7 +637,6 @@ EDIT PRESENTATION
       width: 100%;
     }
 
-
     &:hover{
       cursor: pointer;
       background-color: $orange;
@@ -626,14 +664,12 @@ EDIT PRESENTATION
       background-color: white;
     }
 
-    a{
+    .dummy{
       display: inline-block;
       background-color: #F3F3F5;
       box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
       width: 90%;
-      margin-top: 10px;
-      margin-left: 5%;
-      margin-right: 5%;
+      margin: 10px auto 0;
       height: 150px;
       cursor: pointer;
       color: $light-grey;
@@ -645,10 +681,18 @@ EDIT PRESENTATION
       h3{
         color: $dark-grey;
       }
+
+    }
+
+    .edit-slide-link{
+      cursor: pointer;
     }
 
     .project-in-list{
       height: 220px;
+      width: 90%;
+      margin: 10px auto 0;
+      box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
     }
   }
 
@@ -849,15 +893,421 @@ IATI filters
 
 
 
+/****
+slide WYSIWYG
+****/
+#slide-wysiwyg{
+
+  .edit-slide{
+    height: 450px;
+    background-color: $green;
+    box-shadow: 3px 3px 4px rgba(0,0,0,0.3);
+    position: relative;
+  }
+
+  .minicolors{
+    text-align: right;
+  }
+
+  .minicolors .color-picker{
+    border-radius: 3px;
+    margin-right: 10px;
+    border: 1px solid #aaa;
+    padding-right: 20px;
+    padding-left: 10px;
+    width: 100px;
+    box-shadow: none;
+    background-image: url('../images/colorpicker.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+  }
+
+
+  .minicolors-theme-bootstrap .minicolors-swatch{
+    width: 2px;
+    height: 2px;
+    border: none;
+  }
+
+  input, textarea{
+    border: 0;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  textarea{
+    resize: none;
+  }
+
+  .top-header{
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #fff;
+    border-bottom: 3px solid #00518d;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+    height: 11%;
+    width: 100%;
+    text-align: center;
+  }
+
+  .header{
+    position: absolute;
+    top: 12.5%;
+    left: 1%;
+    width: 78%;
+    height: 10%;
+    padding: 8px 10px;
+    border-left: 8px solid $dark-red; 
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  .hashtag{
+    position: absolute;
+    top: 18%;
+    left: 80%;
+    width: 13%;
+    height: 4.5%;
+    background-color: #000;
+    color: #fff;
+    font-weight: 900;
+    font-size: 14px;
+    padding: 2px 8px;
+  }
+
+  .subheader{
+    position: absolute;
+    top: 24%;
+    left: 1%;
+    width: 16%;
+    height: 17%;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 1.2em;
+    padding: 2px 8px 2px 12px;
+  }
+
+  .description{
+    position: absolute;
+    top: 43%;
+    left: 1%;
+    height: 29%;
+    width: 16%;
+    font-size: 0.7em;
+    font-weight: 900;
+    border-left: 8px solid $dark-red;
+    padding: 2px 4px;
+    line-height: 1.3em;
+  }
+
+  .main-image{
+    position: absolute;
+    top: 24%;
+    left: 18%;
+    width: 31%;
+    height: 48%;
+  }
+
+  .date-block{
+    position: absolute;
+    top: 24%;
+    background-color: #fff;
+    width: 20.5%;
+    height: 16%;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+    font-size: 1.6em;
+    text-transform: uppercase;
+
+
+    span{
+      box-shadow: none;
+      color: #969696;
+      font-weight: bold;
+      padding: 8px 10px 0;
+      width: 100%;
+    }
+
+    .block-header{
+      font-weight: 900;
+      padding: 8px 10px 0;
+      line-height: 1.1em;
+      color: #000;
+    }
+
+    &.start-date{
+      left: 50%;
+    }
+
+    &.end-date{
+      left: 71%;
+      width: 21%;
+    }
+  }
+
+  .goal-block{
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    width: 42%;
+    height: 31%;
+    background-color: #fff;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+
+    .block-header{
+      font-size: 1.5em;
+      font-weight: 900;
+      padding: 8px 10px 0;
+      line-height: 1.4em;
+      color: #000;
+    }
+
+    textarea{
+      width: 100%;
+      box-shadow: none;
+      font-size: 1.2em;
+      height: 70%;
+      padding: 0 10px;
+      line-height: 1.2em;
+
+    }
+  }
+
+  
+
+  .updates-block{
+    position: absolute;
+    top: 74%;
+    left: 1%;
+    width: 98%;
+    height: 24%;
+    background-color: #fff;
+    padding: 20px 8px;
+
+
+    .updates-header{
+      display: inline-block;
+      font-size: 1.2em;
+      line-height: 1em;
+      width: 12%;
+      font-weight: 900;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.45);
+      vertical-align: middle;
+      height: 100%;
+      margin-right: 4px;
+      padding: 8px 6px;
+    }
+
+    .presentation-arrow{
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .single-update{
+      position: relative;
+      display: inline-block;
+      height: 100%;
+      width: 35%;
+      margin-left: 2%;
+      vertical-align: middle;
+
+      img{
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+        width: 30%;
+      }
+
+      .update-inner{
+        display: inline-block;
+        vertical-align: middle;
+        width: 60%;
+        height: 100%;
+        padding: 2px 0 0 8px;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.45);
+
+        .update-post-date{
+          font-size: 0.7em;
+          color: $light-grey;
+          font-weight: bold;
+        }
+
+        .update-by{
+          font-size: 0.7em;
+          color: $green;
+          font-weight: bold;
+        }
+
+        .update-title{
+          font-size: 0.7em;
+          color: black;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+
+
+
+
+  .edit-bars{
+
+    h4{
+      padding: 8px 8px 0 14px;
+      margin-bottom: 0;
+    }
+    
+    .edit-bar{
+      min-height: 300px;
+    }
+
+    hr{
+      border-top: 1px solid #D9E021;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+
+    .edit-option-header{
+      padding-left: 14px;
+      color: $light-grey;
+    }
+
+    .font-size {
+      text-align: right;
+
+      input{
+        margin-right: 10px;
+        width: 50px;
+      }
+    }
+
+    .weight-block {
+      margin-top: 10px;
+      margin-bottom: 8px;
+      text-align: right;
+
+      a{
+        cursor: pointer;
+        color: black;
+        border-top: 1px solid $light-grey;
+        border-bottom: 1px solid $light-grey;
+        padding: 1px 10px;
+
+        &:hover{
+          color: $light-grey;
+        }
+      }
+
+      .underline{
+        margin-right: 10px;
+      }
+    }
+
+    .remove-image{
+      display: inline-block;
+      margin-top: 8px;
+      background-color: $red;
+      color: $white;
+      padding: 4px 15px;
+    }
+  }
+}
+
+
 
 /****
 Users
 ****/
 
 #users{
-  img{
-    max-width: 100%;
-    height: auto;
+  
+
+  .my-recent-projects{
+    margin-bottom: 3em;
+  }
+
+  .profile{
+    min-height: 800px;
+
+    .btn{
+      width: 100%;
+      border-radius: 0;
+      margin-top: 20px;
+    }
+
+    img{
+      max-width: 100%;
+      height: auto;
+    }
+
+    input{
+      border: 0;
+      padding: 10px;
+      width: 100%;
+      margin-top: 20px;
+
+      &:hover{
+        box-shadow: 0px 0px 8px rgba(0,0,0,0.13),0px 0px 8px rgba(0,0,0,0.13);
+        &::-webkit-input-placeholder { color: $black; }
+        &:-moz-placeholder { color: $black; }
+        &::-moz-placeholder { color: $black; }
+        &:-ms-input-placeholder { color: $black; }
+      }
+
+      &:focus, &:active{
+        background-color: $light-blue;
+        border-color: $light-blue;
+        color: $white;
+        &::-webkit-input-placeholder { color: $white; }
+        &:-moz-placeholder { color: $white; }
+        &::-moz-placeholder { color: $white; }
+        &:-ms-input-placeholder { color: $white; }
+      }
+    }
+    
+
+  }
+
+
+  .user-meta-item{
+    width: 100%;
+    box-shadow: 3px 3px 7px rgba(0,0,0,0.09);
+  }
+
+  .table-users{
+    margin-top: 1em;
+
+    thead td{
+      font-size: 24px;
+      color: $black;
+      font-weight: 400;
+    }
+  }
+
+  .table > tbody > tr > td{
+    position: relative;
+    border-top: 0;
+    background-color: $green;
+    border-bottom: 26px solid $light-background;
+    color: $white;
+    text-align: center;
+    padding: 5px;
+    font-size:18px;
+    vertical-align: middle;
+
+
+    img{
+      position: absolute;
+      top: -3px;
+      left: 10px;
+    }
+  }
+  .table > tbody > tr > td.email{
+    max-width: 20%;
+    border-left: 16px solid $light-background;
+    border-right: 16px solid $light-background;
   }
 
 }
@@ -878,3 +1328,46 @@ LEARN
     }
   }
 }
+
+
+
+
+/****
+SNACKBAR
+****/
+
+.snackbar {
+  background-color: $orange;
+  padding: 6px 10px;
+  filter: alpha(opacity=87);
+  border-radius: 6px 14px;
+  padding: 8px;
+  color: $white;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: $border-radius;
+  margin-bottom: 1em;
+}
+
+.snackbar.snackbar-opened {
+  height: auto;
+  opacity: 1;
+}
+@media (max-width: 767px) {
+  #snackbar-container {
+    left: 0px !important;
+    right: 0px;
+    width: 100%;
+  }
+  #snackbar-container .snackbar {
+    min-width: 100%;
+  }
+  #snackbar-container [class="snackbar snackbar-opened"] ~ .snackbar.toast {
+    margin-top: 20px;
+  }
+  #snackbar-container [class="snackbar snackbar-opened"] {
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+}
+

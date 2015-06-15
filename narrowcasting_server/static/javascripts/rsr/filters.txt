@@ -1,3 +1,4 @@
 http://rsr.akvo.org/api/v1/country/?format=json
 http://rsr.akvo.org/api/v1/organisation/?format=json
 http://rsr.akvo.org/api/v1/project/?format=json
+http://rsr.akvo.org/api/v1/project/?format=json&status__in=A

@@ -12,10 +12,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# Redirect to 2FA login screen
-#from django.core.urlresolvers import reverse_lazy
-
-#LOGIN_URL = reverse_lazy('two_factor:login')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -37,11 +33,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ncs',
-#    'django_otp',
-#    'django_otp.plugins.otp_static',
-#    'django_otp.plugins.otp_totp',
-#    'otp_yubikey',
-#    'two_factor',
     'rest_framework',
     'compressor',
     'authentication',

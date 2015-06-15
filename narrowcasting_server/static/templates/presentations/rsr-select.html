@@ -1,33 +1,29 @@
 <div class="row">
-    <div class="col-md-12  text-right">
-        <div class="iati-select-filters paddingtb1em">
-            <a class="btn hover-orange btn-more-padding light-grey">Locations</a>
-            <a class="btn hover-orange btn-more-padding light-grey">Status</a>
-            <a class="btn hover-orange btn-more-padding light-grey">Organisation</a>
-            <a class="btn hover-orange btn-more-padding light-grey">Sector</a>
-            <a class="btn hover-orange btn-more-padding btn-sort-by light-blue">Sort by</a>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-4" dir-paginate="project in vm.projects | filter:q | itemsPerPage: 6"  pagination-id="iati">
-        <div class="project project-in-list iati light-blue text-center">
+    <ul dnd-list="vm.iatiProjects">
+        <li
+            class="col-md-4" 
+            dir-paginate="project in vm.iatiProjects | filter:q | itemsPerPage: 6"  
+            pagination-id="iati"
+            data-drag="true" 
+            data-jqyoui-options="{revert: 'invalid', deepCopy: true, animate: true, helper:'clone'}" 
+            ng-model="project" 
+            jqyoui-draggable="{placeholder:'keep'}">
+            <div class="project project-in-list iati light-blue text-center">
+                
+                <h3>{{project.titles[0].title}}</h3>
+                
+                    <span>COUNTRY:</span>
+                    <div ng-repeat="country in project.countries">{{country.name}}</div>
+                    <span>SECTOR:</span>
+                    <div ng-repeat="sector in project.sectors">{{sector.name}}</div>
+                    <span>BUDGET:</span>
+                    <div>{{project.totalBudget | iaticurrency :'€':0:".":"."}}</div>
+                    <span>START DATE:</span>
+                    <div>{{project.start_actual | date:'dd-MM-yyyy'}} </div>
             
-            <h3>{{project.title}}</h3>
-            <p>
-                <span>LOCATIONS:</span> <br>
-                {{project.country}} <br>
-                <span>STATUS:</span> <br>
-                {{project.sector}} <br>
-                <span>ORGANISATIONS:</span> <br>
-                {{project.budget}} <br>
-                <span>SECTOR:</span> <br>
-                {{project.start_date}} <br>
-            </p>
-
-        </div>
-    </div>
+            </div>
+        </li>
+    </ul>
 </div>
 
 <div class="row">

@@ -21,7 +21,8 @@
             all: all,
             create: create,
             get: get,
-            getSingle: getSingle
+            getSingle: getSingle,
+            update: update
         };
 
         return Displays;
@@ -64,6 +65,12 @@
          */
          function get(username) {
             return $http.get('/api/v1/accounts/' + username + '/displays/');
+         }
+
+
+         function update(display) {
+            
+            return $http.put('/api/v1/displays/'+display.id+'/', display);
          }
 
          /**

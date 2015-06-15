@@ -10,14 +10,21 @@
 <script type="text/javascript" src="{% static 'bower_components/angular-cookies/angular-cookies.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/angular-utils-pagination/dirPagination.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/ngDialog/js/ngDialog.js' %}"></script>
-<script type="text/javascript" src="{% static 'bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angular-dragdrop/src/angular-dragdrop.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/seiyria-bootstrap-slider/js/bootstrap-slider.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/angular-bootstrap-slider/slider.js' %}"></script>
 <script type="text/javascript" src="{% static 'lib/snackbarjs/snackbar.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'bower_components/jquery-minicolors/jquery.minicolors.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angular-minicolors/angular-minicolors.js' %}"></script>
+
 
 <script type="text/javascript" src="{% static 'javascripts/ncs.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/ncs.config.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/ncs.routes.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/ncs.filter.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/authentication/authentication.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/authentication/services/authentication.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/authentication/controllers/register.controller.js' %}"></script>
@@ -40,11 +47,15 @@
 <script type="text/javascript" src="{% static 'javascripts/presentations/directives/iati-select.directive.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/presentations/directives/rsr-select.directive.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/presentations/directives/project-bar.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/directives/slide-wysiwyg.directive.js' %}"></script>
 
 <script type="text/javascript" src="{% static 'javascripts/displays/displays.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/displays/controllers/displays.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/displays/controllers/new-display.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/displays/services/displays.service.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'javascripts/users/users.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/users/controllers/users.controller.js' %}"></script>
 
 <script type="text/javascript" src="{% static 'javascripts/iati/iati.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/iati/directives/countries.directive.js' %}"></script>
@@ -55,6 +66,7 @@
 <script type="text/javascript" src="{% static 'javascripts/iati/services/countries.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/iati/services/regions.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/iati/services/sectors.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/iati/services/activities.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/iati/services/filters.selection.service.js' %}"></script>
 
 {% endcompress %}

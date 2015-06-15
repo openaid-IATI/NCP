@@ -9,12 +9,9 @@
     </div>
   </div>
 
-
-
   <div class="row green">
     <div class="col-sm-12">
       <div class="container">
-
         <div class="row">
           <div class="col-sm-12">
             <a class="btn dark-grey btn-padding-50 pt21 hover-orange btn-add-display" ui-sref="new-display">
@@ -23,41 +20,32 @@
           </div>
         </div>
       </div>
-
-      <div class="displays-in-list">
-        <div ng-repeat="(key, display) in vm.displays">
-
-
-
-
-          <ul class="display-in-list" dnd-list="vm.displays">
-            <li
-            class="text-center"
-            ng-repeat="(key, display) in vm.displays"
-            dnd-draggable="project"
-            dnd-moved="vm.displays[$index] = null">
-              <img src="/static/images/display-placeholder.png" />
-              <div class="display-name">{{display.name}}</div>
-            </li>
-          </ul>
-
-
-
-        </div>
+      <div class="displays-wrapper">
+        <ul class="displays-in-list" dnd-list="vm.displays">
+          <li
+          class="display-in-list text-center"
+          ng-repeat="(key, display) in vm.displays"
+          data-drop="true" 
+          data-jqyoui-options="{revert: 'invalid'}"  
+          ng-model="vm.displays[key]['presentation']"
+          jqyoui-droppable>
+            <img src="/static/images/display-placeholder.png" />
+            <div class="display-name">{{display.name}}</div>
+            <div ng-show="display.presentation" class="presentation">
+              <div class="presentation__name">
+                {{ display.presentation.name }}
+              </div>
+              <div class="presentation__meta">
+                Last updated: {{display.presentation.updated_at | date:"dd/MM/yyyy"}}
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 
-
-
-
-
-
-
-
-
   <div class="container">
-
     <div class="row">
       <div class="col-sm-12 text-center">
         <div class="btn dark-grey pt21 btn-padding-30 btn-drag-drop">
@@ -73,12 +61,10 @@
             class="col-sm-6 col-md-3" 
             dir-paginate="presentation in vm.presentations | itemsPerPage: 4" 
             pagination-id="presentations"
-            dnd-draggable="project"
-            dnd-effect-allowed="copy"
-            dnd-copied="vm.copiedProject($index)" 
-            ng-class="{'selected': models.selected === item}">
-
-
+            data-drag="true" 
+            data-jqyoui-options="{revert: 'invalid', deepCopy: true, animate: true, helper:'clone'}" 
+            ng-model="presentation" 
+            jqyoui-draggable="{placeholder:'keep'}">
             <presentation presentation="presentation"></presentation>
           </li>
         </ul>

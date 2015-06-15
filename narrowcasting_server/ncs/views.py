@@ -29,14 +29,22 @@ class DisplayViewSet(viewsets.ModelViewSet):
     serializer_class = DisplaySerializer
 
     def get_permissions(self):
+        return (permissions.AllowAny(),)
+
         if self.request.method in permissions.SAFE_METHODS:
             return (permissions.AllowAny(),)
+
         return (permissions.IsAuthenticated(), IsOwnerOfDisplay(),)
 
     def perform_create(self, serializer):
         instance = serializer.save(owner=self.request.user)
 
         return super(DisplayViewSet, self).perform_create(serializer)
+
+
+    def partial_update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.serialize(instance, data=request.data, partial=True)
 
 
 class AccountPresentationsViewSet(viewsets.ViewSet):

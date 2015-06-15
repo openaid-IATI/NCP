@@ -7,12 +7,14 @@
             'ncs.routes',
             'angularUtils.directives.dirPagination',
             'ui.bootstrap-slider',
-            'dndLists',
+            'ngDragDrop',
+            'minicolors',
             'ncs.authentication',
             'ncs.layout',
             'ncs.presentations',
             'ncs.iati',
             'ncs.displays',
+            'ncs.users',
             'ncs.utils'
         ]);
 
