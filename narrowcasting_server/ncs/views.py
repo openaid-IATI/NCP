@@ -1,12 +1,36 @@
 from rest_framework import permissions
 from rest_framework import viewsets
+from rest_framework.parsers import FormParser
+from rest_framework.parsers import MultiPartParser
 
 from ncs.models import Presentation
 from ncs.models import Display
+from ncs.models import Slide
 from ncs.permissions import IsCreatorOfPresentation
 from ncs.permissions import IsOwnerOfDisplay
+from ncs.permissions import IsOwnerOfSlide
 from ncs.serializers import PresentationSerializer
 from ncs.serializers import DisplaySerializer
+from ncs.serializers import SlideSerializer
+
+
+class SlideViewSet(viewsets.ModelViewSet):
+    queryset = Slide.objects.order_by('position')
+    serializer_class = SlideSerializer
+    parser_classes = (MultiPartParser, FormParser,)
+
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:
+            return (permissions.AllowAny(),)
+        return (permissions.IsAuthenticated(), IsOwnerOfSlide(),)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user, backgroundImage=self.request.data.get('backgroundImage'))
+        return super(SlideViewSet, self).perform_create(serializer)
+
+    def perform_update(self, serializer):
+        serializer.save(owner=self.request.user, backgroundImage=self.request.data.get('backgroundImage'))
+        return super(SlideViewSet, self).perform_create(serializer)
 
 
 class PresentationViewSet(viewsets.ModelViewSet):
@@ -19,8 +43,7 @@ class PresentationViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(), IsCreatorOfPresentation(),)
 
     def perform_create(self, serializer):
-        instance = serializer.save(creator=self.request.user)
-
+        serializer.save(creator=self.request.user)
         return super(PresentationViewSet, self).perform_create(serializer)
 
 

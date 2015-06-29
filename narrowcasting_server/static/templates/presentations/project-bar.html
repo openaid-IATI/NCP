@@ -1,35 +1,40 @@
 <div class="white project-bar">
-    <ul dnd-list="vm.selectedProjects">
-        <li
-        class="text-center"
-        ng-repeat="(key, project) in vm.selectedProjects"
-        data-drag="true" 
-        data-drop="true" 
-        data-jqyoui-options="{revert: 'invalid'}"  
-        ng-model="vm.selectedProjects[key]"
-        jqyoui-draggable=""
-        jqyoui-droppable="{onDrop: vm.copiedProject(key, project)}">
-            <div class="project project-in-list iati green text-center" ng-show="project.titles">
-                
-                <h3>{{project.titles[0].title}}</h3>
-                <p>
-                    <span>STATUS:</span> <br>
-                    <div ng-show="project.status == 'loading-data'">Loading data&nbsp;<img src="/static/images/puff.svg" width="20" alt=""></div>
-                    <div ng-show="project.status == 'mapping-data'">Filling slide&nbsp;<img src="/static/images/bars.svg" width="20" alt=""></div>
-                    <a ng-show="project.status == 'preview-data'" 
-                        ng-click="vm.editSlide(key)" 
-                        class="edit-slide-link">
-                        Click to preview/edit slide&nbsp;</a>
-                    <br>&nbsp;<br>
-                    <span>Slide {{key+1}}</span>
-                </p>
+    <ul>
+        <li 
+            ng-repeat="project in vm.selectedProjects" 
+            data-drop="true" 
+            ng-model='vm.selectedProjects' 
+            jqyoui-droppable="{index: {{$index}}, onDrop:'vm.onDropProjects(project, $index)'}">
+
+            <div 
+                class="project project-in-list iati green text-center" 
+                data-drag="true" 
+                data-jqyoui-options="{revert: 'invalid'}" 
+                ng-model="vm.selectedProjects" 
+                jqyoui-draggable="{index: {{$index}},animate:false}">
+                <div ng-show="project.previewData.titles">
+                    <h3>{{project.previewData.titles[0].title}}</h3>
+                    <p>
+                        <span>STATUS:</span> <br>
+                        <div ng-show="project.status == 'loading-data'">Loading data&nbsp;<img src="/static/images/puff.svg" width="20" alt=""></div>
+                        <div ng-show="project.status == 'mapping-data'">Filling slide&nbsp;<img src="/static/images/bars.svg" width="20" alt=""></div>
+                        <a 
+                            ng-click="vm.editSlide($index)" 
+                            class="edit-slide-link">
+                            Click to preview/edit slide&nbsp;</a>
+                        <br>&nbsp;<br>
+                        <span>Slide {{$index+1}}</span>
+                    </p>
+                </div>
+                <a 
+                    class="dummy"
+                    ng-hide="project.previewData.titles">
+                    <h3>Choose project</h3>
+                    <span class="drag-drop">Drag & drop</span><br>
+                    <img src="/static/images/icon-duplicate.png" /><br>
+                    <span class="slide-nr">Slide {{$index+1}}</span>
+                </a>
             </div>
-            <a class="dummy" ng-hide="project.titles">
-                <h3>Choose project</h3>
-                <span class="drag-drop">Drag & drop</span><br>
-                <img src="/static/images/icon-duplicate.png" /><br>
-                <span class="slide-nr">Slide {{key+1}}</span>
-            </a>
         </li>
     </ul>
 </div>

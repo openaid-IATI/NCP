@@ -21,7 +21,8 @@
 			all: all,
 			create: create,
 			get: get,
-			getSingle: getSingle
+			getSingle: getSingle,
+			update: update
 		};
 
 		return Presentations;
@@ -50,8 +51,13 @@
 	    	return $http.post('/api/v1/presentations/', {
                 name: content,
                 projects: '',
+                slide_set: []
             });
 	    }
+
+	    function update(presentation) {
+            return $http.put('/api/v1/presentations/'+presentation.id+'/', presentation);
+        }
 
 	    /**
 	     * @name get

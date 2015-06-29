@@ -3,7 +3,7 @@
         <li
             class="col-md-4" 
             dir-paginate="project in vm.iatiProjects | filter:q | itemsPerPage: 6"  
-            pagination-id="iati"
+            pagination-id="rsrProjects"
             data-drag="true" 
             data-jqyoui-options="{revert: 'invalid', deepCopy: true, animate: true, helper:'clone'}" 
             ng-model="project" 
@@ -28,6 +28,6 @@
 
 <div class="row">
   <div class="col-xs-12 text-center-not-xs">
-    <dir-pagination-controls pagination-id="iati"></dir-pagination-controls>
+    <dir-pagination-controls pagination-id="rsrProjects"></dir-pagination-controls>
   </div>
 </div>

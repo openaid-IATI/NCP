@@ -3,8 +3,6 @@
 * @namespace ncs.presentations.controllers
 */
 
-var test = '';
-
 (function () {
   'use strict';
 
@@ -12,175 +10,262 @@ var test = '';
     .module('ncs.presentations.controllers')
     .controller('EditPresentationController', EditPresentationController);
 
-  EditPresentationController.$inject = ['$rootScope', '$scope', 'Authentication', 'Snackbar', 'Presentations', '$stateParams', 'Activities', 'Countries', 'Regions', 'Sectors', 'FilterSelection'];
+  EditPresentationController.$inject = ['$rootScope', '$scope', '$stateParams', 'Authentication', 'Snackbar', 'Presentations', 'IatiActivities', 'Slides', 'Countries', 'Regions', 'Sectors', 'FilterSelection'];
 
   /**
   * @namespace EditPresentationController
   */
-  function EditPresentationController($rootScope, $scope, Authentication, Snackbar, Presentations, $stateParams, Activities, Countries, Regions, Sectors, FilterSelection) {
+  function EditPresentationController($rootScope, $scope, $stateParams, Authentication, Snackbar, Presentations, IatiActivities, Slides, Countries, Regions, Sectors, FilterSelection) {
     
     var vm = this;
-    vm.view = 'iati-select'; // options: iati-select / rsr-select / presentation-wysiwyg / iati-select-regions / iati-select-countries / iati-select-sectors / iati-select-budget
+    vm.view = 'iati-select'; // options: iati-select / rsr-select / slide-wysiwyg / iati-select-regions / iati-select-countries / iati-select-sectors / iati-select-budget
     vm.presentationId = $stateParams.presentation_id;
     vm.presentation = {};
-    vm.iatiRegions = [];
-    vm.iatiCountries = [];
-    vm.iatiSectors = [];
-    vm.iatiBudget = [];
-    vm.iatiProjects = [];
-
-    vm.iatiRecipientRegions = [];
-    vm.iatiSelectedRegions = Regions.selectedRegions;
-
-    vm.iatiRecipientCountries = [];
-    vm.iatiSelectedCountries = Regions.selectedCountries;
-
-    vm.iatiRecipientSectors = [];
-    vm.iatiSelectedSectors = Regions.selectedSectors;
-
-    vm.iatiBudgetOn = false;
-    vm.iatiBudgetValue = [];
-
-    vm.selectedProjects = [0,1,2,3,4];
-
-    vm.slideId = 0;
-
-    vm.slide = {
-        header: {
-            text: 'Accountability and transparency in Kenya',
-            style: {
-                'font-size': '27px',
-                'color': '#000',
-                'font-weight': 'bold', // normal, bold
-                'font-style': 'normal', // normal, italic
-                'text-decoration': 'none' // none, underline, uppercase
-            }
-        },
-        hashtag: '#AKVO',
-        subHeader: 'For a transparent and corruption free kenya',
-        mainImage: '/static/images/mainimage.png',
-        backgroundImage: '',
-        goals: 'Institutions that are efficient and deliver quality services. A society that upholds and promotes integrity.',
-        description: 'Support to transparency international (TI) as they implement their priorities in six key areas (water, education, humanitarian aid, climate finance governance, police & extractive industries)',
-        startDate: '01 DEC 2012',
-        endDate: '30 NOV 2017',
-        projectUpdates: [
-            {
-                postDate: '11 MAY 2015',
-                by: 'Collins Baswony',
-                title: 'Egislative advocacy in kenya',
-                image: ''
-            },
-            {
-                postDate: '16 JAN 2015',
-                by: 'Collins Baswony',
-                title: 'TI-Kenya, Partners conduct public awareness drive',
-                image: ''
-            },
-        ],
-    };
-
-    vm.bold = function(){
-        vm.slide.header.style['font-weight'] = vm.slide.header.style['font-weight'] == 'normal' ? 'bold' : 'normal'; 
-    }
-
-    vm.italic = function(){
-        vm.slide.header.style['font-style'] = vm.slide.header.style['font-style'] == 'normal' ? 'italic' : 'normal'; 
-    }
-
-    vm.underline = function(){
-        vm.slide.header.style['text-decoration'] = vm.slide.header.style['text-decoration'] == 'none' ? 'underline' : 'none'; 
-    }
+    vm.selectedProjects = [{id:'dummy'},{id:'dummy'},{id:'dummy'},{id:'dummy'},{id:'dummy'}];
 
     vm.editSlide = function(id){
-        vm.slide.header.text = vm.selectedProjects[id].titles[0].title;
+        Slides.currentSlide = vm.selectedProjects[id].id;
+        Slides.saveSlide = true;
         vm.view = 'slide-wysiwyg';
-
     }
 
-
-
-    vm.copiedProject = function(i, project){
-        // check if empty or a real project
-        if(typeof project == 'object'){
-            vm.selectedProjects[i]['status'] = 'loading-data';
-            vm.loadProjectData(i, vm.selectedProjects[i]);
-        }
-    }
-
-    vm.loadProjectData = function(i, project){
-        // get single project from call (by type)
-        Activities.get(project.id).then(succesFn, errorFn);
-
-        function succesFn(data, status, headers, config){
-            setTimeout(function(){ 
-                $scope.$apply(function () {
-                    vm.selectedProjects[i]['mapping_data'] = data.data;
-                    vm.selectedProjects[i]['status'] = 'mapping-data';
-                    vm.mapProjectData(i);
-                });
-            }, 500);
-        }
-
-        function errorFn(){
-            Snackbar.error("Mapping data failed");
-        }
-        // put it in the object, change object status, map to presentation
-    }
-
-    vm.mapProjectData = function(i){
-        setTimeout(function(){ 
-            $scope.$apply(function () {
-                vm.selectedProjects[i]['status'] = 'preview-data';
-            });
-        }, 1000);
-    }
-
-    function activate(){
-        Presentations.getSingle(vm.presentationId).then(presentationSuccessFn, errorFn);
-        Regions.all().then(regionsSuccessFn, errorFn);
-        Countries.all().then(countriesSuccessFn, errorFn);
-        Sectors.all().then(sectorsSuccessFn, errorFn);
-        Activities.list('', '6').then(activitiesSuccessFn, errorFn);
-
-        function errorFn(data, status, headers, config) {
-            Snackbar.error(data.error);
-        }
-
-        function presentationSuccessFn(data, status, headers, config) {
-            vm.presentation = data.data;
-        }
-
-        function regionsSuccessFn(data, status, headers, config) {
-            vm.recipientRegions = data.data;
-        }
-
-        function countriesSuccessFn(data, status, headers, config) {
-            vm.recipientCountries = data.data;
-        }
-
-        function sectorsSuccessFn(data, status, headers, config) {
-            vm.recipientSectors = data.data;
-        }
-
-        function activitiesSuccessFn(data, status, headers, config) {
-            vm.iatiProjects = data.data.objects;
-        }
-    }
-
-    activate();
-
-    function save(){
-        // check if all projects have been checked on the preview mode
-
-        // save data
-
-        // to do: check out how we'll save images
+    vm.onDropProjects = function(index){
+        vm.save('change-slide');
     }
 
     vm.selectView = function(view){
       vm.view = view;
     }
 
+    function errorFn(data, status, headers, config) {
+        Snackbar.error(data.error);
+    }
+
+    function activate(){
+        Presentations.getSingle(vm.presentationId).then(presentationSuccessFn, errorFn);
+
+        function presentationSuccessFn(data, status, headers, config) {
+            vm.presentation = data.data;
+            
+            for(var i = 0;i < vm.presentation.slide_set.length;i++){
+                vm.presentation.slide_set[i]['previewData'] = JSON.parse(vm.presentation.slide_set[i]['previewData']);
+                vm.selectedProjects[vm.presentation.slide_set[i]['position']] = vm.presentation.slide_set[i];
+            }
+        }
+
+        vm.iatiActivate();
+    }
+
+    vm.save = function(caller){
+
+        vm.presentation.slide_set = [];
+
+        for(var i = 0;i < vm.selectedProjects.length;i++){
+            if (vm.selectedProjects[i]['previewData'] !== undefined){
+                vm.presentation.slide_set.push({
+                    'activity_id': vm.selectedProjects[i]['previewData']['id'],
+                    'position': i,
+                    'content': 'unused',
+                    'previewData': JSON.stringify(vm.selectedProjects[i]['previewData']),
+                    'source': vm.selectedProjects[i]['previewData']['source'],
+                });
+            }
+        }
+
+        var throwError = false;
+        if(caller == 'edit-presentation'){
+            // check if all projects have been checked on the preview mode
+            for(var i = 0;i < vm.presentation.slide_set.length;i++){
+                if (typeof vm.presentation.slide_set[i] == 'object'){
+                    if(vm.presentation.slide_set[i]['isPreviewed'] != true){
+                        // show warning; not all slides have been previewed, are you sure you want to continue? 
+                        throwError = true;
+                    }
+                }
+            }
+        }
+        // if on a slide, save the slide first
+        if(vm.view == 'slide-wysiwyg'){
+            Slides.saveSlide = true;
+        }
+
+        Presentations.update(vm.presentation).then(successFn, errorFn);
+        
+        function successFn(data, status, headers, config){
+            // set slide id in vm.selectedProjects
+            console.log(data);
+
+            var actSlideIdMap = {};
+
+            for (var i = 0;i < data.data.slide_set.length;i++){
+                actSlideIdMap[data.data.slide_set[i]['activity_id']] = data.data.slide_set[i]['id'];
+            }
+
+            for (var i = 0;i < vm.selectedProjects.length;i++){
+                console.log(vm.selectedProjects[i]);
+                if(vm.selectedProjects[i]['id'] != 'dummy'){
+                    vm.selectedProjects[i]['id'] = actSlideIdMap[vm.selectedProjects[i]['previewData']['id']];
+                }
+            }
+
+            if(caller == 'edit-presentation'){
+                window.location = '/presentations/';
+            }
+        }
+
+        function errorFn(data, status, headers, config){
+            console.log(data);
+            console.log(data.data);
+            console.log(status);
+        }
+    }
+
+    /********
+    
+    ********/
+
+    vm.addEmptySlide = function(){
+
+        var added = false;
+        var newSlide = {
+            'id': 'shouldthisbeset',
+            'title': '',
+            'description': '',
+            'source': 'content'
+        }
+
+        for(var i = 0;i < vm.selectedProjects.length;i++){
+            if(vm.selectedProjects[i]['id'] == 'dummy'){
+                // make this the new content slide
+                added = true;
+                break;
+            }
+        }
+
+        if(!added){
+            // make new slide
+            vm.selectedProjects[vm.selectedProjects.length] = {
+
+            }
+        }
+
+    }
+
+    vm.create
+
+
+
+    /******** 
+    IATI SPECIFIC
+
+    TO DO: Move this to a separate controller 
+    ********/ 
+    vm.iatiRecipientRegions = [];
+    vm.iatiSelectedRegions = [];
+
+    vm.iatiRecipientCountries = [];
+    vm.iatiSelectedCountries = [];
+
+    vm.iatiRecipientSectors = [];
+    vm.iatiSelectedSectors = [];
+
+    vm.iatiBudgetOn = false;
+    vm.iatiBudgetValue = [];
+
+    vm.iatiFilterSelection = FilterSelection;
+
+    vm.iatiProjects = {
+        'offset': 0,
+        'activities': [],
+        'totalActivities': 0,
+        'orderBy': 'start_actual',
+        'perPage': 6,
+        'currentPage': 0
+    }
+
+    vm.iatiPageChanged = function(newPageNumber) {
+        vm.iatiProjects.offset = ((newPageNumber * vm.iatiProjects.perPage) - vm.iatiProjects.perPage);
+        IatiActivities.list(FilterSelection.selectionString, vm.iatiProjects.perPage, vm.iatiProjects.orderBy, vm.iatiProjects.offset).then(activitiesSuccessFn, errorFn);
+    };
+
+    function activitiesSuccessFn(data, status, headers, config) {
+        for(var i = 0; i < data.data.objects.length; i++){
+            data.data.objects[i] = {'previewData': data.data.objects[i]};
+            data.data.objects[i]['previewData']['source'] = 'iati';
+        }
+        vm.iatiProjects.totalActivities = data.data.meta.total_count;
+        vm.iatiProjects.activities = data.data.objects;
+    }
+
+    vm.iatiActivate = function(){
+
+        Regions.all().then(regionsSuccessFn, errorFn);
+        Countries.all().then(countriesSuccessFn, errorFn);
+        Sectors.all().then(sectorsSuccessFn, errorFn);
+
+        function regionsSuccessFn(data, status, headers, config) {
+            vm.iatiRecipientRegions = data.data;
+        }
+
+        function countriesSuccessFn(data, status, headers, config) {
+            vm.iatiRecipientCountries = data.data;
+        }
+
+        function sectorsSuccessFn(data, status, headers, config) {
+            vm.iatiRecipientSectors = data.data;
+        }
+
+        $scope.$watch("vm.iatiSelectedCountries", function (){
+            vm.updateSelectionString();
+        }, true);
+
+        $scope.$watch("vm.iatiSelectedRegions", function (){
+            vm.updateSelectionString();
+        }, true);
+
+        $scope.$watch("vm.iatiSelectedSectors", function (){
+            vm.updateSelectionString();
+        }, true);
+
+        $scope.$watch("vm.currentSelection", function (currentSelection) {
+            console.log('watch current selection');
+            IatiActivities.list(FilterSelection.selectionString, vm.iatiProjects.perPage, vm.iatiProjects.orderBy, vm.iatiProjects.offset).then(activitiesSuccessFn, errorFn);
+        }, true);
+        
+    }
+
+    vm.updateSelectionString = function(){
+      
+      var selectList = [
+        vm.selectArrayToString('countries', 'country_id', vm.iatiSelectedCountries),
+        vm.selectArrayToString('regions', 'region_id', vm.iatiSelectedRegions),
+        vm.selectArrayToString('sectors', 'sector_id', vm.iatiSelectedSectors),
+      ];
+
+      if(vm.iatiBudgetOn){
+        selectList.push('&total_budget__gt='+vm.iatiBudgetValue[0]+'&total_budget__lt='+vm.iatiBudgetValue[1]);
+      }
+      if(FilterSelection.selectionString != selectList.join('')){
+        FilterSelection.selectionString = selectList.join('');
+      }
+    }
+
+    vm.selectArrayToString = function(header, id_slug, arr){
+
+      var headerName = '';
+      var list = [];
+
+      if(arr.length > 0){
+        headerName = '&' + header + '__in=';
+        for(var i = 0; i < arr.length; i++){
+            list.push(arr[i][id_slug]);
+        }
+      }
+
+      return headerName + list.join(',');
+    }
+
+
+    activate();
   }
 })();

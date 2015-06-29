@@ -2,18 +2,20 @@
   <div class="top-header white">
     <div class="container">
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-3">
           <h1>Editor</h1>
         </div>
+        <div class="col-sm-3">
+            <a class="btn hover-orange btn-padding-30 light-grey margint1em" ng-click="vm.addEmptySlide()">Add empty content slide</a>
+        </div>
         <div class="col-sm-6 text-right edit-bar">
-          <a class="btn hover-orange btn-padding-30 red" ng-click="">Save draft</a>
+          <a class="btn hover-orange btn-padding-30 red" ng-click="vm.save('save-draft')">Save draft</a>
           <a class="btn hover-orange btn-padding-30 light-blue" ng-click="">Preview</a>
-          <a class="btn hover-orange btn-padding-30 green" ng-click="">Publish to display</a>
+          <a class="btn hover-orange btn-padding-30 green" ng-click="vm.save('save-presentation')">Publish to display</a>
         </div>
       </div>
     </div>
   </div>
-
 
   <div class="container">
     <div class="row margint2em">
@@ -98,7 +100,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <iati-select ng-show="vm.view == 'iati-select'"></iati-select>
                     <iati-select-regions ng-show="vm.view == 'iati-select-regions'"></iati-select-regions>

@@ -13,3 +13,10 @@ class IsOwnerOfDisplay(permissions.BasePermission):
         if request.user:
             return post.owner == request.user
         return False
+
+
+class IsOwnerOfSlide(permissions.BasePermission):
+    def has_object_permission(self, request, view, post):
+        if request.user:
+            return post.owner == request.user
+        return False

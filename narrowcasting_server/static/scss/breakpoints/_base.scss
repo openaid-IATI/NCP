@@ -658,6 +658,10 @@ EDIT PRESENTATION
   .project-bar{
     background-color: $white;
 
+    .hovered{
+      background-color: $orange !important;
+    }
+
     ul{
       margin: 0;
       padding: 3em 0;
@@ -898,9 +902,48 @@ slide WYSIWYG
 ****/
 #slide-wysiwyg{
 
+  .background-image{
+    position: absolute;
+    top: 11%;
+    left: 0;
+    width: 100%;
+    height: 89%;
+    -webkit-filter: blur(3px); 
+    filter: blur(3px);
+    filter: url(/static/images/blur.svg#blur); 
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+    clip: rect(0px,auto,auto,0px);
+  }
+
+  .no-blur{
+    -webkit-filter: blur(0px); 
+    filter: blur(0px); 
+    filter: none; 
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
+  }
+
+  .loading-slide{
+    text-align: center;
+    padding-top: 12em;
+  }
+
+  .block{
+    position: absolute;
+    background-color: #fff;
+    text-transform: uppercase;
+
+    textarea{
+      width: 100%;
+      padding: 0 8px;
+    }
+  }
+
+  .block-box-shadow{
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
   .edit-slide{
     height: 450px;
-    background-color: $green;
     box-shadow: 3px 3px 4px rgba(0,0,0,0.3);
     position: relative;
   }
@@ -931,11 +974,16 @@ slide WYSIWYG
 
   input, textarea{
     border: 0;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
   }
 
   textarea{
     resize: none;
+  }
+
+  .active, .active:focus{
+    -webkit-box-shadow: inset 0px 0px 2px 3px rgba(73, 138, 184, 1);
+    -moz-box-shadow:    inset 0px 0px 2px 3px rgba(73, 138, 184, 1);
+    box-shadow:         inset 0px 0px 2px 3px rgba(73, 138, 184, 1);
   }
 
   .top-header{
@@ -944,7 +992,6 @@ slide WYSIWYG
     position: absolute;
     background-color: #fff;
     border-bottom: 3px solid #00518d;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
     height: 11%;
     width: 100%;
     text-align: center;
@@ -1008,30 +1055,30 @@ slide WYSIWYG
     height: 48%;
   }
 
+  .block-header{
+    line-height: 1.4em;
+    font-weight: bold;
+    color: #000;
+    padding: 6px 8px 0;
+  }
+
+  .block-text{
+    box-shadow: none;
+    color: #969696;
+    font-weight: bold;
+    padding: 0 10px 0;
+    width: 100%;
+    line-height: 1.2em;
+  }
+
   .date-block{
-    position: absolute;
     top: 24%;
-    background-color: #fff;
     width: 20.5%;
     height: 16%;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
     font-size: 1.6em;
-    text-transform: uppercase;
-
-
-    span{
-      box-shadow: none;
-      color: #969696;
-      font-weight: bold;
-      padding: 8px 10px 0;
-      width: 100%;
-    }
 
     .block-header{
-      font-weight: 900;
-      padding: 8px 10px 0;
       line-height: 1.1em;
-      color: #000;
     }
 
     &.start-date{
@@ -1045,20 +1092,13 @@ slide WYSIWYG
   }
 
   .goal-block{
-    position: absolute;
     top: 41%;
     left: 50%;
     width: 42%;
     height: 31%;
-    background-color: #fff;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
 
     .block-header{
       font-size: 1.5em;
-      font-weight: 900;
-      padding: 8px 10px 0;
-      line-height: 1.4em;
-      color: #000;
     }
 
     textarea{
@@ -1075,12 +1115,10 @@ slide WYSIWYG
   
 
   .updates-block{
-    position: absolute;
     top: 74%;
     left: 1%;
     width: 98%;
     height: 24%;
-    background-color: #fff;
     padding: 20px 8px;
 
 
@@ -1151,6 +1189,80 @@ slide WYSIWYG
 
 
 
+  /*** IATI SLIDE ***/
+
+  .iati-slide{
+    max-height: 100%;
+
+    .header{
+      width: 97%;
+    }
+
+    .description{
+      top: 24%;
+      width: 97%;
+      height: 18%;
+    }
+
+    .participating-organisations-block, .sectors-block, .countries-block{
+      left: 48%;
+      top: 44%;
+      font-size: 1.3em;
+    }
+
+    .participating-organisations-block{
+      top: 61%;
+      width: 50%;
+      height: 24%;
+    }
+
+    .sectors-block{
+      height: 15%;
+      width: 50%;
+    }
+
+    .date-block{
+      top: 72%;
+      height: 13%;
+      font-size: 1.2em;
+      width: 21%;
+
+      &.start-date{
+        left: 1%;
+      }
+
+      &.end-date{
+        left: 24%;
+      }
+    }
+
+    .type-relatie-block, .total-budget-block{
+      top: 56%;
+      width: 21%;
+      height: 13%;
+      font-size: 1.2em;
+    }
+
+    .type-relatie-block{
+      left: 1%;
+    }
+
+    .total-budget-block{
+      left: 24%;
+    }
+
+    .countries-block{
+      left: 1%;
+      height: 9%;
+      width: 44%;
+    }
+
+
+  }
+
+
+
+
 
   .edit-bars{
 
@@ -1163,6 +1275,10 @@ slide WYSIWYG
       min-height: 300px;
     }
 
+    .edit-input-fontsize{
+      border: 1px solid $light-grey;
+    }
+
     hr{
       border-top: 1px solid #D9E021;
       margin-top: 6px;
@@ -1172,6 +1288,16 @@ slide WYSIWYG
     .edit-option-header{
       padding-left: 14px;
       color: $light-grey;
+      display: inline-block;
+    }
+
+    .currently-edited{
+      padding-left: 14px;
+      color: #888;
+    }
+
+    .currently-editing{
+      display: block;
     }
 
     .font-size {
@@ -1205,12 +1331,26 @@ slide WYSIWYG
       }
     }
 
+    .upload-image{
+      display: block;
+      text-align: center;
+      font-size: 14px;
+      margin: 8px auto;
+      background-color: #e0e0e0;
+      color: $dark-grey;
+      padding: 4px 15px;
+      width:90%;
+    }
+
     .remove-image{
-      display: inline-block;
-      margin-top: 8px;
+      display: block;
+      margin: 12px auto;
+      font-size: 14px;
       background-color: $red;
       color: $white;
       padding: 4px 15px;
+      width: 90%;
+      cursor: pointer;
     }
   }
 }

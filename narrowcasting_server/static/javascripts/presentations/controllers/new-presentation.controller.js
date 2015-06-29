@@ -53,6 +53,8 @@ var test = '';
       * @desc Propogate error event and show snackbar with error message
       */
       function createPresentationErrorFn(data, status, headers, config) {
+        console.log(data);
+        console.log(data.data);
         $rootScope.$broadcast('presentation.created.error');
         Snackbar.error(data.error);
       }

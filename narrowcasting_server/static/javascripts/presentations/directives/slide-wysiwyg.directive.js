@@ -19,8 +19,10 @@
     * @memberOf ncs.presentations.directives.presentationWysiwyg
     */
     var directive = {
+      controller: 'WysiwygController',
+      controllerAs: 'vm',
       restrict: 'E',
-      scope: false,
+      scope: {},
       templateUrl: '/static/templates/presentations/slide-wysiwyg.html'
     };
 

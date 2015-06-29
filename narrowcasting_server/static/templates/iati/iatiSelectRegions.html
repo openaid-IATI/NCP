@@ -1,10 +1,10 @@
 <div class="filter-panel green">
-    <div class="row" ng-show="vm.recipientRegions.length == 0">
+    <div class="row" ng-show="vm.iatiRecipientRegions.length == 0">
         <div class="svg-loader">
             <img src="/static/images/tail-spin.svg" width="100" alt="">
         </div>
     </div>
-    <div class="row" ng-show="vm.recipientRegions.length > 0">
+    <div class="row" ng-show="vm.iatiRecipientRegions.length > 0">
         <div class="col-md-8">
             <table class="table">
                 <thead>
@@ -15,11 +15,11 @@
                 </thead>
                 <tbody>
 
-                    <tr dir-paginate="item in vm.recipientRegions | filter:q | itemsPerPage: 15" pagination-id="recipientRegions">
+                    <tr dir-paginate="item in vm.iatiRecipientRegions | itemsPerPage: 15" pagination-id="iatiRecipientRegions">
                         <td>
                             <div class="checkbox">
                                 <label class="switch">
-                                    <input type="checkbox" checklist-model="vm.selectedRegions" checklist-value="item"><i></i>
+                                    <input type="checkbox" checklist-model="vm.iatiSelectedRegions" checklist-value="item"><i></i>
                                     <span>{{ item.name }}</span>
                                 </label>
                             </div>
@@ -31,9 +31,11 @@
 
                 </tbody>
             </table>
+            {{vm.iatiSelectedRegions}}
+
         </div>
         <div class="col-md-8">
-            <dir-pagination-controls pagination-id="recipientRegions"></dir-pagination-controls>
+            <dir-pagination-controls pagination-id="iatiRecipientRegions"></dir-pagination-controls>
         </div>
     </div>
 </div>

@@ -26,7 +26,7 @@
 
 
         function list(filters, limit, order_by, offset){
-            var url = oipaUrl + '/activity-list/?format=json&select_fields=titles,countries,iati_identifier,id,start_actual,total_budget,sectors'
+            var url = oipaUrl + '/activity-list/?format=json&limit=6&select_fields=titles,countries,iati_identifier,id,start_actual,total_budget,sectors'
 
             if(reportingOrganisationId){
                 url += '&reporting_organisation__in=' + reportingOrganisationId

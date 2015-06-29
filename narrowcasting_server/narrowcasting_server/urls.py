@@ -6,6 +6,7 @@ from narrowcasting_server.views import IndexView
 from ncs.views import AccountPresentationsViewSet
 from ncs.views import PresentationViewSet
 from ncs.views import DisplayViewSet
+from ncs.views import SlideViewSet
 
 from rest_framework_nested import routers
 
@@ -17,6 +18,7 @@ router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
 router.register(r'presentations', PresentationViewSet)
 router.register(r'displays', DisplayViewSet)
+router.register(r'slides', SlideViewSet)
 
 accounts_router = routers.NestedSimpleRouter(
     router, r'accounts', lookup='account'

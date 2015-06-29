@@ -2,24 +2,26 @@
     <ul dnd-list="vm.iatiProjects">
         <li
             class="col-md-4" 
-            dir-paginate="project in vm.iatiProjects | filter:q | itemsPerPage: 6"  
-            pagination-id="iati"
+            dir-paginate="project in vm.iatiProjects.activities | filter:q | itemsPerPage: 6"  
+            total-items="vm.iatiProjects.totalActivities"
+            pagination-id="iatiProjects"
+            current-page="vm.iatiProjects.currentPage"
             data-drag="true" 
             data-jqyoui-options="{revert: 'invalid', deepCopy: true, animate: true, helper:'clone'}" 
             ng-model="project" 
             jqyoui-draggable="{placeholder:'keep'}">
             <div class="project project-in-list iati green text-center">
                 
-                <h3>{{project.titles[0].title}}</h3>
+                <h3>{{project.previewData.titles[0].title}}</h3>
                 
-                    <span>COUNTRY:</span>
-                    <div ng-repeat="country in project.countries">{{country.name}}</div>
-                    <span>SECTOR:</span>
-                    <div ng-repeat="sector in project.sectors">{{sector.name}}</div>
-                    <span>BUDGET:</span>
-                    <div>{{project.totalBudget | iaticurrency :'€':0:".":"."}}</div>
-                    <span>START DATE:</span>
-                    <div>{{project.start_actual | date:'dd-MM-yyyy'}} </div>
+                <span>COUNTRY:</span>
+                <div ng-repeat="country in project.previewData.countries">{{country.name}}</div>
+                <span>SECTOR:</span>
+                <div ng-repeat="sector in project.previewData.sectors">{{sector.name}}</div>
+                <span>BUDGET:</span>
+                <div>{{project.previewData.totalBudget | iaticurrency :'€':0:".":"."}}</div>
+                <span>START DATE:</span>
+                <div>{{project.previewData.start_actual | date:'dd-MM-yyyy'}}</div>
             
             </div>
         </li>
@@ -28,6 +30,6 @@
 
 <div class="row">
   <div class="col-xs-12 text-center-not-xs">
-    <dir-pagination-controls pagination-id="iati"></dir-pagination-controls>
+     <dir-pagination-controls pagination-id="iatiProjects" on-page-change="vm.iatiPageChanged(newPageNumber)"></dir-pagination-controls>
   </div>
 </div>

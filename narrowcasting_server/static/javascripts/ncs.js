@@ -8,6 +8,7 @@
             'angularUtils.directives.dirPagination',
             'ui.bootstrap-slider',
             'ngDragDrop',
+            'ngFileUpload',
             'minicolors',
             'ncs.authentication',
             'ncs.layout',

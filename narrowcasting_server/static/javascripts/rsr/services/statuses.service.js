@@ -1,0 +1,27 @@
+(function () {
+    'use strict';
+
+    angular
+        .module('ncs.iati.services')
+        .factory('Countries', Countries);
+
+    Countries.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
+
+    function Countries($http, oipaUrl, reportingOrganisationId) {
+        var m = this;
+
+        var Countries = {
+            all: all,
+        };
+
+        return Countries;
+
+        function all() {
+            var url = oipaUrl + '/activity-aggregate-any/?format=json&group_by=recipient-country&aggregation_key=iati-identifier';
+            if(reportingOrganisationId){
+                url += '&reporting_organisation__in=' + reportingOrganisationId;
+            }
+            return $http.get(url, { cache: true });
+        }
+    }
+})();
