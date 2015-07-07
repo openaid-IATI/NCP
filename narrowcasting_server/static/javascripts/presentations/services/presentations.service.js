@@ -35,8 +35,12 @@
 	    * @returns {Promise}
 	    * @memberOf ncs.presentations.services.Presentations
 	    */
-	    function all() {
-	    	return $http.get('/api/v1/presentations/');
+	    function all(filters) {
+	    	var url = '/api/v1/presentations/?format=json';
+	    	if(filters != undefined){
+	    		url += filters;
+	    	}
+	    	return $http.get(url);
 	    }
 
 	    /**

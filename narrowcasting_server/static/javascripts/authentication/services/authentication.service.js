@@ -9,13 +9,13 @@
       .module('ncs.authentication.services')
       .factory('Authentication', Authentication);
 
-    Authentication.$inject = ['$cookies', '$http', 'Snackbar'];
+    Authentication.$inject = ['$state', '$cookies', '$http', 'Snackbar'];
 
     /**
      * @namespace Authentication
      * @returns {Factory}
      */
-    function Authentication($cookies, $http, Snackbar) {
+    function Authentication($state, $cookies, $http, Snackbar) {
         /**
         * @name Authentication
         * @desc The Factory to be returned
@@ -88,8 +88,7 @@
             function loginSuccessFn(data, status, headers, config){
 
                 Authentication.setAuthenticatedAccount(data.data);
-
-                window.location = '/presentations/';
+                $state.go('presentations');
             }
 
             /**

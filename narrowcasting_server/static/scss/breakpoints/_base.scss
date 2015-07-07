@@ -79,6 +79,11 @@ h1{
   color: $white;
 }
 
+.orange{
+  background-color: $orange;
+  color: $white;
+}
+
 .light-grey{
   background-color: $light-grey;
   color: $white;
@@ -499,7 +504,7 @@ DISPLAYS
 ****/
 #displays{
 
-  .green{
+  .green, .orange{
     text-align: center;
   }
 
@@ -530,7 +535,7 @@ DISPLAYS
       position: absolute;
       top: 13px;
       left: 13px;
-      background-color: $orange;
+      background-color: $green;
       width: 320px;
       height: 169px;
       text-align: center;
@@ -658,14 +663,52 @@ EDIT PRESENTATION
   .project-bar{
     background-color: $white;
 
+    .iati{
+      background-color: $green;
+      color: $white;
+    }
+
+    .rsr{
+      background-color: $light-blue;
+      color: $white;
+    }
+
+    .content{
+      background-color: $orange;
+      color: $white;
+    }
+
     .hovered{
       background-color: $orange !important;
     }
+
+    .remove-slide{
+      position: absolute;
+      top: auto;
+      bottom: 14px;
+      right: 24px;
+      color: #fff;
+      padding: 3px;
+      font-size: 12px;
+      border: 1px solid #fff;
+      border-radius:12px;
+
+      &:hover{
+        color: $red;
+        border-color: $red;
+        cursor: pointer;
+      }
+    }
+
 
     ul{
       margin: 0;
       padding: 3em 0;
       background-color: white;
+    }
+
+    li{
+      clear: both;
     }
 
     .dummy{
@@ -717,6 +760,16 @@ EDIT PRESENTATION
       font-weight: 900;
       display: inline-block;
     }
+
+    &.rsr-slide-2{
+      width: 80%;
+      float: right;
+      margin: 10px 5%;
+
+      h3{
+        font-size: 17px;
+      }
+    }
   }
 
   iati-select{
@@ -738,6 +791,12 @@ EDIT PRESENTATION
       float:left;
       margin-left: 15px;
     }
+  }
+
+  .iati-select-bg{
+    text-align: center;
+    padding-top: 5em;
+    min-height: 600px;
   }
 
 
@@ -872,6 +931,14 @@ IATI filters
     border-top: 0;
   }
 
+  &.filter-panel-text-search{
+    min-height: 600px;
+
+    h3{
+      margin: 1em 0;
+    }
+  }
+
   &.filter-panel-budget{
     min-height: 600px;
 
@@ -890,6 +957,40 @@ IATI filters
     .slider.slider-horizontal{
       width: 100% !important;
     }
+  }
+
+
+
+
+
+
+  .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus,
+  .pagination > li > a, .pagination > li > span,
+  .pagination > li:first-child > a, .pagination > li:first-child > span{
+    color: #fff;
+  }
+
+
+  .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+    color: $dark-grey;
+  }
+  /* previous and next */
+  .pagination > li:first-child > a, .pagination > li:first-child > span,
+  .pagination > li:last-child > a, .pagination > li:last-child > span,
+  .pagination > li:first-child > a:focus, .pagination > li:first-child > span:focus,
+  .pagination > li:last-child > a:focus, .pagination > li:last-child > span:focus{
+    border: 2px solid #fff;
+    color: #fff;
+  }
+
+  .pagination > li > a{
+    background-color: transparent;
+  }
+
+  .pagination > li:first-child > a:hover, .pagination > li:first-child > span:hover,
+  .pagination > li:last-child > a:hover, .pagination > li:last-child > span:hover{
+    border: 2px solid #fff;
+    color: #fff;
   }
 
 
@@ -1261,6 +1362,27 @@ slide WYSIWYG
   }
 
 
+  .content-slide{
+
+
+    .header{
+      text-align: center;
+      width: 98%;
+      border-left: 0;
+    }
+
+    .description{
+      text-align: center;
+      top: 25%;
+      left: 1%;
+      width: 98%;
+      border-left: 0;
+      padding: 8px 4px;
+    }
+
+
+
+  }
 
 
 

@@ -58,11 +58,8 @@
         * @returns {Promise}
         * @memberOf ncs.presentations.services.Presentations
         */
-        function create(content) {
-            return $http.post('/api/v1/slides/', {
-                name: content,
-                projects: '',
-            });
+        function create(slide) {
+            return $http.post('/api/v1/slides/', slide);
         }
 
         /**

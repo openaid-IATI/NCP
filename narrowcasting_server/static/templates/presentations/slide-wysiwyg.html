@@ -116,9 +116,28 @@
                 </div>
             </div>
 
-            <div class="content-slide" ng-show="vm.slideType == 'content-slide'">
-                <input class="header block-box-shadow" ng-model="vm.slide.header.text" ng-style="vm.slide.header.style">
-                <textarea class="subheader" ng-model="vm.slide.subHeader"></textarea>
+            <div class="content-slide" ng-show="vm.slideType == 'content'">
+
+                <img 
+                    ngf-src="vm.slide.backgroundImage[0]" 
+                    ng-show="vm.slide.backgroundImage[0].type.indexOf('image') > -1" 
+                    ngf-accept="'image/*'" 
+                    class="background-image">
+                    
+                <input 
+                    class="header" 
+                    ng-model="vm.slide.slide_content.title.text" 
+                    ng-style="vm.slide.slide_content.title.cssStyle" 
+                    ng-click="vm.selectField('title')"
+                    ng-class="{'active': vm.selectedField == 'title'}">
+                <textarea 
+                    class="description" 
+                    ng-model="vm.slide.slide_content.description.text" 
+                    ng-style="vm.slide.slide_content.description.cssStyle"
+                    ng-click="vm.selectField('description')"
+                    ng-class="{'active': vm.selectedField == 'description'}"></textarea>
+
+                    {{vm.selectedField}}
             </div>
 
         </div>

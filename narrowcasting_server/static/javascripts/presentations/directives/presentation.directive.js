@@ -20,9 +20,6 @@
     */
     var directive = {
       restrict: 'E',
-      scope: {
-        presentation: '='
-      },
       templateUrl: '/static/templates/presentations/presentation.html'
     };
 

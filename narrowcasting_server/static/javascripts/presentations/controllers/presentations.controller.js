@@ -36,6 +36,15 @@
       }
     }
 
+    vm.duplicatePresentation = function(id){
+      console.log('clicked');
+      Snackbar.show('Duplicate presentation not implemented yet');
+    }
+
+    vm.deletePresentation = function(id){
+      Snackbar.show('Delete presentation not implemented yet');
+    }
+
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
@@ -69,5 +78,8 @@
         Snackbar.error(data.error);
       }
     }
+
+    
+
   }
 })();

@@ -46,6 +46,13 @@
             templateUrl:  '/static/templates/presentations/edit-presentation.html'
         })
         .state({
+            name:         'preview-presentation',
+            url:          '/presentations/preview/:presentation_id/',
+            controller:   'PreviewPresentationController',
+            controllerAs: 'vm',
+            templateUrl:  '/static/templates/presentations/preview-presentation.html'
+        })
+        .state({
             name:         'presentations',
             url:          '/presentations/',
             controller:   'PresentationsController',

@@ -13,7 +13,6 @@ from ncs.models import Display
 from ncs.models import Slide
 
 class SlideSerializer(serializers.ModelSerializer):
-    creator = AccountSerializer(read_only=True, required=False)
     slide_content = serializers.SerializerMethodField()
 
     class Meta:
@@ -21,7 +20,6 @@ class SlideSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'activity_id',
-            'creator',
             'position',
             'content',
             'slide_content',
@@ -34,12 +32,17 @@ class SlideSerializer(serializers.ModelSerializer):
         )
         read_only_fields = (
             'id',
-            'creator',
-            'presentation'
         )
 
+    def create(self, validated_data):
+        return Slide(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.save()
+        return instance
+
     def get_slide_content(self, slide):
-        return json.loads(slide.content)
+        return slide.content
 
     def get_validation_exclusions(self, *args, **kwargs):
         exclusions = super(SlideSerializer, self).get_validation_exclusions()
@@ -73,6 +76,101 @@ class PresentationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         del validated_data['slide_set']
         return Presentation(**validated_data)
+
+    def map_rsr_fields(self, slide_data):
+
+        slide_data['title'] = {
+            'text': slide_data['title'],
+            'cssStyle': {
+                'font-size': '22px',
+                'color': '#000000',
+                'font-weight': 'bold',
+                'font-style': 'normal',
+                'text-decoration': 'none',
+            }
+        }
+
+        slide_data['subtitle'] = {
+            'text': slide_data['subtitle'],
+            'cssStyle': {
+                'font-size': '22px',
+                'color': '#000000',
+                'font-weight': 'bold',
+                'font-style': 'normal',
+                'text-decoration': 'none',
+            }
+        }
+
+        slide_data['goals_overview'] = {
+            'text': slide_data['goals_overview'],
+            'cssStyle': {
+                'font-size': '22px',
+                'color': '#000000',
+                'font-weight': 'bold',
+                'font-style': 'normal',
+                'text-decoration': 'none',
+            }
+        }
+
+        slide_data['project_plan_summary'] = {
+            'text': slide_data['project_plan_summary'],
+            'cssStyle': {
+                'font-size': '22px',
+                'color': '#000000',
+                'font-weight': 'bold',
+                'font-style': 'normal',
+                'text-decoration': 'none',
+            }
+        }
+
+        slide_data['project_plan_summary'] = {
+            'text': slide_data['project_plan_summary'],
+            'cssStyle': {
+                'font-size': '22px',
+                'color': '#000000',
+                'font-weight': 'bold',
+                'font-style': 'normal',
+                'text-decoration': 'none',
+            }
+        }
+
+        slide_data['budget'] = {
+            'text': slide_data['budget'],
+            'cssStyle': {
+                'font-size': '22px',
+                'color': '#000000',
+                'font-weight': 'bold',
+                'font-style': 'normal',
+                'text-decoration': 'none',
+            }
+        }
+
+        slide_data['target_group'] = {
+            'text': slide_data['target_group'],
+            'cssStyle': {
+                'font-size': '22px',
+                'color': '#000000',
+                'font-weight': 'bold',
+                'font-style': 'normal',
+                'text-decoration': 'none',
+            }
+        }
+
+        # get location
+        primary_location = slide_data['primary_location']
+        if primary_location:
+            print 'get primary location from rsr'
+
+
+        # get project updates
+
+
+        # get partners
+
+
+
+        return slide_data
+
 
     def map_iati_fields(self, slide_data):
 
@@ -132,6 +230,36 @@ class PresentationSerializer(serializers.ModelSerializer):
 
         return slide_data
 
+    def map_content_fields(self, slide):
+
+        slide['activity_id'] = 'content-slide-' + str(slide['position'])
+
+        slide_data = json.dumps({
+            'activity_id': slide['activity_id'],
+            'title': {
+                'text': 'Empty content slide',
+                'cssStyle': {
+                    'font-size': '22px',
+                    'color': '#000000',
+                    'font-weight': 'bold',
+                    'font-style': 'normal',
+                    'text-decoration': 'none',
+                },
+            },
+            'description': {
+                'text': 'Description ...',
+                'cssStyle': {
+                    'font-size': '16px',
+                    'color': '#969696',
+                    'font-weight': 'bold',
+                    'font-style': 'normal',
+                    'text-decoration': 'none',
+                },
+            }
+        })
+
+        return slide_data
+
     def create_slide(self, slide, presentation):
 
         if slide['source'] == 'iati':
@@ -142,17 +270,29 @@ class PresentationSerializer(serializers.ModelSerializer):
             # get 2 latest rsr updates, and other stuff that's not in this call and we need
 
         try:
-            response = urlopen(request)
-            slide_data = json.loads(response.read())
 
             if slide['source'] == 'iati':
-                slide_data = self.map_iati_fields(slide_data)
 
-            slide_data = json.dumps(slide_data)
+                response = urlopen(request)
+                slide_data = json.loads(response.read())
+                slide_data = self.map_iati_fields(slide_data)
+                slide_data = json.dumps(slide_data)
+
+
+            if slide['source'] == 'rsr':
+
+                response = urlopen(request)
+                slide_data = json.loads(response.read())
+                slide_data = self.map_rsr_fields(slide_data)
+                slide_data = json.dumps(slide_data)
+
+            if slide['source'] == 'content':
+
+                slide_data = self.map_content_fields(slide_data)
 
             new_slide = Slide(
                 activity_id=slide['activity_id'],
-                content=json.dumps(slide_data),
+                content=slide_data,
                 previewData=slide['previewData'],
                 position=slide['position'],
                 source=slide['source'],
@@ -207,6 +347,11 @@ class PresentationSerializer(serializers.ModelSerializer):
             else:
                 self.create_slide(new_slide, instance)
 
+
+        if 'status' in validated_data:
+            instance.status = validated_data['status']
+        if 'name' in validated_data:
+            instance.name = validated_data['name']
         instance.save()
         return instance
 
@@ -256,3 +401,4 @@ class DisplaySerializer(serializers.ModelSerializer):
         # instance.presentation = validated_data.get('presentation', instance.presentation)
         instance.save()
         return instance
+

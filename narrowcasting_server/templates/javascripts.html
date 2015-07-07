@@ -9,6 +9,7 @@
 <script type="text/javascript" src="{% static 'bower_components/ui-router/release/angular-ui-router.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/angular-cookies/angular-cookies.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/angular-utils-pagination/dirPagination.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/checklist-model/checklist-model.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/ng-file-upload/ng-file-upload.min.js' %}"></script>
 
 
@@ -40,12 +41,16 @@
 <script type="text/javascript" src="{% static 'javascripts/layout/controllers/index.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/layout/controllers/navbar.controller.js' %}"></script>
 
+<script type="text/javascript" src="{% static 'javascripts/rsr/rsr.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/rsr/services/rsrProjects.service.js' %}"></script>
+
 <script type="text/javascript" src="{% static 'javascripts/presentations/presentations.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/presentations/services/presentations.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/presentations/services/slides.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/presentations/controllers/presentations.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/presentations/controllers/new-presentation.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/presentations/controllers/edit-presentation.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/presentations/controllers/preview-presentation.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/presentations/controllers/wysiwyg.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/presentations/directives/presentation.directive.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/presentations/directives/presentations.directive.js' %}"></script>
@@ -67,11 +72,14 @@
 <script type="text/javascript" src="{% static 'javascripts/iati/directives/regions.directive.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/iati/directives/sectors.directive.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/iati/directives/budget.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/iati/directives/search.directive.js' %}"></script>
 
 <script type="text/javascript" src="{% static 'javascripts/iati/services/countries.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/iati/services/regions.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/iati/services/sectors.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/iati/services/activities.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/iati/services/filters.selection.service.js' %}"></script>
+
+
 
 {% endcompress %}

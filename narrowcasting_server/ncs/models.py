@@ -22,8 +22,8 @@ class Slide(models.Model):
     content = models.TextField()
     previewData = models.TextField(default='')
     source = models.CharField(null=False, blank=False, default='iati', max_length=100)
-    mainImage = models.ImageField(upload_to='images', max_length=254, default=None)
-    backgroundImage = models.ImageField(upload_to='images', max_length=254, default=None)
+    mainImage = models.ImageField(upload_to='images', max_length=254, default=None, null=True)
+    backgroundImage = models.ImageField(upload_to='images', max_length=254, default=None, null=True)
     presentation = models.ForeignKey(Presentation)
     isPreviewed = models.SmallIntegerField(default=0)
 

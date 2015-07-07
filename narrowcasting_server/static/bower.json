@@ -26,6 +26,7 @@
     "ngDialog": "~0.3.12",
     "underscore": "~1.8.3",
     "angular-minicolors": "~0.0.5",
-    "ng-file-upload": "~5.0.6"
+    "ng-file-upload": "~5.0.6",
+    "checklist-model": "~0.2.4"
   }
 }

@@ -1,10 +1,10 @@
 <div class="filter-panel green">
-    <div class="row" ng-show="vm.recipientSectors.length == 0">
+    <div class="row" ng-show="vm.iatiRecipientSectors.length == 0">
         <div class="svg-loader">
             <img src="/static/images/tail-spin.svg" width="100" alt="">
         </div>
     </div>
-    <div class="row" ng-show="vm.recipientSectors.length > 0">
+    <div class="row" ng-show="vm.iatiRecipientSectors.length > 0">
         <div class="col-md-10">
             <table class="table">
                 <thead>
@@ -14,11 +14,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dir-paginate="item in vm.recipientSectors | filter:q | itemsPerPage: 15" pagination-id="recipientSectors">
+                    <tr dir-paginate="item in vm.iatiRecipientSectors | filter:q | itemsPerPage: 15" pagination-id="iatiRecipientSectors">
                         <td>
                             <div class="checkbox">
                                 <label class="switch">
-                                    <input type="checkbox" checklist-model="vm.selectedSectors" checklist-value="item"><i></i>
+                                    <input type="checkbox" checklist-model="vm.iatiSelectedSectors" checklist-value="item"><i></i>
                                     <span>{{ item.name }}</span>
                                 </label>
                             </div>
@@ -31,8 +31,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-10">
-            <dir-pagination-controls pagination-id="recipientSectors"></dir-pagination-controls>
+        <div class="col-md-10 text-center">
+            <dir-pagination-controls pagination-id="iatiRecipientSectors"></dir-pagination-controls>
         </div>
     </div>
 </div>

@@ -1,5 +1,17 @@
 <div class="row">
-    <ul dnd-list="vm.iatiProjects">
+    <div class="col-md-12" ng-show="vm.iatiProjects.loading">
+        <div class="green iati-select-bg">
+            <div class="svg-loader">
+                <img src="/static/images/tail-spin.svg" width="100" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" ng-show="vm.iatiProjects.activities.length < 1">
+        <div class="green iati-select-bg">
+            <h3>No projects found in the current selection</h3>
+        </div>
+    </div>
+    <ul dnd-list="vm.iatiProjects" ng-hide="vm.iatiProjects.loading">
         <li
             class="col-md-4" 
             dir-paginate="project in vm.iatiProjects.activities | filter:q | itemsPerPage: 6"  
@@ -22,7 +34,6 @@
                 <div>{{project.previewData.totalBudget | iaticurrency :'€':0:".":"."}}</div>
                 <span>START DATE:</span>
                 <div>{{project.previewData.start_actual | date:'dd-MM-yyyy'}}</div>
-            
             </div>
         </li>
     </ul>

@@ -12,12 +12,12 @@ var test = '';
     .module('ncs.displays.controllers')
     .controller('NewDisplayController', NewDisplayController);
 
-  NewDisplayController.$inject = ['Authentication', 'Snackbar', 'Displays'];
+  NewDisplayController.$inject = ['$state', 'Authentication', 'Snackbar', 'Displays'];
 
   /**
   * @namespace NewDisplayController
   */
-  function NewDisplayController(Authentication, Snackbar, Displays) {
+  function NewDisplayController($state, Authentication, Snackbar, Displays) {
     var vm = this;
     vm.displayName = '';
     vm.submit = submit;
@@ -38,7 +38,7 @@ var test = '';
       function createDisplaySuccessFn(data, status, headers, config) {
         // get display id, go to display edit
         Snackbar.show('Display created.');
-        window.location = '/displays/';
+        $state.go('displays');
       }
 
       /**

@@ -10,15 +10,15 @@
     .module('ncs.presentations.controllers')
     .controller('EditPresentationController', EditPresentationController);
 
-  EditPresentationController.$inject = ['$rootScope', '$scope', '$stateParams', 'Authentication', 'Snackbar', 'Presentations', 'IatiActivities', 'Slides', 'Countries', 'Regions', 'Sectors', 'FilterSelection'];
+  EditPresentationController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'Authentication', 'Snackbar', 'Presentations', 'IatiActivities', 'Slides', 'Countries', 'Regions', 'Sectors', 'FilterSelection', 'RsrProjects'];
 
   /**
   * @namespace EditPresentationController
   */
-  function EditPresentationController($rootScope, $scope, $stateParams, Authentication, Snackbar, Presentations, IatiActivities, Slides, Countries, Regions, Sectors, FilterSelection) {
+  function EditPresentationController($rootScope, $scope, $state, $stateParams, Authentication, Snackbar, Presentations, IatiActivities, Slides, Countries, Regions, Sectors, FilterSelection, RsrProjects) {
     
     var vm = this;
-    vm.view = 'iati-select'; // options: iati-select / rsr-select / slide-wysiwyg / iati-select-regions / iati-select-countries / iati-select-sectors / iati-select-budget
+    vm.view = 'rsr-select'; // options: iati-select / rsr-select / slide-wysiwyg / iati-select-regions / iati-select-countries / iati-select-sectors / iati-select-budget
     vm.presentationId = $stateParams.presentation_id;
     vm.presentation = {};
     vm.selectedProjects = [{id:'dummy'},{id:'dummy'},{id:'dummy'},{id:'dummy'},{id:'dummy'}];
@@ -37,6 +37,18 @@
       vm.view = view;
     }
 
+    vm.isSource = function(project, source){
+        if(project.previewData != undefined){
+           return (project.previewData.source == source) ? true: false; 
+        } else {
+            return false;
+        }
+    }
+
+    vm.deleteSlide = function(id){
+        Snackbar.show('Delete slide not implemented yet');
+    }
+
     function errorFn(data, status, headers, config) {
         Snackbar.error(data.error);
     }
@@ -52,8 +64,9 @@
                 vm.selectedProjects[vm.presentation.slide_set[i]['position']] = vm.presentation.slide_set[i];
             }
         }
-
+        vm.rsrActivate();
         vm.iatiActivate();
+
     }
 
     vm.save = function(caller){
@@ -68,6 +81,7 @@
                     'content': 'unused',
                     'previewData': JSON.stringify(vm.selectedProjects[i]['previewData']),
                     'source': vm.selectedProjects[i]['previewData']['source'],
+                    'presentation': vm.presentationId
                 });
             }
         }
@@ -89,12 +103,19 @@
             Slides.saveSlide = true;
         }
 
+        if(caller == 'save-draft'){
+            vm.presentation.status = 'draft';
+        }
+
+        if(caller == 'save-presentation'){
+            vm.presentation.status = 'published';
+        }
+
         Presentations.update(vm.presentation).then(successFn, errorFn);
         
         function successFn(data, status, headers, config){
+            
             // set slide id in vm.selectedProjects
-            console.log(data);
-
             var actSlideIdMap = {};
 
             for (var i = 0;i < data.data.slide_set.length;i++){
@@ -102,14 +123,21 @@
             }
 
             for (var i = 0;i < vm.selectedProjects.length;i++){
-                console.log(vm.selectedProjects[i]);
                 if(vm.selectedProjects[i]['id'] != 'dummy'){
                     vm.selectedProjects[i]['id'] = actSlideIdMap[vm.selectedProjects[i]['previewData']['id']];
                 }
             }
 
+            if(caller == 'save-draft'){
+                $state.go('presentations');
+            }
+            
             if(caller == 'edit-presentation'){
-                window.location = '/presentations/';
+                $state.go('presentations');
+            }
+
+            if(caller == 'save-presentation'){
+                $state.go('displays');
             }
         }
 
@@ -127,31 +155,47 @@
     vm.addEmptySlide = function(){
 
         var added = false;
+        var id = 0;
         var newSlide = {
-            'id': 'shouldthisbeset',
-            'title': '',
-            'description': '',
-            'source': 'content'
-        }
+            'activity_id': 'content-slide',
+            'position': 0,
+            'content': '{"title":"Empty content slide","subtitle":""}',
+            'previewData': {
+                'id': 'content-slide',
+                'title': "Empty content slide",
+                'source': 'content'
+            },
+            'source': 'content',
+            'mainImage': null,
+            'backgroundImage': null,
+            'isPreviewed': true,
+            'presentation': vm.presentationId,
+        };
 
         for(var i = 0;i < vm.selectedProjects.length;i++){
             if(vm.selectedProjects[i]['id'] == 'dummy'){
                 // make this the new content slide
+                newSlide['position'] = i;
+                newSlide['activity_id'] = newSlide['activity_id'] + '-' + newSlide['position'];
+                newSlide['previewData']['id'] = newSlide['activity_id'];
+                id = i;
+                vm.selectedProjects[i] = newSlide;
                 added = true;
                 break;
             }
         }
 
         if(!added){
+            newSlide['position'] = vm.selectedProjects.length;
+            newSlide['activity_id'] = newSlide['activity_id'] + '-' + newSlide['position'];
+            newSlide['previewData']['id'] = newSlide['activity_id'];
             // make new slide
-            vm.selectedProjects[vm.selectedProjects.length] = {
-
-            }
+            vm.selectedProjects[vm.selectedProjects.length] = newSlide;
+            id = vm.selectedProjects.length;
         }
 
+        vm.save('change-slide');
     }
-
-    vm.create
 
 
 
@@ -172,6 +216,8 @@
     vm.iatiBudgetOn = false;
     vm.iatiBudgetValue = [];
 
+    vm.iatiTextSearch = '';
+
     vm.iatiFilterSelection = FilterSelection;
 
     vm.iatiProjects = {
@@ -180,24 +226,32 @@
         'totalActivities': 0,
         'orderBy': 'start_actual',
         'perPage': 6,
-        'currentPage': 0
-    }
+        'currentPage': 0,
+        'loading': true
+    };
 
     vm.iatiPageChanged = function(newPageNumber) {
         vm.iatiProjects.offset = ((newPageNumber * vm.iatiProjects.perPage) - vm.iatiProjects.perPage);
         IatiActivities.list(FilterSelection.selectionString, vm.iatiProjects.perPage, vm.iatiProjects.orderBy, vm.iatiProjects.offset).then(activitiesSuccessFn, errorFn);
-    };
+    }
 
     function activitiesSuccessFn(data, status, headers, config) {
         for(var i = 0; i < data.data.objects.length; i++){
-            data.data.objects[i] = {'previewData': data.data.objects[i]};
-            data.data.objects[i]['previewData']['source'] = 'iati';
+            data.data.objects[i] = {'previewData': {
+                'id': data.data.objects[i]['id'],
+                'title': data.data.objects[i]['titles'][0]['title'],
+                'source': 'iati'
+            }};
         }
         vm.iatiProjects.totalActivities = data.data.meta.total_count;
         vm.iatiProjects.activities = data.data.objects;
+
+        vm.iatiProjects['loading'] = false;
     }
 
     vm.iatiActivate = function(){
+
+        IatiActivities.list(FilterSelection.selectionString, vm.iatiProjects.perPage, vm.iatiProjects.orderBy, vm.iatiProjects.offset).then(activitiesSuccessFn, errorFn);
 
         Regions.all().then(regionsSuccessFn, errorFn);
         Countries.all().then(countriesSuccessFn, errorFn);
@@ -214,28 +268,18 @@
         function sectorsSuccessFn(data, status, headers, config) {
             vm.iatiRecipientSectors = data.data;
         }
+    }
 
-        $scope.$watch("vm.iatiSelectedCountries", function (){
-            vm.updateSelectionString();
-        }, true);
-
-        $scope.$watch("vm.iatiSelectedRegions", function (){
-            vm.updateSelectionString();
-        }, true);
-
-        $scope.$watch("vm.iatiSelectedSectors", function (){
-            vm.updateSelectionString();
-        }, true);
-
-        $scope.$watch("vm.currentSelection", function (currentSelection) {
-            console.log('watch current selection');
+    vm.showIatiProjects = function(){
+        vm.view = 'iati-select';
+        // check if filters changed, if so filter projects
+        if(vm.updateSelectionString()){
             IatiActivities.list(FilterSelection.selectionString, vm.iatiProjects.perPage, vm.iatiProjects.orderBy, vm.iatiProjects.offset).then(activitiesSuccessFn, errorFn);
-        }, true);
-        
+        }
     }
 
     vm.updateSelectionString = function(){
-      
+
       var selectList = [
         vm.selectArrayToString('countries', 'country_id', vm.iatiSelectedCountries),
         vm.selectArrayToString('regions', 'region_id', vm.iatiSelectedRegions),
@@ -245,8 +289,18 @@
       if(vm.iatiBudgetOn){
         selectList.push('&total_budget__gt='+vm.iatiBudgetValue[0]+'&total_budget__lt='+vm.iatiBudgetValue[1]);
       }
+
+      if(vm.iatiTextSearch != ''){
+        selectList.push('&query='+vm.iatiTextSearch);
+      }
+
       if(FilterSelection.selectionString != selectList.join('')){
         FilterSelection.selectionString = selectList.join('');
+
+        vm.iatiProjects['loading'] = true;
+        return true;
+      } else {
+        return false;
       }
     }
 
@@ -264,6 +318,42 @@
 
       return headerName + list.join(',');
     }
+
+
+
+
+    vm.rsrProjects = {
+        'offset': 0,
+        'activities': [],
+        'totalActivities': 0,
+        'orderBy': 'title',
+        'perPage': 6,
+        'currentPage': 1
+    };
+    vm.rsrPageChanged = function(newPageNumber) {
+        vm.rsrProjects.currentPage = newPageNumber;
+        RsrProjects.list('', vm.rsrProjects.perPage,  vm.rsrProjects.currentPage, vm.rsrProjects.orderBy).then(rsrProjectsSuccessFn, errorFn);
+    }
+
+    function rsrProjectsSuccessFn(data, status, headers, config) {
+        for(var i = 0; i < data.data.results.length; i++){
+            data.data.results[i] = {'previewData': {
+                'id': data.data.results[i]['id'],
+                'title': data.data.results[i]['title'],
+                'source': 'rsr'
+            }};
+        }
+
+        vm.rsrProjects.totalActivities = data.data.count;
+        vm.rsrProjects.activities = data.data.results;
+    }
+
+    vm.rsrActivate = function(){
+        RsrProjects.list('', vm.rsrProjects.perPage,  vm.rsrProjects.currentPage, vm.rsrProjects.orderBy).then(rsrProjectsSuccessFn, errorFn);
+
+        
+    }
+
 
 
     activate();

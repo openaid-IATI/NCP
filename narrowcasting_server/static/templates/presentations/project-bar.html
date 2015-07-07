@@ -7,28 +7,53 @@
             jqyoui-droppable="{index: {{$index}}, onDrop:'vm.onDropProjects(project, $index)'}">
 
             <div 
-                class="project project-in-list iati green text-center" 
+                class="text-center" 
                 data-drag="true" 
                 data-jqyoui-options="{revert: 'invalid'}" 
                 ng-model="vm.selectedProjects" 
-                jqyoui-draggable="{index: {{$index}},animate:false}">
-                <div ng-show="project.previewData.titles">
-                    <h3>{{project.previewData.titles[0].title}}</h3>
+                jqyoui-draggable="{index: {{$index}}, animate:false}">
+
+                <div class="project project-in-list" 
+                ng-show="project.previewData.title" 
+                ng-class="{
+                 'iati': vm.isSource(project, 'iati'),
+                 'rsr': vm.isSource(project, 'rsr'),
+                 'content': vm.isSource(project, 'content')
+                }">
+                    <h3>{{project.previewData.title}}</h3>
                     <p>
                         <span>STATUS:</span> <br>
                         <div ng-show="project.status == 'loading-data'">Loading data&nbsp;<img src="/static/images/puff.svg" width="20" alt=""></div>
                         <div ng-show="project.status == 'mapping-data'">Filling slide&nbsp;<img src="/static/images/bars.svg" width="20" alt=""></div>
                         <a 
-                            ng-click="vm.editSlide($index)" 
+                            ng-click="vm.editSlide($index, 1)" 
                             class="edit-slide-link">
                             Click to preview/edit slide&nbsp;</a>
                         <br>&nbsp;<br>
-                        <span>Slide {{$index+1}}</span>
+                        <span>Slide {{$index+1}}<span ng-show="vm.isSource(project, 'rsr')">.1</span></span>
                     </p>
+
+                    <a class="remove-slide glyphicon glyphicon-remove" ng-click="vm.deleteSlide()"></a>
+                </div>
+                <div class="project project-in-list rsr rsr-slide-2" ng-show="vm.isSource(project, 'rsr')">
+                    <h3>{{project.previewData.title}}</h3>
+                    <p>
+                        <span>STATUS:</span> <br>
+                        <div ng-show="project.status == 'loading-data'">Loading data&nbsp;<img src="/static/images/puff.svg" width="20" alt=""></div>
+                        <div ng-show="project.status == 'mapping-data'">Filling slide&nbsp;<img src="/static/images/bars.svg" width="20" alt=""></div>
+                        <a 
+                            ng-click="vm.editSlide($index, 2)" 
+                            class="edit-slide-link">
+                            Click to preview/edit slide&nbsp;</a>
+                        <br>&nbsp;<br>
+                        <span>Slide {{$index+1}}.2</span>
+                    </p>
+
+                    <a class="remove-slide glyphicon glyphicon-remove" ng-click="vm.deleteSlide()"></a>
                 </div>
                 <a 
                     class="dummy"
-                    ng-hide="project.previewData.titles">
+                    ng-hide="project.previewData.title">
                     <h3>Choose project</h3>
                     <span class="drag-drop">Drag & drop</span><br>
                     <img src="/static/images/icon-duplicate.png" /><br>

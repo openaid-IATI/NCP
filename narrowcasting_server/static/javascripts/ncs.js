@@ -6,6 +6,7 @@
             'ncs.config',
             'ncs.routes',
             'angularUtils.directives.dirPagination',
+            'checklist-model',
             'ui.bootstrap-slider',
             'ngDragDrop',
             'ngFileUpload',
@@ -14,6 +15,7 @@
             'ncs.layout',
             'ncs.presentations',
             'ncs.iati',
+            'ncs.rsr',
             'ncs.displays',
             'ncs.users',
             'ncs.utils'

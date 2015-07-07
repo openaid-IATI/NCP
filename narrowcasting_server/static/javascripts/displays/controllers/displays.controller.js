@@ -36,7 +36,7 @@ var test = '';
           Snackbar.error(data.error);
         }
 
-        Presentations.all().then(presentationsSuccessFn, presentationsErrorFn);
+        Presentations.all('&status=published').then(presentationsSuccessFn, presentationsErrorFn);
 
         /**
         * @name presentationsSuccessFn
