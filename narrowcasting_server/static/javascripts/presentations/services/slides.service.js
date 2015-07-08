@@ -49,7 +49,8 @@
         }
 
         function update(slide) {
-            // console.log(slide.slideContent.title);
+            console.log(slide.slideContent.title);
+            console.log(slide);
             // slide.slideContent = JSON.stringify(slide.slideContent);
             return $http.put('/api/v1/slides/'+slide.id+'/', slide);
         }

@@ -36,8 +36,9 @@ class SlideViewSet(viewsets.ModelViewSet):
         return super(SlideViewSet, self).perform_create(serializer)
 
     def perform_update(self, serializer):
-        serializer.save(backgroundImage=self.request.data.get('backgroundImage'), mainImage=self.request.data.get('mainImage'))
-        return super(SlideViewSet, self).perform_create(serializer)
+        serializer.save()
+        # serializer.save(backgroundImage=self.request.data.get('backgroundImage'), mainImage=self.request.data.get('mainImage'))
+        # return super(SlideViewSet, self).perform_update(serializer)
 
 
 class PresentationViewSet(viewsets.ModelViewSet):

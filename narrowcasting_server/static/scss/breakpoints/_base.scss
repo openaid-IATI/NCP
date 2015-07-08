@@ -1226,11 +1226,17 @@ slide WYSIWYG
       }
     }
 
+
+
     .budget-block{
       left: 50%;
       top: 37%;
       width: 23%;
       height: 13%;
+
+      .block-text{
+        font-size: 1.4em;
+      }
     }
 
     .target-group-block{
@@ -1252,6 +1258,11 @@ slide WYSIWYG
 
       input{
         max-width: 100%;
+      }
+
+      .block-text{
+        margin-top: 6px;
+        font-size: 1.4em;
       }
     }
 
