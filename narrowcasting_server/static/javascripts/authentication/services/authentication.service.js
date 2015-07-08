@@ -88,7 +88,7 @@
             function loginSuccessFn(data, status, headers, config){
 
                 Authentication.setAuthenticatedAccount(data.data);
-                $state.go('presentations');
+                window.location.href = 'presentations/';
             }
 
             /**
