@@ -26,19 +26,19 @@
     vm.optionColor = "#969696";
 
     vm.fontSize = function(){
-        vm.slide.slide_content[vm.selectedField].cssStyle['font-size'] = vm.optionFontSize; 
+        vm.slide.slideContent[vm.selectedField].cssStyle['font-size'] = vm.optionFontSize; 
     }
 
     vm.bold = function(){
-        vm.slide.slide_content[vm.selectedField].cssStyle['font-weight'] = vm.slide.slide_content[vm.selectedField].cssStyle['font-weight'] == 'normal' ? 'bold' : 'normal'; 
+        vm.slide.slideContent[vm.selectedField].cssStyle['font-weight'] = vm.slide.slideContent[vm.selectedField].cssStyle['font-weight'] == 'normal' ? 'bold' : 'normal'; 
     }
 
     vm.italic = function(){
-        vm.slide.slide_content[vm.selectedField].cssStyle['font-style'] = vm.slide.slide_content[vm.selectedField].cssStyle['font-style'] == 'normal' ? 'italic' : 'normal'; 
+        vm.slide.slideContent[vm.selectedField].cssStyle['font-style'] = vm.slide.slideContent[vm.selectedField].cssStyle['font-style'] == 'normal' ? 'italic' : 'normal'; 
     }
 
     vm.underline = function(){
-        vm.slide.slide_content[vm.selectedField].cssStyle['text-decoration'] = vm.slide.slide_content[vm.selectedField].cssStyle['text-decoration'] == 'none' ? 'underline' : 'none'; 
+        vm.slide.slideContent[vm.selectedField].cssStyle['text-decoration'] = vm.slide.slideContent[vm.selectedField].cssStyle['text-decoration'] == 'none' ? 'underline' : 'none'; 
     }
 
     vm.removeBackgroundImage = function(){
@@ -48,8 +48,8 @@
     function activate(){
 
         $scope.$watch("vm.Slides.saveSlide", function (saveSlide) {
-            
-            if(saveSlide){
+            console.log(saveSlide);
+            if(saveSlide == true){
                 vm.save();
                 Slides.saveSlide = false;
             } 
@@ -64,9 +64,7 @@
             }
 
             function successFn(data, status, headers, config) {
-                console.log(data.data);
-                console.log(typeof data.data.slide_content);
-                data.data.slide_content = JSON.parse(data.data.slide_content);
+                data.data.slideContent = JSON.parse(data.data.slideContent);
                 vm.slide = data.data;
                 vm.slideType = data.data.source;
                 vm.afterSlideLoad();
@@ -87,22 +85,23 @@
     }
 
     vm.changeFontSize = function(){
-        vm.slide.slide_content[vm.selectedField].cssStyle['font-size'] = vm.optionFontSize;
+        vm.slide.slideContent[vm.selectedField].cssStyle['font-size'] = vm.optionFontSize;
     }
 
     vm.changeColor = function(){
-        vm.slide.slide_content[vm.selectedField].cssStyle['color'] = vm.optionColor;
+        vm.slide.slideContent[vm.selectedField].cssStyle['color'] = vm.optionColor;
     }
 
     vm.selectField = function(fieldName){
         vm.selectedField = fieldName;
-        vm.optionFontSize = vm.slide.slide_content[vm.selectedField].cssStyle['font-size'];
-        vm.optionColor = vm.slide.slide_content[vm.selectedField].cssStyle['color'];
+        vm.optionFontSize = vm.slide.slideContent[vm.selectedField].cssStyle['font-size'];
+        vm.optionColor = vm.slide.slideContent[vm.selectedField].cssStyle['color'];
     }
 
     vm.save = function(){
 
         if(vm.slide.id != undefined){
+            console.log(vm.slide);
             Slides.update(vm.slide).then(succesFn, errorFn);
         }
         

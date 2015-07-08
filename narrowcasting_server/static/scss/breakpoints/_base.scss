@@ -1176,7 +1176,7 @@ slide WYSIWYG
     top: 24%;
     width: 20.5%;
     height: 16%;
-    font-size: 1.6em;
+    font-size: 1.5em;
 
     .block-header{
       line-height: 1.1em;
@@ -1212,6 +1212,64 @@ slide WYSIWYG
 
     }
   }
+
+  .rsr-slide{
+
+    .funding-partner-block{
+      left: 50%;
+      top: 24%;
+      width: 23%;
+      height: 12%;
+
+      textarea{
+        max-height: 24px;
+      }
+    }
+
+    .budget-block{
+      left: 50%;
+      top: 37%;
+      width: 23%;
+      height: 13%;
+    }
+
+    .target-group-block{
+      left: 50%;
+      top: 52%;
+      width: 23%;
+      height: 20%;
+
+      textarea{
+        height: 63px;
+      }
+    }
+
+    .location-name-block{
+      left: 74%;
+      top: 24%;
+      height: 16%;
+      width: 18%;
+
+      input{
+        max-width: 100%;
+      }
+    }
+
+    .location-block{
+      left: 74%;
+      top: 42%;
+      height: 30%;
+      width: 25%;
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+  }
+
+ 
 
   
 

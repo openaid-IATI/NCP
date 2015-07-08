@@ -19,7 +19,7 @@ class Presentation(models.Model):
 class Slide(models.Model):
     activity_id = models.CharField(null=False, blank=False, default='none', max_length=100)
     position = models.SmallIntegerField(default=0)
-    content = models.TextField()
+    slideContent = models.TextField()
     previewData = models.TextField(default='')
     source = models.CharField(null=False, blank=False, default='iati', max_length=100)
     mainImage = models.ImageField(upload_to='images', max_length=254, default=None, null=True)

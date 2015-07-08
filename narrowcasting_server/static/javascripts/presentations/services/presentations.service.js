@@ -22,6 +22,7 @@
 			create: create,
 			get: get,
 			getSingle: getSingle,
+			deletePresentation: deletePresentation,
 			update: update
 		};
 
@@ -60,6 +61,7 @@
 	    }
 
 	    function update(presentation) {
+	    	console.log('presentation update called');
             return $http.put('/api/v1/presentations/'+presentation.id+'/', presentation);
         }
 
@@ -83,6 +85,10 @@
 	     */
 	     function getSingle(id) {
 	     	return $http.get('/api/v1/presentations/' + id + '/');
+	     }
+
+	     function deletePresentation(id){
+	     	return $http.delete('/api/v1/presentations/' + id + '/');
 	     }
 	}
 })();

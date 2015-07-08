@@ -12,8 +12,9 @@ from ncs.models import Presentation
 from ncs.models import Display
 from ncs.models import Slide
 
+import requests
+
 class SlideSerializer(serializers.ModelSerializer):
-    slide_content = serializers.SerializerMethodField()
 
     class Meta:
         model = Slide
@@ -21,8 +22,7 @@ class SlideSerializer(serializers.ModelSerializer):
             'id',
             'activity_id',
             'position',
-            'content',
-            'slide_content',
+            'slideContent',
             'previewData',
             'mainImage',
             'backgroundImage',
@@ -38,11 +38,10 @@ class SlideSerializer(serializers.ModelSerializer):
         return Slide(**validated_data)
 
     def update(self, instance, validated_data):
+        test = json.loads(instance.slideContent)
+        title = test['title']['text']
         instance.save()
         return instance
-
-    def get_slide_content(self, slide):
-        return slide.content
 
     def get_validation_exclusions(self, *args, **kwargs):
         exclusions = super(SlideSerializer, self).get_validation_exclusions()
@@ -82,7 +81,7 @@ class PresentationSerializer(serializers.ModelSerializer):
         slide_data['title'] = {
             'text': slide_data['title'],
             'cssStyle': {
-                'font-size': '22px',
+                'font-size': '24px',
                 'color': '#000000',
                 'font-weight': 'bold',
                 'font-style': 'normal',
@@ -93,7 +92,7 @@ class PresentationSerializer(serializers.ModelSerializer):
         slide_data['subtitle'] = {
             'text': slide_data['subtitle'],
             'cssStyle': {
-                'font-size': '22px',
+                'font-size': '16px',
                 'color': '#000000',
                 'font-weight': 'bold',
                 'font-style': 'normal',
@@ -104,7 +103,7 @@ class PresentationSerializer(serializers.ModelSerializer):
         slide_data['goals_overview'] = {
             'text': slide_data['goals_overview'],
             'cssStyle': {
-                'font-size': '22px',
+                'font-size': '16px',
                 'color': '#000000',
                 'font-weight': 'bold',
                 'font-style': 'normal',
@@ -115,18 +114,7 @@ class PresentationSerializer(serializers.ModelSerializer):
         slide_data['project_plan_summary'] = {
             'text': slide_data['project_plan_summary'],
             'cssStyle': {
-                'font-size': '22px',
-                'color': '#000000',
-                'font-weight': 'bold',
-                'font-style': 'normal',
-                'text-decoration': 'none',
-            }
-        }
-
-        slide_data['project_plan_summary'] = {
-            'text': slide_data['project_plan_summary'],
-            'cssStyle': {
-                'font-size': '22px',
+                'font-size': '14px',
                 'color': '#000000',
                 'font-weight': 'bold',
                 'font-style': 'normal',
@@ -148,7 +136,7 @@ class PresentationSerializer(serializers.ModelSerializer):
         slide_data['target_group'] = {
             'text': slide_data['target_group'],
             'cssStyle': {
-                'font-size': '22px',
+                'font-size': '12px',
                 'color': '#000000',
                 'font-weight': 'bold',
                 'font-style': 'normal',
@@ -160,9 +148,6 @@ class PresentationSerializer(serializers.ModelSerializer):
         primary_location = slide_data['primary_location']
         if primary_location:
             print 'get primary location from rsr'
-
-
-        # get project updates
 
 
         # get partners
@@ -262,16 +247,10 @@ class PresentationSerializer(serializers.ModelSerializer):
 
     def create_slide(self, slide, presentation):
 
-        if slide['source'] == 'iati':
-            request = Request(settings.OIPA_URL + '/activities/' + slide['activity_id'] + '/?format=json')
-
-        if slide['source'] == 'rsr':
-            request = Request(settings.RSR_URL + '/project/' + slide['activity_id'] + '/?format=json')
-            # get 2 latest rsr updates, and other stuff that's not in this call and we need
-
         try:
 
             if slide['source'] == 'iati':
+                request = Request(settings.OIPA_URL + '/activities/' + slide['activity_id'] + '/?format=json')
 
                 response = urlopen(request)
                 slide_data = json.loads(response.read())
@@ -281,18 +260,43 @@ class PresentationSerializer(serializers.ModelSerializer):
 
             if slide['source'] == 'rsr':
 
-                response = urlopen(request)
-                slide_data = json.loads(response.read())
+                url = settings.RSR_URL + '/project/' + slide['activity_id'] + '/?format=json'
+                headers = {'Authorization': settings.RSR_TOKEN}
+                response = requests.get(url, headers=headers)
+                slide_data = response.json()
+
+
+                # get google image from location
+                if 'primary_location' in slide_data and slide_data['primary_location'] is not None:
+
+                    url = settings.RSR_URL + '/project_location/' + str(slide_data['primary_location']) + '/?format=json'
+                    response = requests.get(url, headers=headers)
+                    slide_data['primary_location'] = response.json()
+
+                    url = 'https://maps.googleapis.com/maps/api/staticmap'
+                    url += '?zoom=13&size=700x300&maptype=roadmap&markers=color:red%7Clabel:C%7C'
+                    url += str(slide_data['primary_location']['latitude']) + ','
+                    url += str(slide_data['primary_location']['longitude'])
+
+                    location_image = requests.get(url, headers=headers)
+                    # TO DO; handle images using requests
+
+                # rsr updates
+                url = settings.RSR_URL + '/project_update/?format=json&limit=2&project=' + slide['activity_id']
+                response = requests.get(url, headers=headers)
+                rsr_updates = response.json()
+                slide_data['rsr_updates'] = rsr_updates
+
                 slide_data = self.map_rsr_fields(slide_data)
                 slide_data = json.dumps(slide_data)
 
             if slide['source'] == 'content':
 
-                slide_data = self.map_content_fields(slide_data)
+                slide_data = self.map_content_fields(slide)
 
             new_slide = Slide(
                 activity_id=slide['activity_id'],
-                content=slide_data,
+                slideContent=slide_data,
                 previewData=slide['previewData'],
                 position=slide['position'],
                 source=slide['source'],

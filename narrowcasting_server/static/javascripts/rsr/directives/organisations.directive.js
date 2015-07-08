@@ -1,27 +1,27 @@
 /**
-* iatiSelectRegions
-* @namespace ncs.iati.directives
+* rsrSelectRegions
+* @namespace ncs.rsr.directives
 */
 (function () {
   'use strict';
 
   angular
-    .module('ncs.iati.directives')
-    .directive('iatiSelectRegions', iatiSelectRegions);
+    .module('ncs.rsr.directives')
+    .directive('rsrSelectOrganisation', rsrSelectOrganisation);
 
   /**
-  * @namespace iatiSelectRegions
+  * @namespace rsrSelectRegions
   */
-  function iatiSelectRegions() {
+  function rsrSelectOrganisation() {
     /**
     * @name directive
     * @desc The directive to be returned
-    * @memberOf ncs.iati.directives
+    * @memberOf ncs.rsr.directives
     */
     var directive = {
       restrict: 'E',
       scope: false,
-      templateUrl: '/static/templates/iati/iatiSelectRegions.html'
+      templateUrl: '/static/templates/rsr/rsrSelectOrganisation.html'
     };
 
     return directive;

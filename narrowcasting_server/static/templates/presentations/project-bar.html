@@ -33,7 +33,7 @@
                         <span>Slide {{$index+1}}<span ng-show="vm.isSource(project, 'rsr')">.1</span></span>
                     </p>
 
-                    <a class="remove-slide glyphicon glyphicon-remove" ng-click="vm.deleteSlide()"></a>
+                    <a class="remove-slide glyphicon glyphicon-remove" ng-click="vm.deleteSlide($index)"></a>
                 </div>
                 <div class="project project-in-list rsr rsr-slide-2" ng-show="vm.isSource(project, 'rsr')">
                     <h3>{{project.previewData.title}}</h3>
@@ -49,7 +49,7 @@
                         <span>Slide {{$index+1}}.2</span>
                     </p>
 
-                    <a class="remove-slide glyphicon glyphicon-remove" ng-click="vm.deleteSlide()"></a>
+                    <a class="remove-slide glyphicon glyphicon-remove" ng-click="vm.deleteSlide($index)"></a>
                 </div>
                 <a 
                     class="dummy"

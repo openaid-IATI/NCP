@@ -1,27 +1,27 @@
 /**
-* iatiSelectBudget
-* @namespace ncs.iati.directives
+* rsrSelectLocation
+* @namespace ncs.rsr.directives
 */
 (function () {
   'use strict';
 
   angular
-    .module('ncs.iati.directives')
-    .directive('iatiSelectBudget', iatiSelectBudget);
+    .module('ncs.rsr.directives')
+    .directive('rsrSelectLocation', rsrSelectLocation);
 
   /**
-  * @namespace iatiSelectBudget
+  * @namespace rsrSelectLocation
   */
-  function iatiSelectBudget() {
+  function rsrSelectLocation() {
     /**
     * @name directive
     * @desc The directive to be returned
-    * @memberOf ncs.iati.directives
+    * @memberOf ncs.rsr.directives
     */
     var directive = {
       restrict: 'E',
       scope: false,
-      templateUrl: '/static/templates/iati/iatiSelectBudget.html'
+      templateUrl: '/static/templates/rsr/rsrSelectLocation.html'
     };
 
     return directive;

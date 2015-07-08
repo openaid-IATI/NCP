@@ -23,8 +23,9 @@
     vm.presentation = {};
     vm.selectedProjects = [{id:'dummy'},{id:'dummy'},{id:'dummy'},{id:'dummy'},{id:'dummy'}];
 
-    vm.editSlide = function(id){
+    vm.editSlide = function(id, slideNr){
         Slides.currentSlide = vm.selectedProjects[id].id;
+        Slides.slideNr = slideNr;
         Slides.saveSlide = true;
         vm.view = 'slide-wysiwyg';
     }
@@ -45,8 +46,14 @@
         }
     }
 
-    vm.deleteSlide = function(id){
-        Snackbar.show('Delete slide not implemented yet');
+    vm.deleteSlide = function(index){
+
+        var id = vm.selectedProjects[index]['id'];
+        Slides.deleteSlide(id).then(succesFn, errorFn);
+
+        function succesFn(data, status, headers, config){
+            vm.selectedProjects[index] = {id:'dummy'}
+        }
     }
 
     function errorFn(data, status, headers, config) {
@@ -66,7 +73,6 @@
         }
         vm.rsrActivate();
         vm.iatiActivate();
-
     }
 
     vm.save = function(caller){
@@ -78,7 +84,7 @@
                 vm.presentation.slide_set.push({
                     'activity_id': vm.selectedProjects[i]['previewData']['id'],
                     'position': i,
-                    'content': 'unused',
+                    'slideContent': '{}',
                     'previewData': JSON.stringify(vm.selectedProjects[i]['previewData']),
                     'source': vm.selectedProjects[i]['previewData']['source'],
                     'presentation': vm.presentationId
@@ -98,10 +104,11 @@
                 }
             }
         }
+
         // if on a slide, save the slide first
-        if(vm.view == 'slide-wysiwyg'){
-            Slides.saveSlide = true;
-        }
+        // if(vm.view == 'slide-wysiwyg'){
+        //     Slides.saveSlide = true;
+        // }
 
         if(caller == 'save-draft'){
             vm.presentation.status = 'draft';
@@ -240,6 +247,10 @@
             data.data.objects[i] = {'previewData': {
                 'id': data.data.objects[i]['id'],
                 'title': data.data.objects[i]['titles'][0]['title'],
+                'countries': data.data.objects[i]['countries'],
+                'sectors': data.data.objects[i]['sectors'],
+                'totalBudget': data.data.objects[i]['totalBudget'],
+                'start_actual': data.data.objects[i]['start_actual'],
                 'source': 'iati'
             }};
         }

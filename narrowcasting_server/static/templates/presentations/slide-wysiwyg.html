@@ -11,27 +11,90 @@
 
             <div class="rsr-slide" ng-show="vm.slideType == 'rsr'">
 
+                <img 
+                    ngf-src="vm.slide.backgroundImage[0]" 
+                    ng-show="vm.slide.backgroundImage[0].type.indexOf('image') > -1" 
+                    ngf-accept="'image/*'" 
+                    class="background-image">
 
-                <input class="header block-box-shadow" ng-model="vm.slide.header.text" ng-style="vm.slide.header.style">
-                <textarea class="subheader block-box-shadow" ng-model="vm.slide.subHeader"></textarea>
-                <textarea class="description block-box-shadow" ng-model="vm.slide.description"></textarea>
+                <input 
+                    class="header" 
+                    ng-model="vm.slide.slideContent.title.text" 
+                    ng-style="vm.slide.slideContent.title.cssStyle" 
+                    ng-click="vm.selectField('title')"
+                    ng-class="{'active': vm.selectedField == 'title'}">
+
+                <textarea 
+                    class="subheader block-box-shadow" 
+                    ng-model="vm.slide.slideContent.subtitle.text" 
+                    ng-style="vm.slide.slideContent.subtitle.cssStyle" 
+                    ng-click="vm.selectField('subtitle')"
+                    ng-class="{'active': vm.selectedField == 'subtitle'}"></textarea>
+                <textarea 
+                    class="description block-box-shadow" 
+                    ng-model="vm.slide.slideContent.project_plan_summary.text" 
+                    ng-style="vm.slide.slideContent.project_plan_summary.cssStyle" 
+                    ng-click="vm.selectField('project_plan_summary')"
+                    ng-class="{'active': vm.selectedField == 'project_plan_summary'}"></textarea>
                 
-                <img class="main-image" src="{{vm.slide.mainImage}}">
+                <img class="main-image" src="http://rsr.akvo.org{{vm.slide.slideContent.current_image}}">
 
-                <div class="block block-box-shadow date-block start-date">
+                <div ng-show="vm.Slides.slideNr == 1" class="block block-box-shadow date-block start-date">
                     <div class="block-header">Start date</div>
-                    <span>{{vm.slide.startDate}}</span>
+                    <span class="block-text">{{vm.slide.slideContent.date_start_planned | date:'dd MMM yyyy' }}</span>
                 </div>
 
-                <div class="block block-box-shadow date-block end-date">
+                <div ng-show="vm.Slides.slideNr == 1" class="block block-box-shadow date-block end-date">
                     <div class="block-header">End date</div>
-                    <span>{{vm.slide.endDate}}</span>
+                    <span class="block-text">{{vm.slide.slideContent.date_end_planned | date:'dd MMM yyyy' }}</span>
                 </div>
 
-                <div class="block block-box-shadow goal-block">
+                <div ng-show="vm.Slides.slideNr == 1" class="block block-box-shadow goal-block">
                     <div class="block-header">GOALS</div>
-                    <textarea class="goals" ng-model="vm.slide.goals"></textarea>
+                    <textarea 
+                        class="goals" 
+                        ng-model="vm.slide.slideContent.goals_overview.text" 
+                        ng-style="vm.slide.slideContent.goals_overview.cssStyle" 
+                        ng-click="vm.selectField('goals_overview')"
+                        ng-class="{'active': vm.selectedField == 'goals_overview'}"></textarea>
                 </div>
+
+
+                <div ng-show="vm.Slides.slideNr == 2" class="block block-box-shadow funding-partner-block">
+                    <div class="block-header">Funding partner</div>
+                    <textarea>TO DO; load partner data</textarea>
+                </div>
+
+                <div ng-show="vm.Slides.slideNr == 2" class="block block-box-shadow location-name-block">
+                    <div class="block-header">Location</div>
+                    <input class="block-text" type="text" ng-model="vm.slide.slideContent.primary_location.city">
+                </div>
+
+                <div ng-show="vm.Slides.slideNr == 2" class="block location-block">
+                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=424x270&maptype=roadmap&markers=color:red%7Clabel:C%7C{{vm.slide.slideContent.primary_location.latitude}},{{vm.slide.slideContent.primary_location.longitude}}">
+                </div>
+
+                <div ng-show="vm.Slides.slideNr == 2" class="block block-box-shadow budget-block">
+                    <div class="block-header">Project budget</div>
+                    <span class="block-text">{{vm.slide.slideContent.budget.text | iaticurrency :'€':0:".":"."  }}</span>
+                </div>
+
+                <div ng-show="vm.Slides.slideNr == 2" class="block block-box-shadow target-group-block">
+                    <div class="block-header">Target group</div>
+                    <textarea 
+                        ng-model="vm.slide.slideContent.target_group.text" 
+                        ng-style="vm.slide.slideContent.target_group.cssStyle" 
+                        ng-click="vm.selectField('target_group')"
+                        ng-class="{'active': vm.selectedField == 'target_group'}"></textarea>
+                </div>
+
+
+
+
+
+
+
+
 
                 <div class="block updates-block">
                     <div class="updates-header">
@@ -39,12 +102,12 @@
                     </div>
                     <img class="presentation-arrow" src="/static/images/presentation-arrow-right.png" />
 
-                    <div class="single-update" ng-repeat="update in vm.slide.projectUpdates">
-                        <img src="/static/images/update-image-example.png" />
+                    <div class="single-update" ng-repeat="rsr_update in vm.slide.slideContent.rsr_updates.results">
+                        <img src="http://rsr.akvo.org{{rsr_update.photo}}" />
                         <div class="update-inner">
-                            <div class="update-post-date">{{update.postDate}}</div>
-                            <div class="update-by">by: {{update.by}}</div>
-                            <div class="update-title">{{update.title}}</div>
+                            <div class="update-post-date">{{rsr_update.created_at | date:'dd MMM yyyy' }}</div>
+                            <div class="update-by">by: {{rsr_update.by}}</div>
+                            <div class="update-title">{{rsr_update.title}}</div>
                         </div>
                     </div>
                 </div>
@@ -60,19 +123,19 @@
 
                 <input 
                     class="header" 
-                    ng-model="vm.slide.slide_content.title.text" 
-                    ng-style="vm.slide.slide_content.title.cssStyle" 
+                    ng-model="vm.slide.slideContent.title.text" 
+                    ng-style="vm.slide.slideContent.title.cssStyle" 
                     ng-click="vm.selectField('title')"
                     ng-class="{'active': vm.selectedField == 'title'}">
                 <textarea 
                     class="description" 
-                    ng-model="vm.slide.slide_content.description.text" 
-                    ng-style="vm.slide.slide_content.description.cssStyle"
+                    ng-model="vm.slide.slideContent.description.text" 
+                    ng-style="vm.slide.slideContent.description.cssStyle"
                     ng-click="vm.selectField('description')"
                     ng-class="{'active': vm.selectedField == 'description'}"></textarea>
                 
                 <div class="block block-header block-box-shadow countries-block">
-                    {{vm.slide.slide_content.countries[0].name}}
+                    {{vm.slide.slideContent.countries[0].name}}
                 </div>
 
                 <div class="block block-box-shadow type-relatie-block">
@@ -82,25 +145,25 @@
 
                 <div class="block block-box-shadow total-budget-block">
                     <div class="block-header">Totaal budget</div>
-                    <span class="block-text">{{vm.slide.slide_content.total_budget | iaticurrency :'€':0:".":"." }}</span>
+                    <span class="block-text">{{vm.slide.slideContent.total_budget | iaticurrency :'€':0:".":"." }}</span>
                 </div>
 
                 <div class="block block-box-shadow date-block start-date">
                     <div class="block-header">Start date</div>
-                    <span class="block-text">{{vm.slide.slide_content.start_actual  | date:'dd MMM yyyy' }}</span>
+                    <span class="block-text">{{vm.slide.slideContent.start_actual  | date:'dd MMM yyyy' }}</span>
                 </div>
 
                 <div class="block block-box-shadow date-block end-date">
                     <div class="block-header">End date</div>
-                    <span class="block-text">{{vm.slide.slide_content.end_actual  | date:'dd MMM yyyy'}}</span>
+                    <span class="block-text">{{vm.slide.slideContent.end_actual  | date:'dd MMM yyyy'}}</span>
                 </div>
 
                 <div class="block block-box-shadow sectors-block">
                     <div class="block-header">Sector</div>
                     <textarea 
-                    rows="1"
-                    ng-model="vm.slide.slide_content.sectors.text" 
-                    ng-style="vm.slide.slide_content.sectors.cssStyle" 
+                    rows="1"   
+                    ng-model="vm.slide.slideContent.sectors.text" 
+                    ng-style="vm.slide.slideContent.sectors.cssStyle" 
                     ng-click="vm.selectField('sectors')"
                     ng-class="{'active': vm.selectedField == 'sectors'}"></textarea>
                 </div>
@@ -109,8 +172,8 @@
                     <div class="block-header">Participating organisations</div>
                     <textarea 
                     rows="3"
-                    ng-model="vm.slide.slide_content.participating_organisations.text" 
-                    ng-style="vm.slide.slide_content.participating_organisations.cssStyle" 
+                    ng-model="vm.slide.slideContent.participating_organisations.text" 
+                    ng-style="vm.slide.slideContent.participating_organisations.cssStyle" 
                     ng-click="vm.selectField('participating_organisations')"
                     ng-class="{'active': vm.selectedField == 'participating_organisations'}"></textarea>
                 </div>
@@ -126,14 +189,14 @@
                     
                 <input 
                     class="header" 
-                    ng-model="vm.slide.slide_content.title.text" 
-                    ng-style="vm.slide.slide_content.title.cssStyle" 
+                    ng-model="vm.slide.slideContent.title.text" 
+                    ng-style="vm.slide.slideContent.title.cssStyle" 
                     ng-click="vm.selectField('title')"
                     ng-class="{'active': vm.selectedField == 'title'}">
                 <textarea 
                     class="description" 
-                    ng-model="vm.slide.slide_content.description.text" 
-                    ng-style="vm.slide.slide_content.description.cssStyle"
+                    ng-model="vm.slide.slideContent.description.text" 
+                    ng-style="vm.slide.slideContent.description.cssStyle"
                     ng-click="vm.selectField('description')"
                     ng-class="{'active': vm.selectedField == 'description'}"></textarea>
 
@@ -190,7 +253,7 @@
                             <a class="underline" ng-click="vm.underline()"><u>U</u></a>
                         </div>
                     </div> 
-                    <hr>
+                   <!--  <hr>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="edit-option-header currently-editing">Currently editing</div> 
@@ -198,7 +261,7 @@
                             <span class="currently-edited" ng-show="vm.selectedField == ''">No field selected</span>
                             <span class="currently-edited" ng-show="vm.selectedField != ''">{{vm.selectedField}}</span>
                         </div>
-                    </div>
+                    </div> -->
                     <hr>
                 </div>
             </div>

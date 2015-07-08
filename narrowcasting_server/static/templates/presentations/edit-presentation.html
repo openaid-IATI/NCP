@@ -42,6 +42,39 @@
             <div class="row">
                 <div class="col-md-12">
 
+
+                    <div ng-show="vm.view.indexOf('rsr-select') > -1" class="row">
+                        <div class="col-md-12  text-right">
+                            <div class="iati-select-filters paddingtb1em">
+                                <a 
+                                ng-class="{ 'btn-active': vm.view == 'rsr-select' }" 
+                                ng-click="vm.view = 'rsr-select'" 
+                                class="btn hover-orange btn-more-padding light-grey">Projects</a>
+                                <!-- <a 
+                                ng-class="{ 'btn-active': vm.view == 'rsr-select-locations' }" 
+                                ng-click="vm.view = 'rsr-select-locations'" 
+                                class="btn hover-orange btn-more-padding light-grey">Locations</a>
+                                <a 
+                                ng-class="{ 'btn-active': vm.view == 'rsr-select-statuses' }" 
+                                ng-click="vm.view = 'rsr-select-statuses'" 
+                                class="btn hover-orange btn-more-padding light-grey">Status</a>
+                                <a 
+                                ng-class="{ 'btn-active': vm.view == 'rsr-select-organisations' }" 
+                                ng-click="vm.view = 'rsr-select-organisations'" 
+                                class="btn hover-orange btn-more-padding light-grey">Organisation</a>
+                                <a 
+                                ng-class="{ 'btn-active': vm.view == 'rsr-select-sectors' }" 
+                                ng-click="vm.view = 'rsr-select-sectors'" 
+                                class="btn hover-orange btn-more-padding light-grey">Sector</a>
+                                <a 
+                                ng-class="{ 'btn-active': vm.view == 'rsr-select-sort-by' }" 
+                                ng-click="vm.view = 'rsr-select-sort-by'" 
+                                class="btn hover-orange btn-more-padding btn-sort-by light-blue">Sort by</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+
                     <div class="row">
                         <div ng-show="vm.view.indexOf('iati-select') > -1" class="col-md-12  text-right">
                             <div class="iati-select-filters paddingtb1em">
@@ -73,36 +106,7 @@
                         </div>
                     </div>
 
-                    <div ng-show="vm.view.indexOf('rsr-select') > -1" class="row">
-                        <div class="col-md-12  text-right">
-                            <div class="iati-select-filters paddingtb1em">
-                                <a 
-                                ng-class="{ 'btn-active': vm.view == 'rsr-select' }" 
-                                ng-click="vm.view = 'rsr-select'" 
-                                class="btn hover-orange btn-more-padding light-grey">Projects</a>
-                                <a 
-                                ng-class="{ 'btn-active': vm.view == 'rsr-select-locations' }" 
-                                ng-click="vm.view = 'rsr-select-locations'" 
-                                class="btn hover-orange btn-more-padding light-grey">Locations</a>
-                                <a 
-                                ng-class="{ 'btn-active': vm.view == 'rsr-select-statuses' }" 
-                                ng-click="vm.view = 'rsr-select-statuses'" 
-                                class="btn hover-orange btn-more-padding light-grey">Status</a>
-                                <a 
-                                ng-class="{ 'btn-active': vm.view == 'rsr-select-organisations' }" 
-                                ng-click="vm.view = 'rsr-select-organisations'" 
-                                class="btn hover-orange btn-more-padding light-grey">Organisation</a>
-                                <a 
-                                ng-class="{ 'btn-active': vm.view == 'rsr-select-sectors' }" 
-                                ng-click="vm.view = 'rsr-select-sectors'" 
-                                class="btn hover-orange btn-more-padding light-grey">Sector</a>
-                                <a 
-                                ng-class="{ 'btn-active': vm.view == 'rsr-select-sort-by' }" 
-                                ng-click="vm.view = 'rsr-select-sort-by'" 
-                                class="btn hover-orange btn-more-padding btn-sort-by light-blue">Sort by</a>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <iati-select ng-show="vm.view == 'iati-select'"></iati-select>
                     <iati-select-regions ng-show="vm.view == 'iati-select-regions'"></iati-select-regions>

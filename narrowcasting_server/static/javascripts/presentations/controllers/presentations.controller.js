@@ -37,49 +37,29 @@
     }
 
     vm.duplicatePresentation = function(id){
-      console.log('clicked');
       Snackbar.show('Duplicate presentation not implemented yet');
     }
 
     vm.deletePresentation = function(id){
-      Snackbar.show('Delete presentation not implemented yet');
+
+      Presentations.deletePresentation(id).then(succesFn, errorFn);
+
+      function succesFn(data, status, headers, config){
+        Presentations.all().then(presentationsSuccessFn, errorFn);
+      }
     }
 
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf ncs.presentations.controllers.PresentationsController
-    */
+    function presentationsSuccessFn(data, status, headers, config) {
+      vm.presentations = data.data;
+    }
+
+    function errorFn(data, status, headers, config) {
+      Snackbar.error(data.error);
+    }
+
     function activate() {
 
-      Presentations.all().then(presentationsSuccessFn, presentationsErrorFn);
-
-      $scope.$on('presentation.created', function (event, presentation) {
-        vm.presentations.unshift(presentation);
-      });
-
-      $scope.$on('presentation.created.error', function () {
-        vm.presentations.shift();
-      });
-
-      /**
-      * @name presentationsSuccessFn
-      * @desc Update presentations array on view
-      */
-      function presentationsSuccessFn(data, status, headers, config) {
-        vm.presentations = data.data;
-      }
-
-      /**
-      * @name presentationsErrorFn
-      * @desc Show snackbar with error
-      */
-      function presentationsErrorFn(data, status, headers, config) {
-        Snackbar.error(data.error);
-      }
+      Presentations.all().then(presentationsSuccessFn, errorFn);    
     }
-
-    
-
   }
 })();
