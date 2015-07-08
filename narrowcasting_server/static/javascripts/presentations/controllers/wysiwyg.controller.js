@@ -48,7 +48,6 @@
     function activate(){
 
         $scope.$watch("vm.Slides.saveSlide", function (saveSlide) {
-            console.log(saveSlide);
             if(saveSlide == true){
                 vm.save();
                 Slides.saveSlide = false;
@@ -101,12 +100,11 @@
     vm.save = function(){
 
         if(vm.slide.id != undefined){
-            console.log(vm.slide);
             Slides.update(vm.slide).then(succesFn, errorFn);
         }
         
         function succesFn(data, status, headers, config){
-            console.log('saved');
+            Snackbar.show('Slide saved.');
         }
 
         function errorFn(data, status, headers, config){

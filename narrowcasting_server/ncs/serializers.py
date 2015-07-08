@@ -38,8 +38,8 @@ class SlideSerializer(serializers.ModelSerializer):
         return Slide(**validated_data)
 
     def update(self, instance, validated_data):
-        test = json.loads(instance.slideContent)
-        title = test['title']['text']
+
+        instance.slideContent = validated_data.get('slideContent', instance.slideContent)
         instance.save()
         return instance
 

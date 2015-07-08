@@ -49,10 +49,16 @@
         }
 
         function update(slide) {
-            console.log(slide.slideContent.title);
-            console.log(slide);
-            // slide.slideContent = JSON.stringify(slide.slideContent);
-            return $http.put('/api/v1/slides/'+slide.id+'/', slide);
+
+            return $http.put('/api/v1/slides/'+slide.id+'/', {
+                'id': slide.id,
+                'isPreviewed': 1,
+                'position': slide.position,
+                'presentation': slide.presentation,
+                'previewData': previewData,
+                'slideContent': JSON.stringify(slide.slideContent),
+                'source': slide.source
+            });
         }
 
         /**
