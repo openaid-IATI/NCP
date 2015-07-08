@@ -55,7 +55,7 @@
                 'isPreviewed': 1,
                 'position': slide.position,
                 'presentation': slide.presentation,
-                'previewData': previewData,
+                'previewData': slide.previewData,
                 'slideContent': JSON.stringify(slide.slideContent),
                 'source': slide.source
             });
