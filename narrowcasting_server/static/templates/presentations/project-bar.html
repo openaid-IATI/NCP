@@ -23,9 +23,11 @@
                     <h3>{{project.previewData.title}}</h3>
                     <p>
                         <span>STATUS:</span> <br>
+                        <div ng-show="vm.saving == true">Loading data&nbsp;<img src="/static/images/puff.svg" width="20" alt=""></div>
                         <div ng-show="project.status == 'loading-data'">Loading data&nbsp;<img src="/static/images/puff.svg" width="20" alt=""></div>
                         <div ng-show="project.status == 'mapping-data'">Filling slide&nbsp;<img src="/static/images/bars.svg" width="20" alt=""></div>
                         <a 
+                            ng-show="vm.saving == false"
                             ng-click="vm.editSlide($index, 1)" 
                             class="edit-slide-link">
                             Click to preview/edit slide&nbsp;</a>
@@ -39,9 +41,10 @@
                     <h3>{{project.previewData.title}}</h3>
                     <p>
                         <span>STATUS:</span> <br>
+                        <div ng-show="vm.saving == true">Loading data&nbsp;<img src="/static/images/puff.svg" width="20" alt=""></div>
                         <div ng-show="project.status == 'loading-data'">Loading data&nbsp;<img src="/static/images/puff.svg" width="20" alt=""></div>
                         <div ng-show="project.status == 'mapping-data'">Filling slide&nbsp;<img src="/static/images/bars.svg" width="20" alt=""></div>
-                        <a 
+                        <a ng-show="vm.saving == false"
                             ng-click="vm.editSlide($index, 2)" 
                             class="edit-slide-link">
                             Click to preview/edit slide&nbsp;</a>

@@ -22,6 +22,7 @@
     vm.presentationId = $stateParams.presentation_id;
     vm.presentation = {};
     vm.selectedProjects = [{id:'dummy'},{id:'dummy'},{id:'dummy'},{id:'dummy'},{id:'dummy'}];
+    vm.saving = false;
 
     vm.editSlide = function(id, slideNr){
         Slides.currentSlide = vm.selectedProjects[id].id;
@@ -32,6 +33,8 @@
 
     vm.onDropProjects = function(index){
         vm.save('change-slide');
+        vm.saving = true;
+        setTimeout(function(){ vm.saving = false; }, 3);
     }
 
     vm.selectView = function(view){
