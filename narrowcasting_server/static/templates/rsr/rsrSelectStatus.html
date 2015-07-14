@@ -1,30 +1,30 @@
-<div class="filter-panel green">
-    <div class="row" ng-show="vm.recipientSectors.length == 0">
+<div class="filter-panel light-blue">
+    <div class="row" ng-show="vm.rsrActivityStatuses.length == 0">
         <div class="svg-loader">
             <img src="/static/images/tail-spin.svg" width="100" alt="">
         </div>
     </div>
-    <div class="row" ng-show="vm.recipientSectors.length > 0">
+    <div class="row" ng-show="vm.rsrActivityStatuses.length > 0">
         <div class="col-md-10">
             <table class="table">
                 <thead>
                     <tr>
-                        <td class="th-first">Sectors</td>
-                        <td>Activities</td>
+                        <td class="th-first">Status</td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dir-paginate="item in vm.recipientSectors | filter:q | itemsPerPage: 15" pagination-id="recipientSectors">
+                    <tr dir-paginate="item in vm.rsrActivityStatuses | filter:q | itemsPerPage: 15" pagination-id="rsrActivityStatuses">
                         <td>
                             <div class="checkbox">
                                 <label class="switch">
-                                    <input type="checkbox" checklist-model="vm.selectedSectors" checklist-value="item"><i></i>
+                                    <input type="checkbox" checklist-model="vm.rsrSelectedActivityStatuses" checklist-value="item"><i></i>
                                     <span>{{ item.name }}</span>
                                 </label>
                             </div>
                         </td>
                         <td>
-                            ({{ item.activity_count }})
+                            <!-- ({{ item.activity_count }}) -->
                         </td>
                     </tr>
 
@@ -32,7 +32,7 @@
             </table>
         </div>
         <div class="col-md-10">
-            <dir-pagination-controls pagination-id="recipientSectors"></dir-pagination-controls>
+            <dir-pagination-controls pagination-id="rsrActivityStatuses"></dir-pagination-controls>
         </div>
     </div>
 </div>

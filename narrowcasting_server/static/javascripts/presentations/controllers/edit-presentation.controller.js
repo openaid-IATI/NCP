@@ -10,12 +10,12 @@
     .module('ncs.presentations.controllers')
     .controller('EditPresentationController', EditPresentationController);
 
-  EditPresentationController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'Authentication', 'Snackbar', 'Presentations', 'IatiActivities', 'Slides', 'Countries', 'Regions', 'Sectors', 'FilterSelection', 'RsrProjects'];
+  EditPresentationController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'Authentication', 'Snackbar', 'Presentations', 'IatiActivities', 'Slides', 'Countries', 'Regions', 'Sectors', 'FilterSelection', 'RsrProjects', 'RsrActivityStatuses', 'RsrFilterSelection'];
 
   /**
   * @namespace EditPresentationController
   */
-  function EditPresentationController($rootScope, $scope, $state, $stateParams, Authentication, Snackbar, Presentations, IatiActivities, Slides, Countries, Regions, Sectors, FilterSelection, RsrProjects) {
+  function EditPresentationController($rootScope, $scope, $state, $stateParams, Authentication, Snackbar, Presentations, IatiActivities, Slides, Countries, Regions, Sectors, FilterSelection, RsrProjects, RsrActivityStatuses, RsrFilterSelection) {
     
     var vm = this;
     vm.view = 'rsr-select'; // options: iati-select / rsr-select / slide-wysiwyg / iati-select-regions / iati-select-countries / iati-select-sectors / iati-select-budget
@@ -336,17 +336,59 @@
 
 
 
+
+
+
+
+
+
+    vm.rsrActivityStatuses = [];
+    vm.rsrSelectedActivityStatuses = [];
+
+    vm.rsrTextSearch = '';
+    
+    vm.rsrFilterSelection = RsrFilterSelection;
+
     vm.rsrProjects = {
         'offset': 0,
         'activities': [],
         'totalActivities': 0,
         'orderBy': 'title',
         'perPage': 6,
-        'currentPage': 1
+        'currentPage': 1,
+        'loading': true
     };
+
+    vm.showRsrProjects = function(){
+        vm.view = 'rsr-select';
+        // check if filters changed, if so filter projects
+        if(vm.updateRsrSelectionString()){
+            RsrProjects.list(RsrFilterSelection.selectionString, vm.rsrProjects.perPage,  vm.rsrProjects.currentPage, vm.rsrProjects.orderBy).then(rsrProjectsSuccessFn, errorFn);
+        }
+    }
+
+    vm.updateRsrSelectionString = function(){
+
+      var selectList = [
+        vm.selectArrayToString('status', 'id', vm.rsrSelectedActivityStatuses),
+      ];
+
+      if(vm.rsrTextSearch != ''){
+        selectList.push('&query='+vm.rsrTextSearch);
+      }
+
+      if(RsrFilterSelection.selectionString != selectList.join('')){
+        RsrFilterSelection.selectionString = selectList.join('').replace("status__in", "status");
+        vm.rsrProjects['loading'] = true;
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     vm.rsrPageChanged = function(newPageNumber) {
         vm.rsrProjects.currentPage = newPageNumber;
-        RsrProjects.list('', vm.rsrProjects.perPage,  vm.rsrProjects.currentPage, vm.rsrProjects.orderBy).then(rsrProjectsSuccessFn, errorFn);
+        RsrProjects.list(RsrFilterSelection.selectionString, vm.rsrProjects.perPage,  vm.rsrProjects.currentPage, vm.rsrProjects.orderBy).then(rsrProjectsSuccessFn, errorFn);
     }
 
     function rsrProjectsSuccessFn(data, status, headers, config) {
@@ -360,15 +402,14 @@
 
         vm.rsrProjects.totalActivities = data.data.count;
         vm.rsrProjects.activities = data.data.results;
+        vm.rsrProjects['loading'] = false;
     }
 
     vm.rsrActivate = function(){
-        RsrProjects.list('', vm.rsrProjects.perPage,  vm.rsrProjects.currentPage, vm.rsrProjects.orderBy).then(rsrProjectsSuccessFn, errorFn);
 
-        
+        RsrProjects.list(RsrFilterSelection.selectionString, vm.rsrProjects.perPage,  vm.rsrProjects.currentPage, vm.rsrProjects.orderBy).then(rsrProjectsSuccessFn, errorFn);
+        vm.rsrActivityStatuses = RsrActivityStatuses.all();
     }
-
-
 
     activate();
   }

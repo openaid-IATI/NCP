@@ -25,10 +25,7 @@
 
         function list(filters, per_page, page, order_by){
             
-            filters = '';
-            if(filters !== undefined){
-                filters += filters;
-            }
+
             if(order_by !== undefined){
                 filters += '&order_by=' + order_by;
             }
@@ -41,7 +38,7 @@
             }
 
             var url = '/rsr/?call=project&filters=' + encodeURIComponent(filters);
-
+            console.log(url);
             return $http.get(url, { cache: true });
         }
     }

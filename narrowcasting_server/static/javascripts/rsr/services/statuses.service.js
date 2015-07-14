@@ -2,26 +2,31 @@
     'use strict';
 
     angular
-        .module('ncs.iati.services')
-        .factory('Countries', Countries);
+        .module('ncs.rsr.services')
+        .factory('RsrActivityStatuses', RsrActivityStatuses);
 
-    Countries.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
+    RsrActivityStatuses.$inject = ['$http'];
 
-    function Countries($http, oipaUrl, reportingOrganisationId) {
+    function RsrActivityStatuses($http) {
         var m = this;
 
-        var Countries = {
+        var RsrActivityStatuses = {
             all: all,
         };
 
-        return Countries;
+        return RsrActivityStatuses;
 
         function all() {
-            var url = oipaUrl + '/activity-aggregate-any/?format=json&group_by=recipient-country&aggregation_key=iati-identifier';
-            if(reportingOrganisationId){
-                url += '&reporting_organisation__in=' + reportingOrganisationId;
-            }
-            return $http.get(url, { cache: true });
+
+            var activity_statuses = [];
+            activity_statuses.push({'id': 'N', 'name': 'None'});
+            activity_statuses.push({'id': 'H', 'name': 'Needs funding'});
+            activity_statuses.push({'id': 'A', 'name': 'Active'});
+            activity_statuses.push({'id': 'C', 'name': 'Complete'});
+            activity_statuses.push({'id': 'L', 'name': 'Cancelled'});
+            activity_statuses.push({'id': 'R', 'name': 'Archived'});
+
+            return activity_statuses;
         }
     }
 })();
