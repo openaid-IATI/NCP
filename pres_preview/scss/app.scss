@@ -1,0 +1,197 @@
+@import "settings";
+@import "foundation";
+@import "animations";
+
+// Or selectively include components
+// @import
+//   "foundation/components/accordion",
+//   "foundation/components/alert-boxes",
+//   "foundation/components/block-grid",
+//   "foundation/components/breadcrumbs",
+//   "foundation/components/button-groups",
+//   "foundation/components/buttons",
+//   "foundation/components/clearing",
+//   "foundation/components/dropdown",
+//   "foundation/components/dropdown-buttons",
+//   "foundation/components/flex-video",
+//   "foundation/components/forms",
+//   "foundation/components/grid",
+//   "foundation/components/inline-lists",
+//   "foundation/components/joyride",
+//   "foundation/components/keystrokes",
+//   "foundation/components/labels",
+//   "foundation/components/magellan",
+//   "foundation/components/orbit",
+//   "foundation/components/pagination",
+//   "foundation/components/panels",
+//   "foundation/components/pricing-tables",
+//   "foundation/components/progress-bars",
+//   "foundation/components/reveal",
+//   "foundation/components/side-nav",
+//   "foundation/components/split-buttons",
+//   "foundation/components/sub-nav",
+//   "foundation/components/switches",
+//   "foundation/components/tables",
+//   "foundation/components/tabs",
+//   "foundation/components/thumbs",
+//   "foundation/components/tooltips",
+//   "foundation/components/top-bar",
+//   "foundation/components/type",
+//   "foundation/components/offcanvas",
+//   "foundation/components/visibility";
+
+.shadowbox {
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+}
+
+@mixin viewportRatio($x, $y) {
+	width: 100vw;
+	height: $y * 100vw / $x;
+	max-width: $x / $y * 100vh;
+	max-height: 100vh;
+}
+
+#container {
+	@include viewportRatio(16, 9);
+	background-image:url(../img/background.jpg);
+	background-size:cover;
+    margin: auto;
+    position: absolute;
+    top:0;bottom:0; 
+    left:0;right:0;
+    display: table;
+    overflow: hidden;
+}
+
+.inner {
+	display:table-cell;
+	vertical-align:middle;
+	padding-top:4rem;
+}
+
+p {
+	font-size:1.2rem;
+}
+
+header {
+	background:$white;
+	height:4rem;
+	position:absolute;
+	top:0;
+	width:100%;
+	border-bottom:.2rem solid $primary-color;
+	img {
+		width:10%;
+		height: auto;
+		margin-bottom:.5%;
+	}
+}
+
+.twitter {
+	position:relative;
+	.twit_innter {
+		@extend .shadowbox;
+		text-align: center;
+		position:absolute;
+		bottom:0;
+		background:rgba(0,0,0,.5);
+		color:#fff;
+		padding:.5rem;
+		width: 100%;
+		p {
+			margin:0;
+		}
+	}
+}
+
+.sidebar {
+	border-left:.5rem solid $alert-color;
+	&.invert {
+		border-color:$white;
+		background:$alert-color;
+		p, h1, h2, h3, h4, h5, h6 {
+			color:$white;
+		}
+	}
+}
+
+.middle {
+	img {
+		margin-bottom: 1.25rem;
+		@extend .shadowbox;
+	}
+}
+
+.bottom {
+	img {
+		height: 100%;
+		&.arrow {
+			height:100%;
+		}
+	}
+	.img-wrap {
+		overflow: hidden;
+	}
+}
+
+.grey {
+	color:$aluminum;
+}
+
+.groen {
+	color: $green;
+}
+
+.panel {
+	@extend .shadowbox;
+	.grey {
+		@extend .grey;
+	}
+	.author {
+		@extend .groen;
+		margin-bottom:.1rem;
+	}
+	.date {
+		@extend .grey;
+		margin-bottom:0;
+	}
+}
+
+footer {
+	position:absolute;
+	bottom:0;
+	left:0;
+	height: 1rem;
+	width:100%;
+	#timer {
+		background:lighten($green,10%);
+		height: 100%;
+		width: 100%;
+		.fill {
+			height:100%;
+			width:0%;
+			background:$green;
+			&.animate {
+				width:100%;
+			}
+		}
+	}
+}
+
+.table {
+	display:table;
+	height:100%;
+}
+
+.cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+//animate
+
+.animated {
+	opacity:0;
+}
