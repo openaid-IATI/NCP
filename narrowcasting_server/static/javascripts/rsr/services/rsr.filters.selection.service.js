@@ -6,27 +6,27 @@
     'use strict';
 
     angular
-        .module('ncs.iati.services')
-        .factory('FilterSelection', FilterSelection);
+        .module('ncs.rsr.services')
+        .factory('RsrFilterSelection', RsrFilterSelection);
 
-    FilterSelection.$inject = ['$http', 'reportingOrganisationId'];
+    RsrFilterSelection.$inject = ['$http'];
 
     /**
     * @namespace Filters
     * @returns {Factory}
     */
-    function FilterSelection($http, reportingOrganisationId) {
+    function RsrFilterSelection($http) {
         var m = this;
         m.selectionString = '';
         m.toSave = false;
         m.toReset = false;
         
-        var FilterSelection = {
+        var RsrFilterSelection = {
             toSave: m.toSave,
             toReset: m.toReset,
             selectionString: m.selectionString
         };
 
-        return FilterSelection;
+        return RsrFilterSelection;
     }
 })();

@@ -48,16 +48,17 @@
                             <div class="iati-select-filters paddingtb1em">
                                 <a 
                                 ng-class="{ 'btn-active': vm.view == 'rsr-select' }" 
-                                ng-click="vm.view = 'rsr-select'" 
+                                ng-click="vm.showRsrProjects()" 
                                 class="btn hover-orange btn-more-padding light-grey">Projects</a>
                                 <!-- <a 
                                 ng-class="{ 'btn-active': vm.view == 'rsr-select-locations' }" 
                                 ng-click="vm.view = 'rsr-select-locations'" 
-                                class="btn hover-orange btn-more-padding light-grey">Locations</a>
+                                class="btn hover-orange btn-more-padding light-grey">Locations</a> -->
                                 <a 
                                 ng-class="{ 'btn-active': vm.view == 'rsr-select-statuses' }" 
                                 ng-click="vm.view = 'rsr-select-statuses'" 
                                 class="btn hover-orange btn-more-padding light-grey">Status</a>
+                                <!--
                                 <a 
                                 ng-class="{ 'btn-active': vm.view == 'rsr-select-organisations' }" 
                                 ng-click="vm.view = 'rsr-select-organisations'" 
@@ -116,6 +117,7 @@
                     <iati-select-text-search ng-show="vm.view == 'iati-select-text-search'"></iati-select-text-search>
 
                     <rsr-select ng-show="vm.view == 'rsr-select'"></rsr-select>
+                    <rsr-select-status ng-show="vm.view == 'rsr-select-statuses'"></rsr-select-status>
                     <slide-wysiwyg ng-show="vm.view == 'slide-wysiwyg'"></slide-wysiwyg>
 
                 </div>
