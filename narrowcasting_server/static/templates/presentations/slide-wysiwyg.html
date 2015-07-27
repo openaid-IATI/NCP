@@ -1,6 +1,6 @@
 <div id="slide-wysiwyg" class="row">
     <div class="col-md-12">
-        <div class="edit-slide" style="background-color: {{vm.backgroundColor}};">
+        <div class="edit-slide" style="background-color: {{vm.slide.slideContent.backgroundColor}};">
             <div class="top-header block-box-shadow">
                 <img class="top-header-image" src="/static/images/minbuza.png" width="180px" height="auto" />
             </div>
@@ -12,9 +12,8 @@
             <div class="rsr-slide" ng-show="vm.slideType == 'rsr'">
 
                 <img 
-                    ngf-src="vm.slide.backgroundImage[0]" 
-                    ng-show="vm.slide.backgroundImage[0].type.indexOf('image') > -1" 
-                    ngf-accept="'image/*'" 
+                    ng-src="{{vm.slideImages.mainImage.image_url}}" 
+                    ng-show="vm.slideImages.mainImage" 
                     class="background-image">
 
                 <input 
@@ -116,9 +115,8 @@
             <div class="iati-slide" ng-show="vm.slideType == 'iati'">
 
                 <img 
-                    ngf-src="vm.slide.backgroundImage[0]" 
-                    ng-show="vm.slide.backgroundImage[0].type.indexOf('image') > -1" 
-                    ngf-accept="'image/*'" 
+                    ng-src="{{vm.slideImages.mainImage.image_url}}" 
+                    ng-show="vm.slideImages.mainImage" 
                     class="background-image">
 
                 <input 
@@ -183,9 +181,8 @@
             <div class="content-slide" ng-show="vm.slideType == 'content'">
 
                 <img 
-                    ngf-src="vm.slide.backgroundImage[0]" 
-                    ng-show="vm.slide.backgroundImage[0].type.indexOf('image') > -1" 
-                    ngf-accept="'image/*'" 
+                    ng-src="{{vm.slideImages.mainImage.image_url}}" 
+                    ng-show="vm.slideImages.mainImage" 
                     class="background-image">
                     
                 <input 
@@ -200,8 +197,6 @@
                     ng-style="vm.slide.slideContent.description.cssStyle"
                     ng-click="vm.selectField('description')"
                     ng-class="{'active': vm.selectedField == 'description'}"></textarea>
-
-                    {{vm.selectedField}}
             </div>
 
         </div>
@@ -271,23 +266,24 @@
                     <h4>Background image</h4>
                     <hr>
 
-                    <div ng-show="vm.slide.backgroundImage == null">
+                    <div ng-show="vm.slideImages.mainImage == null">
                         <span class="edit-option-header">upload image</span>
                         <div 
-                            ngf-select="" 
-                            ng-model="vm.slide.backgroundImage" 
+                            ngf-select 
+                            ng-model="vm.backgroundImage"
                             class="upload-image upload-button" 
                             ngf-multiple="false" 
                             ngf-accept="'*.jpg,*.png'" 
                             ng-model-rejected="rejFiles" 
                             tabindex="0">Select file</div>
+
                     </div>
 
                     <div class="text-center">
                         <a 
                             class="remove-image" 
                             ng-click="vm.removeBackgroundImage()" 
-                            ng-show="vm.slide.backgroundImage[0].type.indexOf('image') > -1" 
+                            ng-show="vm.slideImages.mainImage != null" 
                             >remove background image</a>
                     </div>
                     <hr>
@@ -301,9 +297,8 @@
                             <input 
                                 class="color-picker" 
                                 type="text" 
-                                ng-model="vm.backgroundColor" 
-                                ng-change="vm.changeBackgroundColor()" 
-                                style="background-color: {{vm.backgroundColor}}; color: #FFF" 
+                                ng-model="vm.slide.slideContent.backgroundColor" 
+                                style="background-color: {{vm.slide.slideContent.backgroundColor}}; color: #FFF" 
                                 minicolors>
                             </div>
                         </div>

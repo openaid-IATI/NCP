@@ -11,8 +11,54 @@ from authentication.serializers import AccountSerializer
 from ncs.models import Presentation
 from ncs.models import Display
 from ncs.models import Slide
+from ncs.models import SlideImage
 
 import requests
+
+class PhotoSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = SlideImage
+        fields = ('url', 'id', 'image', 'owner')
+        owner = serializers.Field(source='owner.username')
+
+
+
+class SlideImageSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = SlideImage
+        fields = (
+            'id',
+            'slide',
+            'image_type',
+            'image_url',
+            'image'
+        )
+        read_only_fields = (
+            'id',
+        )
+
+    def get_image_url(self, slide_image):
+        return slide_image.image.url
+
+    def create(self, validated_data):
+        image = self.initial_data.get('file')
+        validated_data['image'] = image
+        # if old one exists, remove
+        SlideImage.objects.filter(slide_id=validated_data.get('slide'),image_type=validated_data.get('image_type')).delete()
+
+        return SlideImage(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.save()
+        return instance
+
+    def get_validation_exclusions(self, *args, **kwargs):
+        exclusions = super(SlideImageSerializer, self).get_validation_exclusions()
+
+        return exclusions
+
 
 class SlideSerializer(serializers.ModelSerializer):
 
@@ -24,8 +70,6 @@ class SlideSerializer(serializers.ModelSerializer):
             'position',
             'slideContent',
             'previewData',
-            'mainImage',
-            'backgroundImage',
             'presentation',
             'isPreviewed',
             'source'
@@ -77,6 +121,8 @@ class PresentationSerializer(serializers.ModelSerializer):
         return Presentation(**validated_data)
 
     def map_rsr_fields(self, slide_data):
+
+        slide_data['backgroundColor'] = '#29abe2'
 
         slide_data['title'] = {
             'text': slide_data['title'],
@@ -151,13 +197,19 @@ class PresentationSerializer(serializers.ModelSerializer):
 
 
         # get partners
+        partners = slide_data['partners']
 
+
+
+        # get images
 
 
         return slide_data
 
 
     def map_iati_fields(self, slide_data):
+
+        slide_data['backgroundColor'] = '#22b573'
 
         if len(slide_data['titles']) > 0:
             slide_data['title'] = {
@@ -289,6 +341,11 @@ class PresentationSerializer(serializers.ModelSerializer):
 
                 slide_data = self.map_rsr_fields(slide_data)
                 slide_data = json.dumps(slide_data)
+
+                # save rsr update images
+                # rsr_updates
+
+
 
             if slide['source'] == 'content':
 

@@ -1,24 +1,50 @@
 from django.http import JsonResponse
+from django.http import Http404
 from django.conf import settings
 
 from rest_framework import permissions
 from rest_framework import viewsets
+from rest_framework import status
 from rest_framework.parsers import FormParser
 from rest_framework.parsers import MultiPartParser
 from rest_framework.parsers import JSONParser
 from rest_framework.filters import DjangoFilterBackend
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from ncs.models import Presentation
 from ncs.models import Display
 from ncs.models import Slide
+from ncs.models import SlideImage
+
 from ncs.permissions import IsCreatorOfPresentation
 from ncs.permissions import IsOwnerOfDisplay
 from ncs.serializers import PresentationSerializer
 from ncs.serializers import DisplaySerializer
 from ncs.serializers import SlideSerializer
+from ncs.serializers import SlideImageSerializer
 
 import requests
 import urllib
+
+
+class SlideImageViewSet(viewsets.ModelViewSet):
+    queryset = SlideImage.objects.all()
+    serializer_class = SlideImageSerializer
+    parser_classes = (JSONParser, MultiPartParser, FormParser,)
+    filter_fields = ('slide',)
+
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:
+            return (permissions.AllowAny(),)
+        return (permissions.IsAuthenticated(),)
+
+    def perform_create(self, serializer):
+        serializer.save()
+        return super(SlideImageViewSet, self).perform_create(serializer)
+
+    def perform_update(self, serializer):
+        serializer.save()
 
 
 class SlideViewSet(viewsets.ModelViewSet):
@@ -32,13 +58,11 @@ class SlideViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(),)
 
     def perform_create(self, serializer):
-        serializer.save(backgroundImage=self.request.data.get('backgroundImage'), mainImage=self.request.data.get('mainImage'))
+        serializer.save()
         return super(SlideViewSet, self).perform_create(serializer)
 
     def perform_update(self, serializer):
         serializer.save()
-        # serializer.save(backgroundImage=self.request.data.get('backgroundImage'), mainImage=self.request.data.get('mainImage'))
-        # return super(SlideViewSet, self).perform_update(serializer)
 
 
 class PresentationViewSet(viewsets.ModelViewSet):

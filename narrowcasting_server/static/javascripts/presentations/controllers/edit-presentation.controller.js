@@ -10,12 +10,30 @@
     .module('ncs.presentations.controllers')
     .controller('EditPresentationController', EditPresentationController);
 
-  EditPresentationController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'Authentication', 'Snackbar', 'Presentations', 'IatiActivities', 'Slides', 'Countries', 'Regions', 'Sectors', 'FilterSelection', 'RsrProjects', 'RsrActivityStatuses', 'RsrFilterSelection'];
+  EditPresentationController.$inject = [
+    '$rootScope', 
+    '$scope', 
+    '$state', 
+    '$stateParams', 
+    'Authentication', 
+    'Snackbar', 
+    'Presentations', 
+    'IatiActivities', 
+    'Slides', 
+    'Countries', 
+    'Regions', 
+    'Sectors', 
+    'FilterSelection', 
+    'RsrProjects', 
+    'RsrActivityStatuses', 
+    'RsrFilterSelection', 
+    'Upload'
+  ];
 
   /**
   * @namespace EditPresentationController
   */
-  function EditPresentationController($rootScope, $scope, $state, $stateParams, Authentication, Snackbar, Presentations, IatiActivities, Slides, Countries, Regions, Sectors, FilterSelection, RsrProjects, RsrActivityStatuses, RsrFilterSelection) {
+  function EditPresentationController($rootScope, $scope, $state, $stateParams, Authentication, Snackbar, Presentations, IatiActivities, Slides, Countries, Regions, Sectors, FilterSelection, RsrProjects, RsrActivityStatuses, RsrFilterSelection, Upload) {
     
     var vm = this;
     vm.view = 'rsr-select'; // options: iati-select / rsr-select / slide-wysiwyg / iati-select-regions / iati-select-countries / iati-select-sectors / iati-select-budget
@@ -23,6 +41,7 @@
     vm.presentation = {};
     vm.selectedProjects = [{id:'dummy'},{id:'dummy'},{id:'dummy'},{id:'dummy'},{id:'dummy'}];
     vm.saving = false;
+    vm.backgroundImage = null;
 
     vm.editSlide = function(id, slideNr){
         Slides.currentSlide = vm.selectedProjects[id].id;
@@ -48,7 +67,7 @@
             return false;
         }
     }
-
+    
     vm.deleteSlide = function(index){
 
         var id = vm.selectedProjects[index]['id'];
@@ -176,8 +195,6 @@
                 'source': 'content'
             },
             'source': 'content',
-            'mainImage': null,
-            'backgroundImage': null,
             'isPreviewed': true,
             'presentation': vm.presentationId,
         };
@@ -206,6 +223,12 @@
 
         vm.save('change-slide');
     }
+
+
+
+
+
+    
 
 
 

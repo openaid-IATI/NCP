@@ -45,7 +45,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container" ng-cloak ng-show="vm.displays.length">
     <div class="row">
       <div class="col-sm-12 text-center">
         <div class="btn dark-grey pt21 btn-padding-30 btn-drag-drop">
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div class="row" ng-cloak>
+    <div class="row">
       <div class="col-md-12">
         <ul dnd-list="vm.projects">
           <li

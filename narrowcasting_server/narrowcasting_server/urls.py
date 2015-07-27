@@ -8,6 +8,7 @@ from ncs.views import PresentationViewSet
 from ncs.views import DisplayViewSet
 from ncs.views import SlideViewSet
 from ncs.views import RsrView
+from ncs.views import SlideImageViewSet
 
 from rest_framework_nested import routers
 
@@ -20,6 +21,8 @@ router.register(r'accounts', AccountViewSet)
 router.register(r'presentations', PresentationViewSet)
 router.register(r'displays', DisplayViewSet)
 router.register(r'slides', SlideViewSet)
+router.register(r'slideImages', SlideImageViewSet)
+
 accounts_router = routers.NestedSimpleRouter(
     router, r'accounts', lookup='account'
 )
@@ -27,6 +30,7 @@ accounts_router = routers.NestedSimpleRouter(
 urlpatterns = patterns(
     '',
     url(r'^rsr/', RsrView),
+     # url(r'^api/v1/slideImage/', SlideImageViewSet.as_view(), name='slide-image'),
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/', include(accounts_router.urls)),
     url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),

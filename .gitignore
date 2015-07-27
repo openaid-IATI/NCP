@@ -2,4 +2,5 @@
 /narrowcasting_server/static/node_modules/
 /narrowcasting_server/narrowcasting_server/local_settings.py
 /narrowcasting_server/.idea/
+/narrowcasting_server/static/slide_images/*
 *.pyc
