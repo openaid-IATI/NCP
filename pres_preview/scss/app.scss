@@ -91,7 +91,7 @@ header {
 
 .twitter {
 	position:relative;
-	.twit_innter {
+	.twit_inner {
 		@extend .shadowbox;
 		text-align: center;
 		position:absolute;
@@ -138,6 +138,9 @@ header {
 
 .grey {
 	color:$aluminum;
+	p {
+		color:$aluminum;
+	}
 }
 
 .groen {
@@ -190,8 +193,16 @@ footer {
 	vertical-align: middle;
 }
 
-//animate
-
 .animated {
-	opacity:0;
+	animation-delay:2s;
+}
+
+.small {
+	font-size: rem-calc(26);
+}
+ul.grey {
+	li {
+		color:$aluminum;
+		font-size:90%;
+	}
 }
