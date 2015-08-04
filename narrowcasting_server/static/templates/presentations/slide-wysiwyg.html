@@ -60,13 +60,17 @@
                 </div>
 
                 <div ng-show="vm.Slides.slideNr == 2" class="block block-box-shadow funding-partner-block">
-                    <div class="block-header">Funding partner</div>
-                    <textarea>{{vm.slide.slideContent.partners.join(', ')}}</textarea>
+                    <div class="block-header">Partners</div>
+                    <textarea
+                        ng-model="vm.slide.slideContent.partners.text" 
+                        ng-style="vm.slide.slideContent.partners.cssStyle" 
+                        ng-click="vm.selectField('partners')"
+                        ng-class="{'active': vm.selectedField == 'partners'}">{{vm.slide.slideContent.partners.text}}</textarea>
                 </div>
 
                 <div ng-show="vm.Slides.slideNr == 2" class="block block-box-shadow location-name-block">
                     <div class="block-header">Location</div>
-                    <input class="block-text" type="text" ng-model="vm.slide.slideContent.primary_location.city">
+                    <span class="block-text" type="text" ng-model="vm.slide.slideContent.primary_location.city"></span>
                 </div>
 
                 <div ng-show="vm.Slides.slideNr == 2" class="block location-block">
@@ -93,11 +97,11 @@
                     </div>
                     <img class="presentation-arrow" src="/static/images/presentation-arrow-right.png" />
 
-                    <div class="single-update" ng-repeat="rsr_update in vm.slide.slideContent.rsr_updates.results">
+                    <div class="single-update" ng-repeat="rsr_update in vm.slide.slideContent.rsr_updates">
                         <img src="http://rsr.akvo.org{{rsr_update.photo}}" />
                         <div class="update-inner">
                             <div class="update-post-date">{{rsr_update.created_at | date:'dd MMM yyyy' }}</div>
-                            <div class="update-by">by: {{rsr_update.by}}</div>
+                            <div class="update-by">by: {{rsr_update.user}}</div>
                             <div class="update-title">{{rsr_update.title}}</div>
                         </div>
                     </div>

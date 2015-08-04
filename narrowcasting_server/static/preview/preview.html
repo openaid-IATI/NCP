@@ -171,7 +171,7 @@
                   <div class="small-6 columns">
                     <div class="panel bounceIn animated p3">
                       <h2 class="small">Partners</h2>
-                      <h2 class="grey small">{{value.slideContent.partners.join(', ')}}</h2>
+                      <h2 class="grey small" ng-style="value.slideContent.partners.cssStyle">{{value.slideContent.partners.text}}</h2>
                     </div>
                   </div>
                   <div class="small-6 columns">
@@ -226,23 +226,23 @@
                     </div>
                     <div class="small-2 columns" data-equalizer-watch>
                       <div class="img-wrap">
-                        <img src="http://rsr.akvo.org{{value.slideContent.rsr_updates.results[0].photo}}">
+                        <img src="http://rsr.akvo.org{{value.slideContent.rsr_updates[0].photo}}">
                       </div>
                     </div>
                     <div class="small-3 columns" data-equalizer-watch>
-                      <p class="date">{{value.slideContent.rsr_updates.results[0].created_at | date:'dd MMM yyyy' }}</p>
-                      <p class="author">by {{value.slideContent.rsr_updates.results[0].by}}</p>
-                      <p>{{value.slideContent.rsr_updates.results[0].title}}</p>
+                      <p class="date">{{value.slideContent.rsr_updates[0].created_at | date:'dd MMM yyyy' }}</p>
+                      <p class="author">by {{value.slideContent.rsr_updates[0].user}}</p>
+                      <p>{{value.slideContent.rsr_updates[0].title}}</p>
                     </div>
                     <div class="small-2 columns" data-equalizer-watch>
                       <div class="img-wrap">
-                        <img src="http://rsr.akvo.org{{value.slideContent.rsr_updates.results[0].photo}}">
+                        <img src="http://rsr.akvo.org{{value.slideContent.rsr_updates[0].photo}}">
                       </div>
                     </div>
                     <div class="small-3 columns" data-equalizer-watch>
-                      <p class="date">{{value.slideContent.rsr_updates.results[1].created_at | date:'dd MMM yyyy' }}</p>
-                      <p class="author">by {{value.slideContent.rsr_updates.results[1].by}}</p>
-                      <p>{{value.slideContent.rsr_updates.results[1].title}}</p>
+                      <p class="date">{{value.slideContent.rsr_updates[1].created_at | date:'dd MMM yyyy' }}</p>
+                      <p class="author">by {{value.slideContent.rsr_updates[1].user}}</p>
+                      <p>{{value.slideContent.rsr_updates[1].title}}</p>
                     </div>
                   </div>
                 </div>

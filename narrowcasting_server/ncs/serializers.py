@@ -188,14 +188,24 @@ class PresentationSerializer(serializers.ModelSerializer):
             }
         }
 
+        slide_data['partners'] = {
+            'text': slide_data['partners'],
+            'cssStyle': {
+                'font-size': '12px',
+                'color': '#000000',
+                'font-weight': 'bold',
+                'font-style': 'normal',
+                'text-decoration': 'none',
+            }
+        }
+
         # get location
         primary_location = slide_data['primary_location']
         if primary_location:
             print 'get primary location from rsr'
 
 
-        # get partners
-        partners = slide_data['partners']
+
 
 
 
@@ -318,6 +328,17 @@ class PresentationSerializer(serializers.ModelSerializer):
                 url = settings.RSR_URL + '/project_update/?format=json&limit=2&project=' + slide['activity_id']
                 response = requests.get(url, headers=headers)
                 rsr_updates = response.json()
+                rsr_updates = rsr_updates['results']
+
+                updateCount = 0
+                for update in rsr_updates:
+                    url = settings.RSR_URL + '/user/' + str(rsr_updates[updateCount]['user']) + '/?format=json'
+                    response = requests.get(url, headers=headers)
+                    user = response.json()
+                    user = user['first_name'] + ' ' + user['last_name']
+                    rsr_updates[updateCount]['user'] = user
+                    updateCount = updateCount + 1
+
                 slide_data['rsr_updates'] = rsr_updates
 
                 partners = []
@@ -327,7 +348,7 @@ class PresentationSerializer(serializers.ModelSerializer):
                     response = requests.get(url, headers=headers)
                     partnerdata = response.json()
                     partners.append(partnerdata['name'])
-                slide_data['partners'] = partners
+                slide_data['partners'] = ', '.join(partners)
 
                 slide_data = self.map_rsr_fields(slide_data)
 
