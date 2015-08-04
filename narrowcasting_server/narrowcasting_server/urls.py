@@ -16,6 +16,8 @@ from authentication.views import AccountViewSet
 from authentication.views import LoginView
 from authentication.views import LogoutView
 
+from ncs.views import preview
+
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
 router.register(r'presentations', PresentationViewSet)
@@ -29,6 +31,7 @@ accounts_router = routers.NestedSimpleRouter(
 
 urlpatterns = patterns(
     '',
+    url(r'^preview/(?P<presentation_id>[0-9]+)/$', preview),
     url(r'^rsr/', RsrView),
      # url(r'^api/v1/slideImage/', SlideImageViewSet.as_view(), name='slide-image'),
     url(r'^api/v1/', include(router.urls)),
@@ -37,3 +40,4 @@ urlpatterns = patterns(
     url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
     url('^.*$', IndexView.as_view(), name='index'),
 )
+

@@ -15,14 +15,6 @@ from ncs.models import SlideImage
 
 import requests
 
-class PhotoSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = SlideImage
-        fields = ('url', 'id', 'image', 'owner')
-        owner = serializers.Field(source='owner.username')
-
-
-
 class SlideImageSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
 
@@ -46,7 +38,10 @@ class SlideImageSerializer(serializers.ModelSerializer):
         image = self.initial_data.get('file')
         validated_data['image'] = image
         # if old one exists, remove
-        SlideImage.objects.filter(slide_id=validated_data.get('slide'),image_type=validated_data.get('image_type')).delete()
+        SlideImage.objects.filter(
+            slide_id=validated_data.get('slide'),
+            image_type=validated_data.get('image_type')
+        ).delete()
 
         return SlideImage(**validated_data)
 
@@ -61,6 +56,7 @@ class SlideImageSerializer(serializers.ModelSerializer):
 
 
 class SlideSerializer(serializers.ModelSerializer):
+    slide_image_set = SlideImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Slide
@@ -72,10 +68,12 @@ class SlideSerializer(serializers.ModelSerializer):
             'previewData',
             'presentation',
             'isPreviewed',
-            'source'
+            'source',
+            'slide_image_set'
         )
         read_only_fields = (
             'id',
+            'slide_image_set'
         )
 
     def create(self, validated_data):
@@ -271,7 +269,7 @@ class PresentationSerializer(serializers.ModelSerializer):
 
         slide['activity_id'] = 'content-slide-' + str(slide['position'])
 
-        slide_data = json.dumps({
+        slide_data = {
             'activity_id': slide['activity_id'],
             'title': {
                 'text': 'Empty content slide',
@@ -293,7 +291,7 @@ class PresentationSerializer(serializers.ModelSerializer):
                     'text-decoration': 'none',
                 },
             }
-        })
+        }
 
         return slide_data
 
@@ -307,7 +305,6 @@ class PresentationSerializer(serializers.ModelSerializer):
                 response = urlopen(request)
                 slide_data = json.loads(response.read())
                 slide_data = self.map_iati_fields(slide_data)
-                slide_data = json.dumps(slide_data)
 
 
             if slide['source'] == 'rsr':
@@ -317,49 +314,77 @@ class PresentationSerializer(serializers.ModelSerializer):
                 response = requests.get(url, headers=headers)
                 slide_data = response.json()
 
-
-                # get google image from location
-                if 'primary_location' in slide_data and slide_data['primary_location'] is not None:
-
-                    url = settings.RSR_URL + '/project_location/' + str(slide_data['primary_location']) + '/?format=json'
-                    response = requests.get(url, headers=headers)
-                    slide_data['primary_location'] = response.json()
-
-                    url = 'https://maps.googleapis.com/maps/api/staticmap'
-                    url += '?zoom=13&size=700x300&maptype=roadmap&markers=color:red%7Clabel:C%7C'
-                    url += str(slide_data['primary_location']['latitude']) + ','
-                    url += str(slide_data['primary_location']['longitude'])
-
-                    location_image = requests.get(url, headers=headers)
-                    # TO DO; handle images using requests
-
                 # rsr updates
                 url = settings.RSR_URL + '/project_update/?format=json&limit=2&project=' + slide['activity_id']
                 response = requests.get(url, headers=headers)
                 rsr_updates = response.json()
                 slide_data['rsr_updates'] = rsr_updates
 
+                partners = []
+                # get partners
+                for partner in slide_data['partners']:
+                    url = settings.RSR_URL + '/organisation/' + str(partner) + '/?format=json'
+                    response = requests.get(url, headers=headers)
+                    partnerdata = response.json()
+                    partners.append(partnerdata['name'])
+                slide_data['partners'] = partners
+
                 slide_data = self.map_rsr_fields(slide_data)
-                slide_data = json.dumps(slide_data)
-
-                # save rsr update images
-                # rsr_updates
-
 
 
             if slide['source'] == 'content':
 
                 slide_data = self.map_content_fields(slide)
 
+
+
             new_slide = Slide(
                 activity_id=slide['activity_id'],
-                slideContent=slide_data,
+                slideContent='empty',
                 previewData=slide['previewData'],
                 position=slide['position'],
                 source=slide['source'],
                 presentation=presentation)
 
             new_slide.save()
+
+            # if slide['source'] == 'rsr':
+            #
+            #     from PIL import Image
+            #     from StringIO import StringIO
+            #
+            #     # save rsr update images
+            #     thiscount = 1
+            #     for rsrUpdate in slide_data['rsr_updates']['results']:
+            #
+            #         if rsrUpdate['photo'] and rsrUpdate['photo'] != '':
+            #
+            #             rsr_image = requests.get('http://rsr.akvo.org'+rsrUpdate['photo'], headers=headers)
+            #             i = Image.open(StringIO(rsr_image.content))
+            #             new_slide_image = SlideImage(image=i, image_type='rsrUpdate'+str(thiscount), slide=new_slide)
+            #             new_slide_image.save()
+            #             thiscount = thiscount + 1
+            #
+            #     # get google image from location
+            #     if 'primary_location' in slide_data and slide_data['primary_location'] is not None:
+            #
+            #         url = settings.RSR_URL + '/project_location/' + str(slide_data['primary_location']) + '/?format=json'
+            #         response = requests.get(url, headers=headers)
+            #         slide_data['primary_location'] = response.json()
+            #
+            #         url = 'https://maps.googleapis.com/maps/api/staticmap'
+            #         url += '?zoom=13&size=700x300&maptype=roadmap&markers=color:red%7Clabel:C%7C'
+            #         url += str(slide_data['primary_location']['latitude']) + ','
+            #         url += str(slide_data['primary_location']['longitude'])
+            #
+            #         location_image = requests.get(url, headers=headers)
+            #         i = Image.open(StringIO(location_image.content))
+            #         SlideImage.objects.create(image=i, image_type='googleMapImage', slide=new_slide)
+
+
+            new_slide.slideContent = json.dumps(slide_data)
+            new_slide.save()
+
 
         except URLError, e:
             print 'URLError'
@@ -444,7 +469,6 @@ class DisplaySerializer(serializers.ModelSerializer):
             'owner'
         )
 
-
     def get_validation_exclusions(self, *args, **kwargs):
         exclusions = super(DisplaySerializer, self).get_validation_exclusions()
 
@@ -462,4 +486,3 @@ class DisplaySerializer(serializers.ModelSerializer):
         # instance.presentation = validated_data.get('presentation', instance.presentation)
         instance.save()
         return instance
-

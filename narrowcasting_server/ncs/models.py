@@ -28,6 +28,9 @@ class Slide(models.Model):
     def __unicode__(self):
         return '{0}'.format(self.id)
 
+    class Meta:
+        ordering = ('position',)
+
 
 class SlideImage(models.Model):
     image = models.ImageField(
@@ -42,6 +45,7 @@ class SlideImage(models.Model):
         max_length=100, choices=(
             ('mainImage', 'Main image'),
             ('rsrImage', 'RSR image'),
+            ('googleMapImage', 'Google maps image'),
             ('rsrUpdate1', 'RSR update #1 image'),
             ('rsrUpdate2', 'RSR update #2 image')
         ))

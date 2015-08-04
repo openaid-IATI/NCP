@@ -12,7 +12,7 @@
           <a ng-hide="vm.view == 'slide-wysiwyg'" class="btn hover-orange btn-padding-30 red" ng-click="vm.save('save-draft')">Save draft</a>
           <a ng-show="vm.view == 'slide-wysiwyg'" class="btn hover-orange btn-padding-30 orange" ng-click="vm.selectView('rsr-select')">Select projects</a>
 
-          <a ui-sref="preview-presentation({ presentation_id : vm.presentationId })" class="btn hover-orange btn-padding-30 light-blue">Preview</a>
+          <a target="_blank" href="/preview/{{vm.presentationId}}/" class="btn hover-orange btn-padding-30 light-blue">Preview</a>
           <a class="btn hover-orange btn-padding-30 green" ng-click="vm.save('save-presentation')">Publish to display</a>
         </div>
       </div>

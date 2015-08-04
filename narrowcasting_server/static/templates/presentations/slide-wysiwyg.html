@@ -29,6 +29,7 @@
                     ng-style="vm.slide.slideContent.subtitle.cssStyle" 
                     ng-click="vm.selectField('subtitle')"
                     ng-class="{'active': vm.selectedField == 'subtitle'}"></textarea>
+
                 <textarea 
                     class="description block-box-shadow" 
                     ng-model="vm.slide.slideContent.project_plan_summary.text" 
@@ -58,10 +59,9 @@
                         ng-class="{'active': vm.selectedField == 'goals_overview'}"></textarea>
                 </div>
 
-
                 <div ng-show="vm.Slides.slideNr == 2" class="block block-box-shadow funding-partner-block">
                     <div class="block-header">Funding partner</div>
-                    <textarea>TO DO; load partner data</textarea>
+                    <textarea>{{vm.slide.slideContent.partners.join(', ')}}</textarea>
                 </div>
 
                 <div ng-show="vm.Slides.slideNr == 2" class="block block-box-shadow location-name-block">
@@ -86,14 +86,6 @@
                         ng-click="vm.selectField('target_group')"
                         ng-class="{'active': vm.selectedField == 'target_group'}"></textarea>
                 </div>
-
-
-
-
-
-
-
-
 
                 <div class="block updates-block">
                     <div class="updates-header">
