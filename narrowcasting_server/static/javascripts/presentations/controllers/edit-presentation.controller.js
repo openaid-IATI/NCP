@@ -98,6 +98,11 @@
     }
 
     function activate(){
+
+        if (!Authentication.isAuthenticated()) {
+            $location.url('/');
+        }
+
         Presentations.getSingle(vm.presentationId).then(presentationSuccessFn, errorFn);
 
         function presentationSuccessFn(data, status, headers, config) {

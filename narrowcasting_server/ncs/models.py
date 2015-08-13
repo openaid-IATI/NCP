@@ -34,7 +34,7 @@ class Slide(models.Model):
 
 class SlideImage(models.Model):
     image = models.ImageField(
-        upload_to='staticfiles/slide_images',
+        upload_to='slide_images',
         max_length=254,
         default=None,
         null=True)
