@@ -756,6 +756,26 @@ EDIT PRESENTATION
 
   }
 
+  iati-select .project-in-list{
+
+    &.iati{
+      &:hover{
+        border: 2px solid red;
+        background-color: darken( $green, 10% );
+      }
+    }
+  }
+
+  rsr-select .project-in-list{
+
+    &.rsr{
+      &:hover{
+        border: 2px solid red;
+        background-color: darken( $light-blue, 10% );
+      }
+    }
+  }
+
   .project-in-list{
     height: 340px;
     padding: 20px 10px 10px 10px;
@@ -772,24 +792,6 @@ EDIT PRESENTATION
       line-height: 11px;
       font-weight: 900;
       display: inline-block;
-    }
-
-    &.rsr{
-      &:hover{
-        background-color: darken( $light-blue, 10% );
-      }
-    }
-
-    &.iati{
-      &:hover{
-        background-color: darken( $green, 10% );
-      }
-    }
-
-    &.content{
-      &:hover{
-        background-color: darken( $orange, 10% );
-      }
     }
 
     &.rsr-slide-2{
