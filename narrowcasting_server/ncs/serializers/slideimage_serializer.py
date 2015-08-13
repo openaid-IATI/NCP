@@ -20,7 +20,8 @@ class SlideImageSerializer(serializers.ModelSerializer):
         )
 
     def get_image_url(self, slide_image):
-        return slide_image.image.url
+        image_url = slide_image.image.url.replace('slide_images', 'static')
+        return image_url
 
     def create(self, validated_data):
         image = self.initial_data.get('file')
