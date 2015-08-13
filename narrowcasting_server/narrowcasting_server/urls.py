@@ -1,9 +1,9 @@
 from django.conf.urls import patterns
 from django.conf.urls import include
 from django.conf.urls import url
+from django.contrib import admin
 
 from narrowcasting_server.views import IndexView
-from ncs.views import AccountPresentationsViewSet
 from ncs.views import PresentationViewSet
 from ncs.views import DisplayViewSet
 from ncs.views import SlideViewSet
@@ -31,6 +31,7 @@ accounts_router = routers.NestedSimpleRouter(
 
 urlpatterns = patterns(
     '',
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^preview/(?P<presentation_id>[0-9]+)/$', preview),
     url(r'^rsr/', RsrView),
      # url(r'^api/v1/slideImage/', SlideImageViewSet.as_view(), name='slide-image'),

@@ -1,273 +1,235 @@
-<div id="container">
-
-    <header class="marginrow">
-        <div class="row">
-            <div class="small-12 columns text-center">
-                <img src="/static/preview/logo_minbuza.png">
-            </div>
-        </div>
-    </header>
-
+<div id="slide-wysiwyg">
     <div 
-      class="slide-{{key}} hide inner" 
-      ng-repeat="(key, value) in vm.presentation.slide_set" 
-      style="background-color: {{value.slideContent.backgroundColor}};">
+        class="slide-{{key}} hide slide" 
+        ng-repeat="(key, value) in vm.presentation.slide_set" 
+        style="background-color: {{value.slideContent.backgroundColor}};">
+        
 
-        <div ng-if="value.source == 'iati'">
+        <div class="top-header block-box-shadow">
+            <img class="top-header-image" src="/static/images/minbuza.png" width="180px" height="auto" />
+        </div>
 
-            <div class="row top">
-              <div class="small-12 columns">
-                <div class="panel sidebar animated bounceInLeft">
-                  <h1 ng-style="value.slideContent.title.cssStyle">{{value.slideContent.title.text}}</h1>
-                </div>
-              </div>
+        <div class="rsr-slide" ng-if="value.source == 'rsr'">
+
+            <img 
+                ng-src="{{valueImages.mainImage.image_url}}" 
+                ng-if="valueImages.mainImage" 
+                class="background-image">
+
+            <div 
+                class="header animated block block-box-shadow bounceInLeft" 
+                ng-style="value.slideContent.title.cssStyle"
+                ng-if="value.slideContent.title.text.length">
+                {{value.slideContent.title.text}}
             </div>
 
-            <div class="row">
-              <div class="small-12 columns">
-                <div class="panel sidebar animated bounceInLeft">
-                  <h3 class="grey" ng-style="value.slideContent.description.cssStyle">{{value.slideContent.description.text}}</h3>
-                </div>
-              </div>
+            <div 
+                class="subheader textarea block block-box-shadow animated bounceInLeft"
+                ng-style="value.slideContent.subtitle.cssStyle"
+                ng-if="value.slideContent.subtitle.text.length">
+                {{value.slideContent.subtitle.text}}
             </div>
 
-            <div class="row middle" data-equalizer>
-              <div class="small-6 columns" data-equalizer-watch>
+            <div 
+                class="description textarea block block-box-shadow animated bounceInLeft" 
+                ng-style="value.slideContent.project_plan_summary.cssStyle"
+                ng-if="value.slideContent.project_plan_summary.text.length">
+                {{value.slideContent.project_plan_summary.text}}
+            </div>
+            
+            <img 
+                class="main-image animated bounceInLeft" 
+                src="http://rsr.akvo.org{{value.slideContent.current_image}}"
+                ng-if="value.slideContent.current_image.length">
 
-                <div class="row">
-                  <div class="small-12 columns">
-                    <div class="panel animated bounceIn p1">
-                      <h2>{{value.countries[0].name}}{{value.regions[0].name}}</h2>
-                    </div>
-                  </div>
+            <div class="rsr-front-slide">
+
+                <div 
+                    class="block block-box-shadow date-block start-date animated bounceInLeft"
+                    ng-if="value.slideContent.date_start_planned.length">
+                    <div class="block-header">Start date</div>
+                    <span class="block-text">{{value.slideContent.date_start_planned | date:'dd MMM yyyy' }}</span>
                 </div>
 
-                <div class="row">
-                  <div class="small-6 columns">
-                    <div class="row">
-                      <div class="small-12 columns">
-                        <div class="panel animated bounceIn p1">
-                          <h2>Type relatie</h2>
-                          <h2 class="grey">Relatie</h2>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="small-12 columns">
-                        <div class="panel animated bounceIn p1">
-                          <h2>Startdatum</h2>
-                          <h2 class="grey">{{vm.slide.slideContent.start_actual  | date:'dd MMM yyyy' }}</h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="small-6 columns">
-                    <div class="row">
-                      <div class="small-12 columns">
-                        <div class="panel animated bounceIn p1">
-                          <h2>Totaal budget</h2>
-                          <h2 class="grey">{{value.slideContent.total_budget | iaticurrency :'€':0:".":"." }}</h2>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="small-12 columns">
-                        <div class="panel animated bounceIn p1">
-                          <h2>Einddatum</h2>
-                          <h2 class="grey">{{value.slideContent.end_actual | date:'dd MMM yyyy'}}</h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div 
+                    class="block block-box-shadow date-block end-date animated bounceInLeft"
+                    ng-if="value.slideContent.date_end_planned.length">
+                    <div class="block-header">End date</div>
+                    <span class="block-text">{{value.slideContent.date_end_planned | date:'dd MMM yyyy' }}</span>
                 </div>
-              </div>
 
-              <div class="small-6 columns" data-equalizer-watch>
-                <div class="row">
-                  <div class="small-12 columns">
-                    <div class="panel bounceIn animated p3">
-                      <h2>Sector</h2>
-                      <h2 class="grey" ng-style="value.slideContent.sectors.cssStyle">{{value.slideContent.sectors.text}}</h2>
+                <div 
+                    class="block block-box-shadow goal-block animated bounceInLeft"
+                    ng-if="value.slideContent.goals_overview.text.length">
+                    <div class="block-header">GOALS</div>
+                    <div 
+                        class="goals textarea" 
+                        ng-style="value.slideContent.goals_overview.cssStyle">
+                        {{value.slideContent.goals_overview.text}}
                     </div>
-                  </div>
-                  <div class="small-12 columns">
-                    <div class="panel bounceIn animated p4">
-                      <h2>Participating organisations</h2>
-                      <h2 class="grey" ng-style="value.slideContent.participating_organisations.cssStyle">{{value.slideContent.participating_organisations.text}}</h2>
-                    </div>
-                  </div>
                 </div>
-              </div>
+
+            </div>
+
+            <div class="rsr-back-slide hide">
+
+                <div 
+                    class="block block-box-shadow funding-partner-block animated bounceInRight"
+                    ng-if="value.slideContent.partners.text.length">
+                    <div class="block-header">Partners</div>
+                    <div
+                        class="textarea"
+                        ng-style="value.slideContent.partners.cssStyle">
+                            {{value.slideContent.partners.text}}
+                    </div>
+                </div>
+
+                <div 
+                    class="block block-box-shadow location-name-block animated bounceInRight"
+                    ng-if="value.slideContent.primary_location_name.text.length">
+                    <div class="block-header">Location</div>
+                    <span class="block-text" type="text">
+                        {{value.slideContent.primary_location_name.text}}
+                    </span>
+                </div>
+
+                <div 
+                    class="block location-block animated bounceInRight"
+                    ng-if="value.slideContent.primary_location.longitude">
+                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=424x270&maptype=roadmap&markers=color:red%7Clabel:C%7C{{value.slideContent.primary_location.latitude}},{{value.slideContent.primary_location.longitude}}">
+                </div>
+
+                <div 
+                    class="block block-box-shadow budget-block animated bounceInRight"
+                    ng-if="value.slideContent.budget.text.length">
+                    <div class="block-header">Project budget</div>
+                    <span class="block-text">{{value.slideContent.budget.text | iaticurrency :'€':0:".":"."  }}</span>
+                </div>
+
+                <div 
+                    class="block block-box-shadow target-group-block animated bounceInRight"
+                    ng-if="value.slideContent.target_group.text.length">
+                    <div class="block-header">Target group</div>
+                    <div 
+                        class="textarea"
+                        ng-style="value.slideContent.target_group.cssStyle">
+                        {{value.slideContent.target_group.text}}
+                    </div>
+                </div>
+            </div>
+
+            <div 
+                class="block updates-block animated bounceInLeft"
+                ng-if="value.slideContent.rsr_updates.length">
+                <div class="updates-header">
+                    RECENT PROJECT UPDATES
+                </div>
+                <img class="presentation-arrow" src="/static/images/presentation-arrow-right.png" />
+
+                <div class="single-update" ng-repeat="rsr_update in value.slideContent.rsr_updates">
+                    <img src="http://rsr.akvo.org{{rsr_update.photo}}" />
+                    <div class="update-inner">
+                        <div class="update-post-date">{{rsr_update.created_at | date:'dd MMM yyyy' }}</div>
+                        <div class="update-by">by: {{rsr_update.user}}</div>
+                        <div 
+                            class="update-title"
+                            ng-style="rsr_update.title.cssStyle">{{rsr_update.title.text}}</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div ng-if="value.source == 'rsr'">
+        <div class="iati-slide" ng-if="value.source == 'iati'">
 
-            <div class="row top" data-equalizer>
-              <div class="small-11 columns">
-                <div class="panel sidebar animated bounceInLeft" data-equalizer-watch>
-                  <h1 ng-style="value.slideContent.title.cssStyle">{{value.slideContent.title.text}}</h1>
-                </div>
-              </div>
-              <div class="small-1 columns">
-                <div class="twitter animated bounceInRight" data-equalizer-watch>
-                  <div class="twit_inner">
-                    <p>#AKVO</p>
-                  </div>
-                </div>
-              </div>
+            <img 
+                ng-src="{{valueImages.mainImage.image_url}}" 
+                ng-if="valueImages.mainImage" 
+                class="background-image">
+
+            <div 
+                class="block block-box-shadow header animated bounceInLeft" 
+                ng-if="value.slideContent.title.text.length"
+                ng-style="value.slideContent.title.cssStyle">
+                {{value.slideContent.title.text}}
+            </div>
+            <div 
+                class="block block-box-shadow description textarea animated bounceInLeft" 
+                ng-if="value.slideContent.description.text.length"
+                ng-style="value.slideContent.description.cssStyle">
+                {{value.slideContent.description.text}}
+            </div>
+            
+            <div 
+                class="block block-header block-box-shadow countries-block animated bounceInLeft">
+                {{value.slideContent.countries[0].name}}
+                {{value.slideContent.regions[0].name}}
             </div>
 
-            <div class="row middle" data-equalizer>
-              <div class="small-3 columns" data-equalizer-watch>
-                <div class="row">
-                  <div class="small-12 columns">
-                    <div class="panel sidebar invert animated bounceIn p1">
-                      <h2 ng-style="value.slideContent.subtitle.cssStyle">{{value.slideContent.subtitle.text}}</h2>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="small-12 columns">
-                    <div class="panel sidebar animated bounceIn p5">
-                      <p ng-style="value.slideContent.project_plan_summary.cssStyle">{{value.slideContent.project_plan_summary.text}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="small-4 columns" data-equalizer-watch>
-                <img class="animated bounceIn p2" 
-                    ng-src="http://rsr.akvo.org{{value.slideContent.current_image}}" 
-                    ng-show="value.slideContent.current_image">
-              </div>
-
-              <div class="rsr-back-slide small-5 columns hide" data-equalizer-watch>
-                <div class="row">
-                  <div class="small-6 columns">
-                    <div class="panel bounceIn animated p3">
-                      <h2>Start date</h2>
-                      <h2 class="grey">{{value.slideContent.date_start_planned | date:'dd MMM yyyy' }}</h2>
-                    </div>
-                  </div>
-                  <div class="small-6 columns">
-                    <div class="panel bounceIn animated p4">
-                      <h2>End date</h2>
-                      <h2 class="grey">{{value.slideContent.date_start_planned | date:'dd MMM yyyy' }}</h2>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="small-12 columns">
-                    <div class="panel bounceIn animated p6">
-                      <h2>Goals</h2>
-                      <h2 ng-style="value.slideContent.goals_overview.cssStyle">{{value.slideContent.goals_overview.text }}</h2>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="rsr-front-slide small-5 columns" data-equalizer-watch>
-                <div class="row">
-                  <div class="small-6 columns">
-                    <div class="panel bounceIn animated p3">
-                      <h2 class="small">Partners</h2>
-                      <h2 class="grey small" ng-style="value.slideContent.partners.cssStyle">{{value.slideContent.partners.text}}</h2>
-                    </div>
-                  </div>
-                  <div class="small-6 columns">
-                    <div class="panel bounceIn animated p4">
-                      <h2 class="small">Location</h2>
-                      <h2 class="grey small">{{value.slideContent.primary_location.city}}</h2>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="small-6 columns">
-                    <div class="row">
-                      <div class="small-12 columns">
-                        <div class="panel bounceIn animated pex">
-                        <h2 class="small">Project budget</h2>
-                        <h2 ng-style="value.slideContent.budget.cssStyle" class="grey small">{{value.slideContent.budget.text | iaticurrency :'€':0:".":"."  }}</h2>
-                      </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="small-12 columns">
-                        <div class="panel bounceIn animated p6">
-                        <h2 class="small">Target Group</h2>
-                        <ul class="grey" ng-style="value.slideContent.target_group.cssStyle">
-                          {{value.slideContent.target_group.text}}
-                        </ul>
-                      </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="small-6 columns">
-                    <img 
-                        class="animated bounceIn p2"
-                        src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=424x270&maptype=roadmap&markers=color:red%7Clabel:C%7C{{value.slideContent.primary_location.latitude}},{{value.slideContent.primary_location.longitude}}">
-                  </div>
-                </div>
-              </div>
-
+            <div 
+                class="block block-box-shadow type-relatie-block animated bounceInLeft"
+                ng-if="value.slideContent.relatietype.length">
+                <div class="block-header">Type relatie</div>
+                <span class="block-text">Relatietype..</span>
             </div>
 
-            <div class="row bottom">
-              <div class="small-12 columns">
-                <div class="panel bounceInLeft animated">
-                  <div class="row" data-equalizer>
-                    <div class="small-1 columns" data-equalizer-watch>
-                      <div class="table">
-                        <h3 class="cell">Recent project updates</h3>
-                      </div>
-                    </div>
-                    <div class="small-1 columns" data-equalizer-watch>
-                      <img src="/static/preview/arrow.svg" class="arrow">
-                    </div>
-                    <div class="small-2 columns" data-equalizer-watch>
-                      <div class="img-wrap">
-                        <img src="http://rsr.akvo.org{{value.slideContent.rsr_updates[0].photo}}">
-                      </div>
-                    </div>
-                    <div class="small-3 columns" data-equalizer-watch>
-                      <p class="date">{{value.slideContent.rsr_updates[0].created_at | date:'dd MMM yyyy' }}</p>
-                      <p class="author">by {{value.slideContent.rsr_updates[0].user}}</p>
-                      <p>{{value.slideContent.rsr_updates[0].title}}</p>
-                    </div>
-                    <div class="small-2 columns" data-equalizer-watch>
-                      <div class="img-wrap">
-                        <img src="http://rsr.akvo.org{{value.slideContent.rsr_updates[0].photo}}">
-                      </div>
-                    </div>
-                    <div class="small-3 columns" data-equalizer-watch>
-                      <p class="date">{{value.slideContent.rsr_updates[1].created_at | date:'dd MMM yyyy' }}</p>
-                      <p class="author">by {{value.slideContent.rsr_updates[1].user}}</p>
-                      <p>{{value.slideContent.rsr_updates[1].title}}</p>
-                    </div>
-                  </div>
+            <div 
+                class="block block-box-shadow total-budget-block animated bounceInLeft"
+                ng-if="value.slideContent.total_budget.length">
+                <div class="block-header">Totaal budget</div>
+                <span class="block-text">{{value.slideContent.total_budget | iaticurrency :'€':0:".":"." }}</span>
+            </div>
+
+            <div 
+                class="block block-box-shadow date-block start-date animated bounceInLeft"
+                ng-if="value.slideContent.start_actual.length">
+                <div class="block-header">Start date</div>
+                <span class="block-text">{{value.slideContent.start_actual  | date:'dd MMM yyyy' }}</span>
+            </div>
+
+            <div 
+                class="block block-box-shadow date-block end-date animated bounceInLeft"
+                ng-if="value.slideContent.end_actual.length">
+                <div class="block-header">End date</div>
+                <span class="block-text">{{value.slideContent.end_actual  | date:'dd MMM yyyy'}}</span>
+            </div>
+
+            <div 
+                class="block block-box-shadow sectors-block animated bounceInLeft"
+                ng-if="value.slideContent.sectors.text.length">
+                <div class="block-header">Sector</div>
+                <div class="textarea" ng-style="value.slideContent.sectors.cssStyle">
+                    {{value.slideContent.sectors.text}}
                 </div>
-              </div>
+            </div>
+
+            <div 
+                class="block block-box-shadow participating-organisations-block animated bounceInLeft"
+                ng-if="value.slideContent.participating_organisations.text.length">
+                <div class="block-header">Participating organisations</div>
+                <div class="textarea" ng-style="value.slideContent.participating_organisations.cssStyle">
+                    {{value.slideContent.participating_organisations.text}}
+                </div>
             </div>
         </div>
-
-        <div ng-if="value.source == 'content'">
-            <div class="row top">
-              <div class="small-12 columns">
-                <div class="panel sidebar animated bounceInLeft">
-                  <h1 ng-style="value.slideContent.title.cssStyle">{{value.slideContent.title.text}}</h1>
-                </div>
-              </div>
+        <div class="content-slide" ng-if="value.source == 'content'">
+            <img 
+                ng-src="{{valueImages.mainImage.image_url}}" 
+                ng-if="valueImages.mainImage" 
+                class="background-image">
+                
+            <div 
+                class="header block block-box-shadow animated bounceInLeft" 
+                ng-if="value.slideContent.title.text.length" 
+                ng-style="value.slideContent.title.cssStyle">
+                {{value.slideContent.title.text}}
             </div>
-
-            <div class="row">
-              <div class="small-12 columns">
-                <div class="panel sidebar animated bounceInLeft">
-                  <h3 class="grey" ng-style="value.slideContent.description.cssStyle">{{value.slideContent.description.text}}</h3>
-                </div>
-              </div>
+            <div 
+                class="description textarea block block-box-shadow animated bounceInLeft" 
+                ng-if="value.slideContent.description.text.length" 
+                ng-style="value.slideContent.description.cssStyle">
+                {{value.slideContent.description.text}}
             </div>
         </div>
-
     </div>
 
     <footer>
@@ -275,4 +237,5 @@
             <div class="fill"></div>
         </div>
     </footer>
+
 </div>

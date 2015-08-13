@@ -1,15 +1,5 @@
 $(document).foundation();
 
-$(window).load(function() {
-
-	var rowmiddle = $('.middle img').height();
-	var rowmiddle_left = $('.p1').outerHeight(true);
-	var rowmiddle_right = $('.p3').outerHeight(true);
-	var rowmiddle_right_ex = $('.pex').outerHeight(true);
-	$('.p5').innerHeight(rowmiddle - rowmiddle_left);
-	$('.p6').innerHeight(rowmiddle - rowmiddle_right - rowmiddle_right_ex);
-});
-
 var ncpApp = angular.module('ncpApp', []);
 var slideCount = 0;
 
@@ -87,6 +77,19 @@ ncpApp.directive('preview', preview);
 
 	            $timeout(function(){
 	            	vm.slideIn(0);
+
+                    var $window = $(window);
+                    var pane = jQuery('#slide-wysiwyg');
+                    
+
+                    function checkWidth() {
+                        var windowsize = $window.width();
+                        var fontsize = (windowsize / 70) + 'px';
+                        pane.css('font-size', fontsize);
+                    }
+                    checkWidth();
+                    $(window).resize(checkWidth);
+
 	            });
 	        }
 

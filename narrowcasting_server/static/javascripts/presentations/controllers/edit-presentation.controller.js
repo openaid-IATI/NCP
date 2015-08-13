@@ -51,9 +51,24 @@
     }
 
     vm.onDropProjects = function(index){
+
         vm.save('change-slide');
         vm.saving = true;
         setTimeout(function(){ vm.saving = false; }, 3);
+        vm.addDummies();
+    }
+
+    vm.addDummies = function(){
+        var dummyCount = 0;
+        for(var i = 0;i < vm.selectedProjects.length;i++){
+            if (vm.selectedProjects[i].id == 'dummy'){
+                dummyCount++;
+            }
+        }
+
+        for(var i = 0;i < (5 - dummyCount);i++){
+            vm.selectedProjects.push({id:'dummy'});
+        }
     }
 
     vm.selectView = function(view){
@@ -92,6 +107,8 @@
                 vm.presentation.slide_set[i]['previewData'] = JSON.parse(vm.presentation.slide_set[i]['previewData']);
                 vm.selectedProjects[vm.presentation.slide_set[i]['position']] = vm.presentation.slide_set[i];
             }
+
+            vm.addDummies();
         }
         vm.rsrActivate();
         vm.iatiActivate();
@@ -358,18 +375,9 @@
 
 
 
-
-
-
-
-
-
-
     vm.rsrActivityStatuses = [];
     vm.rsrSelectedActivityStatuses = [];
-
     vm.rsrTextSearch = '';
-    
     vm.rsrFilterSelection = RsrFilterSelection;
 
     vm.rsrProjects = {
@@ -386,6 +394,7 @@
         vm.view = 'rsr-select';
         // check if filters changed, if so filter projects
         if(vm.updateRsrSelectionString()){
+            vm.rsrProjects.currentPage = 1;
             RsrProjects.list(RsrFilterSelection.selectionString, vm.rsrProjects.perPage,  vm.rsrProjects.currentPage, vm.rsrProjects.orderBy).then(rsrProjectsSuccessFn, errorFn);
         }
     }
@@ -397,7 +406,7 @@
       ];
 
       if(vm.rsrTextSearch != ''){
-        selectList.push('&query='+vm.rsrTextSearch);
+        selectList.push('&title__icontains='+vm.rsrTextSearch);
       }
 
       if(RsrFilterSelection.selectionString != selectList.join('')){

@@ -49,7 +49,7 @@ class SlideImage(models.Model):
             ('rsrUpdate1', 'RSR update #1 image'),
             ('rsrUpdate2', 'RSR update #2 image')
         ))
-    slide = models.ForeignKey(Slide)
+    slide = models.ForeignKey(Slide, related_name='slide_image_set')
 
 
 class Display(models.Model):
@@ -59,39 +59,3 @@ class Display(models.Model):
     unlocked = models.BooleanField(null=False, default=False)
     added_at = models.DateTimeField(auto_now_add=True)
     presentation = models.ForeignKey(Presentation, null=True)
-
-
-#
-# class PlaylistItem(models.Model):
-#     playlist = models.ForeignKey('Playlist')
-#     presentation = models.ForeignKey(Presentation)
-#
-#     def __unicode__(self):
-#         return ' '.join([self.presentation.name, self.playlist.name])
-#
-#
-# class Playlist(models.Model):
-#     creator = models.ForeignKey(Account)
-#     name = models.CharField(null=False, blank=False, max_length=100)
-#     presentations = models.ManyToManyField(
-#         Presentation,
-#         through='PlaylistItem',
-#     )
-#
-#
-# class PlaylistItemDays(models.Model):
-#     playlistItem = models.ForeignKey(PlaylistItem)
-#     day = models.CharField(
-#         null=False,
-#         blank=False,
-#         max_length=50,
-#         choices= (
-#             ('monday', 'Monday'),
-#             ('tuesday', 'Tuesday'),
-#             ('wednesday', 'Wednesday'),
-#             ('thursday', 'Thursday'),
-#             ('friday', 'Friday'),
-#             ('saturday', 'Saturday'),
-#             ('sunday', 'Sunday'),
-#         )
-#     )

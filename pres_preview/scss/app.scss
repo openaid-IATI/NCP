@@ -2,43 +2,17 @@
 @import "foundation";
 @import "animations";
 
-// Or selectively include components
-// @import
-//   "foundation/components/accordion",
-//   "foundation/components/alert-boxes",
-//   "foundation/components/block-grid",
-//   "foundation/components/breadcrumbs",
-//   "foundation/components/button-groups",
-//   "foundation/components/buttons",
-//   "foundation/components/clearing",
-//   "foundation/components/dropdown",
-//   "foundation/components/dropdown-buttons",
-//   "foundation/components/flex-video",
-//   "foundation/components/forms",
-//   "foundation/components/grid",
-//   "foundation/components/inline-lists",
-//   "foundation/components/joyride",
-//   "foundation/components/keystrokes",
-//   "foundation/components/labels",
-//   "foundation/components/magellan",
-//   "foundation/components/orbit",
-//   "foundation/components/pagination",
-//   "foundation/components/panels",
-//   "foundation/components/pricing-tables",
-//   "foundation/components/progress-bars",
-//   "foundation/components/reveal",
-//   "foundation/components/side-nav",
-//   "foundation/components/split-buttons",
-//   "foundation/components/sub-nav",
-//   "foundation/components/switches",
-//   "foundation/components/tables",
-//   "foundation/components/tabs",
-//   "foundation/components/thumbs",
-//   "foundation/components/tooltips",
-//   "foundation/components/top-bar",
-//   "foundation/components/type",
-//   "foundation/components/offcanvas",
-//   "foundation/components/visibility";
+
+$dark-red:          #bd0e13;
+$light-grey:        #BFBDBD;
+$dark-grey:         #6a6969;
+$dark-blue:         #2988E2;
+$red:               #F15A24;
+$chivo:  'Chivo', sans-serif;
+
+body{
+  line-height: 1.42857143;
+}
 
 .shadowbox {
 	-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
@@ -53,16 +27,24 @@
 	max-height: 100vh;
 }
 
-#container {
-	@include viewportRatio(16, 9);
-	background-image:url(../img/background.jpg);
-	background-size:cover;
+#slide-wysiwyg {
+	@include viewportRatio(16.95, 9);
     margin: auto;
     position: absolute;
-    top:0;bottom:0; 
-    left:0;right:0;
+    top:0;
+    bottom:0; 
+    left:0;
+    right:0;
     display: table;
     overflow: hidden;
+    font-size: 1.7em;
+    font-family: $chivo;
+}
+
+.slide{
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
 .inner {
@@ -86,23 +68,6 @@ header {
 		width:10%;
 		height: auto;
 		margin-bottom:.5%;
-	}
-}
-
-.twitter {
-	position:relative;
-	.twit_inner {
-		@extend .shadowbox;
-		text-align: center;
-		position:absolute;
-		bottom:0;
-		background:rgba(0,0,0,.5);
-		color:#fff;
-		padding:.5rem;
-		width: 100%;
-		p {
-			margin:0;
-		}
 	}
 }
 
@@ -196,7 +161,7 @@ footer {
 .animated {
 	animation-delay:2s;
 }
-
+/*
 .small {
 	font-size: rem-calc(26);
 }
@@ -205,4 +170,530 @@ ul.grey {
 		color:$aluminum;
 		font-size:90%;
 	}
+}
+
+.abs{
+	position: absolute;
+	background-color: #fff;
+}
+
+.hide{
+	display: none;
+}
+
+.abs-hor-0{ left: 1%; }
+
+.abs-hor-25{ left: 24%; }
+
+.abs-hor-48{ left: 48%; }
+
+.abs-hor-50{ left: 50%; }
+
+.abs-hor-75{ left: 74%; }
+
+.abs-vert-0{ top: 12.5%; }
+
+.abs-vert-1{ top: 24%; }
+
+.abs-vert-2{ top: 42%; }
+
+.abs-vert-3{ top: 74%; }
+
+.rsr-title{
+	width: 78%;
+	height: 10%;
+}
+
+.rsr-subtitle{
+	width: 16%;
+	height: 17%;
+	line-height: 1.2em;
+}
+
+.rsr-project_plan_summary{
+	top: 43%;
+	width:16%;
+	height: 29%;
+	line-height: 1.3em;
+}
+
+.rsr-current_image{
+	left: 18%;
+	width: 31%;
+	height: 48%;
+}
+
+.rsr-twitter{
+	left: 80%;
+	text-align: center;
+	background:rgba(0,0,0,.5) !important;
+	color:#fff;
+	padding:.5rem;
+	p {
+		margin:0;
+	}
+}
+
+.rsr-date_start_planned, .rsr-date_end_planned{
+	width: 20.5%;
+	height: 16%;
+	font-size: 1.5em;
+}
+
+.rsr-date_end_planned{
+	left: 71%;
+}
+
+.rsr-goals_overview{
+	width: 42%;
+	height: 31%;
+}
+
+.rsr-partners{
+	width: 23%;
+	height: 12%;
+}
+
+.rsr-budget{
+	
+}
+
+.rsr-primary_location{
+	width: 18%;
+	height: 16%;
+}*/
+/**/
+
+
+
+/****
+slide WYSIWYG
+****/
+#slide-wysiwyg{
+  font-size: 19px;
+
+  .background-image{
+    position: absolute;
+    top: 11%;
+    left: 0;
+    width: 100%;
+    height: 89%;
+    -webkit-filter: blur(3px); 
+    filter: blur(3px);
+    filter: url(/static/images/blur.svg#blur); 
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+    clip: rect(0px,auto,auto,0px);
+  }
+
+  .no-blur{
+    -webkit-filter: blur(0px); 
+    filter: blur(0px); 
+    filter: none; 
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
+  }
+
+  .loading-slide{
+    text-align: center;
+    padding-top: 12em;
+  }
+
+  .block{
+    position: absolute;
+    background-color: #fff;
+    text-transform: uppercase;
+    overflow: hidden;
+
+    .textarea{
+      line-height: normal;
+      width: 100%;
+      padding: 0 8px;
+    }
+  }
+
+  .block-box-shadow{
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  .active, .active:focus{
+    -webkit-box-shadow: inset 0px 0px 2px 3px rgba(73, 138, 184, 1);
+    -moz-box-shadow:    inset 0px 0px 2px 3px rgba(73, 138, 184, 1);
+    box-shadow:         inset 0px 0px 2px 3px rgba(73, 138, 184, 1);
+  }
+
+  .top-header{
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #fff;
+    border-bottom: 3px solid #00518d;
+    height: 11%;
+    width: 100%;
+    text-align: center;
+
+    .top-header-image{
+      height: 70%;
+      width: auto;
+    }
+  }
+
+  .header{
+    position: absolute;
+    top: 12.5%;
+    left: 1%;
+    width: 78%;
+    height: 10%;
+    padding: 8px 10px;
+    border-left: 8px solid $dark-red; 
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  .hashtag{
+    position: absolute;
+    top: 18%;
+    left: 80%;
+    width: 13%;
+    height: 4.5%;
+    background-color: #000;
+    color: #fff;
+    font-weight: 900;
+    font-size: 14px;
+    padding: 2px 8px;
+  }
+
+  .subheader{
+    position: absolute;
+    top: 24%;
+    left: 1%;
+    width: 16%;
+    height: 17%;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 2px 8px 2px 12px;
+    border-left: 8px solid #fff;
+    background-color: #bd0e13;
+  }
+
+  .description{
+    position: absolute;
+    top: 43%;
+    left: 1%;
+    height: 29%;
+    width: 16%;
+    font-size: 0.7em;
+    font-weight: 900;
+    border-left: 8px solid $dark-red;
+    padding: 2px 4px;
+    line-height: 1.3em;
+  }
+
+  .main-image{
+    position: absolute;
+    top: 24%;
+    left: 18%;
+    width: 31%;
+    height: 48%;
+  }
+
+  .block-header{
+    line-height: 1.4em;
+    font-weight: bold;
+    color: #000;
+    padding: 6px 8px 0;
+  }
+
+  .block-text{
+    box-shadow: none;
+    color: #969696;
+    font-weight: bold;
+    padding: 0 10px 0;
+    width: 100%;
+    line-height: 1.2em;
+  }
+
+  .date-block{
+    top: 24%;
+    width: 20.5%;
+    height: 16%;
+    font-size: 1.5em;
+
+    .block-header{
+      line-height: 1.1em;
+    }
+
+    &.start-date{
+      left: 50%;
+    }
+
+    &.end-date{
+      left: 71%;
+      width: 21%;
+    }
+  }
+
+  .goal-block{
+    top: 41%;
+    left: 50%;
+    width: 42%;
+    height: 31%;
+
+    .block-header{
+      font-size: 1.5em;
+    }
+
+    .textarea{
+      width: 100%;
+      box-shadow: none;
+      font-size: 1.2em;
+      height: 70%;
+      padding: 0 18px;
+      line-height: 1.2em;
+
+    }
+  }
+
+  .rsr-slide{
+
+    .funding-partner-block{
+      left: 50%;
+      top: 24%;
+      width: 23%;
+      height: 12%;
+
+      .textarea{
+        max-height: 24px;
+      }
+    }
+
+
+
+    .budget-block{
+      left: 50%;
+      top: 37%;
+      width: 23%;
+      height: 13%;
+
+      .block-text{
+        font-size: 1.4em;
+      }
+    }
+
+    .target-group-block{
+      left: 50%;
+      top: 52%;
+      width: 23%;
+      height: 20%;
+
+      .textarea{
+        height: 63px;
+      }
+    }
+
+    .location-name-block{
+      left: 74%;
+      top: 24%;
+      height: 16%;
+      width: 18%;
+
+      input{
+        max-width: 100%;
+      }
+
+      .block-text{
+        margin-top: 6px;
+        font-size: 1.4em;
+      }
+    }
+
+    .location-block{
+      left: 74%;
+      top: 42%;
+      height: 30%;
+      width: 25%;
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+  }
+
+ 
+
+  
+
+  .updates-block{
+    top: 74%;
+    left: 1%;
+    width: 98%;
+    height: 24%;
+    padding: 1.7em 8px;
+
+    .textarea{
+      padding-left: 0;
+    }
+
+    .updates-header{
+      display: inline-block;
+      font-size: 1.2em;
+      line-height: 1em;
+      width: 12%;
+      font-weight: 900;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.45);
+      vertical-align: middle;
+      height: 100%;
+      margin-right: 4px;
+      padding: 0.8em 0.6em;
+    }
+
+    .presentation-arrow{
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .single-update{
+      position: relative;
+      display: inline-block;
+      height: 100%;
+      width: 35%;
+      margin-left: 2%;
+      vertical-align: middle;
+
+      img{
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+        width: 30%;
+      }
+
+      .update-inner{
+        display: inline-block;
+        vertical-align: middle;
+        width: 60%;
+        height: 100%;
+        padding: 2px 0 0 8px;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.45);
+
+        .update-post-date{
+          font-size: 0.7em;
+          color: $light-grey;
+          font-weight: bold;
+        }
+
+        .update-by{
+          font-size: 0.7em;
+          color: $green;
+          font-weight: bold;
+        }
+
+        .update-title{
+          font-size: 0.7em;
+          color: black;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+
+
+
+  /*** IATI SLIDE ***/
+
+  .iati-slide{
+    max-height: 100%;
+
+    .header{
+      width: 97%;
+    }
+
+    .description{
+      top: 24%;
+      width: 97%;
+      height: 18%;
+    }
+
+    .participating-organisations-block, .sectors-block, .countries-block{
+      left: 48%;
+      top: 44%;
+      font-size: 1.3em;
+    }
+
+    .participating-organisations-block{
+      top: 61%;
+      width: 50%;
+      height: 24%;
+    }
+
+    .sectors-block{
+      height: 15%;
+      width: 50%;
+    }
+
+    .date-block{
+      top: 72%;
+      height: 13%;
+      font-size: 1.2em;
+      width: 21%;
+
+      &.start-date{
+        left: 1%;
+      }
+
+      &.end-date{
+        left: 24%;
+      }
+    }
+
+    .type-relatie-block, .total-budget-block{
+      top: 56%;
+      width: 21%;
+      height: 13%;
+      font-size: 1.2em;
+    }
+
+    .type-relatie-block{
+      left: 1%;
+    }
+
+    .total-budget-block{
+      left: 24%;
+    }
+
+    .countries-block{
+      left: 1%;
+      height: 9%;
+      width: 44%;
+    }
+
+
+  }
+
+
+  .content-slide{
+
+
+    .header{
+      text-align: center;
+      width: 98%;
+      border-left: 0;
+    }
+
+    .description{
+      text-align: center;
+      top: 25%;
+      left: 1%;
+      width: 98%;
+      border-left: 0;
+      padding: 8px 4px;
+    }
+
+
+
+  }
+
+
 }

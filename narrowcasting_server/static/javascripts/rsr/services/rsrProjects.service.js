@@ -38,7 +38,6 @@
             }
 
             var url = '/rsr/?call=project&filters=' + encodeURIComponent(filters);
-            console.log(url);
             return $http.get(url, { cache: true });
         }
     }

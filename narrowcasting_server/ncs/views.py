@@ -20,10 +20,10 @@ from ncs.models import SlideImage
 
 from ncs.permissions import IsCreatorOfPresentation
 from ncs.permissions import IsOwnerOfDisplay
-from ncs.serializers import PresentationSerializer
-from ncs.serializers import DisplaySerializer
-from ncs.serializers import SlideSerializer
-from ncs.serializers import SlideImageSerializer
+from ncs.serializers.presentation_serializer import PresentationSerializer
+from ncs.serializers.display_serializer import DisplaySerializer
+from ncs.serializers.slide_serializer import SlideSerializer
+from ncs.serializers.slideimage_serializer import SlideImageSerializer
 
 
 class SlideImageViewSet(viewsets.ModelViewSet):

@@ -560,6 +560,7 @@ DISPLAYS
   }
 }
 
+
 /****
 NEW PRESENTATION
 ****/
@@ -582,7 +583,7 @@ NEW PRESENTATION
     border-radius: 0;
     max-width: 36em;
     padding: 26px 16px;
-      
+    height: 100%;
   }
 
 
@@ -661,6 +662,8 @@ EDIT PRESENTATION
   }
 
   .project-bar{
+    height: 65em;
+    overflow-y: scroll;
     background-color: $white;
 
     .iati{
@@ -993,15 +996,14 @@ IATI filters
     color: #fff;
   }
 
-
 }
-
 
 
 /****
 slide WYSIWYG
 ****/
 #slide-wysiwyg{
+  font-size: 14px;
 
   .background-image{
     position: absolute;
@@ -1133,6 +1135,8 @@ slide WYSIWYG
     font-weight: bold;
     line-height: 1.2em;
     padding: 2px 8px 2px 12px;
+    border-left: 8px solid #fff;
+    background-color: #bd0e13;
   }
 
   .description{
@@ -1277,12 +1281,7 @@ slide WYSIWYG
         height: 100%;
       }
     }
-
   }
-
- 
-
-  
 
   .updates-block{
     top: 74%;
@@ -1290,7 +1289,10 @@ slide WYSIWYG
     width: 98%;
     height: 24%;
     padding: 20px 8px;
-
+ 
+    textarea{
+      padding-left: 0;
+    }
 
     .updates-header{
       display: inline-block;
@@ -1596,11 +1598,9 @@ Users
         &::-moz-placeholder { color: $white; }
         &:-ms-input-placeholder { color: $white; }
       }
-    }
-    
+    }    
 
   }
-
 
   .user-meta-item{
     width: 100%;
@@ -1667,23 +1667,34 @@ LEARN
 SNACKBAR
 ****/
 
-.snackbar {
-  background-color: $orange;
-  padding: 6px 10px;
-  filter: alpha(opacity=87);
-  border-radius: 6px 14px;
-  padding: 8px;
-  color: $white;
-  font-size: 16px;
-  font-weight: 400;
-  border-radius: $border-radius;
-  margin-bottom: 1em;
+#snackbar-container{
+  left: auto;
+  bottom: auto;
+  top: 140px;
+  right: 20px;
+  pointer-events: none;
+
+
+  .snackbar {
+    background-color: $orange;
+    padding: 6px 10px;
+    filter: alpha(opacity=87);
+    border-radius: 6px 14px;
+    border: 1px solid $white;
+    padding: 8px;
+    color: $white;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: $border-radius;
+    margin-bottom: 1em;
+  }
+
+  .snackbar.snackbar-opened {
+    height: auto;
+    opacity: 1;
+  }
 }
 
-.snackbar.snackbar-opened {
-  height: auto;
-  opacity: 1;
-}
 @media (max-width: 767px) {
   #snackbar-container {
     left: 0px !important;

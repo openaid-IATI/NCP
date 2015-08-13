@@ -71,6 +71,10 @@
                                 ng-class="{ 'btn-active': vm.view == 'rsr-select-sort-by' }" 
                                 ng-click="vm.view = 'rsr-select-sort-by'" 
                                 class="btn hover-orange btn-more-padding btn-sort-by light-blue">Sort by</a> -->
+                                <a 
+                                ng-class="{ 'btn-active': vm.view == 'rsr-select-text-search' }" 
+                                ng-click="vm.view = 'rsr-select-text-search'" 
+                                class="btn hover-orange btn-more-padding light-grey">Text search</a>
                             </div>
                         </div>
                     </div>
@@ -107,8 +111,6 @@
                         </div>
                     </div>
 
-                    
-
                     <iati-select ng-show="vm.view == 'iati-select'"></iati-select>
                     <iati-select-regions ng-show="vm.view == 'iati-select-regions'"></iati-select-regions>
                     <iati-select-countries ng-show="vm.view == 'iati-select-countries'"></iati-select-countries>
@@ -118,6 +120,7 @@
 
                     <rsr-select ng-show="vm.view == 'rsr-select'"></rsr-select>
                     <rsr-select-status ng-show="vm.view == 'rsr-select-statuses'"></rsr-select-status>
+                    <rsr-select-text-search ng-show="vm.view == 'rsr-select-text-search'"></rsr-select-text-search>
                     <slide-wysiwyg ng-show="vm.view == 'slide-wysiwyg'"></slide-wysiwyg>
 
                 </div>

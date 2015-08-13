@@ -42,6 +42,8 @@
 
     vm.deletePresentation = function(id){
 
+      
+
       Presentations.deletePresentation(id).then(succesFn, errorFn);
 
       function succesFn(data, status, headers, config){
