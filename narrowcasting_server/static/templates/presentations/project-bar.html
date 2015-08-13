@@ -4,7 +4,7 @@
             ng-repeat="project in vm.selectedProjects" 
             data-drop="true" 
             ng-model='vm.selectedProjects' 
-            jqyoui-droppable="{index: {{$index}}, onDrop:'vm.onDropProjects(project, $index)'}">
+            jqyoui-droppable="{index: {{$index}}, onDrop:'vm.onDropProjects(project, $index)', onOver:'vm.hoverProject($index)', onOut:'vm.hoverOutProject($index)'}">
 
             <div 
                 class="text-center" 

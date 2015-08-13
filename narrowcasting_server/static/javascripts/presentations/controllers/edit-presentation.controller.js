@@ -1,8 +1,3 @@
-/**
-* NewPresentationController
-* @namespace ncs.presentations.controllers
-*/
-
 (function () {
   'use strict';
 
@@ -12,7 +7,9 @@
 
   EditPresentationController.$inject = [
     '$rootScope', 
-    '$scope', 
+    '$scope',
+    '$window', 
+    '$location',
     '$state', 
     '$stateParams', 
     'Authentication', 
@@ -33,7 +30,7 @@
   /**
   * @namespace EditPresentationController
   */
-  function EditPresentationController($rootScope, $scope, $state, $stateParams, Authentication, Snackbar, Presentations, IatiActivities, Slides, Countries, Regions, Sectors, FilterSelection, RsrProjects, RsrActivityStatuses, RsrFilterSelection, Upload) {
+  function EditPresentationController($rootScope, $scope, $window, $location, $state, $stateParams, Authentication, Snackbar, Presentations, IatiActivities, Slides, Countries, Regions, Sectors, FilterSelection, RsrProjects, RsrActivityStatuses, RsrFilterSelection, Upload) {
     
     var vm = this;
     vm.view = 'rsr-select'; // options: iati-select / rsr-select / slide-wysiwyg / iati-select-regions / iati-select-countries / iati-select-sectors / iati-select-budget
@@ -50,11 +47,38 @@
         vm.view = 'slide-wysiwyg';
     }
 
+    vm.hoverProject =function(e){
+        $(e.target).addClass('hoveredProject');
+    }
+
+    vm.hoverOutProject = function(e){
+        $(e.target).removeClass('hoveredProject');
+    }
+
+    vm.goToProjects = function(){
+        vm.saveSlide();
+        vm.selectView('rsr-select');
+    }
+
+    vm.saveSlide = function(){
+        if(vm.view = 'slide-wysiwyg'){
+            Slides.saveSlide = true;
+        }
+    }
+
+    vm.preview = function(){
+        vm.saveSlide();
+        setTimeout(function() {
+            $window.open('preview/'+vm.presentationId+'/', '_blank');
+        }, 500);
+    }
+
     vm.onDropProjects = function(index){
+        if(vm.saving){
+            return false;
+        }
 
         vm.save('change-slide');
-        vm.saving = true;
-        setTimeout(function(){ vm.saving = false; }, 3);
         vm.addDummies();
     }
 
@@ -119,7 +143,18 @@
         vm.iatiActivate();
     }
 
+    vm.publishToDisplay = function(){
+        vm.saveSlide();
+        vm.save('save-presentation');
+    }
+
     vm.save = function(caller){
+
+        if(vm.saving){
+            return false;
+        }
+
+        vm.saving = true;
 
         vm.presentation.slide_set = [];
 
@@ -149,11 +184,6 @@
             }
         }
 
-        // if on a slide, save the slide first
-        // if(vm.view == 'slide-wysiwyg'){
-        //     Slides.saveSlide = true;
-        // }
-
         if(caller == 'save-draft'){
             vm.presentation.status = 'draft';
         }
@@ -178,6 +208,8 @@
                     vm.selectedProjects[i]['id'] = actSlideIdMap[vm.selectedProjects[i]['previewData']['id']];
                 }
             }
+
+            vm.saving = false;
 
             if(caller == 'save-draft'){
                 $state.go('presentations');
@@ -204,6 +236,10 @@
     ********/
 
     vm.addEmptySlide = function(){
+
+        if(vm.saving){
+            return false;
+        }
 
         var added = false;
         var id = 0;
@@ -245,11 +281,6 @@
 
         vm.save('change-slide');
     }
-
-
-
-
-
     
 
 
@@ -378,6 +409,12 @@
       return headerName + list.join(',');
     }
 
+
+    /******** 
+    RSR SPECIFIC
+
+    TO DO: Move this to a separate controller 
+    ********/ 
 
 
     vm.rsrActivityStatuses = [];

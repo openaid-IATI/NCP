@@ -72,8 +72,7 @@ ncpApp.directive('preview', preview);
 					data.data.slide_set[i].slideContent = JSON.parse(data.data.slide_set[i].slideContent);
 				}
 
-	            vm.presentation = data.data;
-                console.log(data.data);
+	            vm.presentation = data.data; 
 	            slideCount = vm.presentation.slide_set.length;
 
 	            $timeout(function(){
