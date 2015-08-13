@@ -6,14 +6,18 @@
         
 
         <div class="top-header block-box-shadow">
-            <img class="top-header-image" src="/static/images/minbuza.png" width="180px" height="auto" />
+            <img 
+                class="top-header-image" 
+                src="/static/images/minbuza.png" 
+                width="180px" 
+                height="auto" />
         </div>
 
         <div class="rsr-slide" ng-if="value.source == 'rsr'">
 
             <img 
-                ng-src="{{valueImages.mainImage.image_url}}" 
-                ng-if="valueImages.mainImage" 
+                ng-src="/{{value.slide_image_set[0].image_url}}" 
+                ng-if="value.slide_image_set.length" 
                 class="background-image">
 
             <div 
@@ -142,8 +146,8 @@
         <div class="iati-slide" ng-if="value.source == 'iati'">
 
             <img 
-                ng-src="{{valueImages.mainImage.image_url}}" 
-                ng-if="valueImages.mainImage" 
+                ng-src="/{{value.slide_image_set[0].image_url}}" 
+                ng-if="value.slide_image_set.length" 
                 class="background-image">
 
             <div 
@@ -213,8 +217,8 @@
         </div>
         <div class="content-slide" ng-if="value.source == 'content'">
             <img 
-                ng-src="{{valueImages.mainImage.image_url}}" 
-                ng-if="valueImages.mainImage" 
+                ng-src="/{{value.slide_image_set[0].image_url}}" 
+                ng-if="value.slide_image_set.length" 
                 class="background-image">
                 
             <div 

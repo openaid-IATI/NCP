@@ -73,6 +73,7 @@ ncpApp.directive('preview', preview);
 				}
 
 	            vm.presentation = data.data;
+                console.log(data.data);
 	            slideCount = vm.presentation.slide_set.length;
 
 	            $timeout(function(){
