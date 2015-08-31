@@ -7,7 +7,7 @@
             jqyoui-droppable="{index: {{$index}}, onDrop:'vm.onDropProjects(project, $index)', onOver:'vm.hoverProject($index)', onOut:'vm.hoverOutProject($index)'}">
 
             <div 
-                class="text-center" 
+                class="main-project text-center" 
                 data-drag="true" 
                 data-jqyoui-options="{revert: 'invalid'}" 
                 ng-model="vm.selectedProjects" 
@@ -29,9 +29,8 @@
                         <a 
                             ng-show="vm.saving == false"
                             ng-click="vm.editSlide($index, 1)" 
-                            class="edit-slide-link">
-                            Click to preview/edit slide&nbsp;</a>
-                        <br>&nbsp;<br>
+                            class="edit-slide-link btn btn-default">
+                            Preview/edit slide</a>
                         <span>Slide {{$index+1}}<span ng-show="vm.isSource(project, 'rsr')">.1</span></span>
                     </p>
 
@@ -49,9 +48,8 @@
                         <div ng-show="project.status == 'mapping-data'">Filling slide&nbsp;<img src="/static/images/bars.svg" width="20" alt=""></div>
                         <a ng-show="vm.saving == false"
                             ng-click="vm.editSlide($index, 2)" 
-                            class="edit-slide-link">
-                            Click to preview/edit slide&nbsp;</a>
-                        <br>&nbsp;<br>
+                            class="edit-slide-link btn btn-default">
+                            Preview/edit slide</a>
                         <span>Slide {{$index+1}}.2</span>
                     </p>
 
@@ -64,8 +62,8 @@
                     class="dummy"
                     ng-hide="project.previewData.title">
                     <h3>Choose project</h3>
-                    <span class="drag-drop">Drag & drop</span><br>
-                    <img src="/static/images/icon-duplicate.png" /><br>
+                    <span class="drag-drop">Drag & drop</span>
+                    <img src="/static/images/icon-duplicate.png" />
                     <span class="slide-nr">Slide {{$index+1}}</span>
                 </a>
             </div>
