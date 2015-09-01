@@ -239,10 +239,9 @@
         </div>
 
         <div class="row edit-bars">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="edit-bar white">
                     <h4>Text options</h4>
-                    <hr>
                     <div class="row">
                         <div class="col-md-6">
                             <span class="edit-option-header">size</span> 
@@ -298,11 +297,9 @@
                     <hr>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="edit-bar white">
-                    <h4>Background image</h4>
-                    <hr>
-
+                    <h4>Background options</h4>
                     <div ng-show="vm.slideImages.mainImage == null">
                         <span class="edit-option-header">upload image</span>
                         <div 
@@ -318,7 +315,7 @@
 
                     <div class="text-center">
                         <a 
-                            class="remove-image" 
+                            class="remove-image btn" 
                             ng-click="vm.removeBackgroundImage()" 
                             ng-show="vm.slideImages.mainImage != null" 
                             >remove background image</a>
@@ -343,9 +340,9 @@
                     <hr>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                     <a  style="margin-top: 1em"
-                        class="btn hover-dark-orange btn-padding-30 orange" 
+                        class="btn hover-dark-orange btn-padding-30 orange saveslide" 
                         ng-click="vm.save()">Save slide</a>
                 
             </div>

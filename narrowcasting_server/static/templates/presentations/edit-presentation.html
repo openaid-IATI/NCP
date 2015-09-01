@@ -7,6 +7,7 @@
         </div>
         <div class="col-sm-3">
             <a 
+                ng-hide="vm.view == 'slide-wysiwyg'" 
                 class="btn hover-orange btn-padding-30 light-grey margint1em" 
                 ng-click="vm.addEmptySlide()">Add empty content slide</a>
         </div>
@@ -18,11 +19,13 @@
           <a 
             ng-show="vm.view == 'slide-wysiwyg'" 
             class="btn hover-orange btn-padding-30 orange" 
-            ng-click="vm.goToProjects()">Select projects</a>
+            ng-click="vm.goToProjects()">Back to slides</a>
           <a 
+            ng-hide="vm.view == 'slide-wysiwyg'" 
             ng-click="vm.preview()"
             class="btn hover-orange btn-padding-30 light-blue">Preview</a>
-          <a 
+          <a
+            ng-hide="vm.view == 'slide-wysiwyg'" 
             class="btn hover-orange btn-padding-30 green" 
             ng-click="vm.publishToDisplay()">Publish to display</a>
         </div>
