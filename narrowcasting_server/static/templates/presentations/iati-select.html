@@ -11,7 +11,7 @@
             <h3>No projects found in the current selection</h3>
         </div>
     </div>
-    <ul dnd-list="vm.iatiProjects" ng-hide="vm.iatiProjects.loading">
+    <ul dnd-list="vm.iatiProjects" ng-hide="vm.iatiProjects.loading" class="iati-list">
         <li
             class="col-md-4" 
             dir-paginate="project in vm.iatiProjects.activities | filter:q | itemsPerPage: 6"  
@@ -25,13 +25,13 @@
             <div class="project project-in-list iati green text-center">
                 
                 <h3>{{project.previewData.title}}</h3>
-                <span>COUNTRY:</span>
+                <h6>COUNTRY:</h6>
                 <div ng-repeat="country in project.previewData.countries">{{country.name}}</div>
-                <span>SECTOR:</span>
+                <h6>SECTOR:</h6>
                 <div ng-repeat="sector in project.previewData.sectors">{{sector.name}}</div>
-                <span>BUDGET:</span>
+                <h6>BUDGET:</h6>
                 <div>{{project.previewData.totalBudget | iaticurrency :'€':0:".":"."}}</div>
-                <span>START DATE:</span>
+                <h6>START DATE:</h6>
                 <div>{{project.previewData.start_actual | date:'dd-MM-yyyy'}}</div>
             </div>
         </li>

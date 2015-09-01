@@ -643,6 +643,30 @@ EDIT PRESENTATION
 
 #edit_presentation{
 
+  .iati-list {
+    .project-in-list {
+      cursor: move;
+      height:300px;
+    }
+    h3 {
+      margin-top:0;
+    }
+    h6 {
+      margin-bottom: 1px;
+      margin-top:15px;
+    }
+  }
+
+  .rsr-list {
+    h3 {
+      margin-top:0;
+    }
+    .project-in-list {
+      height:100px;
+      cursor: move;
+    }
+  }
+
   .edit-header{
     display: inline-block;
     border-top-left-radius: $border-radius;
@@ -756,7 +780,7 @@ EDIT PRESENTATION
     .dummy{
       display: inline-block;
       background-color: #F3F3F5;
-      cursor: pointer;
+      cursor: move;
       color: $light-grey;
       width: 100%;
       padding:0 10px 15px 10px;
@@ -785,6 +809,7 @@ EDIT PRESENTATION
       cursor: pointer;
       display: block;
       margin:0 10px 10px 10px;
+      border:0;
     }
 
     .main-project {
@@ -795,6 +820,21 @@ EDIT PRESENTATION
       background:$black;
       box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
       border-radius:3px;
+      cursor: move;
+      &:hover, &:focus, &.ui-draggable-dragging {
+        .rsr {
+          background-color: darken($light-blue,10%);
+          &.rsr-slide-2 {
+            background-color: lighten($light-blue,5%);
+          }
+        }
+        .iati {
+          background-color: darken($green,10%);
+        }
+        .content {
+           background-color: darken($orange,10%);
+        }
+      }
     }
 
     .project-in-list{
@@ -807,8 +847,9 @@ EDIT PRESENTATION
   iati-select .project-in-list{
 
     &.iati{
+      //border:2px solid $green;
       &:hover{
-        border: 2px solid red;
+        //border: 2px solid red;
         background-color: darken( $green, 10% );
       }
     }
@@ -817,15 +858,15 @@ EDIT PRESENTATION
   rsr-select .project-in-list{
 
     &.rsr{
+      //border:2px solid $light-blue;
       &:hover{
-        border: 2px solid red;
+        //border: 2px solid red;
         background-color: darken( $light-blue, 10% );
       }
     }
   }
 
   .project-in-list{
-    height: 300px;
     padding: 20px 10px 10px 10px;
     margin-bottom: 20px;
     font-size: 14px;
@@ -859,7 +900,8 @@ EDIT PRESENTATION
     box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
 
     .btn{
-      margin-right: 14px;
+      margin-right: 10px;
+      font-size:14px;
     }
 
     .btn-active{
@@ -967,6 +1009,7 @@ EDIT PRESENTATION
 IATI filters
 ****/
 .filter-panel{
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
   
   .table{
     margin-left: 15px;
@@ -979,7 +1022,7 @@ IATI filters
 
     thead{
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 400;
     }
 
     thead td{
@@ -1750,24 +1793,26 @@ SNACKBAR
 #snackbar-container{
   left: auto;
   bottom: auto;
-  top: 140px;
-  right: 20px;
+  bottom: 10px;
+  right: 50%;
+  width: 300px;
+  margin-right: -150px;
   pointer-events: none;
 
 
   .snackbar {
-    background-color: $orange;
+    background-color: lighten($black,15%);
     //padding: 6px 10px;
     filter: alpha(opacity=87);
     border-radius: 6px 14px;
-    //border: 1px solid $white;
-    padding: 8px;
+    padding: 14px;
     color: $white;
     font-size: 16px;
     font-weight: 400;
     border-radius: $border-radius;
     margin-bottom: 1em;
-    box-shadow: 3px 3px 2px rgba(0,0,0,0.25);
+    box-shadow: 5px 5px 2px rgba(0,0,0,0.25);
+    text-align:center;
   }
 
   .snackbar.snackbar-opened {
