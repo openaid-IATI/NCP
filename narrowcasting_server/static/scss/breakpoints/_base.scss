@@ -36,6 +36,10 @@ h1{
   text-align: center;
 }
 
+.no-overflow {
+  overflow: hidden;
+}
+
 .btn{
   background-color: #424141;
   filter: alpha(opacity=87);
@@ -524,7 +528,6 @@ DISPLAYS
 
   .btn-add-display{
     margin-top: 2em;
-    margin-bottom: 3em;
   }
 
   .displays-in-list{
@@ -534,18 +537,19 @@ DISPLAYS
 
   .display-in-list{
     display: inline-block;
-    margin-right: 5em;
-    margin-left: 5em;
-    margin-bottom: 7em;
+    padding-right: 32px;
+    padding-left: 32px;
+    margin-top:58px;
+    margin-bottom: 100px;
     float: left;
     position: relative;
     
     .presentation{
       position: absolute;
       top: 13px;
-      left: 13px;
+      left: 46px;
       background-color: $green;
-      width: 320px;
+      width: 319px;
       height: 169px;
       text-align: center;
       padding-top: 1.5em;
