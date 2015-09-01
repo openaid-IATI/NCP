@@ -264,6 +264,11 @@ NAVBAR
   color: $white;
 }
 
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: $link-orange;
+  background:none;
+}
+
 
 .navbar-icon{
   /*background-*/
