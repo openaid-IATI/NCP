@@ -19,7 +19,7 @@
           <a 
             ng-show="vm.view == 'slide-wysiwyg'" 
             class="btn hover-orange btn-padding-30 orange" 
-            ng-click="vm.goToProjects()">Back to slides</a>
+            ng-click="vm.goToProjects()">Back to projects overview</a>
           <a 
             ng-hide="vm.view == 'slide-wysiwyg'" 
             ng-click="vm.preview()"
@@ -43,12 +43,14 @@
         </div>
         <div class="col-sm-9">
             <div class="row" ng-hide="vm.view == 'slide-wysiwyg'">
-                <div class="col-md-12">
+                <div class="col-md-12 project-select">
                     <a class="edit-header light-blue" ng-click="vm.selectView('rsr-select')">
-                        Akvo Really Simple Reporting (RSR) projects
+                        <h6>Project type</h6>
+                        Akvo Really Simple Reporting (RSR)
                     </a>
                     <a class="edit-header green" ng-click="vm.showIatiProjects()">
-                        International Aid Transparency Initiative (IATI) projects
+                        <h6>Project type</h6>
+                        International Aid Transparency Initiative (IATI)
                     </a>
                 </div>
             </div>
@@ -59,7 +61,7 @@
 
                     <div ng-show="vm.view.indexOf('rsr-select') > -1" class="row">
                         <div class="col-md-12  text-right">
-                            <div class="iati-select-filters paddingtb1em">
+                            <div class="iati-select-filters rsr-select paddingtb1em">
                                 <a 
                                 ng-class="{ 'btn-active': vm.view == 'rsr-select' }" 
                                 ng-click="vm.showRsrProjects()" 
@@ -96,7 +98,7 @@
 
                     <div class="row">
                         <div ng-show="vm.view.indexOf('iati-select') > -1" class="col-md-12  text-right">
-                            <div class="iati-select-filters paddingtb1em">
+                            <div class="iati-select-filters iati-select paddingtb1em">
                                 <a
                                 ng-class="{ 'btn-active': vm.view == 'iati-select' }" 
                                 ng-click="vm.showIatiProjects()" 

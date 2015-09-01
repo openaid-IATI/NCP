@@ -29,7 +29,7 @@
                         <a 
                             ng-show="vm.saving == false"
                             ng-click="vm.editSlide($index, 1)" 
-                            class="edit-slide-link btn btn-default">
+                            class="edit-slide-link btn btn-default hover-orange">
                             Preview/edit slide</a>
                         <span>Slide {{$index+1}}<span ng-show="vm.isSource(project, 'rsr')">.1</span></span>
                     </p>
@@ -48,7 +48,7 @@
                         <div ng-show="project.status == 'mapping-data'">Filling slide&nbsp;<img src="/static/images/bars.svg" width="20" alt=""></div>
                         <a ng-show="vm.saving == false"
                             ng-click="vm.editSlide($index, 2)" 
-                            class="edit-slide-link btn btn-default">
+                            class="edit-slide-link btn btn-default hover-orange">
                             Preview/edit slide</a>
                         <span>Slide {{$index+1}}.2</span>
                     </p>
