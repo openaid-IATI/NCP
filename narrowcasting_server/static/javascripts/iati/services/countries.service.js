@@ -8,6 +8,7 @@
     Countries.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
 
     function Countries($http, oipaUrl, reportingOrganisationId) {
+        console.log('countries called')
         var m = this;
 
         var Countries = {
@@ -17,7 +18,7 @@
         return Countries;
 
         function all() {
-            var url = oipaUrl + '/activity-aggregate-any/?format=json&group_by=recipient-country&aggregation_key=iati-identifier';
+            var url = oipaUrl + '/aggregate/?format=json&group_by=recipient-country&aggregation_key=iati-identifier';
             if(reportingOrganisationId){
                 url += '&reporting_organisation__in=' + reportingOrganisationId;
             }

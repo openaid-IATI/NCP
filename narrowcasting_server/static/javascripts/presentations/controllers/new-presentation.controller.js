@@ -21,6 +21,7 @@ var test = '';
     var vm = this;
 
     vm.submit = submit;
+    vm.submitted = false;
 
     /**
     * @name submit
@@ -28,6 +29,9 @@ var test = '';
     * @memberOf ncs.presentations.controllers.NewPresentationController
     */
     function submit() {
+      if (vm.submitted) return;
+      vm.submitted = true;
+
       $rootScope.$broadcast('presentation.created', {
         projects: vm.projects,
         author: {

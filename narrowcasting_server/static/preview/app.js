@@ -75,6 +75,11 @@ ncpApp.directive('preview', preview);
 	            vm.presentation = data.data; 
 	            slideCount = vm.presentation.slide_set.length;
 
+                console.log(vm.presentation)
+                // return $http.get('/api/v1/slideImages/?slide=' + slide_id);
+
+                
+
 	            $timeout(function(){
 	            	vm.slideIn(0);
 

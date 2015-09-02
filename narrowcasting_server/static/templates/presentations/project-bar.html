@@ -1,7 +1,7 @@
 <div class="white project-bar">
     <ul>
         <li 
-            ng-repeat="project in vm.selectedProjects" 
+            ng-repeat="project in vm.selectedProjects track by $index" 
             data-drop="true" 
             ng-model='vm.selectedProjects' 
             jqyoui-droppable="{index: {{$index}}, onDrop:'vm.onDropProjects(project, $index)', onOver:'vm.hoverProject($index)', onOut:'vm.hoverOutProject($index)'}">

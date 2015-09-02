@@ -2,6 +2,7 @@ from django.conf.urls import patterns
 from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
 
 from narrowcasting_server.views import IndexView
 from ncs.views import PresentationViewSet
@@ -39,6 +40,9 @@ urlpatterns = patterns(
     url(r'^api/v1/', include(accounts_router.urls)),
     url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
     url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
+
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve',   
+        {'document_root':settings.MEDIA_ROOT}),
     url('^.*$', IndexView.as_view(), name='index'),
 )
 

@@ -4,7 +4,6 @@
         ng-repeat="(key, value) in vm.presentation.slide_set" 
         style="background-color: {{value.slideContent.backgroundColor}};">
         
-
         <div class="top-header block-box-shadow">
             <img 
                 class="top-header-image" 
@@ -16,7 +15,7 @@
         <div class="rsr-slide" ng-if="value.source == 'rsr'">
 
             <img 
-                ng-src="/{{value.slide_image_set[0].image_url}}" 
+                ng-src="{{value.slide_image_set[0].image_url}}" 
                 ng-if="value.slide_image_set.length" 
                 class="background-image">
 
