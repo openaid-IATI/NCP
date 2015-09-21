@@ -16,4 +16,12 @@ http://alistapart.com/column/responsive-typography-is-a-physical-discipline
 ******************************************************************/
 
 // font stacks
+@import url(https://fonts.googleapis.com/css?family=Questrial);
+
+$questrial: 'Questrial', sans-serif;
+
 $chivo: 'Chivo', sans-serif;
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: $questrial;
+}

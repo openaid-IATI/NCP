@@ -40,6 +40,12 @@ http://ia.net/blog/responsive-typography-the-basics/
 http://alistapart.com/column/responsive-typography-is-a-physical-discipline
 
 ******************************************************************/
+@import url(https://fonts.googleapis.com/css?family=Questrial);
+/* line 25, ../scss/partials/_typography.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Questrial", sans-serif;
+}
+
 /******************************************************************
 Site Name:
 Author:
