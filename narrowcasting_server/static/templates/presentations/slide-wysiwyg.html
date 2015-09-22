@@ -36,14 +36,22 @@
                     class="description block-box-shadow" 
                     ng-model="vm.slide.slideContent.project_plan_summary.text" 
                     ng-style="vm.slide.slideContent.project_plan_summary.cssStyle" 
-                    ng-click="vm.selectField('project_plan_summary')"
-                    ng-class="{'active': vm.selectedField == 'project_plan_summary'}"
+                    ng-click="vm.selectField('project_plan_summary')" 
+                    ng-class="{'active': vm.selectedField == 'project_plan_summary'}" 
                     ng-show="vm.slide.slideContent.project_plan_summary.text.length"></textarea>
                 
                 <img 
-                    class="main-image" 
-                    src="http://rsr.akvo.org{{vm.slide.slideContent.current_image}}"
-                    ng-show="vm.slide.slideContent.current_image.length">
+                    ng-src="{{vm.slideImages.rsrImage.image_url}}" 
+                    ng-show="vm.slideImages.rsrImage" 
+                    ng-click="vm.selectedField = 'rsrImage';" 
+                    style="cursor:pointer;"
+                    class="main-image">
+
+                <div 
+                    ng-show="!vm.slideImages.rsrImage" 
+                    ng-click="vm.selectedField = 'rsrImage';" 
+                    style="cursor:pointer;background:white;height: 48%; font-size: 22px; text-align: center;padding-top:5%;"
+                    class="main-image">Image placeholder</div>
 
                 <div 
                     ng-show="vm.Slides.slideNr == 1 && vm.slide.slideContent.date_start_planned.length" 
@@ -95,7 +103,7 @@
                 </div>
 
                 <div ng-show="vm.Slides.slideNr == 2 && vm.slide.slideContent.primary_location.longitude" class="block location-block">
-                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=424x270&maptype=roadmap&markers=color:red%7Clabel:C%7C{{vm.slide.slideContent.primary_location.latitude}},{{vm.slide.slideContent.primary_location.longitude}}">
+                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=424x270&maptype=roadmap&markers=color:green%7Clabel:%7C{{vm.slide.slideContent.primary_location.latitude}},{{vm.slide.slideContent.primary_location.longitude}}">
                 </div>
 
                 <div ng-show="vm.Slides.slideNr == 2 && vm.slide.slideContent.budget.text.length" class="block block-box-shadow budget-block">
@@ -242,49 +250,73 @@
             <div class="col-md-6">
                 <div class="edit-bar white">
                     <h4>Text options</h4>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span class="edit-option-header">size</span> 
-                        </div>
-                        <div class="col-md-6 font-size">
-                            <input 
-                                class="edit-input-fontsize" 
-                                ng-model="vm.optionFontSize" 
-                                ng-change="vm.changeFontSize()" 
-                                type="text" />
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span class="edit-option-header">color</span> 
-                        </div>
-                        <div class="col-md-6">
-                            <div>
-                            <input 
-                                class="color-picker" 
-                                type="text" 
-                                ng-model="vm.optionColor" 
-                                ng-change="vm.changeColor()" 
-                                style="background-color: #FFF; color: {{vm.optionColor}}" 
-                                minicolors>
+                    <div ng-show="vm.selectedField != 'rsrImage'">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="edit-option-header">size</span> 
+                            </div>
+                            <div class="col-md-6 font-size">
+                                <input 
+                                    class="edit-input-fontsize" 
+                                    ng-model="vm.optionFontSize" 
+                                    ng-change="vm.changeFontSize()" 
+                                    type="text" />
                             </div>
                         </div>
-                    </div>
-                    <div>
-                     
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span class="edit-option-header">weight</span> 
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="edit-option-header">color</span> 
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                <input 
+                                    class="color-picker" 
+                                    type="text" 
+                                    ng-model="vm.optionColor" 
+                                    ng-change="vm.changeColor()" 
+                                    style="background-color: #FFF; color: {{vm.optionColor}}" 
+                                    minicolors>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6 weight-block">
-                            <a ng-click="vm.bold()"><b>B</b></a>
-                            <a ng-click="vm.italic()"><i>I</i></a>
-                            <a class="underline" ng-click="vm.underline()"><u>U</u></a>
+                        <div>
+                         
                         </div>
-                    </div> 
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="edit-option-header">weight</span> 
+                            </div>
+                            <div class="col-md-6 weight-block">
+                                <a ng-click="vm.bold()"><b>B</b></a>
+                                <a ng-click="vm.italic()"><i>I</i></a>
+                                <a class="underline" ng-click="vm.underline()"><u>U</u></a>
+                            </div>
+                        </div> 
+                    </div>
+                    <div ng-show="vm.selectedField == 'rsrImage'">
+                        <div ng-show="vm.slideImages.rsrImage == null">
+                            <span class="edit-option-header">upload image</span>
+                            <div 
+                                ngf-select 
+                                ng-model="vm.rsrImage"
+                                class="upload-image upload-button" 
+                                ngf-multiple="false" 
+                                ngf-accept="'*.jpg,*.png'" 
+                                ng-model-rejected="rejFiles" 
+                                tabindex="0">Select file</div>
+
+                        </div>
+
+                        <div class="text-center">
+                            <a 
+                                class="remove-image btn" 
+                                ng-click="vm.removersrImage()" 
+                                ng-show="vm.slideImages.rsrImage != null" 
+                                >remove background image</a>
+                        </div>
+                    </div>
                    <!--  <hr>
                     <div class="row">
                         <div class="col-md-12">
@@ -344,7 +376,6 @@
                     <a  style="margin-top: 1em"
                         class="btn hover-dark-orange btn-padding-30 orange saveslide" 
                         ng-click="vm.save()">Save slide</a>
-                    {{vm.slide.slideContent}}
             </div>
 
         </div>

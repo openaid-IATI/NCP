@@ -25,6 +25,7 @@
     vm.optionFontSize = '18px';
     vm.optionColor = "#969696";
     vm.backgroundImage = [];
+    vm.rsrImage = [];
     vm.slideImages = {};
 
     vm.fontSize = function(){
@@ -43,7 +44,12 @@
         vm.slide.slideContent[vm.selectedField].cssStyle['text-decoration'] = vm.slide.slideContent[vm.selectedField].cssStyle['text-decoration'] == 'none' ? 'underline' : 'none'; 
     }
 
-    vm.removeBackgroundImage = function(){
+    vm.removersrImage = function(){
+        SlideImages.deleteImage(vm.slideImages.rsrImage.id);
+        vm.slideImages.rsrImage = null;
+    }
+
+    vm.removeImage = function(){
         SlideImages.deleteImage(vm.slideImages.mainImage.id);
         vm.slideImages.mainImage = null;
     }
@@ -90,7 +96,13 @@
 
         $scope.$watch('vm.backgroundImage', function (backgroundImage) {
             if(backgroundImage != null){
-                vm.uploadImage(backgroundImage);
+                vm.uploadImage(backgroundImage, 'mainImage');
+            }
+        });
+
+        $scope.$watch('vm.rsrImage', function (rsrImage) {
+            if(rsrImage != null){
+                vm.uploadImage(rsrImage, 'rsrImage');
             }
         });
     }
@@ -130,7 +142,6 @@
         }
 
         function errorFn(data, status, headers, config){
-            console.log(data);
             console.log(data.data);
         }
     }
@@ -138,14 +149,14 @@
     /********
     UPLOAD
     ********/
-    vm.uploadImage = function (files) {
+    vm.uploadImage = function (files, imageType) {
         if (files.length > 0){
             var file = files[0];
             Upload.upload({
                 url: 'api/v1/slideImages/',
                 fields: {
                     'slide': vm.slide.id,
-                    'image_type': 'mainImage',
+                    'image_type': imageType,
                 },
                 file: file,
                 data: file,
@@ -154,7 +165,6 @@
             }).success(function (data, status, headers, config) {
                 vm.slideImages[data.image_type] = data;
             }).error(function (data, status, headers, config) {
-                console.log(data);
                 console.log('error status: ' + status);
             });
         }

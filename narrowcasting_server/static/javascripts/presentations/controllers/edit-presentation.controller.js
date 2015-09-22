@@ -100,7 +100,7 @@
     }
 
     vm.isSource = function(project, source){
-        if(project.previewData != undefined){
+        if(project != undefined && project.previewData != undefined){
            return (project.previewData.source == source) ? true: false; 
         } else {
             return false;
