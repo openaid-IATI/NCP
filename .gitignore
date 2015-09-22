@@ -7,3 +7,5 @@
 /narrowcasting_server/.idea/
 /narrowcasting_server/static/slide_images/*
 *.pyc
+
+narrowcasting_server/narrowcasting

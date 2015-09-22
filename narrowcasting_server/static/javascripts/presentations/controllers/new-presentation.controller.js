@@ -12,12 +12,12 @@ var test = '';
     .module('ncs.presentations.controllers')
     .controller('NewPresentationController', NewPresentationController);
 
-  NewPresentationController.$inject = ['$rootScope', '$scope', '$state', 'Authentication', 'Snackbar', 'Presentations'];
+  NewPresentationController.$inject = ['$rootScope', '$scope', '$state', 'djangoAuth', 'Snackbar', 'Presentations'];
 
   /**
   * @namespace NewPresentationController
   */
-  function NewPresentationController($rootScope, $scope, $state, Authentication, Snackbar, Presentations) {
+  function NewPresentationController($rootScope, $scope, $state, djangoAuth, Snackbar, Presentations) {
     var vm = this;
 
     vm.submit = submit;
@@ -33,10 +33,7 @@ var test = '';
       vm.submitted = true;
 
       $rootScope.$broadcast('presentation.created', {
-        projects: vm.projects,
-        author: {
-          username: Authentication.getAuthenticatedAccount().username
-        }
+        projects: vm.projects
       });
 
       Presentations.create(vm.projects).then(createPresentationSuccessFn, createPresentationErrorFn);
@@ -57,10 +54,9 @@ var test = '';
       * @desc Propogate error event and show snackbar with error message
       */
       function createPresentationErrorFn(data, status, headers, config) {
-        console.log(data);
-        console.log(data.data);
         $rootScope.$broadcast('presentation.created.error');
         Snackbar.error(data.error);
+        console.log('ergr');
       }
     }
   }

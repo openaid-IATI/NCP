@@ -1,10 +1,20 @@
 from django.db import models
-from authentication.models import Account
+from django.contrib.auth.models import User
+
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 
 
 class Presentation(models.Model):
     name = models.CharField(null=False, blank=False, max_length=100)
-    creator = models.ForeignKey(Account)
+    creator = models.ForeignKey(User)
     status = models.TextField(default='draft', choices=(
         ('draft', 'Draft'),
         ('published', 'Published'),
@@ -53,9 +63,10 @@ class SlideImage(models.Model):
 
 
 class Display(models.Model):
-    owner = models.ForeignKey(Account)
+    owner = models.ForeignKey(User)
     name = models.CharField(null=False, blank=False, max_length=100)
     unlock_key = models.CharField(null=True, blank=False, max_length=100)
     unlocked = models.BooleanField(null=False, default=False)
     added_at = models.DateTimeField(auto_now_add=True)
-    presentation = models.ForeignKey(Presentation, null=True)
+    presentation = models.ForeignKey(Presentation, null=True, on_delete=models.SET_NULL)
+

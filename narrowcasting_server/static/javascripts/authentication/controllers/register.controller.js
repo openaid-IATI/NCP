@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-      .module('ncs.authentication.controllers')
+      .module('ncs.authentication')
       .controller('RegisterController', RegisterController);
     
     RegisterController.$inject = ['$location', '$scope', 'Authentication'];

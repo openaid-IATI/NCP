@@ -12,7 +12,7 @@
     '$location',
     '$state', 
     '$stateParams', 
-    'Authentication', 
+    'djangoAuth', 
     'Snackbar', 
     'Presentations', 
     'IatiActivities', 
@@ -123,10 +123,6 @@
 
     function activate(){
 
-        if (!Authentication.isAuthenticated()) {
-            $location.url('/');
-        }
-
         Presentations.getSingle(vm.presentationId).then(presentationSuccessFn, errorFn);
 
         function presentationSuccessFn(data, status, headers, config) {
@@ -208,8 +204,6 @@
                     vm.selectedProjects[i]['id'] = actSlideIdMap[vm.selectedProjects[i]['previewData']['id']];
                 }
             }
-            console.log("selected projects: ")
-            console.log(vm.selectedProjects)
 
             vm.saving = false;
 
@@ -320,13 +314,11 @@
 
     vm.iatiPageChanged = function(newPageNumber) {
         vm.iatiProjects.offset = ((newPageNumber * vm.iatiProjects.perPage) - vm.iatiProjects.perPage);
-        console.log(FilterSelection)
         IatiActivities.list(FilterSelection.selectionString, vm.iatiProjects.perPage, vm.iatiProjects.orderBy, vm.iatiProjects.offset).then(activitiesSuccessFn, errorFn);
     }
 
     function activitiesSuccessFn(data, status, headers, config) {
         for(var i = 0; i < data.data.objects.length; i++){
-            console.log(data)
             data.data.objects[i] = {'previewData': {
                 'id': data.data.objects[i]['id'],
                 'title': data.data.objects[i]['titles'][0]['title'],
@@ -345,7 +337,6 @@
 
     vm.iatiActivate = function(){
 
-        console.log(FilterSelection)
         IatiActivities.list(FilterSelection.selectionString, vm.iatiProjects.perPage, vm.iatiProjects.orderBy, vm.iatiProjects.offset).then(activitiesSuccessFn, errorFn);
 
         Regions.all().then(regionsSuccessFn, errorFn);
