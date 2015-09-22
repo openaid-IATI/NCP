@@ -85,8 +85,6 @@
             controllerAs: 'vm',
             templateUrl:  '/static/templates/displays/displays.html'
         });
-
-
      
     }
 })();

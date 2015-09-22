@@ -6,41 +6,40 @@
 	'use strict';
 
 	angular
-		.module('ncs.authentication.controllers')
+		.module('ncs.authentication')
 		.controller('LoginController', LoginController);
 
-	LoginController.$inject = ['$location', '$scope', 'Authentication'];
+	LoginController.$inject = ['$state', '$scope', 'djangoAuth', 'Validate', 'Snackbar'];
 
 	/**
 	* @namespace LoginController
 	*/
-	function LoginController($location, $scope, Authentication){
-		var vm = this;
+	function LoginController($state, $scope, djangoAuth, Validate, Snackbar){
 
-		vm.login = login;
+		$scope.model = {'email':'','password':''};
+	  	$scope.complete = false;
+
+	    $scope.login = function(formData){
+	      $scope.errors = [];
+	      Validate.form_validation(formData,$scope.errors);
+	      if(!formData.$invalid){
+	        djangoAuth.login($scope.model.email, $scope.model.password)
+	        .then(function(data){
+	        	$state.go("presentations");
+	        },function(data){
+  				Snackbar.error(data.non_field_errors);
+	        });
+	      }
+	    }
 
 		activate();
 
-		/**
-		* @name activate
-		* @desc Actions to be performed when this controller is instantiated
-		* @memberOf ncs.authentication.controllers.loginController
-		*/ 
+	
 		function activate() {
 			// If the user is authenticated, they should not be here.
-			if (Authentication.isAuthenticated()) {
-				$location.url('/');
-			}
-		}
-
-		/**
-		* @name login
-		* @desc Log the user in 
-		* @memberOf ncs.authentication.controllers.LoginController
-		*/
-		function login() {
-			console.log('called login')
-			Authentication.login(vm.email, vm.password);
+			// if (Authentication.isAuthenticated()) {
+			// 	$location.url('/');
+			// }
 		}
 	}
 })();

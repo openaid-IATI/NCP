@@ -7,41 +7,55 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" ui-sref="home"><img src="/static/images/akvo-opencast-logo.svg" /></a>
+      <a class="navbar-brand" ui-sref="home">AKVO Opencast</a>
     </div> <!-- ./navbar-header -->
 
     <div class="collapse navbar-collapse" id="narrowcasting-nav">
       <ul class="nav navbar-nav pull-left">
-        {% if user.is_authenticated %}
-          <li
+          <li 
+            ng-show="authenticated" 
             ng-class="{'active': vm.stateName == 'presentations'}" >
             <a class="navbar-icon icon-presentations" ui-sref="presentations"><img src="/static/images/icon-presentations.png" />Presentations</a>
           </li>
           <li 
+            ng-show="authenticated" 
             ng-class="{'active': vm.stateName == 'displays'}" >
             <a class="navbar-icon icon-displays" ui-sref="displays"><img src="/static/images/icon-displays.png" />Opencasting displays</a>
           </li>
           <li
+            ng-show="authenticated" 
             ng-class="{'active': vm.stateName == 'learn'}" >
             <a class="navbar-icon icon-learn" ui-sref="learn"><img src="/static/images/icon-learn.png" />Learn</a>
           </li>
-      </ul>
-      <ul class="nav navbar-nav pull-right">
-          
-          <li><a class="navbar-icon" href="javascript:void(0)" ng-click="vm.logout()"><img src="/static/images/icon-signout.png" />Logout</a></li>
-        {% else %}
+
           <li
+            ng-hide="authenticated" 
             ng-class="{'active': vm.stateName == 'home'}" >
             <a class="navbar-icon icon-narrowcasting" ui-sref="home"><img src="/static/images/icon-presentations.png" />Home</a>
           </li>
           <li
+            ng-hide="authenticated" 
             ng-class="{'active': vm.stateName == 'learn'}">
             <a class="navbar-icon icon-about" ui-sref="learn"><img src="/static/images/icon-learn.png" />Learn</a>
           </li>
+
       </ul>
       <ul class="nav navbar-nav pull-right">
-          <li><a class="btn btn-green navbar-btn-login" ui-sref="login">Sign-in</a></li>
-        {% endif %}
+          
+          <li
+            ng-show="authenticated">
+            <a class="navbar-icon" href="javascript:void(0)" ng-click="logout()">
+              <img src="/static/images/icon-signout.png" />
+              Logout
+            </a>
+          </li>
+          
+          <li ng-hide="authenticated">
+            <a class="btn btn-green navbar-btn-login" ui-sref="login">
+              Sign-in
+            </a>
+          </li>
+ 
       </ul>
     </div>
   </div> 

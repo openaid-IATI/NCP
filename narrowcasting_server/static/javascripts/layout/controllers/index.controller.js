@@ -17,7 +17,6 @@
   function IndexController($scope, Authentication) {
     var vm = this;
 
-    vm.isAuthenticated = Authentication.isAuthenticated();
     activate();
 
     /**
@@ -28,5 +27,6 @@
     function activate() {
       
     }
+
   }
 })();

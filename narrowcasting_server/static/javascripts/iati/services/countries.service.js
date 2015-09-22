@@ -8,7 +8,6 @@
     Countries.$inject = ['$http', 'oipaUrl', 'reportingOrganisationId'];
 
     function Countries($http, oipaUrl, reportingOrganisationId) {
-        console.log('countries called')
         var m = this;
 
         var Countries = {

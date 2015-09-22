@@ -27,32 +27,8 @@ var test = '';
     function activate(){
         // get presentation
         Displays.all().then(displaySuccessFn, displayErrorFn);
-
-        function displaySuccessFn(data, status, headers, config) {
-          vm.displays = data.data;
-        }
-
-        function displayErrorFn(data, status, headers, config) {
-          Snackbar.error(data.error);
-        }
-
         Presentations.all('&status=published').then(presentationsSuccessFn, presentationsErrorFn);
 
-        /**
-        * @name presentationsSuccessFn
-        * @desc Update presentations array on view
-        */
-        function presentationsSuccessFn(data, status, headers, config) {
-            vm.presentations = data.data;
-        }
-
-        /**
-        * @name presentationsErrorFn
-        * @desc Show snackbar with error
-        */
-        function presentationsErrorFn(data, status, headers, config) {
-            Snackbar.error(data.error);
-        }
 
         $scope.$watch("vm.displays", function (newDisplays, oldDisplays) {
           if (oldDisplays == null || oldDisplays.length == 0){
@@ -71,6 +47,17 @@ var test = '';
         }, true);
     }
 
+    vm.deletePresentation = function(id){
+
+      Presentations.deletePresentation(id).then(succesFn, errorFn);
+
+      function succesFn(data, status, headers, config){
+        Presentations.all('&status=published').then(presentationsSuccessFn, presentationsErrorFn);
+        Displays.all().then(displaySuccessFn, displayErrorFn);
+
+      }
+    }
+
     vm.updateDisplay = function(display){
       Displays.update(display).then(updateDisplaySuccessFn, updateDisplayErrorFn);
 
@@ -82,6 +69,27 @@ var test = '';
       function updateDisplayErrorFn(data, status, headers, config){
         Snackbar.error(data.error);
       }
+    }
+
+    function presentationsSuccessFn(data, status, headers, config) {
+        vm.presentations = data.data;
+        console.log(vm.presentations);
+    }
+
+    function presentationsErrorFn(data, status, headers, config) {
+        Snackbar.error(data.error);
+    }
+
+    function displaySuccessFn(data, status, headers, config) {
+      vm.displays = data.data;
+    }
+
+    function displayErrorFn(data, status, headers, config) {
+      Snackbar.error(data.error);
+    }
+
+    function errorFn(data, status, headers, config) {
+      Snackbar.error(data.error);
     }
 
     activate();

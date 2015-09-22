@@ -1,13 +1,11 @@
 from rest_framework import serializers
 import requests
-
-from authentication.serializers import AccountSerializer
 from ncs.models import Display
 from ncs.serializers.presentation_serializer import PresentationSerializer
 
 
 class DisplaySerializer(serializers.ModelSerializer):
-    owner = AccountSerializer(read_only=True, required=False)
+    # owner = AccountSerializer(read_only=True, required=False)
     presentation = PresentationSerializer(read_only=True, required=False)
 
     class Meta:

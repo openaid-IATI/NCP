@@ -61,7 +61,6 @@
 	    }
 
 	    function update(presentation) {
-	    	console.log('presentation update called');
             return $http.put('/api/v1/presentations/'+presentation.id+'/', presentation);
         }
 

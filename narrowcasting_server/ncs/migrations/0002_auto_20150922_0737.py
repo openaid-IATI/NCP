@@ -2,25 +2,20 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ncs', '0009_auto_20150601_1426'),
+        ('ncs', '0001_initial'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='display',
             name='presentation',
-            field=models.ForeignKey(to='ncs.Presentation', null=True),
-            preserve_default=True,
-        ),
-        migrations.AlterField(
-            model_name='display',
-            name='unlock_key',
-            field=models.CharField(max_length=100, null=True),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, to='ncs.Presentation', null=True),
             preserve_default=True,
         ),
     ]

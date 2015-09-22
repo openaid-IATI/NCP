@@ -10,6 +10,7 @@
             'ui.bootstrap-slider',
             'ngDragDrop',
             'ngFileUpload',
+            'ngCookies',
             'minicolors',
             'ncs.authentication',
             'ncs.layout',
@@ -31,11 +32,28 @@
         .module('ncs')
         .run(run);
 
-    run.$inject = ['$http'];
+    run.$inject = ['$http', '$rootScope', 'djangoAuth', '$state'];
 
-    function run($http) {
+    function run($http, $rootScope, djangoAuth, $state) {
         $http.defaults.xsrfHeaderName = 'X-CSRFToken';
         $http.defaults.xsrfCookieName = 'csrftoken';
+
+        $rootScope.$on( '$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+
+            if(['home', 'login', 'learn'].indexOf(toState.name) > -1){
+               return; // no need to redirect 
+            }
+
+            if(!djangoAuth.authenticated){
+                djangoAuth.authenticationStatus(true).then(function(){
+                    // does resolve, user is logged in
+                }, function(){
+                    // does not resolve, redirect
+                    e.preventDefault();
+                    $state.go('login');
+                });
+            }
+        });
     }
 
 })();

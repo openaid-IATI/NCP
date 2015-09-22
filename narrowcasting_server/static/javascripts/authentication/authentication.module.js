@@ -2,14 +2,6 @@
     'use strict';
 
     angular
-      .module('ncs.authentication', [
-          'ncs.authentication.controllers',
-          'ncs.authentication.services'
-      ]);
+      .module('ncs.authentication', ['ngCookies']);
 
-    angular
-        .module('ncs.authentication.controllers', []);
-
-    angular
-        .module('ncs.authentication.services', ['ngCookies']);
 })();

@@ -9,17 +9,24 @@
 		.module('ncs.layout.controllers')
 		.controller('NavbarController', NavbarController);
 
-	NavbarController.$inject = ['$scope', '$state', 'Authentication'];
+	NavbarController.$inject = ['$scope', '$state', 'djangoAuth'];
 
 	/** 
 	* @namespace NavBarController
 	*/
-	function NavbarController($scope, $state, Authentication){
+	function NavbarController($scope, $state, djangoAuth){
 		var vm = this;
 
-		vm.isAuthenticated = Authentication.isAuthenticated();
+		// vm.isAuthenticated = Authentication.isAuthenticated();
 
-		vm.logout = logout;
+		vm.logout = $scope.logout;
+
+	    // $scope.$on("djangoAuth.logged_in", function(data){
+	    // 	$scope.authenticated = true;
+	    // });
+	    // $scope.$on("djangoAuth.logged_out", function(data){
+	    //   $scope.authenticated = false;
+	    // });
 
 		vm.stateName = '';
 	    vm.state = $state;
@@ -31,14 +38,33 @@
 	        else { vm.stateName = 'home'; }
 	    }, true);
 
-		/**
-	    * @name logout
-	    * @desc Log the user out
-	    * @memberOf ncs.layout.controllers.NavbarController
-	    */
-		function logout(){
-			Authentication.logout();
-		}
+
+	    $scope.login = function(){
+	      djangoAuth.login(prompt('Username'),prompt('password'))
+	      .then(function(data){
+	        handleSuccess(data);
+	      },handleError);
+	    }
+	    
+	    $scope.logout = function(){
+	      djangoAuth.logout()
+	      .then(function(){
+	      	$state.go("home");
+	      },handleError);
+	    }
+
+	    var handleSuccess = function(data){
+	      $scope.response = data;
+	    }
+	    
+	    var handleError = function(data){
+	      $scope.response = data;
+	    }
+
+
+	    $scope.test = function(){
+	    	console.log($scope);
+	    }
 	}
 
 })();

@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-      .module('ncs.authentication.services')
+      .module('ncs.authentication')
       .factory('Authentication', Authentication);
 
     Authentication.$inject = ['$state', '$cookies', '$http', 'Snackbar'];

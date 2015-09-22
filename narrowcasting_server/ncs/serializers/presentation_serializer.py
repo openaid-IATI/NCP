@@ -7,14 +7,13 @@ from urllib2 import urlopen
 from urllib2 import URLError
 from rest_framework import serializers
 
-from authentication.serializers import AccountSerializer
 from ncs.models import Presentation
 from ncs.models import Slide
 from ncs.serializers.slide_serializer import SlideSerializer
 
 
 class PresentationSerializer(serializers.ModelSerializer):
-    creator = AccountSerializer(read_only=True, required=False)
+    # creator = AccountSerializer(read_only=True, required=False)
     slide_set = SlideSerializer(many=True, read_only=False, required=True)
 
     class Meta:
@@ -272,6 +271,11 @@ class PresentationSerializer(serializers.ModelSerializer):
             instance.name = validated_data['name']
         instance.save()
         return instance
+
+    def delete(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        snippet.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     def get_validation_exclusions(self, *args, **kwargs):
         exclusions = super(PresentationSerializer, self).get_validation_exclusions()
