@@ -58,6 +58,12 @@ var test = '';
       }
     }
 
+    vm.deleteDisplay = function(id){
+      Displays.deleteDisplay(id).then(function(){
+        Displays.all().then(displaySuccessFn, displayErrorFn);
+      });
+    }
+
     vm.updateDisplay = function(display){
       Displays.update(display).then(updateDisplaySuccessFn, updateDisplayErrorFn);
 
@@ -73,7 +79,6 @@ var test = '';
 
     function presentationsSuccessFn(data, status, headers, config) {
         vm.presentations = data.data;
-        console.log(vm.presentations);
     }
 
     function presentationsErrorFn(data, status, headers, config) {

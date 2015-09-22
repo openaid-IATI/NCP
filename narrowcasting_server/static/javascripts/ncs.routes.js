@@ -79,6 +79,13 @@
             templateUrl:  '/static/templates/displays/new-display.html'
         })
         .state({
+            name:         'edit-display',
+            url:          '/display/edit/:display_id/',
+            controller:   'EditDisplayController',
+            controllerAs: 'vm',
+            templateUrl:  '/static/templates/displays/edit-display.html'
+        })
+        .state({
             name:         'displays',
             url:          '/displays/',
             controller:   'DisplaysController',

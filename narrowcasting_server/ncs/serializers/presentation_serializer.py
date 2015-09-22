@@ -144,6 +144,13 @@ class PresentationSerializer(serializers.ModelSerializer):
             sector_names = ', '.join(sectors)
             slide_data['sectors'] = self.editable_field(sector_names, '1.4em', '#969696', 'bold', 'normal', 'none')
 
+        if len(slide_data['transactions']) > 0:
+            disbursements = 0
+            for transaction in slide_data['transactions']:
+                if transaction['transaction_type'] == 'D':
+                    disbursements = disbursements + float(transaction['value'])
+            slide_data['total_disbursement'] = str(disbursements)
+
         if len(slide_data['participating_organisations']) > 0:
             part_orgs = []
             for part_org in slide_data['participating_organisations']:

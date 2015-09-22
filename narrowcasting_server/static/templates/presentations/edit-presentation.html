@@ -63,6 +63,11 @@
                         <div class="col-md-12  text-right">
                             <div class="iati-select-filters rsr-select paddingtb1em">
                                 <a 
+                                ng-click="vm.resetRsrFilters()" 
+                                class="btn hover-orange btn-more-padding light-grey text-left"
+                                style="float:left; margin-left: 10px;">Reset filters</a>
+
+                                <a 
                                 ng-class="{ 'btn-active': vm.view == 'rsr-select' }" 
                                 ng-click="vm.showRsrProjects()" 
                                 class="btn hover-orange btn-more-padding light-grey">Projects</a>
@@ -99,10 +104,14 @@
                     <div class="row">
                         <div ng-show="vm.view.indexOf('iati-select') > -1" class="col-md-12  text-right">
                             <div class="iati-select-filters iati-select paddingtb1em">
+                                <a 
+                                ng-click="vm.resetIatiFilters()" 
+                                class="btn hover-orange btn-more-padding light-grey text-left"
+                                style="float:left; margin-left: 10px;">Reset filters</a>
                                 <a
                                 ng-class="{ 'btn-active': vm.view == 'iati-select' }" 
                                 ng-click="vm.showIatiProjects()" 
-                                class="btn hover-orange btn-more-padding light-grey go-to-projects">Projects</a>
+                                class="btn hover-orange btn-more-padding light-grey">Projects</a>
                                 <a 
                                 ng-class="{ 'btn-active': vm.view == 'iati-select-regions' }" 
                                 ng-click="vm.view = 'iati-select-regions'" 

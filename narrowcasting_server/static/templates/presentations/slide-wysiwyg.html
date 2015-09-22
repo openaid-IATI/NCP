@@ -164,9 +164,9 @@
 
                 <div 
                     class="block block-box-shadow type-relatie-block"
-                    ng-show="vm.slide.slideContent.relatietype.length">
-                    <div class="block-header">Type relatie</div>
-                    <span class="block-text">Relatietype..</span>
+                    ng-show="vm.slide.slideContent.total_disbursement.length">
+                    <div class="block-header">Uitgaven</div>
+                    <span class="block-text">{{vm.slide.slideContent.total_disbursement | iaticurrency :'€':0:".":"." }}</span>
                 </div>
 
                 <div 
@@ -344,7 +344,7 @@
                     <a  style="margin-top: 1em"
                         class="btn hover-dark-orange btn-padding-30 orange saveslide" 
                         ng-click="vm.save()">Save slide</a>
-                
+                    {{vm.slide.slideContent}}
             </div>
 
         </div>

@@ -22,7 +22,8 @@
             create: create,
             get: get,
             getSingle: getSingle,
-            update: update
+            update: update,
+            deleteDisplay: deleteDisplay
         };
 
         return Displays;
@@ -37,6 +38,10 @@
         */
         function all() {
             return $http.get('/api/v1/displays/');
+        }
+
+        function deleteDisplay(display){
+            return $http.delete('/api/v1/displays/'+display.id+'/');
         }
 
         /**

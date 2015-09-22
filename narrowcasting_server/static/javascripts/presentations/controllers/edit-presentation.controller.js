@@ -356,6 +356,23 @@
         }
     }
 
+    vm.resetIatiFilters = function(){
+
+        function removeAll(selectedArr){
+          selectedArr.splice(0, selectedArr.length); 
+        }
+
+        removeAll(vm.iatiSelectedRegions);
+        removeAll(vm.iatiSelectedCountries);
+        removeAll(vm.iatiSelectedSectors);
+
+        vm.iatiBudgetOn = false;
+        vm.iatiBudgetValue = [];
+        vm.iatiTextSearch = '';
+
+        vm.showIatiProjects();        
+    }
+
     vm.showIatiProjects = function(){
         vm.view = 'iati-select';
         // check if filters changed, if so filter projects
@@ -435,6 +452,17 @@
             vm.rsrProjects.currentPage = 1;
             RsrProjects.list(RsrFilterSelection.selectionString, vm.rsrProjects.perPage,  vm.rsrProjects.currentPage, vm.rsrProjects.orderBy).then(rsrProjectsSuccessFn, errorFn);
         }
+    }
+
+    vm.resetRsrFilters = function(){
+
+        function removeAll(selectedArr){
+          selectedArr.splice(0, selectedArr.length); 
+        }
+
+        removeAll(vm.rsrSelectedActivityStatuses);
+        vm.rsrTextSearch = '';
+        vm.showRsrProjects();        
     }
 
     vm.updateRsrSelectionString = function(){

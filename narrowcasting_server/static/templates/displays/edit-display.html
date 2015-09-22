@@ -1,0 +1,39 @@
+<div id="new_presentation">
+  <div class="top-header white">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Edit display</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="row green">
+  <div class="col-sm-12">
+      <div class="container">
+          
+          <form role="form" ng-submit="vm.submit()">
+            <div class="form-group">
+              <label for="presentation__content">Display name</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="presentation__content" 
+                placeholder="ex. Reception" 
+                ng-model="vm.display.name" />
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn dark-green">
+                Update display
+              </button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

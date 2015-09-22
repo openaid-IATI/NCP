@@ -28,6 +28,14 @@
         jqyoui-droppable>
           <img src="/static/images/display-placeholder.png" />
           <div class="display-name">{{display.name}}</div>
+
+          <div class="presentation-toolbar text-center">
+            <a ui-sref="edit-display({ display_id : display.id })"><img src="/static/images/icon-edit.png" /></a>
+            <a 
+              ng-confirm-click="This will delete the display and cannot be reversed. Are you sure?"
+              confirmed-click="vm.deleteDisplay(display)"><img src="/static/images/icon-trash.png" /></a>
+          </div>
+
           <div ng-show="display.presentation" class="presentation">
             <div class="presentation__name">
               {{ display.presentation.name }}
