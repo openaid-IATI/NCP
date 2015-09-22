@@ -478,7 +478,7 @@ PRESENTATIONS
   }
 
   .order-section{
-    margin-top: 1em;
+    margin-top: 22px;
     color: $light-grey;
 
     a{
@@ -497,16 +497,18 @@ PRESENTATIONS
 
 
     .order-button{
+      position:relative;
+      display: inline-block;
+      padding-left:30px;
 
       &.published span, &.draft span{
-        display: inline-block;
+        display: block;
         border-radius: 30px;
         background-color: $green;
         width: 20px;
         height: 20px;
-        margin-top: 6px;
-        margin-right: 4px;
-        margin-left: 18px;
+        left:5px;
+        position:absolute;
       }
 
       &.draft span{
