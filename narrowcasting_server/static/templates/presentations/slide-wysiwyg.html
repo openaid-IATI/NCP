@@ -103,7 +103,8 @@
                 </div>
 
                 <div ng-show="vm.Slides.slideNr == 2 && vm.slide.slideContent.primary_location.longitude" class="block location-block">
-                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=424x270&maptype=roadmap&markers=color:green%7Clabel:%7C{{vm.slide.slideContent.primary_location.latitude}},{{vm.slide.slideContent.primary_location.longitude}}">
+                    <img ng-src="{{vm.slideImages.googleMapImage.image}}">
+
                 </div>
 
                 <div ng-show="vm.Slides.slideNr == 2 && vm.slide.slideContent.budget.text.length" class="block block-box-shadow budget-block">
@@ -127,7 +128,15 @@
                     <img class="presentation-arrow" src="/static/images/presentation-arrow-right.png" />
 
                     <div class="single-update" ng-repeat="(key, rsr_update) in vm.slide.slideContent.rsr_updates">
-                        <img src="http://rsr.akvo.org{{rsr_update.photo}}" />
+                        <!-- <img src="http://rsr.akvo.org{{rsr_update.photo}}" /> -->
+                        <img 
+                            ng-if="key == 0"
+                            ng-src="{{vm.slideImages.rsrUpdate1.image}}">
+                            
+                        <img 
+                            ng-if="key == 1"
+                            ng-src="{{vm.slideImages.rsrUpdate2.image}}">
+
                         <div class="update-inner">
                             <div class="update-post-date">{{rsr_update.created_at | date:'dd MMM yyyy' }}</div>
                             <div class="update-by">by: {{rsr_update.user}}</div>

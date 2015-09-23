@@ -4,7 +4,6 @@ import json
 import requests
 from urllib2 import Request
 from urllib2 import urlopen
-from urllib2 import URLError
 from rest_framework import serializers
 
 from ncs.models import Presentation
@@ -113,12 +112,6 @@ class PresentationSerializer(serializers.ModelSerializer):
         for i in range(len(slide_data['rsr_updates'])):
             slide_data['rsr_updates'][i]['title'] = self.editable_field(slide_data['rsr_updates'][i]['title'], '0.8em', '#000000', 'bold', 'normal', 'none')
 
-        # get location
-        primary_location = slide_data['primary_location']
-        if primary_location:
-            print 'get primary location from rsr'
-
-        # get images
         return slide_data
 
     def get_iati_data(self, slide):
@@ -203,7 +196,7 @@ class PresentationSerializer(serializers.ModelSerializer):
                 url = 'http://rsr.akvo.org' + slide_data['current_image']
 
                 img_temp = NamedTemporaryFile(delete=True)
-                img_temp.write(urllib2.urlopen(url).read())
+                img_temp.write(urlopen(url).read())
                 img_temp.flush()
 
                 new_slide_image = SlideImage(image=File(img_temp), image_type='rsrImage', slide=new_slide)
@@ -212,37 +205,37 @@ class PresentationSerializer(serializers.ModelSerializer):
 
 
             # save rsr update images
-            # thiscount = 1
-            # for rsrUpdate in slide_data['rsr_updates']['results']:
-            #
-            #     if rsrUpdate['photo'] and rsrUpdate['photo'] != '':
-            #
-            #         rsr_image = requests.get('http://rsr.akvo.org'+rsrUpdate['photo'], headers=headers)
-            #         i = Image.open(StringIO(rsr_image.content))
-            #         new_slide_image = SlideImage(image=i, image_type='rsrUpdate'+str(thiscount), slide=new_slide)
-            #         new_slide_image.save()
-            #         thiscount = thiscount + 1
+            thiscount = 1
+            for rsrUpdate in slide_data['rsr_updates']:
+
+                if rsrUpdate['photo'] and rsrUpdate['photo'] != '':
+
+                    img_temp = NamedTemporaryFile(delete=True)
+                    img_temp.write(urlopen('http://rsr.akvo.org'+rsrUpdate['photo']).read())
+                    img_temp.flush()
+
+                    new_slide_image = SlideImage(image=File(img_temp), image_type='rsrUpdate'+str(thiscount), slide=new_slide)
+                    new_slide_image.save()
+
+                    thiscount = thiscount + 1
 
             # get google image from location
-            # if 'primary_location' in slide_data and slide_data['primary_location'] is not None:
-            #
-            #     url = settings.RSR_URL + '/project_location/' + str(slide_data['primary_location']) + '/?format=json'
-            #     response = requests.get(url, headers=headers)
-            #     slide_data['primary_location'] = response.json()
-            #
-            #     url = 'https://maps.googleapis.com/maps/api/staticmap'
-            #     url += '?zoom=13&size=700x300&maptype=roadmap&markers=color:red%7Clabel:C%7C'
-            #     url += str(slide_data['primary_location']['latitude']) + ','
-            #     url += str(slide_data['primary_location']['longitude'])
-            #
-            #     location_image = requests.get(url, headers=headers)
-            #     i = Image.open(StringIO(location_image.content))
-            #     SlideImage.objects.create(image=i, image_type='googleMapImage', slide=new_slide)
+            if 'primary_location' in slide_data and slide_data['primary_location'] is not None:
 
+                url = 'https://maps.googleapis.com/maps/api/staticmap'
+                url += '?zoom=13&size=700x300&maptype=roadmap&markers=color:green%7Clabel:%7C'
+                url += str(slide_data['primary_location']['latitude']) + ','
+                url += str(slide_data['primary_location']['longitude'])
+
+                img_temp = NamedTemporaryFile(delete=True)
+                img_temp.write(urlopen(url).read())
+                img_temp.flush()
+
+                new_slide_image = SlideImage(image=File(img_temp), image_type='googleMapImage', slide=new_slide)
+                new_slide_image.save()
 
         new_slide.slideContent = json.dumps(slide_data)
         new_slide.save()
-
 
     def update_slide(self, new_slide, presentation):
 
