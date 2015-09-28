@@ -102,17 +102,23 @@
                         ng-model="vm.slide.slideContent.primary_location_name.text">
                 </div>
 
-                <div ng-show="vm.Slides.slideNr == 2 && vm.slide.slideContent.primary_location.longitude" class="block location-block">
+                <div 
+                    ng-show="vm.Slides.slideNr == 2 && vm.slide.slideContent.primary_location.longitude" 
+                    class="block location-block">
                     <img ng-src="{{vm.slideImages.googleMapImage.image}}">
 
                 </div>
 
-                <div ng-show="vm.Slides.slideNr == 2 && vm.slide.slideContent.budget.text.length" class="block block-box-shadow budget-block">
+                <div 
+                    ng-show="vm.Slides.slideNr == 2 && vm.slide.slideContent.budget.text.length" 
+                    class="block block-box-shadow budget-block">
                     <div class="block-header">Project budget</div>
                     <span class="block-text">{{vm.slide.slideContent.budget.text | iaticurrency :'€':0:".":"."  }}</span>
                 </div>
 
-                <div ng-show="vm.Slides.slideNr == 2 && vm.slide.slideContent.target_group.text.length" class="block block-box-shadow target-group-block">
+                <div 
+                    ng-show="vm.Slides.slideNr == 2 && vm.slide.slideContent.target_group.text.length" 
+                    class="block block-box-shadow target-group-block">
                     <div class="block-header">Target group</div>
                     <textarea 
                         ng-model="vm.slide.slideContent.target_group.text" 

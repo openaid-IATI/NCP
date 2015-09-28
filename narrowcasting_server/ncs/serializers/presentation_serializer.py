@@ -192,7 +192,7 @@ class PresentationSerializer(serializers.ModelSerializer):
             import urllib2
 
 
-            if 'current_image' in slide_data and slide_data['current_image'] is not '':
+            if 'current_image' in slide_data and slide_data['current_image'] is not '' and slide_data['current_image']:
                 url = 'http://rsr.akvo.org' + slide_data['current_image']
 
                 img_temp = NamedTemporaryFile(delete=True)
