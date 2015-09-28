@@ -22,7 +22,7 @@
     vm.slide = {};
     vm.selectedField = '';
     vm.Slides = Slides;
-    vm.optionFontSize = '18px';
+    vm.optionFontSize = '1.2';
     vm.optionColor = "#969696";
     vm.backgroundImage = [];
     vm.rsrImage = [];
@@ -115,7 +115,7 @@
     }
 
     vm.changeFontSize = function(){
-        vm.slide.slideContent[vm.selectedField].cssStyle['font-size'] = vm.optionFontSize;
+        vm.slide.slideContent[vm.selectedField].cssStyle['font-size'] = vm.optionFontSize + 'em';
     }
 
     vm.changeColor = function(){
@@ -124,7 +124,7 @@
 
     vm.selectField = function(fieldName){
         vm.selectedField = fieldName;
-        vm.optionFontSize = vm.slide.slideContent[vm.selectedField].cssStyle['font-size'];
+        vm.optionFontSize = vm.slide.slideContent[vm.selectedField].cssStyle['font-size'].replace('em','');;
         vm.optionColor = vm.slide.slideContent[vm.selectedField].cssStyle['color'];
     }
 
