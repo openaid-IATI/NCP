@@ -10,13 +10,14 @@
                 src="/static/images/minbuza.png" 
                 width="180px" 
                 height="auto" />
+
         </div>
 
         <div class="rsr-slide" ng-if="value.source == 'rsr'">
 
             <img 
-                ng-src="{{value.slide_image_set[0].image_url}}" 
-                ng-if="value.slide_image_set.length" 
+                ng-src="{{vm.getImageUrl(value, 'mainImage')}}" 
+                ng-if="vm.hasImageUrl(value, 'mainImage')" 
                 class="background-image">
 
             <div 
@@ -42,8 +43,8 @@
             
             <img 
                 class="main-image animated bounceInLeft" 
-                src="http://rsr.akvo.org{{value.slideContent.current_image}}"
-                ng-if="value.slideContent.current_image.length">
+                ng-src="{{vm.getImageUrl(value, 'rsrImage')}}" 
+                ng-if="vm.hasImageUrl(value, 'rsrImage')">
 
             <div class="rsr-front-slide">
 
@@ -99,7 +100,9 @@
                 <div 
                     class="block location-block animated bounceInRight"
                     ng-if="value.slideContent.primary_location.longitude">
-                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=424x270&maptype=roadmap&markers=color:red%7Clabel:C%7C{{value.slideContent.primary_location.latitude}},{{value.slideContent.primary_location.longitude}}">
+                    <img 
+                    ng-src="{{vm.getImageUrl(value, 'googleMapImage')}}" 
+                    ng-if="vm.hasImageUrl(value, 'googleMapImage')">
                 </div>
 
                 <div 
@@ -129,8 +132,10 @@
                 </div>
                 <img class="presentation-arrow" src="/static/images/presentation-arrow-right.png" />
 
-                <div class="single-update" ng-repeat="rsr_update in value.slideContent.rsr_updates">
-                    <img src="http://rsr.akvo.org{{rsr_update.photo}}" />
+                <div class="single-update" ng-repeat="(key, rsr_update) in value.slideContent.rsr_updates">
+                    <img 
+                        ng-src="{{vm.getImageUrl(value, 'rsrUpdate' + (key + 1))}}" 
+                        ng-if="vm.hasImageUrl(value, 'rsrUpdate' + (key + 1))" />
                     <div class="update-inner">
                         <div class="update-post-date">{{rsr_update.created_at | date:'dd MMM yyyy' }}</div>
                         <div class="update-by">by: {{rsr_update.user}}</div>
@@ -145,8 +150,8 @@
         <div class="iati-slide" ng-if="value.source == 'iati'">
 
             <img 
-                ng-src="/{{value.slide_image_set[0].image_url}}" 
-                ng-if="value.slide_image_set.length" 
+                ng-src="{{vm.getImageUrl(value, 'mainImage')}}" 
+                ng-if="vm.hasImageUrl(value, 'mainImage')"
                 class="background-image">
 
             <div 

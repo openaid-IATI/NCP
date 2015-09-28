@@ -159,6 +159,25 @@ ncpApp.directive('preview', preview);
 		    }, slidelength);
 		}
 
+        vm.getImageUrl = function(slide, imageType){
+            console.log('called');
+            for(var i = 0; i < slide.slide_image_set.length;i++){
+                if(slide.slide_image_set[i].image_type == imageType){
+                    return slide.slide_image_set[i].image_url;
+                }
+            }
+        }
+
+        vm.hasImageUrl = function(slide, imageType){
+            for(var i = 0; i < slide.slide_image_set.length;i++){
+                if(slide.slide_image_set[i].image_type == imageType){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
 		activate();
 	});
 })();
