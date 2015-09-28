@@ -9,5 +9,6 @@
 /narrowcasting_server/static/slide_images/*
 *.pyc
 /.idea
+.sass-cache/*
 .gitignore.swp
 narrowcasting_server/narrowcasting

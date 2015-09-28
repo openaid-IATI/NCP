@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Questrial);
 /******************************************************************
 Site Name:
 Author:
@@ -26,8 +27,7 @@ the whole project.
 /**
  * Correct `block` display not defined in IE 8/9.
  */
-@import url(https://fonts.googleapis.com/css?family=Questrial);
-/* line 12, ../scss/partials/_normalize.scss */
+/* line 23, ../scss/partials/_normalize.scss */
 article,
 aside,
 details,
@@ -46,7 +46,7 @@ summary {
 /**
  * Correct `inline-block` display not defined in IE 8/9.
  */
-/* line 31, ../scss/partials/_normalize.scss */
+/* line 33, ../scss/partials/_normalize.scss */
 audio,
 canvas,
 video {
@@ -67,7 +67,7 @@ audio:not([controls]) {
  * Address `[hidden]` styling not present in IE 8/9.
  * Hide the `template` element in IE, Safari, and Firefox < 22.
  */
-/* line 52, ../scss/partials/_normalize.scss */
+/* line 53, ../scss/partials/_normalize.scss */
 [hidden],
 template {
   display: none;
@@ -121,7 +121,7 @@ a:focus {
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-/* line 105, ../scss/partials/_normalize.scss */
+/* line 106, ../scss/partials/_normalize.scss */
 a:active,
 a:hover {
   outline: 0;
@@ -151,7 +151,7 @@ abbr[title] {
 /**
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
-/* line 136, ../scss/partials/_normalize.scss */
+/* line 138, ../scss/partials/_normalize.scss */
 b,
 strong,
 .strong {
@@ -161,7 +161,7 @@ strong,
 /**
  * Address styling not present in Safari 5 and Chrome.
  */
-/* line 146, ../scss/partials/_normalize.scss */
+/* line 148, ../scss/partials/_normalize.scss */
 dfn,
 em,
 .em {
@@ -200,7 +200,7 @@ pre {
 /**
  * Correct font family set oddly in Safari 5 and Chrome.
  */
-/* line 185, ../scss/partials/_normalize.scss */
+/* line 188, ../scss/partials/_normalize.scss */
 code,
 kbd,
 pre,
@@ -228,7 +228,7 @@ q {
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-/* line 212, ../scss/partials/_normalize.scss */
+/* line 213, ../scss/partials/_normalize.scss */
 q:before,
 q:after {
   content: '';
@@ -243,7 +243,7 @@ small, .small {
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-/* line 226, ../scss/partials/_normalize.scss */
+/* line 227, ../scss/partials/_normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -268,7 +268,7 @@ sub {
 /*
  * Addresses margins set differently in IE6/7.
  */
-/* line 250, ../scss/partials/_normalize.scss */
+/* line 253, ../scss/partials/_normalize.scss */
 dl,
 menu,
 ol,
@@ -289,7 +289,7 @@ menu {
   padding: 0 0 0 40px;
 }
 
-/* line 269, ../scss/partials/_normalize.scss */
+/* line 270, ../scss/partials/_normalize.scss */
 ol,
 ul {
   padding: 0;
@@ -299,7 +299,7 @@ ul {
 /*
  * Corrects list images handled incorrectly in IE7.
  */
-/* line 279, ../scss/partials/_normalize.scss */
+/* line 280, ../scss/partials/_normalize.scss */
 nav ul,
 nav ol {
   list-style: none;
@@ -366,7 +366,7 @@ legend {
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
-/* line 347, ../scss/partials/_normalize.scss */
+/* line 350, ../scss/partials/_normalize.scss */
 button,
 input,
 select,
@@ -383,7 +383,7 @@ textarea {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-/* line 361, ../scss/partials/_normalize.scss */
+/* line 362, ../scss/partials/_normalize.scss */
 button,
 input {
   line-height: normal;
@@ -395,7 +395,7 @@ input {
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
-/* line 373, ../scss/partials/_normalize.scss */
+/* line 374, ../scss/partials/_normalize.scss */
 button,
 select {
   text-transform: none;
@@ -408,7 +408,7 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-/* line 386, ../scss/partials/_normalize.scss */
+/* line 389, ../scss/partials/_normalize.scss */
 button,
 html input[type="button"],
 input[type="reset"],
@@ -422,7 +422,7 @@ input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-/* line 398, ../scss/partials/_normalize.scss */
+/* line 399, ../scss/partials/_normalize.scss */
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -432,7 +432,7 @@ html input[disabled] {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-/* line 408, ../scss/partials/_normalize.scss */
+/* line 409, ../scss/partials/_normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
@@ -460,7 +460,7 @@ input[type="search"] {
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
-/* line 432, ../scss/partials/_normalize.scss */
+/* line 433, ../scss/partials/_normalize.scss */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -469,7 +469,7 @@ input[type="search"]::-webkit-search-decoration {
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-/* line 441, ../scss/partials/_normalize.scss */
+/* line 442, ../scss/partials/_normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -507,7 +507,7 @@ table {
   box-sizing: border-box;
 }
 
-/* line 479, ../scss/partials/_normalize.scss */
+/* line 480, ../scss/partials/_normalize.scss */
 .image-replacement,
 .ir {
   text-indent: 100%;
@@ -802,7 +802,7 @@ GENERAL
 /* line 18, ../scss/breakpoints/_base.scss */
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #000000;
+  color: black;
   font-size: 15px;
   background-color: #f3f3f5;
 }
@@ -835,7 +835,7 @@ h1 {
   filter: alpha(opacity=87);
   border-radius: 6px 14px;
   padding: 8px;
-  color: #fff;
+  color: white;
   font-size: 16px;
   font-weight: 400;
   border-radius: 10px;
@@ -843,13 +843,13 @@ h1 {
 
 /* line 56, ../scss/breakpoints/_base.scss */
 .btn-green {
-  background-color: #22B573;
-  color: #fff;
+  background-color: #22b573;
+  color: white;
 }
 /* line 60, ../scss/breakpoints/_base.scss */
 .btn-green:hover {
   background-color: #f9af48;
-  color: #fff;
+  color: white;
 }
 
 /* line 66, ../scss/breakpoints/_base.scss */
@@ -859,50 +859,50 @@ h1 {
 
 /* line 70, ../scss/breakpoints/_base.scss */
 .light-blue {
-  background-color: #29ABE2;
-  color: #fff;
+  background-color: #29abe2;
+  color: white;
 }
 
 /* line 75, ../scss/breakpoints/_base.scss */
 .red {
-  background-color: #F15A24;
-  color: #fff;
+  background-color: #f15a24;
+  color: white;
 }
 
 /* line 80, ../scss/breakpoints/_base.scss */
 .green {
-  background-color: #22B573;
-  color: #fff;
+  background-color: #22b573;
+  color: white;
 }
 
 /* line 85, ../scss/breakpoints/_base.scss */
 .orange {
   background-color: #f9af48;
-  color: #fff;
+  color: white;
 }
 
 /* line 90, ../scss/breakpoints/_base.scss */
 .light-grey {
-  background-color: #BFBDBD;
-  color: #fff;
+  background-color: #bfbdbd;
+  color: white;
 }
 
 /* line 95, ../scss/breakpoints/_base.scss */
 .dark-grey {
   background-color: #6a6969;
-  color: #fff;
+  color: white;
 }
 
 /* line 100, ../scss/breakpoints/_base.scss */
 .dark-green {
   background-color: #006837;
-  color: #fff;
+  color: white;
 }
 
 /* line 105, ../scss/breakpoints/_base.scss */
 .black, #edit_presentation .edit-bar h4 {
   background-color: #424141;
-  color: #fff;
+  color: white;
 }
 
 /* line 110, ../scss/breakpoints/_base.scss */
@@ -933,26 +933,26 @@ h1 {
 /* line 130, ../scss/breakpoints/_base.scss */
 .btn-drag-drop:hover {
   background-color: #6a6969;
-  color: #fff;
+  color: white;
   cursor: inherit;
 }
 
 /* line 137, ../scss/breakpoints/_base.scss */
 .hover-orange:hover {
   background-color: #f9af48;
-  color: #fff;
+  color: white;
 }
 
 /* line 142, ../scss/breakpoints/_base.scss */
 .hover-dark-orange:hover {
   background-color: #f79917;
-  color: #fff;
+  color: white;
 }
 
 /* line 147, ../scss/breakpoints/_base.scss */
 .hover-black:hover {
   background-color: #424141;
-  color: #fff;
+  color: white;
 }
 
 /* line 152, ../scss/breakpoints/_base.scss */
@@ -997,7 +997,7 @@ h1 {
   margin-bottom: 1em;
 }
 
-/* line 186, ../scss/breakpoints/_base.scss */
+/* line 188, ../scss/breakpoints/_base.scss */
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus,
 .pagination > li > a, .pagination > li > span,
 .pagination > li:first-child > a, .pagination > li:first-child > span {
@@ -1008,17 +1008,17 @@ h1 {
 
 /* line 196, ../scss/breakpoints/_base.scss */
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-  color: #2988E2;
+  color: #2988e2;
 }
 
 /* previous and next */
-/* line 200, ../scss/breakpoints/_base.scss */
+/* line 203, ../scss/breakpoints/_base.scss */
 .pagination > li:first-child > a, .pagination > li:first-child > span,
 .pagination > li:last-child > a, .pagination > li:last-child > span,
 .pagination > li:first-child > a:focus, .pagination > li:first-child > span:focus,
 .pagination > li:last-child > a:focus, .pagination > li:last-child > span:focus {
-  border: 2px solid #BFBDBD;
-  color: #BFBDBD;
+  border: 2px solid #bfbdbd;
+  color: #bfbdbd;
   border-radius: 25px;
   font-size: 36px;
   line-height: 28px;
@@ -1032,7 +1032,7 @@ h1 {
   background-color: transparent;
 }
 
-/* line 219, ../scss/breakpoints/_base.scss */
+/* line 220, ../scss/breakpoints/_base.scss */
 .pagination > li:first-child > a:hover, .pagination > li:first-child > span:hover,
 .pagination > li:last-child > a:hover, .pagination > li:last-child > span:hover {
   border: 2px solid #6a6969;
@@ -1069,7 +1069,7 @@ NAVBAR
 
 /* line 253, ../scss/breakpoints/_base.scss */
 .navbar-default .navbar-nav > li > a {
-  color: #fff;
+  color: white;
 }
 
 /* line 257, ../scss/breakpoints/_base.scss */
@@ -1082,11 +1082,11 @@ NAVBAR
   padding: 8px 28px;
 }
 
-/* line 265, ../scss/breakpoints/_base.scss */
+/* line 266, ../scss/breakpoints/_base.scss */
 .navbar-default .navbar-nav > li > a.navbar-btn-login:hover,
 .navbar-default .navbar-nav > li > a.navbar-btn-login:focus {
   background-color: #f9af48;
-  color: #fff;
+  color: white;
 }
 
 /* line 271, ../scss/breakpoints/_base.scss */
@@ -1138,7 +1138,7 @@ Homepage
 /* line 329, ../scss/breakpoints/_base.scss */
 #homepage h1 {
   margin-top: 5em;
-  color: #fff;
+  color: white;
 }
 /* line 337, ../scss/breakpoints/_base.scss */
 #homepage .explanation p {
@@ -1188,7 +1188,7 @@ Homepage
 }
 /* line 386, ../scss/breakpoints/_base.scss */
 #homepage hr {
-  border-top: 3px solid #22B573;
+  border-top: 3px solid #22b573;
   max-width: 11em;
   margin-top: 14px;
   margin-bottom: 26px;
@@ -1199,7 +1199,7 @@ PRESENTATIONS
 ****/
 /* line 406, ../scss/breakpoints/_base.scss */
 .presentation-wrapper {
-  color: #fff;
+  color: white;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   display: block;
   padding-top: 1.5em;
@@ -1209,16 +1209,16 @@ PRESENTATIONS
 }
 /* line 415, ../scss/breakpoints/_base.scss */
 .presentation-wrapper.draft {
-  background-color: #F15A24;
+  background-color: #f15a24;
 }
 /* line 419, ../scss/breakpoints/_base.scss */
 .presentation-wrapper.published {
-  background-color: #22B573;
+  background-color: #22b573;
 }
 /* line 423, ../scss/breakpoints/_base.scss */
 .presentation-wrapper:hover {
   background-color: #f9af48;
-  color: #fff;
+  color: white;
 }
 /* line 428, ../scss/breakpoints/_base.scss */
 .presentation-wrapper .presentation {
@@ -1269,16 +1269,16 @@ PRESENTATIONS
 /* line 474, ../scss/breakpoints/_base.scss */
 #presentations .watch-tutorial:hover {
   background-color: #424141;
-  color: #fff;
+  color: white;
 }
 /* line 480, ../scss/breakpoints/_base.scss */
 #presentations .order-section {
   margin-top: 22px;
-  color: #BFBDBD;
+  color: #bfbdbd;
 }
 /* line 484, ../scss/breakpoints/_base.scss */
 #presentations .order-section a {
-  color: #BFBDBD;
+  color: #bfbdbd;
   cursor: pointer;
 }
 /* line 488, ../scss/breakpoints/_base.scss */
@@ -1299,7 +1299,7 @@ PRESENTATIONS
 #presentations .order-section .order-button.published span, #presentations .order-section .order-button.draft span {
   display: block;
   border-radius: 30px;
-  background-color: #22B573;
+  background-color: #22b573;
   width: 20px;
   height: 20px;
   left: 5px;
@@ -1307,7 +1307,7 @@ PRESENTATIONS
 }
 /* line 514, ../scss/breakpoints/_base.scss */
 #presentations .order-section .order-button.draft span {
-  background-color: #F15A24;
+  background-color: #f15a24;
 }
 
 /****
@@ -1346,7 +1346,7 @@ DISPLAYS
   position: absolute;
   top: 13px;
   left: 46px;
-  background-color: #22B573;
+  background-color: #22b573;
   width: 319px;
   height: 169px;
   text-align: center;
@@ -1427,7 +1427,7 @@ NEW PRESENTATION
 /* line 644, ../scss/breakpoints/_base.scss */
 #new_presentation button:hover {
   background-color: #f9af48;
-  color: #fff;
+  color: white;
 }
 
 /****
@@ -1483,7 +1483,7 @@ EDIT PRESENTATION
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 8px 14px;
-  color: #fff;
+  color: white;
   font-size: 16px;
   font-weight: 400;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
@@ -1515,7 +1515,6 @@ EDIT PRESENTATION
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  overflow: hidden;
 }
 /* line 740, ../scss/breakpoints/_base.scss */
 #edit_presentation .edit-bar.text-right {
@@ -1538,18 +1537,18 @@ EDIT PRESENTATION
 #edit_presentation .project-bar {
   height: 65em;
   overflow-y: scroll;
-  background-color: #fff;
+  background-color: white;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
 }
 /* line 764, ../scss/breakpoints/_base.scss */
 #edit_presentation .project-bar .iati {
-  background-color: #22B573;
-  color: #fff;
+  background-color: #22b573;
+  color: white;
 }
 /* line 769, ../scss/breakpoints/_base.scss */
 #edit_presentation .project-bar .rsr {
-  background-color: #29ABE2;
-  color: #fff;
+  background-color: #29abe2;
+  color: white;
 }
 /* line 774, ../scss/breakpoints/_base.scss */
 #edit_presentation .project-bar .rsr-slide-2 {
@@ -1558,7 +1557,7 @@ EDIT PRESENTATION
 /* line 778, ../scss/breakpoints/_base.scss */
 #edit_presentation .project-bar .content {
   background-color: #f9af48;
-  color: #fff;
+  color: white;
 }
 /* line 783, ../scss/breakpoints/_base.scss */
 #edit_presentation .project-bar .hoveredProject .main-project {
@@ -1581,8 +1580,8 @@ EDIT PRESENTATION
 }
 /* line 801, ../scss/breakpoints/_base.scss */
 #edit_presentation .project-bar .remove-slide:hover {
-  color: #F15A24;
-  border-color: #F15A24;
+  color: #f15a24;
+  border-color: #f15a24;
   cursor: pointer;
 }
 /* line 809, ../scss/breakpoints/_base.scss */
@@ -1600,7 +1599,7 @@ EDIT PRESENTATION
   display: inline-block;
   background-color: #F3F3F5;
   cursor: move;
-  color: #BFBDBD;
+  color: #bfbdbd;
   width: 100%;
   padding: 0 10px 15px 10px;
 }
@@ -1702,16 +1701,16 @@ EDIT PRESENTATION
 }
 /* line 937, ../scss/breakpoints/_base.scss */
 #edit_presentation .iati-select-filters {
-  background-color: #fff;
+  background-color: white;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
 }
 /* line 941, ../scss/breakpoints/_base.scss */
 #edit_presentation .iati-select-filters.iati-select {
-  border: 2px solid #22B573;
+  border: 2px solid #22b573;
 }
 /* line 945, ../scss/breakpoints/_base.scss */
 #edit_presentation .iati-select-filters.rsr-select {
-  border: 2px solid #29ABE2;
+  border: 2px solid #29abe2;
 }
 /* line 949, ../scss/breakpoints/_base.scss */
 #edit_presentation .iati-select-filters .btn {
@@ -1891,7 +1890,7 @@ IATI filters
 .filter-panel.filter-panel-budget .slider.slider-horizontal {
   width: 100% !important;
 }
-/* line 1136, ../scss/breakpoints/_base.scss */
+/* line 1138, ../scss/breakpoints/_base.scss */
 .filter-panel .pagination > .active > a, .filter-panel .pagination > .active > span, .filter-panel .pagination > .active > a:hover, .filter-panel .pagination > .active > span:hover, .filter-panel .pagination > .active > a:focus, .filter-panel .pagination > .active > span:focus,
 .filter-panel .pagination > li > a, .filter-panel .pagination > li > span,
 .filter-panel .pagination > li:first-child > a, .filter-panel .pagination > li:first-child > span {
@@ -1901,7 +1900,7 @@ IATI filters
 .filter-panel .pagination > .active > a, .filter-panel .pagination > .active > span, .filter-panel .pagination > .active > a:hover, .filter-panel .pagination > .active > span:hover, .filter-panel .pagination > .active > a:focus, .filter-panel .pagination > .active > span:focus {
   color: #6a6969;
 }
-/* line 1147, ../scss/breakpoints/_base.scss */
+/* line 1150, ../scss/breakpoints/_base.scss */
 .filter-panel .pagination > li:first-child > a, .filter-panel .pagination > li:first-child > span,
 .filter-panel .pagination > li:last-child > a, .filter-panel .pagination > li:last-child > span,
 .filter-panel .pagination > li:first-child > a:focus, .filter-panel .pagination > li:first-child > span:focus,
@@ -1913,7 +1912,7 @@ IATI filters
 .filter-panel .pagination > li > a {
   background-color: transparent;
 }
-/* line 1159, ../scss/breakpoints/_base.scss */
+/* line 1160, ../scss/breakpoints/_base.scss */
 .filter-panel .pagination > li:first-child > a:hover, .filter-panel .pagination > li:first-child > span:hover,
 .filter-panel .pagination > li:last-child > a:hover, .filter-panel .pagination > li:last-child > span:hover {
   border: 2px solid #fff;
@@ -2262,13 +2261,13 @@ slide WYSIWYG
 /* line 1509, ../scss/breakpoints/_base.scss */
 #slide-wysiwyg .updates-block .single-update .update-inner .update-post-date {
   font-size: 0.7em;
-  color: #BFBDBD;
+  color: #bfbdbd;
   font-weight: bold;
 }
 /* line 1515, ../scss/breakpoints/_base.scss */
 #slide-wysiwyg .updates-block .single-update .update-inner .update-by {
   font-size: 0.7em;
-  color: #22B573;
+  color: #22b573;
   font-weight: bold;
 }
 /* line 1521, ../scss/breakpoints/_base.scss */
@@ -2366,7 +2365,7 @@ slide WYSIWYG
 }
 /* line 1641, ../scss/breakpoints/_base.scss */
 #slide-wysiwyg .edit-bars .edit-input-fontsize {
-  border: 1px solid #BFBDBD;
+  border: 1px solid #bfbdbd;
 }
 /* line 1645, ../scss/breakpoints/_base.scss */
 #slide-wysiwyg .edit-bars hr {
@@ -2377,7 +2376,7 @@ slide WYSIWYG
 /* line 1651, ../scss/breakpoints/_base.scss */
 #slide-wysiwyg .edit-bars .edit-option-header {
   padding-left: 14px;
-  color: #BFBDBD;
+  color: #bfbdbd;
   display: inline-block;
 }
 /* line 1657, ../scss/breakpoints/_base.scss */
@@ -2408,13 +2407,13 @@ slide WYSIWYG
 #slide-wysiwyg .edit-bars .weight-block a {
   cursor: pointer;
   color: black;
-  border-top: 1px solid #BFBDBD;
-  border-bottom: 1px solid #BFBDBD;
+  border-top: 1px solid #bfbdbd;
+  border-bottom: 1px solid #bfbdbd;
   padding: 1px 10px;
 }
 /* line 1687, ../scss/breakpoints/_base.scss */
 #slide-wysiwyg .edit-bars .weight-block a:hover {
-  color: #BFBDBD;
+  color: #bfbdbd;
 }
 /* line 1692, ../scss/breakpoints/_base.scss */
 #slide-wysiwyg .edit-bars .weight-block .underline {
@@ -2436,8 +2435,8 @@ slide WYSIWYG
   display: block;
   margin: 12px auto;
   font-size: 14px;
-  background-color: #F15A24;
-  color: #fff;
+  background-color: #f15a24;
+  color: white;
   padding: 4px 15px;
   width: 90%;
   cursor: pointer;
@@ -2494,25 +2493,25 @@ Users
 }
 /* line 1762, ../scss/breakpoints/_base.scss */
 #users .profile input:focus, #users .profile input:active {
-  background-color: #29ABE2;
-  border-color: #29ABE2;
-  color: #fff;
+  background-color: #29abe2;
+  border-color: #29abe2;
+  color: white;
 }
 /* line 1766, ../scss/breakpoints/_base.scss */
 #users .profile input:focus::-webkit-input-placeholder, #users .profile input:active::-webkit-input-placeholder {
-  color: #fff;
+  color: white;
 }
 /* line 1767, ../scss/breakpoints/_base.scss */
 #users .profile input:focus:-moz-placeholder, #users .profile input:active:-moz-placeholder {
-  color: #fff;
+  color: white;
 }
 /* line 1768, ../scss/breakpoints/_base.scss */
 #users .profile input:focus::-moz-placeholder, #users .profile input:active::-moz-placeholder {
-  color: #fff;
+  color: white;
 }
 /* line 1769, ../scss/breakpoints/_base.scss */
 #users .profile input:focus:-ms-input-placeholder, #users .profile input:active:-ms-input-placeholder {
-  color: #fff;
+  color: white;
 }
 /* line 1775, ../scss/breakpoints/_base.scss */
 #users .user-meta-item {
@@ -2533,9 +2532,9 @@ Users
 #users .table > tbody > tr > td {
   position: relative;
   border-top: 0;
-  background-color: #22B573;
+  background-color: #22b573;
   border-bottom: 26px solid #f3f3f5;
-  color: #fff;
+  color: white;
   text-align: center;
   padding: 5px;
   font-size: 18px;
@@ -2586,7 +2585,7 @@ SNACKBAR
   filter: alpha(opacity=87);
   border-radius: 6px 14px;
   padding: 14px;
-  color: #fff;
+  color: white;
   font-size: 16px;
   font-weight: 400;
   border-radius: 10px;
