@@ -242,10 +242,10 @@
         var newSlide = {
             'activity_id': 'content-slide',
             'position': 0,
-            'content': '{"title":"Empty content slide","subtitle":""}',
+            'content': '{"title":"My content slide","subtitle":""}',
             'previewData': {
                 'id': 'content-slide',
-                'title': "Empty content slide",
+                'title': "My content slide",
                 'source': 'content'
             },
             'source': 'content',
