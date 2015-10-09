@@ -2,7 +2,7 @@ Narrowcasting Prototype
 ============
 
 The Narrowcasting prototype enables the creation of presentations out of 2 data sources:<br>&nbsp;<br>
--[IATI data](https://www.iatistandard.org) through the [OIPA API](http://www.oipa.nl) <br>
+-[IATI data](http://www.iatistandard.org) through the [OIPA API](http://www.oipa.nl) <br>
 -[RSR data](http://rsr.akvo.org) through the [RSR API](https://github.com/akvo/akvo-rsr/wiki)
 
 The end result is an animated presentation with a public URL that can be shared and shown on displays.
