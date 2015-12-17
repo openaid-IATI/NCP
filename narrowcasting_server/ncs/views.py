@@ -118,7 +118,7 @@ def RsrView(request):
     call = request.GET['call']
     filters = request.GET['filters']
     filters = urllib.unquote(filters)
-    url = settings.RSR_URL + '/' + call + '/?format=json' + filters
+    url = settings.RSR_URL + '/' + call + '/?format=json&publishingstatus__status=published' + filters
     result = requests.get(url, headers=headers)
     data = result.json()
     return JsonResponse(data)
