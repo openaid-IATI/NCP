@@ -55,7 +55,7 @@ class PresentationSerializer(serializers.ModelSerializer):
     def get_rsr_data(self, slide):
 
         url = settings.RSR_URL + '/project/' + slide['activity_id'] + '/?format=json'
-        headers = {'Authorization': settings.RSR_TOKEN}
+        headers = {}
         response = requests.get(url, headers=headers)
         slide_data = response.json()
 

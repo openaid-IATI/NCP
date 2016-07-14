@@ -114,7 +114,7 @@ class AccountPresentationsViewSet(viewsets.ViewSet):
 
 
 def RsrView(request):
-    headers = {'Authorization': settings.RSR_TOKEN}
+    headers = {}
     call = request.GET['call']
     filters = request.GET['filters']
     filters = urllib.unquote(filters)
